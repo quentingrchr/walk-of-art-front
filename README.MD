@@ -5,8 +5,7 @@ This project was generated with [superplate](https://github.com/pankod/superplat
 
 ## Getting Started
 
-superplate is a Next.js all-in-one project generator. Create your project with the tools you need without spending hours on setting them up.
-
+This is a Next.js / Typescript / Sass project.
 ## Available Scripts
 
 ### Running the development server.
@@ -27,19 +26,8 @@ superplate is a Next.js all-in-one project generator. Create your project with t
     npm run start
 ```
 
-## Learn More
+### Creating components with template
 
-To learn more about **superplate**, please check out the [Documentation](https://github.com/pankod/superplate).
-
-
-### **SASS/SCSS**
-
-Sass is a stylesheet language that’s compiled to CSS. It allows you to use variables, nested rules, mixins, functions, and more, all with a fully CSS-compatible syntax.
-
-[Go To Documentation](https://sass-lang.com/documentation)
-
-
-
-## License
-
-MIT
+```bash
+    npm run template
+```
