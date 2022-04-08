@@ -1,0 +1,21 @@
+@import "@styles/theme.scss";
+
+.button {
+  appearance: button;
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 0.25rem 0.65rem;
+  border-radius: 0.15rem;
+  border: 1px solid #282c34;
+  background-color: red;
+  font-family: "Inter";
+  &:hover {
+    color: initial;
+    text-decoration: none;
+  }
+}
+
+.title {
+  @include typo-heading-lg;
+}

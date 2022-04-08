@@ -1,0 +1,38 @@
+
+
+@import "@styles/theme.scss";
+
+.success{
+  svg, path, circle, rect{
+    fill: $color-success;
+    stroke: $color-success;
+  }
+}
+
+.info{
+  svg, path, circle, rect{
+    fill: $color-info;
+    stroke: $color-info;
+  }
+}
+
+.error{
+  svg, path, circle, rect{
+    fill: $color-error;
+    stroke: $color-error;
+  }
+}
+
+.black{
+  svg, path, circle, rect{
+    fill: $color-black;
+    stroke: $color-black;
+  }
+}
+
+.white{
+  svg, path, circle, rect{
+    fill: $color-white;
+    stroke: $color-white;
+  }
+}

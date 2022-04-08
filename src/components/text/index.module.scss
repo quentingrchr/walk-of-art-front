@@ -1,0 +1,55 @@
+@import "@styles/theme.scss";
+
+// Headings style
+.heading-lg {
+    @include typo-heading-lg;
+}
+
+.paragraph-md {
+    @include typo-paragraph-md;
+}
+
+.label {
+    @include typo-label;
+}
+
+.guidance {
+    @include typo-guidance;
+}
+
+// Colors
+.black {
+    color: $color-black;
+}
+
+.white {
+    color: $color-white;
+}
+
+.beige {
+    color: $color-beige;
+}
+
+.error {
+    color: $color-error;
+}
+
+.error-light {
+    color: $color-error-light;
+}
+
+.success {
+    color: $color-success;
+}
+
+.success-light {
+    color: $color-success-light;
+}
+
+.info {
+    color: $color-info;
+}
+
+.info-light {
+    color: $color-info-light;
+}

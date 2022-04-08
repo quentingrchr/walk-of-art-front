@@ -1,0 +1,19 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 42rem;
+  gap: 0.8rem;
+}
+
+.label{
+  padding-left: 2.4rem;
+}
+
+.guidance {
+  padding-left: 2.4rem;
+}
+
