@@ -1,6 +1,7 @@
 @mixin typo-heading-lg {
   font-size: 6rem;
   font-family: $font-decay;
+  font-weight: normal;
 }
 
 @mixin typo-paragraph-md {

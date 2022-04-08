@@ -12,7 +12,9 @@ export type IProps = {
 export const Guidance: React.FC<IProps> = ({children, type}: IProps) => {
     return (
         <div className={cn(styles.container, styles[type])}>
-            <Icon type="avatar" size="small" color={type}/>
+            <div>
+                <Icon type="avatar" size="small" color={type}/>
+            </div>
             <div className={styles.text}>
                 {children}
             </div>

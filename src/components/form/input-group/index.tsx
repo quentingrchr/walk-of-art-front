@@ -1,16 +1,21 @@
 import React from "react"
 import styles from "./index.module.scss"
 import { Input, Text, Guidance } from "@components"
+import { Semantic } from "@interfaces/index"
+import { InputTypes } from "../../../types"
+
+
+export interface IGuidance {
+    type: Semantic,
+    message: string
+}
 
 export type IProps = {
     label?: string,
-    type: "email" | "password" | "text",
+    type: InputTypes;
     placeholder?: string,
     register: any,
-    guidance: {
-        type: "error" | "success" | "info",
-        message: string,
-    } | null
+    guidance: IGuidance | null
 }
 
 export const InputGroup: React.FC<IProps> = ({ label, type, placeholder = "", register, guidance }: IProps) => {

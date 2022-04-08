@@ -2,11 +2,12 @@ import React from "react"
 import styles from "./index.module.scss"
 import  cx  from "classnames";
 import { Icon } from "@components"
+import { InputTypes } from "@interfaces/index";
 
 export type IProps = {
     placeholder: string
     value: string,
-    type?: string,
+    type?: InputTypes,
     register: any,
     onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void,
 }

@@ -1,10 +1,11 @@
+
 export type ColorsType =
     | "black"
     | "white"
     | "beige"
     | "error"
     | "error-light"
-    | "sucess"
+    | "success"
     | "success-light"
     | "info"
     | "info-light"
@@ -12,3 +13,5 @@ export type ColorsType =
 export type HTMLTextTag = "p" | "span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "b" | "i" | "u" | "label"
 
 export type TextTypography = "heading-lg" | "paragraph-md" | "label" | "guidance"
+
+export type InputTypes = "password" | "email" | "text"
