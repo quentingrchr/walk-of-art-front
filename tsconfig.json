@@ -22,7 +22,8 @@
       "@public/*": ["public/*"],
       "@public": ["public"],
       "@interfaces/*": ["src/interfaces/*"],
-      "@types/*": ["src/interfaces/*"],
+      "@types": ["src/types/*"],
+      "@types/*": ["src/types/*"],
       "@assets/*": ["src/assets/*"],
     },
     "incremental": true
