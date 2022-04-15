@@ -32,3 +32,11 @@
   opacity: 0.5;
   font-style: normal;
 }
+
+@mixin typo-link {
+  font-size: 1.6rem;
+  font-family: $font-inter;
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: underline;
+}

@@ -25,6 +25,7 @@
       "@types": ["src/types/*"],
       "@types/*": ["src/types/*"],
       "@assets/*": ["src/assets/*"],
+      "@utility/*": ["src/utility/*"],
     },
     "incremental": true
   },

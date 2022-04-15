@@ -16,7 +16,8 @@ module.exports = {
         "@styles":     path.resolve(__dirname, '../src/styles/'),
         "@public":     path.resolve(__dirname, '../public/'),
         "@interfaces": path.resolve(__dirname, '../src/interfaces/'),
-        "@types":      path.resolve(__dirname, '../src/types/')
+        "@types": path.resolve(__dirname, '../src/types/'),
+        "@utility": path.resolve(__dirname,'../src/utility/'),
         // add future aliases here (see tsconfig.json)
     }
 
