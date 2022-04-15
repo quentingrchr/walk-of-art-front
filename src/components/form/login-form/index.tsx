@@ -1,5 +1,5 @@
 import React from "react"
-import { InputGroup, Text, HeadingStrong } from "@components"
+import { InputGroup, Text, HeadingStrong, Link } from "@components"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -55,6 +55,12 @@ export const LoginForm: React.FC<IProps> = (props: IProps) => {
         <div className={styles.container}>  
             <div className={styles.title}>
                 <HeadingStrong content="Inscription" elementColor="success" color="black" />
+            </div>
+            <div>
+                <Text color="black" tag="p" typo="paragraph-md" >
+                    Vous n'avez pas encore de compte ?
+                </Text>
+                <Link to="/" label="Connectez-vous"/>
             </div>
             <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
                 {formInputs.map((input, index) => (

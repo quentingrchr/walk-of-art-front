@@ -1,0 +1,23 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+.link {
+  @include typo-link;
+  cursor: pointer;
+  width: fit-content;
+  display: inline;
+  
+  &.black, &.black > a{
+    color: $color-black;
+  }
+  &.success &.success > a {
+    color: $color-success;
+  }
+  &.error &.error > a {
+    color: $color-error;
+  }
+  &.info &.info > a {
+    color: $color-info;
+  }
+}

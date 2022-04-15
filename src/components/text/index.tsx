@@ -4,22 +4,22 @@ import { HTMLTextTag, TextTypography, ColorsType } from "../../types";
 
 export interface IProps {
   tag: HTMLTextTag;
-  content: string;
   typo: TextTypography;
   color?: ColorsType;
   attributes?: any;
+  children?: any;
 }
 export function Text({
   tag = "p",
-  content = "content",
   typo = "paragraph-md",
   color = "black",
   attributes = {},
+  children,
 }: IProps) {
   const element = React.createElement(
     tag,
     { className: `text ${styles[typo]} ${styles[color]}`, ...attributes },
-    content
+    children
   );
   return element;
 }
