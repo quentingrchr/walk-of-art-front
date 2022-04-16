@@ -3,7 +3,7 @@ import { IGuidance } from "../input-group/index"
 
 
 export interface IFormInput {
-    register: any,
+    id: string,
     type: InputTypes,
     label: string,
     placeholder: string,

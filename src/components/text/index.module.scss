@@ -1,5 +1,6 @@
 @import "@styles/theme.scss";
 
+
 // Headings style
 .heading-lg {
     @include typo-heading-lg;
@@ -52,4 +53,17 @@
 
 .info-light {
     color: $color-info-light;
+}
+
+.block{
+    display: block;
+}
+.inline{
+    display: inline;
+}
+.flex{
+    display: flex;
+}
+.none {
+    display: none;
 }

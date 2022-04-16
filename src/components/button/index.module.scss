@@ -1,21 +1,42 @@
 @import "@styles/theme.scss";
 
+// Your style here
+
 .button {
-  appearance: button;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  width: fit-content;
+  display: inline;
   text-decoration: none;
-  background-color: #ffffff;
-  color: #000000;
-  padding: 0.25rem 0.65rem;
-  border-radius: 0.15rem;
-  border: 1px solid #282c34;
-  background-color: red;
-  font-family: "Inter";
-  &:hover {
-    color: initial;
+  font-size: 1.6rem;
+  font-family: $font-inter;
+  font-weight: bold;
+  padding: 1.6rem 2.4rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: $color-black;
+  box-sizing: border-box;
+  text-decoration: none;
+  a {
     text-decoration: none;
   }
-}
-
-.title {
-  @include typo-heading-lg;
+  &.black, &.black > a{
+    color: $color-black;
+  }
+  &.white, &.white > a{
+    color: $color-white;
+  }
+  &.success &.success > a {
+    color: $color-success;
+  }
+  &.error &.error > a {
+    color: $color-error;
+  }
+  &.info &.info > a {
+    color: $color-info;
+  }
 }

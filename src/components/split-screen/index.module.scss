@@ -1,0 +1,46 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+.container{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  height: fit-content;
+  align-items: center;
+ 
+}
+
+.left, .right{
+  box-sizing: content-box;
+  overflow: hidden;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  @include respond-below(sm){
+    width: 100%;
+  }
+}
+
+.imageContainer{
+  @include respond-below(sm){
+    display: none;
+  }
+}
+
+.image{
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  @include respond-below(sm){
+    display: none;
+  }
+}
+
+
