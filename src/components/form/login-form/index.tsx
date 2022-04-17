@@ -1,72 +1,43 @@
-import React from "react"
-import { InputGroup, Text, HeadingStrong, Link } from "@components"
-import { useForm } from "react-hook-form";
+import React, { useEffect } from 'react'
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
-import styles from "./index.module.scss"
+import s from './index.module.scss'
+import { InputGroup, HeadingStrong, Button} from '@components'
+import { IFormInput } from './interfaces'
+import { ColorsType } from '../../../types'
 
-import { IFormInput } from "./interfaces"
+
 interface IProps { 
-
+    inputs: Array<IFormInput>
+    title: string,
+    schema?: any,
+    submitText: string,
+    children?: React.ReactNode,
+    onSubmit: (data: any) => void,
+    titleColor?: ColorsType,
 }
 
 
-const schema = yup.object().shape({
-    email: yup.string().email().required(),
-    password: yup.string().min(8).required(),
-    passwordConfirmation: yup.string()
-    .oneOf([yup.ref('password'), null])
-}).required();
-
-export const LoginForm: React.FC<IProps> = (props: IProps) => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm({
-        criteriaMode: "all",
-        resolver: yupResolver(schema)
-    });
-    const onSubmit = (data: any) => {
-        console.log(data)
-    };
-
-    const formInputs: Array<IFormInput>= [
-        {
-            register: register('email'),
-            type: "email",
-            label: "Email",
-            placeholder: "Entrez votre email",
-            guidance: (errors) =>  errors.email ?  ({ type: "error", message: "L'email n'est pas valide" })  : null
-        },
-        {
-            register: register('password'),
-            type: "password",
-            label: "Mot de passe",
-            placeholder: "Entrez votre mot de passe",
-            guidance: (errors) =>  errors.password ?  ({ type: "error", message: "Le mot de passe doit contenir au moins 8 caractères" })  : null
-        },
-        {
-            register: register('passwordConfirmation'),
-            type: "password",
-            label: "Confirmation de mot de passe",
-            placeholder: "Confirmez votre mot de passe",
-            guidance: (errors) =>  errors.passwordConfirmation ? ({ type: "error", message: "Les mots de passe ne correspondent pas" }) : null 
-        }
-    ] 
+export const LoginForm: React.FC<IProps> = ({ inputs, title, submitText, children, titleColor = 'success', onSubmit, schema }: IProps) => {
+    let formOptions: any = {
+        criteriaMode: 'all',
+    }
+    if(schema !== undefined ) formOptions = {...formOptions, resolver: yupResolver(schema) }
+    const { register, handleSubmit, watch, formState: { errors } } = useForm(formOptions);
     
     return (
-        <div className={styles.container}>  
-            <div className={styles.title}>
-                <HeadingStrong content="Inscription" elementColor="success" color="black" />
+        <div className={s.container}>  
+            <div className={s.title}>
+                <HeadingStrong content={title} elementColor={titleColor} color='black' />
             </div>
-            <div>
-                <Text color="black" tag="p" typo="paragraph-md" >
-                    Vous n'avez pas encore de compte ?
-                </Text>
-                <Link to="/" label="Connectez-vous"/>
-            </div>
-            <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
-                {formInputs.map((input, index) => (
-                    <InputGroup {...input} guidance={input.guidance(errors)} key={index} />
+            {children && <div className={s.text}>
+                {children}
+            </div>}
+            <form className={s.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+                {inputs.map((input, index) => (
+                    <InputGroup {...input} register={register} guidance={input.guidance(errors)} key={index} />
                 ))}
-                <button type="submit">submit</button>
+                <Button label={submitText} type='submit' />
             </form>
         </div>
     )

@@ -7,18 +7,20 @@ export interface IProps {
   typo: TextTypography;
   color?: ColorsType;
   attributes?: any;
+  display?: string;
   children?: any;
 }
 export function Text({
   tag = "p",
   typo = "paragraph-md",
   color = "black",
+  display = "block",
   attributes = {},
   children,
 }: IProps) {
   const element = React.createElement(
     tag,
-    { className: `text ${styles[typo]} ${styles[color]}`, ...attributes },
+    { className: `text ${styles[typo]} ${styles[color], styles[display]}`, ...attributes },
     children
   );
   return element;

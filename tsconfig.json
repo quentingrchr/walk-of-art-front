@@ -23,7 +23,7 @@
       "@public": ["public"],
       "@interfaces/*": ["src/interfaces/*"],
       "@types": ["src/types/*"],
-      "@types/*": ["src/types/*"],
+      "@for/*": ["src/types/*"],
       "@assets/*": ["src/assets/*"],
       "@utility/*": ["src/utility/*"],
     },

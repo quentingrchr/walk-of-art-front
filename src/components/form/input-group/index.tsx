@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styles from "./index.module.scss"
 import { Input, Text, Guidance } from "@components"
 import { Semantic } from "@interfaces/index"
@@ -11,22 +11,23 @@ export interface IGuidance {
 }
 
 export type IProps = {
-    label?: string,
-    type: InputTypes;
-    placeholder?: string,
-    register: any,
+    id: string
+    label?: string
+    type: InputTypes
+    placeholder?: string
     guidance: IGuidance | null
+    register: any
 }
 
-export const InputGroup: React.FC<IProps> = ({ label, type, placeholder = "", register, guidance }: IProps) => {
+export const InputGroup: React.FC<IProps> = ({ id, label, type, placeholder = "", register, guidance }: IProps) => {
     return (
         <div className={styles.container}>
             {label != undefined &&
                 <div className={styles.label}>
-                    <Text typo="label" color="black" content={label} tag="label" />
+                    <Text typo="label" color="black" tag="label" >{label}</Text>
                 </div>
             }
-            <Input register={register} placeholder={placeholder} value="" type={type} />
+            <Input register={register} placeholder={placeholder} value="" type={type} id={id}/>
             {
                 guidance != null &&
                 <div className={styles.guidance}>

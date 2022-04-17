@@ -7,7 +7,7 @@ export default {
 } as ComponentMeta<typeof Text>;
 
 const Template: ComponentStory<typeof Text> = (args: IProps) => (
-  <Text {...args} />
+  <Text {...args} > Text text </Text>
 );
 
 const Default = Template.bind({});
@@ -15,14 +15,12 @@ const Default = Template.bind({});
 const HeadingLarge = Template.bind({});
 HeadingLarge.args = {
   tag: "h1",
-  content: "I am a large heading",
   typo: "heading-lg",
 };
 
 const ParagraphMedium = Template.bind({});
 ParagraphMedium.args = {
   tag: "p",
-  content: "I am a medium paragraph",
   typo: "paragraph-md",
 };
 
