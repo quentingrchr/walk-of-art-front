@@ -2,6 +2,15 @@
 
 // Your style here
 
+@keyframes appears{
+  0%{
+    clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+  }
+  100%{
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
 .container{
   display: flex;
   width: 100vw;
@@ -26,6 +35,9 @@
 }
 
 .imageContainer{
+  clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+  animation: appears 1.2s ease-in-out forwards;
+  animation-delay: .2s;
   @include respond-below(sm){
     display: none;
   }

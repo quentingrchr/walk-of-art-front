@@ -2,6 +2,7 @@ import React from "react"
 import cn from "classnames"
 import s from "./index.module.scss"
 
+
 export type IProps = {
     component: React.ReactNode,
     image: string,
@@ -10,7 +11,7 @@ export type IProps = {
 
 const Image = ({ src }: any) => { 
     return (
-        <div className={s.image} style={{backgroundImage: `url("${src}")`}}>
+        <div className={s.image} style={{ backgroundImage: `url("${src}")` }}>
         </div>
     )
 }

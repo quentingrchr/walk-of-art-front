@@ -16,17 +16,24 @@ export interface IProps {
 }
 
 export const Button: React.FC<IProps> = ({ label, to, target, onClick, color = "white", type = "button" }: IProps) => {
-  if (typeof to === "string") {
-        return (
-          isEternalUrl(to) ?
-            (<a className={cn(styles.button, styles[color])} href={to} target={target}  >{label}</a>)
-            : <div className={cn(styles.button, styles[color])}>
-              <NextLink href={to}>{label}</NextLink>
-            </div>
-        )
-    } else if (onClick) {
-        return <button type={type} className={cn(styles.button, styles[color])} onClick={(e) => onClick(e)}  >{label}</button>
-    } else { 
-        throw new Error("Button: 'to' or 'onClick' must be defined")
+
+  const handleClick = (e :any) => { 
+    if(onClick) {
+      onClick(e)
     }
+  }
+  if (typeof to === "string") {
+    return (
+      isEternalUrl(to) ?
+        (<a className={cn(styles.button, styles[color])} href={to} target={target}  >{label}</a>)
+        : <div className={cn(styles.button, styles[color])}>
+          <NextLink href={to}>{label}</NextLink>
+        </div>
+    )
+  } else if (onClick || type === 'submit') {
+    return <button type={type} className={cn(styles.button, styles[color])} onClick={handleClick} >{label}</button>
+  } else { 
+      throw new Error("Button: 'to' or 'onClick' must be defined")
+  }
+    
 };

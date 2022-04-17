@@ -19,10 +19,7 @@ export type IProps = {
     register: any
 }
 
-export const InputGroup: React.FC<IProps> = ({id, label, type, placeholder = "", register, guidance }: IProps) => {
-    useEffect(() => { 
-        register(id)
-    }, [])
+export const InputGroup: React.FC<IProps> = ({ id, label, type, placeholder = "", register, guidance }: IProps) => {
     return (
         <div className={styles.container}>
             {label != undefined &&
@@ -30,7 +27,7 @@ export const InputGroup: React.FC<IProps> = ({id, label, type, placeholder = "",
                     <Text typo="label" color="black" tag="label" >{label}</Text>
                 </div>
             }
-            <Input register={register} placeholder={placeholder} value="" type={type} />
+            <Input register={register} placeholder={placeholder} value="" type={type} id={id}/>
             {
                 guidance != null &&
                 <div className={styles.guidance}>
