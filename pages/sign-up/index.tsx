@@ -6,8 +6,8 @@ const Form = () => {
   return (
     <LoginForm inputs={inputs} schema={inputsSchema} onSubmit={() => { alert('submit') }} submitText="Je m'inscris" title="Inscription">
       <Text  color='black' tag='div' typo='paragraph-md' >
-        Vous avez déjà un compte ?
-        <Link to='/' label='Connectez-vous'/>
+        Vous avez déjà un compte ? &nbsp;
+        <Link to='/sign-in' label='Connectez-vous'/>
       </Text>
     </LoginForm>
   )

@@ -6,7 +6,7 @@
   @include typo-link;
   cursor: pointer;
   width: fit-content;
-  display: inline;
+  display: inline-block;
   
   &.black, &.black > a{
     color: $color-black;

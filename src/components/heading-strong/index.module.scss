@@ -1,6 +1,6 @@
 @import "@styles/theme.scss";
 
-@keyframes appears {
+@keyframes appears-scale {
   0% {
     transform: scaleX(0);
   }
@@ -9,10 +9,23 @@
   }
 }
 
+@keyframes appears-opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .heading-strong {
     @include typo-heading-lg;
     position: relative;
     z-index: 2;
+    h1{
+        opacity: 0;
+        animation: appears-opacity .2s .4s linear forwards;
+    }
 
     &::before {
         content: "";
@@ -24,7 +37,7 @@
         z-index: -1;
         transform: scale(0);
         transform-origin: left;
-        animation: appears .7s linear forwards;
+        animation: appears-scale .4s linear forwards;
 
     }
 }
