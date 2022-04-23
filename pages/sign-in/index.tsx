@@ -1,10 +1,10 @@
 import React from "react"
 import { Text, LoginForm, SplitScreen, Link, } from "@components"
-import { inputs, inputsSchema } from "./data"
+import { signInInputs, signInInputsSchema } from "../../data/form"
 
 const Form = () => { 
   return (
-    <LoginForm inputs={inputs} schema={inputsSchema} onSubmit={() => { alert('submit') }} submitText="Se connecter" title="Connexion">
+    <LoginForm inputs={signInInputs} schema={signInInputsSchema} onSubmit={() => { alert('submit') }} submitText="Se connecter" title="Connexion">
       <Text  color='black' tag='div' typo='paragraph-md' >
         Vous n'avez pas de compte ? &nbsp;
         <Link to='/sign-up' label='Créez un compte'/>

@@ -37,7 +37,7 @@
 .imageContainer{
   clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
   animation: appears 1.2s ease-in-out forwards;
-  animation-delay: .2s;
+  animation-delay: .1s;
   @include respond-below(sm){
     display: none;
   }

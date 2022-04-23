@@ -7,7 +7,7 @@ import { IFormInput } from './interfaces'
 import { ColorsType } from '../../../types'
 
 
-interface IProps { 
+export interface IProps { 
     inputs: Array<IFormInput>
     title: string,
     schema?: any,

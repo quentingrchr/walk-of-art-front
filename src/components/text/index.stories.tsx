@@ -27,14 +27,12 @@ ParagraphMedium.args = {
 const Label = Template.bind({});
 Label.args = {
   tag: "label",
-  content: "I am a label",
   typo: "label",
 };
 
 const Guidance = Template.bind({});
 Guidance.args = {
   tag: "span",
-  content: "I am a guidance",
   typo: "guidance",
 };
 
