@@ -1,3 +1,31 @@
 @import "@styles/theme.scss";
 
 // Your style here
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 8.6rem;
+    padding: 0 3.2rem;
+    background-color: $color-beige;
+    box-shadow: 0px 0px 11px rgba(133, 130, 127, 0.4);
+
+    .wrapper {
+        display: flex;
+        gap: 2.4rem;
+    }
+
+    .link {
+        display: flex;
+        height: 3.2rem;
+        width: 3.2rem;
+        border: 0.2rem solid transparent;
+
+        &:hover,
+        &.active {
+            background-color: $color-white;
+            border: 0.2rem solid $color-black;
+        }
+    }
+}

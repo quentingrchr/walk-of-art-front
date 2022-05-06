@@ -13,5 +13,6 @@ export { Link } from "./link"
 export { SplitScreen } from "./split-screen"
 export { Header } from "./header"
 export { Logo } from "./logo"
+export { Navbar } from "./navbar"
 
 

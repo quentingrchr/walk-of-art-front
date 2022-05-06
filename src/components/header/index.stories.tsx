@@ -1,12 +1,12 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react"
-import { __component__(pascalCase), IProps } from "./index"
+import { Header, IProps } from "./index"
 
 export default {
-    title: "__component__(pascalCase)",
-    component: __component__(pascalCase),
-} as ComponentMeta<typeof __component__(pascalCase)>
+    title: "Header",
+    component: Header,
+} as ComponentMeta<typeof Header>
 
-const Template: ComponentStory<typeof __component__(pascalCase)> = (args: IProps) => <__component__(pascalCase) {...args} />
+const Template: ComponentStory<typeof Header> = (args: IProps) => <Header {...args} />
 
 const Default = Template.bind({})
 

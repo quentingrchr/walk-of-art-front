@@ -7,8 +7,8 @@
 	padding: 0.4rem 0;
 	width: fit-content;
 	
-	&::before,
-	&::after {
+	&:before,
+	&:after {
 		content: "";
 		display: block;
 		position: absolute;

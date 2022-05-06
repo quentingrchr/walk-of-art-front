@@ -1,0 +1,27 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+.navbar {
+    display: flex;
+    gap: 3.2rem;
+
+    .navlink {
+        @include typo-paragraph-md;
+        color: $color-black;
+        text-decoration: none;
+        padding: 0.4rem 0.8rem;
+        letter-spacing: .1em;
+        border: 2px solid transparent;
+        transition: text-shadow .3s, border-color .3s;
+
+        &:hover {
+            background-color: $color-white;
+            text-shadow: 0 0 .65px $color-black, 0 0 .65px $color-black;
+        }
+
+        &.active {
+            border: 2px solid $color-black;
+        }
+    }
+}
