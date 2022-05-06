@@ -1,0 +1,29 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+.logo {
+	position: relative;
+	padding: 0.4rem 0;
+	width: fit-content;
+	
+	&::before,
+	&::after {
+		content: "";
+		display: block;
+		position: absolute;
+		background-color: $color-black;
+		height: 1px;
+	}
+
+	&:before {
+		width: 8rem;
+		top: 0;
+	}
+	
+	&:after {
+		width: 4.5rem;
+		bottom: 0.4rem;
+		right: 0;
+	}
+}

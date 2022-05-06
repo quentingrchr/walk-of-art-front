@@ -11,4 +11,7 @@ export { Guidance } from "./form/guidance"
 export { LoginForm } from "./form/login-form"
 export { Link } from "./link"
 export { SplitScreen } from "./split-screen"
+export { Header } from "./header"
+export { Logo } from "./logo"
+
 
