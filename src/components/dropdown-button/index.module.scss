@@ -39,12 +39,18 @@
 .item{
   display: flex;
   align-items: center;
-  padding: 32px 8px;
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: $color-black;
-  font-family: $font-inter;
-  
+  a, button{
+    padding: 8px 32px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: $color-black;
+    font-family: $font-inter;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    background-color: none;
+    border: none;
+  }
 }
 
 
@@ -69,7 +75,7 @@
   text-decoration: none;
   color: $color-white;
   position: relative;
-  transition: all .1s ease;
+  transition: all .3s ease;
 
   &:after{
     content: "";
@@ -78,7 +84,7 @@
     height: 100%;
     border: 2px solid $color-black;
     transform: translate(.6rem, .6rem);
-    transition: all .1s ease;
+    transition: all .3s ease;
 
   }
   
