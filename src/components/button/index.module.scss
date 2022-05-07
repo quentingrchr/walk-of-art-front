@@ -39,4 +39,8 @@
   &.info &.info > a {
     color: $color-info;
   }
+
+  &.light{
+    background-color: $color-white;
+  }
 }
