@@ -1,10 +1,12 @@
 
 import React from "react"
+import { Cards } from "./../src/components/cards/index"
 
 
 const Home: React.FC = () => {
     return (
-        <div>hello</div>    )
+        <Cards/>   
+    )
 }
 
 export default Home
