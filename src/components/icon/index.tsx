@@ -1,10 +1,10 @@
-import { Colors } from "@interfaces/index";
+import { Colors, Icons as IconsType } from "@interfaces/index";
 
 import styles from "./index.module.scss";
 
 import Avatar from "./avatar";
 interface IProps {
-  type: "avatar";
+  type: IconsType,
   size: "small" | "medium" | "large";
   color?: Colors | "none";
   children?: React.ReactNode;
