@@ -29,16 +29,15 @@ export const DropdownButton: React.FC<IProps> = ({label = 'Label', choices = [{l
     return false;
 }
 
-    function handleClick(e: MouseEventHandler<HTMLButtonElement>) {
+    function handleClick(e: any) {
         e.preventDefault()
     }
 
-    function handleMouseEnter(e: MouseEventHandler<HTMLDivElement>) { 
+    function handleMouseEnter(e: any) { 
         setIsOpen(true)
     }
 
-    function handleMouseLeave(e: MouseEventHandler<HTMLDivElement>) { 
-        console.log("leave", e.target);
+    function handleMouseLeave(e: any) { 
         if (dropdownRef.current) { 
             console.log(e.relatedTarget)
             if (isDescendant(dropdownRef.current, e.relatedTarget) || dropdownRef.current === e.relatedTarget) return

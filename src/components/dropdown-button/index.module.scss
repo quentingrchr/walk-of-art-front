@@ -75,7 +75,6 @@
   text-decoration: none;
   color: $color-white;
   position: relative;
-  transition: all .3s ease;
 
   &:after{
     content: "";
@@ -85,7 +84,6 @@
     border: 2px solid $color-black;
     transform: translate(.6rem, .6rem);
     transition: all .3s ease;
-
   }
   
 }
