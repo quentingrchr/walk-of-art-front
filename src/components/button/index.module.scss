@@ -21,6 +21,9 @@
   background-color: $color-black;
   box-sizing: border-box;
   text-decoration: none;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  width: fit-content;
   a {
     text-decoration: none;
   }
@@ -42,5 +45,10 @@
 
   &.light{
     background-color: $color-white;
+    border: 2px solid $color-black;
+  }
+
+  &.fullWidth {
+    width: 100%;
   }
 }

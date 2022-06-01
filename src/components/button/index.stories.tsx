@@ -1,23 +1,35 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentStory, ComponentMeta } from "@storybook/react"
+import { Button, IProps } from "./index"
 
-import { Button } from ".";
-
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Example/Button",
-  component: Button,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {
-    backgroundColor: { control: "color" },
-  },
-} as ComponentMeta<typeof Button>;
+    title: "Button",
+    component: Button,
+} as ComponentMeta<typeof Button>
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Button> = (args) => (
-  <Button {...args}/>
-);
+const Template: ComponentStory<typeof Button> = (args: IProps) => <Button {...args} />
 
-export const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {};
+const Default = Template.bind({})
+
+const Light = Template.bind({})
+Light.args = {
+  color: "black",
+  label: "Black",
+  bg: "light",
+}
+
+const Dark = Template.bind({})
+Dark.args = {
+    color: "white",
+    label: "White",
+    bg: "dark",
+}
+
+const FitContent = Template.bind({})
+FitContent.args = {
+    color: "white",
+    label: "White",
+    fullWidth: false,
+    bg: "dark",
+}
+
+export { Default, Dark, Light, FitContent }
