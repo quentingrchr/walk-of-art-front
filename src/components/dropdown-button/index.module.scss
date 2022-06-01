@@ -68,7 +68,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   text-align: center;
   background-color: $color-black;
   box-sizing: border-box;
@@ -94,6 +94,7 @@
   align-items: center;
   background-color: transparent;
   position: relative;
+  width: fit-content;
   &.isOpen{
     .button{
       color: $color-black;
@@ -109,4 +110,12 @@
 .dropdown {
   height: fit-content;
   position: relative;
+}
+
+.icon {
+
+}
+
+.fw{
+  width: 100%;
 }
