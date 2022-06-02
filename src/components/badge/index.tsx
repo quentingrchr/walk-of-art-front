@@ -1,9 +1,10 @@
 import React from "react"
 import s from "./index.module.scss"
 import cn from "classnames"
+import { BadgeTypes } from "../../types"
 
 export type IProps = {
-    type: "completed" | "progress"
+    type: BadgeTypes
 }
 
 export const Badge: React.FC<IProps> = ({ type = "success" }: IProps) => {

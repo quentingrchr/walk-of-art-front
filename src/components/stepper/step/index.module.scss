@@ -2,6 +2,16 @@
 
 // Your style here
 
+@keyframes appears {
+  from{
+    opacity: 0;
+    transform: translateY(3rem)
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
 
 .step__circle_container{
   --circle-size: 4rem;
@@ -41,12 +51,17 @@
   left: 50%;
   transform: translateX(-50%);
   top: 0;
+
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
 }
 
 .step__number{
   color: $color-white;
   font-family: $font-decay;
   font-size: 2.4rem;
+  white-space: nowrap;
+
 }
 
 .step__info{
@@ -56,6 +71,7 @@
   font-family: $font-inter;
   text-transform: uppercase;
   color: $color-info;
+  white-space: nowrap;
 }
 
 .step__label{
@@ -64,6 +80,8 @@
   line-height: 2.8rem;
   font-family: $font-inter;
   color: $color-black;
+  white-space: nowrap;
+
 }
 
 .step__bottom{
@@ -81,6 +99,10 @@
   align-items: center;
   justify-content: center;
   gap: 1.6rem;
+  /* animation appears */
+  opacity: 0;
+  transform: translateY(-3rem);
+  animation: appears .4s ease forwards;
   .step__circle_container{
     opacity: .5;
     transition: all calc(var(--animation-duration) / 8) ease;
@@ -96,9 +118,16 @@
     .step__svg{
       opacity: 1;
       animation: dash var(--animation-duration) linear forwards;
+      animation-delay: .3s;
     }
   }
-  &:not(.active){
+  &:not(.active):not(.disable){
     cursor: pointer;
   }
+  
+}
+
+
+.disable{
+  cursor: not-allowed;
 }
