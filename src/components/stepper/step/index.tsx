@@ -1,7 +1,7 @@
 import React from "react"
 import cn from "classnames"
 import s from "./index.module.scss"
-import { BadgeSelector } from "@components"
+import { BadgeSelector, Icon } from "@components"
 
 export type IProps = {
     active: boolean
@@ -11,11 +11,11 @@ export type IProps = {
     onClick?: () => void
     disable?: boolean
     variant?: "default" | "checked"
-
+    stepInfo? : boolean
 }
 
 export const Step: React.FC<IProps> = (props: IProps) => {
-    const { active, completed, label, number, onClick, disable, variant = "default"} = props
+    const { active, completed, label, number, onClick, disable, variant = "default", stepInfo = true} = props
 
     const handleClick = () => { 
         if(onClick && !disable) {
@@ -29,12 +29,18 @@ export const Step: React.FC<IProps> = (props: IProps) => {
                     <circle cx="25" cy="25" r="22" stroke="black" stroke-width="1" fill="none"/>
                 </svg>
                 <div className={s.step__circle}>
+                    <span className={s.step__circle_icon}>
+                        <Icon type="checkbox" size="large"/>
+                    </span>
                     <span className={s.step__number}>{number}</span>
                 </div>
             </div>
             <div className={s.step__bottom}>
+                {variant == "checked" && <p className={s.step__info}>{`Étape ${number}`}</p>}
                 <p className={s.step__label}>{label}</p>
-                {variant !== "checked" && <BadgeSelector type={completed ? "completed" : "progress"} />}
+                <div className={s.step__badge}>
+                    {stepInfo && <BadgeSelector type={completed ? "completed" : "progress"} />}
+                </div>
             </div>
         </div>
     )
