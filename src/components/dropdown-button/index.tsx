@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react"
 import cn from "classnames"
 import s from "./index.module.scss"
 import Link from "next/link"
+import { Colors, Icons } from "@interfaces/index";
+import { Icon } from "@components";
 
 interface Choice { 
     label: string
@@ -12,9 +14,11 @@ export interface IProps {
     className?: string
     label: string
     choices: Choice[]
+    icon?: Icons
+    fullWidth?: boolean
 }
 
-export const DropdownButton: React.FC<IProps> = ({label = 'Label', choices = [{label: 'Choice', onClick: () => {}}]}: IProps) => {
+export const DropdownButton: React.FC<IProps> = ({ icon = '' , label = 'Label', fullWidth = false, choices = [{label: 'Choice', onClick: () => {}}]}: IProps) => {
     const [isOpen, setIsOpen] = useState(false)
     const dropdownRef = React.useRef<HTMLDivElement>(null)
 
@@ -29,16 +33,15 @@ export const DropdownButton: React.FC<IProps> = ({label = 'Label', choices = [{l
     return false;
 }
 
-    function handleClick(e: MouseEventHandler<HTMLButtonElement>) {
+    function handleClick(e: any) {
         e.preventDefault()
     }
 
-    function handleMouseEnter(e: MouseEventHandler<HTMLDivElement>) { 
+    function handleMouseEnter(e: any) { 
         setIsOpen(true)
     }
 
-    function handleMouseLeave(e: MouseEventHandler<HTMLDivElement>) { 
-        console.log("leave", e.target);
+    function handleMouseLeave(e: any) { 
         if (dropdownRef.current) { 
             console.log(e.relatedTarget)
             if (isDescendant(dropdownRef.current, e.relatedTarget) || dropdownRef.current === e.relatedTarget) return
@@ -49,8 +52,15 @@ export const DropdownButton: React.FC<IProps> = ({label = 'Label', choices = [{l
 
 
     return (
-        <div className={cn(s.container, {[s.isOpen] : isOpen})}>
-            <button className={s.button} onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{label}</button>
+        <div className={cn(s.container, { [s.isOpen]: isOpen }, { [s.fw] : fullWidth})}>
+            <button className={s.button} onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <span>
+                {label}
+                </span>
+                {icon && <span className={s.icon}>
+                    <Icon type={icon} size="small" color="none" />
+                </span>}
+            </button>
             <div ref={dropdownRef} className={s.dropdown} onMouseLeave={handleMouseLeave}>
                 <ul className={cn(s.list, {[s.isOpen] : isOpen})}>
                     {
