@@ -14,5 +14,6 @@ export { SplitScreen } from "./split-screen"
 export { Header } from "./header"
 export { Logo } from "./logo"
 export { Navbar } from "./navbar"
-
+export { Badge } from "./badge"
+export { BadgeSelector } from "./badge-selector"
 

@@ -1,0 +1,44 @@
+@import "@styles/theme.scss";
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:fit-content;
+    padding: 1rem;
+    margin: .5rem;
+    cursor: pointer;
+
+
+    &__picture {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        object-fit: contain;
+        width: 100px;
+        height: 100px;
+        transition: all .2s ease-in-out;
+    }
+
+    &:hover{
+        .cards__picture {
+            right: 5px;
+            bottom: 5px;
+        }
+    }
+
+    &__frame {
+        position: relative;
+        background-color: $color-black;
+        width: 100px;
+        height: 100px;
+    }
+
+    &__link {
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 12px;
+        font-family: $font-inter;
+    }
+}

@@ -8,6 +8,21 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args: IProps) => <Input {...args} />
 
-const Default = Template.bind({})
+const Text = Template.bind({})
+Text.args = {
+    id: "text",
+    placeholder: "Text",
+    type: "text",
+    register: () => {},
+}
 
-export { Default }
+const Password = Template.bind({})
+Password.args = {
+    id: "text",
+    placeholder: "Password",
+    type: "password",
+    register: () => {},
+}
+
+
+export { Text, Password }

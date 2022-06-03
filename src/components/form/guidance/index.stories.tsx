@@ -8,6 +8,26 @@ export default {
 
 const Template: ComponentStory<typeof Guidance> = (args: IProps) => <Guidance {...args} />
 
-const Default = Template.bind({})
+const Info = Template.bind({})
+Info.args = {
+    type: "info",
+    children: "Guidance info message"
+}
+const Error = Template.bind({})
+Error.args = {
+    type: "error",
+    children: "Guidance error message"
+}
+const Success = Template.bind({})
+Success.args = {
+    type: "success",
+    children: "Guidance success message"
+}
 
-export { Default }
+const ComplexChildren = Template.bind({})
+ComplexChildren.args = {
+    type: "success",
+    children: <p>I am a complex HTML children <a href="#">I am a link</a></p>
+}
+
+export { Info, Error, Success, ComplexChildren }

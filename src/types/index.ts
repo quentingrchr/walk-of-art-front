@@ -14,4 +14,6 @@ export type HTMLTextTag = "p" | "span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5
 
 export type TextTypography = "heading-lg" | "heading-md" | "paragraph-md" | "label" | "guidance"
 
-export type InputTypes = "password" | "email" | "text"
+export type InputTypes = "password" | "email" | "text"
+
+export type BadgeTypes = "completed" | "progress"
