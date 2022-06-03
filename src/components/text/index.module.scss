@@ -6,6 +6,14 @@
     @include typo-heading-lg;
 }
 
+.heading-md {
+    @include typo-heading-md;
+}
+
+.heading-sm {
+    @include typo-heading-sm;
+}
+
 .paragraph-md {
     @include typo-paragraph-md;
 }

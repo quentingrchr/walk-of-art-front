@@ -103,6 +103,7 @@
   opacity: 0;
   transform: translateY(-3rem);
   animation: appears .4s ease forwards;
+
   .step__circle_container{
     opacity: .5;
     transition: all calc(var(--animation-duration) / 8) ease;
@@ -123,6 +124,14 @@
   }
   &:not(.active):not(.disable){
     cursor: pointer;
+  }
+
+  &.checked{
+    &.completed{
+      .step__circle{
+        background-color: $color-success;
+      }
+    }
   }
   
 }
