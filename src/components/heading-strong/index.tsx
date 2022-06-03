@@ -12,12 +12,14 @@ export type IProps = {
     content: string
     color?: ColorsType
     attributes?: any
+    size?: "sm" | "md" | "lg"
 }
 
-export const HeadingStrong: React.FC<IProps> = ({ elementColor, content, color }) => {
+export const HeadingStrong: React.FC<IProps> = ({ elementColor, content, color, size = "lg" }) => {
+    console.log(`heading-${size}`);
     return (
-            <div className={ cn(s[elementColor], s["heading-strong"] ) }>
-                <Text tag="h1" typo="heading-lg" color={color}>
+            <div className={ cn(s[elementColor], s["heading-strong"], s[size] ) }>
+                <Text tag="h1" typo={`heading-${size}`} color={color}>
                     {content}
                 </Text>
             </div>

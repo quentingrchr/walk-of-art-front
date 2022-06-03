@@ -9,5 +9,13 @@ export default {
 const Template: ComponentStory<typeof Badge> = (args: IProps) => <Badge {...args} />
 
 const Default = Template.bind({})
+const Completed = Template.bind({})
+Completed.args = {
+    type: "completed",
+}
+const InProgress = Template.bind({})
+InProgress.args = {
+    type: "progress",
+}
 
-export { Default }
+export { Default, Completed, InProgress }

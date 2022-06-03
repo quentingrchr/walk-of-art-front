@@ -4,6 +4,19 @@
   font-weight: normal;
 }
 
+@mixin typo-heading-md {
+  font-size: 4rem;
+  font-family: $font-decay;
+  font-weight: normal;
+}
+
+@mixin typo-heading-sm {
+  font-size: 2rem;
+  font-family: $font-decay;
+  font-weight: normal;
+}
+
+
 @mixin typo-paragraph-md {
   font-size: 1.6rem;
   font-family: $font-inter;

@@ -3,46 +3,51 @@ import s from "./index.module.scss"
 import { Separator } from "../separator"
 import { Step } from "./step"
 
-export type IProps = {
 
+export interface IStep {
+    id: number
+    label: string
+    number: number
+    completed: boolean
+}
+
+export type IProps = {
+    activeStep: number,
+    steps: IStep[],
+    completeOne: (index: number) => void,
+    variant?: "default" | "checked"
 }
 
 const STEPS = [
     {
+        id: 1,
         label: "Etape 1",
         number: 1,
         completed: false,
     },
     {
+        id: 2,
         label: "Etape 2",
         number: 2,
         completed: false,
     },
     {
+        id: 3,
         label: "Etape 3",
         number: 3,
         completed: false,
     },
 ]
-export const Stepper: React.FC<IProps> = (props: IProps) => {
-    const [active, setActive] = useState<null | number>(null)
-    const [steps, setSteps] = useState<any>(STEPS)
+export const Stepper: React.FC<IProps> = ({activeStep, steps, completeOne, variant = "default"}: IProps) => {
 
     const dummyFunction = (index) => { 
-        setSteps(steps.map((step, i) => {
-            if (i === index) {
-                return {
-                    ...step,
-                    completed: true,
-                }
-            }
-            return step
-        }))
+        completeOne(index)
     } 
 
     const arePreviousStepsCompleted = (index : number) => { 
         return steps.slice(0, index).every(step => step.completed)
     }
+
     return(
         <div className={s.container}>
             <div className={s.wrapper}>
@@ -51,11 +56,11 @@ export const Stepper: React.FC<IProps> = (props: IProps) => {
                         <>
                             <Step label={step.label} number={step.number}
                                 completed={step.completed}
-                                active={active === index}
+                                active={activeStep === index}
                                 key={index}
                                 disable={!arePreviousStepsCompleted(index)}
+                                variant={variant}
                                 onClick={() => {
-                                    setActive(index)
                                     dummyFunction(index)
                                 }}
                             />
