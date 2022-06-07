@@ -4,6 +4,7 @@ import cn from 'classnames'
 import styles from "./index.module.scss";
 import { ColorsType } from "../../types";
 import { isEternalUrl } from '../../utility'
+import { Icon } from "..";
 
 
 export interface IProps {
@@ -14,10 +15,12 @@ export interface IProps {
     color?: ColorsType,
     bg?: "dark" | "light",
     type?: "submit" | "button"
+    iconButton?: boolean,
     fullWidth?: boolean,
+    icon?: string
 }
 
-export const Button: React.FC<IProps> = ({ label, to, target, onClick, color = "white", type = "button", bg = "dark", fullWidth = true}: IProps) => {
+export const Button: React.FC<IProps> = ({ label, icon, iconButton = true, to, target, onClick, color = "white", type = "button", bg = "dark", fullWidth = true}: IProps) => {
 
   const handleClick = (e :any) => { 
     if(onClick) {
@@ -38,7 +41,12 @@ export const Button: React.FC<IProps> = ({ label, to, target, onClick, color = "
     )
   } else if (onClick || type === 'submit') {
     return <button type={type} className={internalStyle} onClick={handleClick} >{label}</button>
-  } else { 
+  } else if (iconButton === true) {
+    return <button type={type} className={internalStyle}>
+      <Icon type={`${icon}`} size="medium"/>
+      {label}
+      </button>
+  }else { 
       throw new Error("Button: 'to' or 'onClick' must be defined")
   }
     

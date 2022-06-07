@@ -1,0 +1,42 @@
+@import "@styles/theme.scss";
+
+// Your style here
+.notification {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem;
+    border: 2px solid $color-black;
+    max-width: 624px;
+    text-align: right;
+
+    &__content {
+        display: flex;
+        align-items: center;
+
+        & > p {
+            margin-left: 1rem;
+            margin-right: .4rem;
+            text-align: initial;
+        }
+    }
+
+    &__validate {
+        background-color: $color-success-light;
+        color: $color-success;
+    }
+
+    &__refused {
+        background-color: $color-error-light;
+        color: $color-error;
+    }
+
+    button {
+        font-weight: lighter;
+        padding: .6rem;
+
+        & svg {
+            margin-left: -.8rem;
+        }
+    }
+}

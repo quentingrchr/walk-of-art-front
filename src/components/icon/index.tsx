@@ -3,8 +3,12 @@ import { Colors } from "@interfaces/index";
 import styles from "./index.module.scss";
 
 import Avatar from "./avatar";
+import Commentary from "./commentary";
+import RightArrow from "./right-arrow";
+import Cross from "./cross";
+import Check from "./check";
 interface IProps {
-  type: "avatar";
+  type: string;
   size: "small" | "medium" | "large";
   color?: Colors | "none";
   children?: React.ReactNode;
@@ -16,6 +20,10 @@ interface IIcons {
 
 const Icons: IIcons = {
   avatar: <Avatar />,
+  commentary: <Commentary/>,
+  rightArrow: <RightArrow/>,
+  cross: <Cross/>,
+  check: <Check/>,
 };
 
 const sizes :any = {
