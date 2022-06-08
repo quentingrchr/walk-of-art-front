@@ -26,7 +26,6 @@ export const signInInputs: Array<IFormInput> = [
         },
         /* todo add checkbox */
 ] 
-    
 
 
 export const signUpInputsSchema = yup.object().shape({

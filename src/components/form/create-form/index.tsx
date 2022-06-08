@@ -1,7 +1,9 @@
 import React from "react"
 import s from "./index.module.scss"
-import { HeadingStrong, LoginForm, SplitScreen, Link, Stepper } from "@components"
+import { HeadingStrong, LoginForm, SplitScreen, Link, Stepper, InputGroup } from "@components"
+import { useForm } from "react-hook-form"
 import { IStep } from "../../stepper"
+// ** https://codesandbox.io/embed/stepper-with-react-hook-form-qpjc1
 export type IProps = {
 
 }
@@ -28,10 +30,11 @@ const STEPS = [
     
 ]
 
-const FORM_DATA = {
-    ["1"]: {
+const FORM_DATA = [
+    {
         inputs:  [
             {
+                id: "email",
                 name: "email",
                 type: "email",
                 label: "Email",
@@ -39,6 +42,7 @@ const FORM_DATA = {
                 value: "",
             },
             {
+                id: "password",
                 name: "password",
                 type: "password",
                 label: "Password",
@@ -47,9 +51,10 @@ const FORM_DATA = {
             }
         ]
     },
-    ["2"]: {
+    {
         inputs:  [
             {
+                id: "text1",
                 name: "text",
                 type: "text",
                 label: "text",
@@ -57,20 +62,27 @@ const FORM_DATA = {
                 value: "",
             },
             {
+                id: "text2",
                 name: "text",
                 type: "text",
-                label: "te'xt",
+                label: "text",
                 placeholder: "text",
                 value: "",
             }
         ]
     }
-}
+]
+
+let formOptions: any = {
+        criteriaMode: 'all',
+    }
 
 export const CreateForm: React.FC<IProps> = (props: IProps) => {
     const [activeStep, setActiveStep] = React.useState<number>(0)
     const [steps, setSteps] = React.useState<IStep[]>(STEPS)
     const [formData, setFormData] = React.useState<any>(FORM_DATA)
+    const { register, handleSubmit, watch, formState: { errors } } = useForm(formOptions);
+
 
     const completeStep = (index: number) => {
         setSteps(steps.map((step, i) => {
@@ -90,11 +102,13 @@ export const CreateForm: React.FC<IProps> = (props: IProps) => {
             <div className={s.wrapper}>
                 <div className={s.top}>
                     <HeadingStrong elementColor="success" color="black" content="Création d'une oeuvre" size="md" />
-                    <Stepper activeStep={activeStep} steps={steps} completeOne={completeStep}/>
+                    <Stepper activeStep={activeStep} steps={steps} completeOne={completeStep} variant="checked" />
                 </div>
-                {/* <div className={s.formContainer}>
-
-                </div> */}
+                <div className={s.formContainer}>
+                    {formData[activeStep].inputs.map((input: any) => { 
+                        return <InputGroup {...input} key={input.id} register={ () => register(input.id)} />
+                    })}
+                </div>
             </div>
         </div>
     )
