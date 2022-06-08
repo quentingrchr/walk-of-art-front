@@ -13,13 +13,13 @@ const Info = Template.bind({})
 Info.args = {
     type: "info",
 }
-const Completed = Template.bind({})
-Completed.args = {
-    type: "completed",
+const Success = Template.bind({})
+Success.args = {
+    type: "success",
 }
-const InProgress = Template.bind({})
-InProgress.args = {
-    type: "progress",
+const Error = Template.bind({})
+Error.args = {
+    type: "error",
 }
 
-export { Default, Completed, InProgress }
+export { Default, Success, Error }

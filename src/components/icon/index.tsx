@@ -11,6 +11,7 @@ import RightArrow from "./right-arrow";
 import Cross from "./cross";
 import Check from "./check";
 import Checkbox from "./checkbox";
+import Information from "./information";
 
 interface IProps {
   type: IconsType,
@@ -32,7 +33,8 @@ const Icons: IIcons = {
   rightArrow: <RightArrow/>,
   cross: <Cross/>,
   check: <Check/>,
-  checkbox: <Checkbox/>
+  checkbox: <Checkbox/>,
+  information: <Information />,
 };
 
 const sizes :any = {

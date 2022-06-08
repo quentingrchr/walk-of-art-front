@@ -1,40 +1,15 @@
 @import "@styles/theme.scss";
 
-// Your style here
-
-// .container{
-//   padding: 0 4px;
-  
-//   font-size: 1.2rem;
-//   line-height: 2rem;
-//   font-weight: 300;
-//   width: fit-content;
-//   height: 2rem;
-// }
-
-// .completed{
-//   background-color: $color-success-light;
-//   color: $color-success;
-//   white-space: nowrap;
-
-// }
-
-// .progress{
-//   background-color: $color-info-light;
-//   color: $color-info;
-//   white-space: nowrap;
-
-// }
-
 .container {
   padding: 16px;
-  max-width: 432px;
-  display: flex;
+  width: 432px;
+  display: flex ;
   align-items: center;
   gap: 8px;
   font-family: $font-inter;
   font-size: 1.4rem;
   line-height: 16px;
+  word-wrap: break-word;
 }
 
 .info {
