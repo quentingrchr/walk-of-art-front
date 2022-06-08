@@ -15,5 +15,6 @@ export { Badge } from "./badge"
 export { BadgeSelector } from "./badge-selector"
 export { Stepper } from "./stepper"
 export { CreateForm } from "./form/create-form"
+export { ExpoCard } from "./expo-card"
 
 
