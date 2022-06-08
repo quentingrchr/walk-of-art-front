@@ -18,7 +18,7 @@ export interface IProps {
     fullWidth?: boolean
 }
 
-export const DropdownButton: React.FC<IProps> = ({ icon = '' , label = 'Label', fullWidth = false, choices = [{label: 'Choice', onClick: () => {}}]}: IProps) => {
+export const DropdownButton: React.FC<IProps> = ({ icon = '' , label = 'Label', fullWidth = false, choices = [{label: 'Choice', onClick: () => {}}], className}: IProps) => {
     const [isOpen, setIsOpen] = useState(false)
     const dropdownRef = React.useRef<HTMLDivElement>(null)
 
@@ -43,7 +43,6 @@ export const DropdownButton: React.FC<IProps> = ({ icon = '' , label = 'Label', 
 
     function handleMouseLeave(e: any) { 
         if (dropdownRef.current) { 
-            console.log(e.relatedTarget)
             if (isDescendant(dropdownRef.current, e.relatedTarget) || dropdownRef.current === e.relatedTarget) return
             setIsOpen(false)
         }
@@ -52,7 +51,7 @@ export const DropdownButton: React.FC<IProps> = ({ icon = '' , label = 'Label', 
 
 
     return (
-        <div className={cn(s.container, { [s.isOpen]: isOpen }, { [s.fw] : fullWidth})}>
+        <div className={cn(s.container, { [s.isOpen]: isOpen }, { [s.fw] : fullWidth}, className)}>
             <button className={s.button} onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 <span>
                 {label}

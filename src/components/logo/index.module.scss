@@ -11,19 +11,41 @@
 	&:after {
 		content: "";
 		display: block;
-		position: absolute;
 		background-color: $color-black;
 		height: 1px;
+		transition: all 0.3s ease-in;
 	}
 
 	&:before {
 		width: 8rem;
-		top: 0;
+		margin-bottom: 0.3rem;
+		transform: translateX(0%);
 	}
 	
 	&:after {
 		width: 4.5rem;
-		bottom: 0.4rem;
-		right: 0;
+		transform: translateX(280%);
+	}
+
+	&.isLink {
+		cursor: pointer;
+	}
+
+	&.isHover {
+
+		&:before,
+		&:after {
+			transition: all 0.3s ease-in;
+		}
+
+		&:before {
+			width: 4.5rem;
+			transform: translateX(280%);
+		}
+		
+		&:after {
+			width: 8rem;
+			transform: translateX(0%);
+		}
 	}
 }

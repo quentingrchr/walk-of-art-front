@@ -6,26 +6,35 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: fixed;
+    z-index: 10;
+    width: 100vw;
     height: 8.6rem;
-    padding: 0 3.2rem;
+    padding: 0 10rem;
     background-color: $color-beige;
     box-shadow: 0px 0px 11px rgba(133, 130, 127, 0.4);
 
     .wrapper {
         display: flex;
+        align-items: center;
         gap: 2.4rem;
-    }
+        height: 100%;
 
-    .link {
-        display: flex;
-        height: 3.2rem;
-        width: 3.2rem;
-        border: 0.2rem solid transparent;
+        .dropdownButton {
+            transform: translate(-5%, 25%);
+        }
 
-        &:hover,
-        &.active {
-            background-color: $color-white;
-            border: 0.2rem solid $color-black;
+        .link {
+            display: flex;
+            padding: 0.2rem;
+            border: 0.2rem solid transparent;
+    
+            &:hover,
+            &.active {
+                background-color: $color-white;
+                border: 0.2rem solid $color-black;
+                cursor: pointer;
+            }
         }
     }
 }

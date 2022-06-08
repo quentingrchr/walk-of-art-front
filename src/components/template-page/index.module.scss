@@ -1,0 +1,7 @@
+@import "@styles/theme.scss";
+
+.mainContainer {
+    --headerHeight: 8.6rem;
+    height: 100vh;
+    padding: calc(4.8rem + var(--headerHeight)) 10rem 0 10rem;
+}

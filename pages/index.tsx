@@ -1,16 +1,14 @@
 
 import React from "react"
-import { Header } from "@components"
-import { Cards } from "./../src/components/cards/index"
+import { TemplatePage, Text } from "@components"
 
 
 const Home: React.FC = () => {
     return (
-        <div>
-            <Header/>
-            <Cards/>  
-        </div>     
-    )
+        <TemplatePage isLogged={false}>
+            <Text tag="h1" typo="paragraph-md">Page de présentation</Text>
+        </TemplatePage>
+    )   
 }
 
 export default Home

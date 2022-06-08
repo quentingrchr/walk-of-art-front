@@ -1,28 +1,56 @@
-import React from "react"
+import React, { useState } from "react"
 import styles from "./index.module.scss"
-import { Logo, Navbar } from "@components"
-import IconPerson from '../../assets/images/icons/icon-person.svg'
-import IconLogout from '../../assets/images/icons/icon-logout.svg'
+import Link from "next/link"
+import { Logo, Navbar, DropdownButton, Icon, Button } from "@components"
 
 
 export type IProps = {
-
+	isLogged: boolean
 }
 
 export const Header: React.FC<IProps> = (props: IProps) => {
-  
+
+	let { isLogged } = props
+
 	return (
     <header className={styles.header}>
-			<Logo />
+		
+		<Logo to="/"/>
+
+		{isLogged ? 
+		<>
 			<Navbar />
 			<div className={styles.wrapper}>
-				<a href="/profil" className={styles.link}>
-					<img src={IconPerson.src} />
-				</a>
-				<a href="/sign-in" className={styles.link}>
-					<img src={IconLogout.src} />
-				</a>
+				<DropdownButton 
+					label="Créer" 
+					choices={[
+						{label: 'Créer une oeuvre', to: '/create-work'},
+						{label: 'Créer une exposition', to: '/create-exhibition'},
+					]}
+					className={styles.dropdownButton}
+				/>
+				<span className={styles.link}>
+					<Icon type="notification" size="large" onClick={() => console.log('notification')}/>
+				</span>
+				<span className={styles.link}>
+					<Link href="/profile">
+						<a><Icon type="profile" size="large" /></a>
+					</Link>
+				</span>
+				<span className={styles.link}>
+					<Link href="/sign-in">
+						<a><Icon type="logout" size="large" /></a>
+					</Link>
+				</span>
 			</div>
+		</>
+		:
+		<div className={styles.wrapper}>
+			<Button label="Se connecter" to="/sign-in" bg="dark" />
+			<Button label="S'inscrire" to="/sign-up" bg="light" />
+		</div>
+		}
+		
     </header>
     )
 }
