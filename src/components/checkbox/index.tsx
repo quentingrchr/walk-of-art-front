@@ -1,25 +1,43 @@
 import React from "react"
 import styles from "./index.module.scss"
 import { Text } from "../text/index"
+import { Guidance } from "../form/guidance/index"
+import { Semantic } from "@interfaces/index";
+
 
 export type IProps = {
     checkboxName: string,
     checkboxLabel?: string,
-    checkboxSize?: number
+    guidanceLabel?: string,
+    guidanceType?: Semantic,
+    isDisabled?: boolean
+    isChecked?: boolean
 }
 
 export const Checkbox: React.FC<IProps> = ({
     checkboxName,
     checkboxLabel,
-    checkboxSize = 24
+    isDisabled = false,
+    isChecked = false,
+    guidanceLabel,
+    guidanceType = 'success'
 }: IProps) => {
     return (
         <div className={styles.container}>
-            <label className={styles.custom} htmlFor={checkboxName}>
-                <input className={styles.input} type="checkbox" name={checkboxName} id={checkboxName} />
-                <div tabIndex={0} className={styles.checkbox} style={{width: `${checkboxSize}px`, height: `${checkboxSize}px`}}></div>
+            <label className={styles.custom} htmlFor={checkboxName} data-guidance={guidanceLabel ? true : false} data-disabled={isDisabled}>
+                <input className={styles.input} type="checkbox" defaultChecked={isChecked ?? 'checked'} name={checkboxName} id={checkboxName} />
+                <div tabIndex={0} className={styles.box} ></div>
                 {
-                    checkboxLabel && <Text tag="p" typo="label">{checkboxLabel}</Text>
+                    checkboxLabel && (
+                        <>
+                            <Text tag="p" typo="label">{checkboxLabel}</Text>
+                            <div className={styles.guidance_container}>
+                                {
+                                    guidanceLabel && <Guidance type={guidanceType}>{guidanceLabel}</Guidance>
+                                }
+                            </div>
+                        </>
+                    )
                 }
             </label>
         </div>

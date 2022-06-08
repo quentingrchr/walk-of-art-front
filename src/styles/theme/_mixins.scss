@@ -36,6 +36,10 @@
   font-family: $font-inter;
   font-weight: 400;
   font-style: normal;
+
+  b {
+    font-weight: bold;
+  }
 }
 
 @mixin typo-placeholder {

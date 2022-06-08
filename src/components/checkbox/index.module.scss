@@ -11,8 +11,50 @@
         cursor: pointer;
         width: fit-content;
 
-        .checkbox {
+        &[data-guidance = true] {
+            display: grid;
+            grid-template-columns: 24px 1fr;
+            grid-template-rows: 24px 24px;
+            gap: 0 .6rem;
+
+            .guidance_container {
+                grid-column: 2;
+            }
+        }
+
+        &[data-disabled = true] {
+            cursor: pointer;
+            pointer-events: none;
+
+            .box {
+                border-color: $color-disabled;
+            }
+            
+            p {
+                color: $color-disabled;
+            }
+
+            &[data-guidance = true] {
+                display: flex;
+
+                .guidance_container {
+                    display: none;
+                }
+            }
+
+            input:checked ~ .box {
+                background-color: $color-disabled;
+    
+                &::after {
+                    background-image: url('./../../../public/icons/checkmark-icon.svg');
+                }
+            }
+        }
+
+        .box {
             position: relative;
+            height: 24px;
+            width: 24px;
             margin-right: .6rem;
             background-color: $color-white;
             border: 2px solid $color-black;
@@ -39,7 +81,7 @@
         .input {
             display: none;
     
-            &:checked ~ .checkbox {
+            &:checked ~ .box {
                 background-color: $color-black;
     
                 &::after {
