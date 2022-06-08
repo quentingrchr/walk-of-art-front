@@ -3,6 +3,10 @@ import cn from "classnames";
 import styles from "./index.module.scss";
 
 import Avatar from "./avatar";
+import Commentary from "./commentary";
+import RightArrow from "./right-arrow";
+import Cross from "./cross";
+import Check from "./check";
 import Checkbox from "./checkbox";
 
 interface IProps {
@@ -18,6 +22,10 @@ interface IIcons {
 
 const Icons: IIcons = {
   avatar: <Avatar />,
+  commentary: <Commentary/>,
+  rightArrow: <RightArrow/>,
+  cross: <Cross/>,
+  check: <Check/>,
   checkbox: <Checkbox/>
 };
 
