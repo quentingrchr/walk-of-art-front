@@ -9,6 +9,10 @@ export default {
 const Template: ComponentStory<typeof Tooltip> = (args: IProps) => <Tooltip {...args} />
 
 const Default = Template.bind({})
+const Info = Template.bind({})
+Info.args = {
+    type: "info",
+}
 const Completed = Template.bind({})
 Completed.args = {
     type: "completed",
