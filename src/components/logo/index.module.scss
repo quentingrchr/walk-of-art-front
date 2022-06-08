@@ -1,0 +1,51 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+.logo {
+	position: relative;
+	padding: 0.4rem 0;
+	width: fit-content;
+	
+	&:before,
+	&:after {
+		content: "";
+		display: block;
+		background-color: $color-black;
+		height: 1px;
+		transition: all 0.3s ease-in;
+	}
+
+	&:before {
+		width: 8rem;
+		margin-bottom: 0.3rem;
+		transform: translateX(0%);
+	}
+	
+	&:after {
+		width: 4.5rem;
+		transform: translateX(280%);
+	}
+
+	&.isLink {
+		cursor: pointer;
+	}
+
+	&.isHover {
+
+		&:before,
+		&:after {
+			transition: all 0.3s ease-in;
+		}
+
+		&:before {
+			width: 4.5rem;
+			transform: translateX(280%);
+		}
+		
+		&:after {
+			width: 8rem;
+			transform: translateX(0%);
+		}
+	}
+}

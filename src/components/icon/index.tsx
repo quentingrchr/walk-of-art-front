@@ -3,6 +3,9 @@ import cn from "classnames";
 import styles from "./index.module.scss";
 
 import Avatar from "./avatar";
+import Notification from './notification';
+import Logout from './logout';
+import Profile from './profile';
 import Commentary from "./commentary";
 import RightArrow from "./right-arrow";
 import Cross from "./cross";
@@ -22,6 +25,9 @@ interface IIcons {
 
 const Icons: IIcons = {
   avatar: <Avatar />,
+  notification: <Notification />,
+  logout: <Logout />,
+  profile: <Profile />,
   commentary: <Commentary/>,
   rightArrow: <RightArrow/>,
   cross: <Cross/>,

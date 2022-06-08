@@ -1,16 +1,14 @@
 
-import { Checkbox } from "@components/checkbox"
 import React from "react"
-import { Cards } from "./../src/components/cards/index"
-import { Notification } from "./../src/components/notification"
+import { TemplatePage, Text } from "@components"
 
 
 const Home: React.FC = () => {
     return (
-        <div>
-        <Cards/>
-        </div>
-    )
+        <TemplatePage isLogged={false}>
+            <Text tag="h1" typo="paragraph-md">Page de présentation</Text>
+        </TemplatePage>
+    )   
 }
 
 export default Home
