@@ -6,15 +6,7 @@ import { Notification } from "./../src/components/notification"
 
 const Home: React.FC = () => {
     return (
-        // <Cards/> 
-        <>
-
-    <Notification/>
-    <br />
-    <Notification type="validate"/>
-    <br />
-    <Notification type="refused"/>
-        </>
+        <Cards/>
     )
 }
 

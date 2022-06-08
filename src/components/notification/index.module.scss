@@ -1,6 +1,5 @@
 @import "@styles/theme.scss";
 
-// Your style here
 .notification {
     display: flex;
     align-items: center;
@@ -16,19 +15,8 @@
 
         & > p {
             margin-left: 1rem;
-            margin-right: .4rem;
             text-align: initial;
         }
-    }
-
-    &__validate {
-        background-color: $color-success-light;
-        color: $color-success;
-    }
-
-    &__refused {
-        background-color: $color-error-light;
-        color: $color-error;
     }
 
     button {
@@ -39,4 +27,14 @@
             margin-left: -.8rem;
         }
     }
+}
+
+.check {
+    background-color: $color-success-light;
+    color: $color-success;
+}
+
+.cross {
+    background-color: $color-error-light;
+    color: $color-error;
 }
