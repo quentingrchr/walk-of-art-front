@@ -32,7 +32,7 @@ export const Navbar: React.FC<IProps> = (props: IProps) => {
 
 	return (
 		<nav className={styles.navbar}>
-			{ datas.map((data, index) => <NavLink key={index} href={data.path}>{data.label}</NavLink>) }
+			{ datas.map((data, index) => <NavLink key={index} label={data.label} href={data.path} />) }
 		</nav>
 	)
 }

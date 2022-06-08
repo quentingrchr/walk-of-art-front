@@ -47,7 +47,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
 		:
 		<div className={styles.wrapper}>
 			<Button label="Se connecter" to="/sign-in" bg="dark" />
-			<Button label="S'inscrire" to="/sign-up" bg="light" />
+			<Button label="S'inscrire" to="/sign-up" color="black" bg="light" />
 		</div>
 		}
 		

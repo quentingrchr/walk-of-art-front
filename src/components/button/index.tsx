@@ -25,6 +25,8 @@ export const Button: React.FC<IProps> = ({ label, to, target, onClick, color = "
     }
   }
 
+  console.log(styles)
+
   const internalStyle = cn(styles.button, styles[color], styles[bg], { [styles.fullWidth] : fullWidth })
 
   if (typeof to === "string") {
