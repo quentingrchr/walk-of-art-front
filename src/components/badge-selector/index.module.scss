@@ -1,0 +1,17 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+.container{
+  height: var(--badge-height); /* height of the badge, set in component */
+  width: fit-content;
+  overflow: hidden;
+}
+
+.wrapper{
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  transform: var(--badge-transform);
+  transition: transform .3s ease;
+}

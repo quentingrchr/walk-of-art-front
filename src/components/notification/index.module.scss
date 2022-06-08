@@ -6,7 +6,7 @@
     justify-content: space-between;
     padding: 1.2rem;
     border: 2px solid $color-black;
-    max-width: 624px;
+    width: fit-content;
     text-align: right;
 
     &__content {
@@ -14,27 +14,19 @@
         align-items: center;
 
         & > p {
-            margin-left: 1rem;
             text-align: initial;
+            margin: 0 1.6rem 0 1.6rem;
         }
     }
-
-    button {
-        font-weight: lighter;
-        padding: .6rem;
-
-        & svg {
-            margin-left: -.8rem;
-        }
-    }
+    
 }
 
-.check {
+.success {
     background-color: $color-success-light;
     color: $color-success;
 }
 
-.cross {
+.error {
     background-color: $color-error-light;
     color: $color-error;
 }

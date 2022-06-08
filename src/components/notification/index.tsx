@@ -1,29 +1,39 @@
 import React from "react"
 import { Button, Icon, Text } from ".."
-import { Colors } from "@interfaces/index";
 
 import styles from "./index.module.scss"
 import cn from 'classnames'
 
 export type IProps = {
-    type?: string
-    iconColor?: Colors
+    type: "success" | "error" | "commentary"
+    children: React.ReactNode
+    cta?: {
+        label: string
+        to?: any
+        target?: string
+        onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void | undefined,
+    }
 }
 
-export const Notification: React.FC<IProps> = ({type = 'commentary', iconColor} : IProps) => {
+
+const IconSelector = {
+    "success" : <Icon type="check" size="medium" color="success"/>,
+    "error" : <Icon type="cross" size="medium" color="error"/>,
+    "commentary" : <Icon type="commentary" size="medium"/>,
+}
+
+
+
+export const Notification: React.FC<IProps> = ({type, cta, children} : IProps) => {
     return(
     <div className={cn(styles.notification, styles[type])}>
         <div className={styles.notification__content}>
-            <Icon type={type} size="medium" color={iconColor}/>
+            {IconSelector[type]}
             <Text tag="p" typo="guidance">
-                {
-                    type === "commentary" ? <>L’exposition' <b>“Au dela du monde”</b> 'a été commentée</> 
-                    : type === "check" ? <>L’exposition <b>“Au dela du monde”</b> a été validée pour publication</> 
-                    : <>L’exposition <b>“Au dela du monde”</b> a été refusée pour publication</>
-                }
+                {children}
             </Text>
         </div>
-        <Button label="Voir l’exposition" type="button" iconButton={true} fullWidth={false} icon="rightArrow"/>
+        { cta && <Button {...cta} type="button" icon="rightArrow" fullWidth={false} /> }
     </div> 
     )
 }

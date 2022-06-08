@@ -1,0 +1,25 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+.container{
+  display: flex;
+  align-self: center;
+  padding: 4rem;
+  --animation-duration: 1.6s;
+  justify-content: space-between;
+  width: fit-content;
+}
+
+.wrapper{
+  width: 100%;
+  
+}
+
+.stepper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6rem;
+}
+

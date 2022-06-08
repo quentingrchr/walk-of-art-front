@@ -1,0 +1,180 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+@keyframes appears {
+  from{
+    opacity: 0;
+    transform: translateY(3rem)
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+.step__circle_container{
+  --circle-size: 4rem;
+  position: relative;
+  height: 5rem;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.step__circle{
+  border-radius: 50%;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  background-color: $color-black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes dash {
+  from{
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.step__svg{
+  width: 5rem;
+  height: 5rem;
+  overflow: visible;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.step__number{
+  color: $color-white;
+  font-family: $font-decay;
+  font-size: 2.4rem;
+  white-space: nowrap;
+}
+
+.step__info{
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 2rem;
+  font-family: $font-inter;
+  text-transform: uppercase;
+  color: $color-info;
+  white-space: nowrap;
+}
+
+.step__label{
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 2.8rem;
+  font-family: $font-inter;
+  color: $color-black;
+  white-space: nowrap;
+}
+
+.step__bottom{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.step__badge{
+  margin-top: 2px;
+}
+
+.step__circle_icon{
+  position: absolute;
+  top: 50%;
+  font-size: inherit;
+  transform: translateY(-50%) scale(0);
+  transition: non;
+  svg{
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+  }
+}
+
+.step{
+  color: $color-black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  /* animation appears */
+  opacity: 0;
+  transform: translateY(-3rem);
+  animation: appears .4s ease forwards;
+
+  .step__circle_container {
+    transition: all calc(var(--animation-duration) / 8) ease;
+  }
+  
+  &:not(.checked){
+    .step__circle_container{
+      opacity: .5;
+    } 
+  }
+  
+  .step__svg{
+    opacity: 0;
+  }
+  
+  &.active{
+    .step__circle_container{
+      transform: scale(1.5);
+      transition: all calc(var(--animation-duration) / 8) ease;
+    }
+    .step__svg{
+      opacity: 1;
+      animation: dash var(--animation-duration) linear forwards;
+      animation-delay: .3s;
+    }
+  }
+  &.active:not(.checked){
+    .step__circle_container{
+      opacity: 1;
+    }
+  }
+
+  &:not(.active):not(.disable){
+    cursor: pointer;
+  }
+
+  &.checked{
+    .step__svg{
+      display: none;
+    }
+
+    &.completed{
+      .step__circle {
+        transition: background-color .2s ease;
+        background-color: $color-success;
+      }
+      .step__circle_icon {
+        transform:  translateY(-50%) scale(1);
+        transition: transform 0.2s 0.3s ease-in-out;
+      }
+      .step__number{
+        opacity: 0;
+      }
+    }
+  }
+  
+}
+
+
+.disable{
+  cursor: not-allowed;
+  opacity: .5 !important;
+}
