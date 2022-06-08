@@ -1,0 +1,28 @@
+@import "@styles/theme.scss";
+
+.container {
+  padding: 16px;
+  width: 432px;
+  display: flex ;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-inter;
+  font-size: 1.4rem;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+
+.info {
+  background-color: $color-info-light;
+  color: $color-info;
+}
+
+.error {
+  background-color: $color-error-light;
+  color: $color-error;
+}
+
+.success {
+  background-color: $color-success-light;
+  color: $color-success;
+}
