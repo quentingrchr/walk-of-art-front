@@ -5,7 +5,13 @@
 }
 
 @mixin typo-heading-md {
-  font-size: 3.2rem;
+  font-size: 4rem;
+  font-family: $font-decay;
+  font-weight: normal;
+}
+
+@mixin typo-heading-sm {
+  font-size: 2rem;
   font-family: $font-decay;
   font-weight: normal;
 }
@@ -29,6 +35,10 @@
   font-family: $font-inter;
   font-weight: 400;
   font-style: normal;
+
+  b {
+    font-weight: bold;
+  }
 }
 
 @mixin typo-placeholder {

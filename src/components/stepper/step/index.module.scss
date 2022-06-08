@@ -51,7 +51,6 @@
   left: 50%;
   transform: translateX(-50%);
   top: 0;
-
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
 }
@@ -61,7 +60,6 @@
   font-family: $font-decay;
   font-size: 2.4rem;
   white-space: nowrap;
-
 }
 
 .step__info{
@@ -81,7 +79,6 @@
   font-family: $font-inter;
   color: $color-black;
   white-space: nowrap;
-
 }
 
 .step__bottom{
@@ -91,8 +88,23 @@
   flex-direction: column;
 }
 
+.step__badge{
+  margin-top: 2px;
+}
+
+.step__circle_icon{
+  position: absolute;
+  top: 50%;
+  font-size: inherit;
+  transform: translateY(-50%) scale(0);
+  transition: non;
+  svg{
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+  }
+}
+
 .step{
-  font-size: 5rem;
   color: $color-black;
   display: flex;
   flex-direction: column;
@@ -103,17 +115,25 @@
   opacity: 0;
   transform: translateY(-3rem);
   animation: appears .4s ease forwards;
-  .step__circle_container{
-    opacity: .5;
+
+  .step__circle_container {
     transition: all calc(var(--animation-duration) / 8) ease;
   }
+  
+  &:not(.checked){
+    .step__circle_container{
+      opacity: .5;
+    } 
+  }
+  
   .step__svg{
     opacity: 0;
   }
+  
   &.active{
     .step__circle_container{
-      opacity: 1;
       transform: scale(1.5);
+      transition: all calc(var(--animation-duration) / 8) ease;
     }
     .step__svg{
       opacity: 1;
@@ -121,8 +141,34 @@
       animation-delay: .3s;
     }
   }
+  &.active:not(.checked){
+    .step__circle_container{
+      opacity: 1;
+    }
+  }
+
   &:not(.active):not(.disable){
     cursor: pointer;
+  }
+
+  &.checked{
+    .step__svg{
+      display: none;
+    }
+
+    &.completed{
+      .step__circle {
+        transition: background-color .2s ease;
+        background-color: $color-success;
+      }
+      .step__circle_icon {
+        transform:  translateY(-50%) scale(1);
+        transition: transform 0.2s 0.3s ease-in-out;
+      }
+      .step__number{
+        opacity: 0;
+      }
+    }
   }
   
 }
@@ -130,4 +176,5 @@
 
 .disable{
   cursor: not-allowed;
+  opacity: .5 !important;
 }

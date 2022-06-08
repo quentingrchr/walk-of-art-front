@@ -7,6 +7,7 @@ export default {
 } as ComponentMeta<typeof Step>
 
 const Template: ComponentStory<typeof Step> = (args: IProps) => <Step {...args} />
+
 const defaultProps = {
     active: false,
     completed: false,

@@ -1,11 +1,16 @@
 import { Colors, Icons as IconsType } from "@interfaces/index";
-
+import cn from "classnames";
 import styles from "./index.module.scss";
 
 import Avatar from "./avatar";
 import Notification from './notification';
 import Logout from './logout';
 import Profile from './profile';
+import Commentary from "./commentary";
+import RightArrow from "./right-arrow";
+import Cross from "./cross";
+import Check from "./check";
+import Checkbox from "./checkbox";
 
 interface IProps {
   type: IconsType,
@@ -22,18 +27,23 @@ const Icons: IIcons = {
   avatar: <Avatar />,
   notification: <Notification />,
   logout: <Logout />,
-  profile: <Profile />
+  profile: <Profile />,
+  commentary: <Commentary/>,
+  rightArrow: <RightArrow/>,
+  cross: <Cross/>,
+  check: <Check/>,
+  checkbox: <Checkbox/>
 };
 
 const sizes :any = {
   small: "1.6rem",
   medium: "1.8rem",
-  large: "2.4rem",
+  large: "2.2rem",
 }
 
 export const Icon = ({ type, onClick, size, color = "none", ...props }: IProps) => {
   return (
-    <div onClick={(e) => onClick !== undefined && onClick(e)} className={styles[color]} style={{width: sizes[size], height: sizes[size] }}>
+    <div onClick={(e) => onClick !== undefined && onClick(e)} className={cn(styles[color], "icon")} style={{width: sizes[size], height: sizes[size] }}>
       {Icons[type]}
     </div>
   );

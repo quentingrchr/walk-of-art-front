@@ -18,6 +18,7 @@ export function Text({
   attributes = {},
   children,
 }: IProps) {
+
   const element = React.createElement(
     tag,
     { className: `text ${styles[typo]} ${styles[color], styles[display]}`, ...attributes },

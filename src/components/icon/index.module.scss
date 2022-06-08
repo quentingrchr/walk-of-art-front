@@ -2,6 +2,13 @@
 
 @import "@styles/theme.scss";
 
+
+.icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .success{
   svg, path, circle, rect{
     fill: $color-success;
