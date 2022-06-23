@@ -47,7 +47,7 @@ return (
             <HeadingStrong elementColor="success" color="black" content="Création d'une oeuvre" size="md" />
             <Stepper activeStep={activeStep} steps={steps} completeOne={completeStep}/>
 
-<Artwork src={image} alt={"test"}/>
+<Artwork src={image} alt={"test"} size={"small"}/>
 
             <label htmlFor="exhibitionTitle">Titre de l'exposition</label>
             <Input type='text' placeholder='Ex : La méduse sur le radeau' id={"exhibitionTitle"} value={"Titre"} register={undefined}/>
