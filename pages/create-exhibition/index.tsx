@@ -1,8 +1,14 @@
 import React from "react";
+<<<<<<< HEAD
 import { TemplatePage, HeadingStrong, Stepper, Link, Input, Artwork  } from "@components"
 import { IStep } from "../../src/components/stepper"
 import styles from './index.module.scss'
 import image from '../../src/assets/images/artwork.png'
+=======
+import { TemplatePage, Text, HeadingStrong, Stepper, Link  } from "@components"
+import { IStep } from "../../src/components/stepper"
+import styles from './index.module.scss'
+>>>>>>> 88e7ba0 (passe d alexanne)
 
 const STEPS = [
     {
