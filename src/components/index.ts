@@ -26,3 +26,4 @@ export { Cards } from "./cards";
 export { NavLink } from "./nav-link";
 export { Tooltip } from "./tooltip";
 export { CreateWorkForm } from "./form/create-work/index";
+export { Artwork } from './artwork'

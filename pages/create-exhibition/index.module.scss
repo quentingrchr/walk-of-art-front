@@ -3,6 +3,9 @@
   left: 50%;
   top: calc(40px + 8.6rem);
   transform: translateX(-50%);
+display: flex;
+flex-direction: column;
+align-items: center;
 }
 .link2 {
   position: fixed;
