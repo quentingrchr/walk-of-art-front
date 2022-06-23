@@ -1,5 +1,6 @@
 import React from "react";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { TemplatePage, HeadingStrong, Stepper, Link, Input, Artwork  } from "@components"
 import { IStep } from "../../src/components/stepper"
 import styles from './index.module.scss'
@@ -9,6 +10,12 @@ import { TemplatePage, Text, HeadingStrong, Stepper, Link  } from "@components"
 import { IStep } from "../../src/components/stepper"
 import styles from './index.module.scss'
 >>>>>>> 88e7ba0 (passe d alexanne)
+=======
+import { TemplatePage, HeadingStrong, Stepper, Link, Input, Artwork  } from "@components"
+import { IStep } from "../../src/components/stepper"
+import styles from './index.module.scss'
+import image from '../../src/assets/images/artwork.png'
+>>>>>>> a66858c (ADD Inputs and artwork component)
 
 const STEPS = [
     {
@@ -52,8 +59,7 @@ return (
         <div className={styles.test2}>
             <HeadingStrong elementColor="success" color="black" content="Création d'une oeuvre" size="md" />
             <Stepper activeStep={activeStep} steps={steps} completeOne={completeStep}/>
-
-<Artwork src={image} alt={"test"} size={"small"}/>
+            <Artwork src={image} alt={"test"}/>
 
             <label htmlFor="exhibitionTitle">Titre de l'exposition</label>
             <Input type='text' placeholder='Ex : La méduse sur le radeau' id={"exhibitionTitle"} value={"Titre"} register={undefined}/>
