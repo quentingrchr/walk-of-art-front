@@ -32,7 +32,7 @@ export const FormOne: React.FC<IProps> = ({
   };
 
   return (
-    <form className={s.formContainer} onSubmit={onSubmit}>
+    <form className={styles.formContainer} onSubmit={onSubmit}>
       <InputGroup
         placeholder="ex: Le radeau de la méduse"
         register={register}
@@ -50,7 +50,7 @@ export const FormOne: React.FC<IProps> = ({
         label="Descriptif"
         guidance={null}
       />
-      <div className={s.ctaContainer}>
+      <div className={styles.ctaContainer}>
         <Button label={"Suivant"} color="white" bg="dark" type="submit" />
       </div>
     </form>
