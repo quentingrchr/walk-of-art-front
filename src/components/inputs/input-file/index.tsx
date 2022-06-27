@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import cn from "classnames";
 import s from "./index.module.scss";
 import { Icon } from "@components";
+interface InputData {
+  name: string;
+  required?: boolean;
+}
 
 export type IProps = {
-  register: (id: string) => Object;
-  primaryInput: string;
-  secondaryInputs?: [string, string, string];
+  register: any;
+  primaryInput: InputData;
+  secondaryInputs?: [InputData, InputData, InputData];
+  primaryValue?: string;
+  secondaryValues?: [string, string, string];
   label?: string;
   fileType?: string;
 };
@@ -16,8 +22,14 @@ export const InputFile: React.FC<IProps> = ({
   primaryInput,
   secondaryInputs,
   label = "fichiers acceptés : .jpg, .png, .pdf, .stl, .etc",
-  fileType = "image/png, image/jpg, image/gif, image/jpeg",
+  // fileType = "file",
+  primaryValue,
+  secondaryValues,
 }: IProps) => {
+  useEffect(() => {
+    console.log(primaryValue);
+  }, [primaryValue]);
+
   return (
     <div className={s.container}>
       <label className={cn(s.input, s.primary)}>
@@ -25,19 +37,28 @@ export const InputFile: React.FC<IProps> = ({
           <div className={s.inputIcon}>
             <Icon type="drop-file" size="xxlarge" />
           </div>
-          <div className={s.inputLabel}>
-            fichiers acceptés : .jpg, .png, .pdf, .stl, .etc
-          </div>
+          <div className={s.inputLabel}>{label}</div>
           <input
-            {...register(primaryInput)}
+            {...register(primaryInput.name, {
+              required: !!primaryInput.required,
+            })}
             type="file"
-            accept={fileType}
-            name={primaryInput}
+            // accept={fileType}
+            name={primaryInput.name}
           />
         </div>
+        {primaryValue && (
+          <div
+            className={s.preview}
+            style={{
+              backgroundImage: `url(${primaryValue})`,
+              background: "red",
+            }}
+          ></div>
+        )}
       </label>
       {!!secondaryInputs?.length &&
-        secondaryInputs.map((inputName, index) => {
+        secondaryInputs.map(({ name, required }, index) => {
           return (
             <label
               className={cn(s.input, s.secondary, s[`secondary${index + 1}`])}
@@ -47,39 +68,15 @@ export const InputFile: React.FC<IProps> = ({
                   <Icon type="drop-file" size="xlarge" />
                 </div>
                 <input
-                  {...register(inputName)}
+                  {...register(name, { required: !!required })}
                   type="file"
-                  accept={fileType}
-                  name={inputName}
+                  // accept={fileType}
+                  name={name}
                 />
               </div>
             </label>
           );
         })}
-      <label className={cn(s.input, s.secondary, s.secondary2)}>
-        <div className={s.inputContent}>
-          <div className={s.inputIcon}>
-            <Icon type="drop-file" size="xlarge" />
-          </div>
-          <input
-            type="file"
-            accept="image/png, image/jpg, image/gif, image/jpeg"
-            name="image"
-          />
-        </div>
-      </label>
-      <label className={cn(s.input, s.secondary, s.secondary3)}>
-        <div className={s.inputContent}>
-          <div className={s.inputIcon}>
-            <Icon type="drop-file" size="xlarge" />
-          </div>
-          <input
-            type="file"
-            accept="image/png, image/jpg, image/gif, image/jpeg"
-            name="image"
-          />
-        </div>
-      </label>
     </div>
   );
 };

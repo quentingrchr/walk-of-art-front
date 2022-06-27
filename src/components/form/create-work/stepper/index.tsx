@@ -127,6 +127,10 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
     return true;
   };
 
+  useEffect(() => {
+    console.log(compiledForm);
+  }, [compiledForm]);
+
   return (
     <div className={s.container}>
       <div>

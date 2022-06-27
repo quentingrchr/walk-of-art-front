@@ -28,7 +28,7 @@ export const FormOne: React.FC<IProps> = ({
       <InputGroup
         placeholder="ex: Le radeau de la méduse"
         register={register}
-        required
+        required={true}
         id="title"
         type="text"
         label="Titre de l'oeuvre"
@@ -37,7 +37,7 @@ export const FormOne: React.FC<IProps> = ({
       <InputGroup
         placeholder="Descriptif de mon oeuvre"
         register={register}
-        id="title"
+        id="description"
         type="text"
         label="Descriptif"
         guidance={null}
@@ -54,7 +54,19 @@ export const FormTwo: React.FC<IProps> = ({
   handleBack,
   defaultValues = {},
 }: IProps) => {
-  const { register, handleSubmit } = useForm({ mode: "onBlur", defaultValues });
+  const { register, handleSubmit, watch } = useForm({
+    mode: "onBlur",
+    defaultValues,
+  });
+
+  const watchPrimaryImage = watch("primary-image");
+  const watchSecondaryImages = watch([
+    "secondary-image-1",
+    "secondary-image-2",
+    "secondary-image-3",
+  ]);
+
+  console.log({ watchPrimaryImage, watchSecondaryImages });
 
   const onSubmit = (e: any) => {
     console.log("submit");
@@ -68,12 +80,17 @@ export const FormTwo: React.FC<IProps> = ({
     <form className={s.formContainer} onSubmit={onSubmit}>
       <InputFile
         register={register}
-        primaryInput="primary-image"
+        primaryInput={{
+          name: "primary-image",
+          required: true,
+        }}
+        primaryValue={watchPrimaryImage}
         secondaryInputs={[
-          "secondary-image-1",
-          "secondary-image-2",
-          "secondary-image-3",
+          { name: "secondary-image-1", required: false },
+          { name: "secondary-image-2", required: false },
+          { name: "secondary-image-3", required: false },
         ]}
+        secondaryValues={watchSecondaryImages}
       />
       <div className={s.ctaContainer}>
         <Button
