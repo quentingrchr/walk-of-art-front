@@ -11,9 +11,23 @@
     @include typo-guidance;
   }
 
+  .icon {
+    --icon-size: 1.2rem;
+    border-radius: 50%;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   &.info{
     .text{
       color: #{$color-black}50;
+    }
+
+    .icon {
+      background-color: #{$color-black}50;
     }
   }
 
@@ -21,11 +35,18 @@
     .text{
       color: #{$color-success}50;
     }
+
+    .icon {
+      background-color: #{$color-success}50;
+    }
   } 
   
   &.error{
     .text{
       color: #{$color-error}50;
+    }
+    .icon {
+      background-color: #{$color-error}50;
     }
   }
 }

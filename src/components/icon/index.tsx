@@ -15,7 +15,7 @@ import Information from "./information";
 
 interface IProps {
   type: IconsType,
-  size: "small" | "medium" | "large";
+  size: "xsmall" | "small" | "medium" | "large";
   color?: Colors | "none";
   children?: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
@@ -38,6 +38,7 @@ const Icons: IIcons = {
 };
 
 const sizes :any = {
+  xsmall: "0.8rem",
   small: "1.6rem",
   medium: "1.8rem",
   large: "2.2rem",
