@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import s from "./index.module.scss";
-import { Button, Input, InputGroup } from "@components";
+import { Button, Input, InputGroup, InputFile } from "@components";
 import { useForm, useFormContext, FormProvider } from "react-hook-form";
 
 export type IProps = {
@@ -66,8 +66,15 @@ export const FormTwo: React.FC<IProps> = ({
 
   return (
     <form className={s.formContainer} onSubmit={onSubmit}>
-      <label>Artiste</label>
-      <input {...register("artist", { required: true })} type="text" />
+      <InputFile
+        register={register}
+        primaryInput="primary-image"
+        secondaryInputs={[
+          "secondary-image-1",
+          "secondary-image-2",
+          "secondary-image-3",
+        ]}
+      />
       <div className={s.ctaContainer}>
         <Button
           label={"Précédent"}

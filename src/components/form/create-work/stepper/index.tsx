@@ -137,7 +137,14 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
           completeOne={() => {}}
         />
       </div>
-      {getStepComponent(activeStep, compiledForm, handleStepSubmit, handleBack)}
+      <div className={s.formContainer}>
+        {getStepComponent(
+          activeStep,
+          compiledForm,
+          handleStepSubmit,
+          handleBack
+        )}
+      </div>
     </div>
   );
 };
