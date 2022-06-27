@@ -1,5 +1,3 @@
-/* import all components here */
-
 export { Button } from "./button"
 export { Card } from "./card"
 export { Text } from "./text"
@@ -8,6 +6,7 @@ export { Icon } from "./icon"
 export { Input } from "./inputs/input"
 export { InputGroup } from "./inputs/input-group"
 export { InputDropdown } from "./inputs/input-dropdown";
+export { InputFile } from "./inputs/input-file";
 export { Guidance } from "./form/guidance"
 export { LoginForm } from "./form/login-form"
 export { Link } from "./link"
@@ -31,3 +30,4 @@ export { Artwork } from "./artwork"
 export { Notification } from "./notification"
 export { NotificationWrapper } from "./notification-wrapper"
 export { EditProfile } from "./form/edit-profile"
+export { CreateWorkForm } from "./form/create-work/index";
