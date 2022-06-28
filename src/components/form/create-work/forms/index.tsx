@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import s from "./index.module.scss";
+import styles from "./index.module.scss";
 import cn from "classnames";
 import { Button, Input, InputGroup, InputFile } from "@components";
 import { useForm, useFormContext, FormProvider } from "react-hook-form";
@@ -89,7 +89,7 @@ export const FormTwo: React.FC<IProps> = ({
   };
 
   return (
-    <form className={s.formContainer} onSubmit={onSubmit}>
+    <form className={styles.formContainer} onSubmit={onSubmit}>
       <InputFile
         register={register}
         primaryInput={{
@@ -104,7 +104,7 @@ export const FormTwo: React.FC<IProps> = ({
         ]}
         secondaryValues={watchSecondaryImages || defaultValues.secondaryImages}
       />
-      <div className={s.ctaContainer}>
+      <div className={styles.ctaContainer}>
         <Button
           label={"Précédent"}
           color="white"
@@ -124,14 +124,14 @@ export const FormThree: React.FC<IRecapProps> = ({
 }: IRecapProps) => {
   console.log({ formState });
   return (
-    <div className={cn(s.formContainer, s.recap)}>
-      <div className={s.imagesContainer}>
+    <div className={cn(styles.formContainer, styles.recap)}>
+      <div className={styles.imagesContainer}>
         {/* IMAGES */}
 
         {/* PRIMARY IMAGE  */}
-        <div className={cn(s.imageContainer, s.primary)}>
+        <div className={cn(styles.imageContainer, styles.primary)}>
           <div
-            className={s.image}
+            className={styles.image}
             style={{
               backgroundImage: `url(${getBlopUrlFromFile(
                 formState["primary-image"][0]
@@ -142,9 +142,9 @@ export const FormThree: React.FC<IRecapProps> = ({
 
         {/* SECONDARY IMAGES */}
         {formState["secondary-image-1"][0] && (
-          <div className={cn(s.imageContainer, s.secondary, s.secondary1)}>
+          <div className={cn(styles.imageContainer, styles.secondary, styles.secondary1)}>
             <div
-              className={s.image}
+              className={styles.image}
               style={{
                 backgroundImage: `url(${getBlopUrlFromFile(
                   formState["secondary-image-1"][0]
@@ -155,9 +155,9 @@ export const FormThree: React.FC<IRecapProps> = ({
         )}
 
         {formState["secondary-image-2"][0] && (
-          <div className={cn(s.imageContainer, s.secondary, s.secondary2)}>
+          <div className={cn(styles.imageContainer, styles.secondary, styles.secondary2)}>
             <div
-              className={s.image}
+              className={styles.image}
               style={{
                 backgroundImage: `url(${getBlopUrlFromFile(
                   formState["secondary-image-2"][0]
@@ -168,9 +168,9 @@ export const FormThree: React.FC<IRecapProps> = ({
         )}
 
         {formState["secondary-image-3"][0] && (
-          <div className={cn(s.imageContainer, s.secondary, s.secondary3)}>
+          <div className={cn(styles.imageContainer, styles.secondary, styles.secondary3)}>
             <div
-              className={s.image}
+              className={styles.image}
               style={{
                 backgroundImage: `url(${getBlopUrlFromFile(
                   formState["secondary-image-3"][0]
@@ -181,9 +181,9 @@ export const FormThree: React.FC<IRecapProps> = ({
         )}
       </div>
 
-      <p className={s.title}>{formState.title}</p>
-      <p className={s.description}>{formState.description}</p>
-      <div className={s.ctaContainer}>
+      <p className={styles.title}>{formState.title}</p>
+      <p className={styles.description}>{formState.description}</p>
+      <div className={styles.ctaContainer}>
         <Button
           label={"Précédent"}
           color="white"
