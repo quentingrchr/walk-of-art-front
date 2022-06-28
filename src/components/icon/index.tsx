@@ -13,6 +13,7 @@ import Check from "./check";
 import Checkbox from "./checkbox";
 import Information from "./information";
 import DropFile from "./drop-file";
+import DownArrow from "./down-arrow";
 
 interface IProps {
   type: IconsType;
@@ -30,11 +31,12 @@ const Icons: IIcons = {
   notification: <Notification />,
   logout: <Logout />,
   profile: <Profile />,
-  commentary: <Commentary />,
-  rightArrow: <RightArrow />,
-  cross: <Cross />,
-  check: <Check />,
-  checkbox: <Checkbox />,
+  commentary: <Commentary/>,
+  rightArrow: <RightArrow/>,
+  downArrow: <DownArrow />,
+  cross: <Cross/>,
+  check: <Check/>,
+  checkbox: <Checkbox/>,
   information: <Information />,
   "drop-file": <DropFile />,
 };
