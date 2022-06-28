@@ -1,5 +1,5 @@
 import React from 'react';
-import { TemplatePage, HeadingStrong, ExhibitionStepper, Link, Input, Artwork  } from "@components"
+import { TemplatePage, HeadingStrong, CreateExhibitionForm, Link, Input, Artwork  } from "@components"
 import { IStep } from "../../src/components/stepper"
 import styles from './index.module.scss'
 import Image from '../../src/assets/images/artwork.png'
@@ -48,7 +48,7 @@ return (
 
             {/* <Artwork src={Image} alt={"test"} size={"small"}/>  */}
         </div>
-            {/* <ExhibitionStepper activeStep={activeStep} steps={steps} completeOne={completeStep} setActiveStep={setActiveStep}/> */}
+            <CreateExhibitionForm activeStep={activeStep} steps={steps} completeOne={completeStep} setActiveStep={setActiveStep}/>
     </TemplatePage>
 )
 }

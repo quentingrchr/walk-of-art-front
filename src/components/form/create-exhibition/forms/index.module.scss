@@ -20,8 +20,62 @@
   gap: 2rem;
 }
 
+.recap {
+  @import "@styles/theme.scss";
 
-.toolTip {
-  width: 416px;
-  margin-top: 40px;
+  // Your style here
+
+  .imagesContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 0.25fr;
+    grid-column-gap: 1.6rem;
+    grid-row-gap: 1.6rem;
+    width: 50rem;
+    height: 50rem;
+  }
+
+  .imageContainer {
+    background-color: transparent;
+    color: $color-info;
+    position: relative;
+    width: 100%;
+
+    &.primary {
+      grid-area: 1 / 1 / 2 / 4;
+    }
+
+    &.secondary {
+      &1 {
+        grid-area: 2 / 1 / 3 / 2;
+      }
+      &2 {
+        grid-area: 2 / 2 / 3 / 3;
+      }
+      &3 {
+        grid-area: 2 / 3 / 3 / 4;
+      }
+    }
+  }
+  .image {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+  }
+
+  .title {
+    font-size: 3.2rem;
+    font-family: $font-decay;
+    font-weight: normal;
+    line-height: 1.5em;
+  }
+  .description {
+    font-family: $font-inter;
+    font-size: 1.8rem;
+    line-height: 1.5em;
+  }
 }

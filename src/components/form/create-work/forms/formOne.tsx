@@ -57,35 +57,11 @@ export const FormOne: React.FC<IProps> = ({
           }
         />
         <InputGroup
-          placeholder="https://www.linkedin.com/in/quentin-grancher/?original_referer=https%3A%2F%2Fwww%2Egoogle%2Ecom%2F&originalSubdomain=fr"
+          placeholder="Descriptif de mon oeuvre"
           register={register}
           id="description"
           type="text"
-          label="Lien du réseau social (optionnel)"
-          guidance={null}
-        />
-        <InputGroup
-          placeholder="www.abcde.com"
-          register={register}
-          id="description"
-          type="text"
-          label="Portfolio/site web (optionnel)"
-          guidance={null}
-        />
-          <InputGroup
-            placeholder="Ex : @artiste.pro"
-            register={register}
-            id="description"
-            type="text"
-            label="Réseau social (optionnel)"
-            guidance={null}
-          />
-        <InputGroup
-          placeholder="Ex : donne.com"
-          register={register}
-          id="description"
-          type="text"
-          label="Lien de donnation (optionnel)"
+          label="Descriptif"
           guidance={null}
         />
         <div className={styles.ctaContainer}>

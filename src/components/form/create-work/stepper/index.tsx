@@ -137,6 +137,7 @@ export const FormStepper: React.FC<IProps> = () => {
     <div className={s.container}>
       <div>
         <Stepper
+        // setActiveStep={setActiveStep}
           variant="checked"
           activeStep={activeStep}
           steps={steps}
