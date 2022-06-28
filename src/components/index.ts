@@ -20,10 +20,7 @@ export { BadgeSelector } from "./badge-selector"
 export { Stepper } from "./stepper"
 export { CreateForm } from "./form/create-form"
 export { CreateWorkForm } from "./form/create-work"
-<<<<<<< HEAD
 export { CreateExhibitionForm } from "./form/create-exhibition"
-=======
->>>>>>> 8b53d77 (becareful createWork/exhi export probleme bros)
 export { ExpoCard } from "./expo-card"
 export { DropdownButton } from "./dropdown-button"
 export { TemplatePage } from "./template-page"

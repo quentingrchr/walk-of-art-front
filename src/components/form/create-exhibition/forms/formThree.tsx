@@ -4,8 +4,6 @@ import { Button, InputGroup, ExpositionBoard } from "@components";
 import cardImg from "../../../../assets/images/cardImg.png"
 import { useForm } from "react-hook-form";
 
-
-
 export interface IProps {
   handleStepSubmit: (data: any) => void;
   handleBack: () => void;
