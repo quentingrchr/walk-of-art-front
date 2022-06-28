@@ -37,7 +37,7 @@ export const InputFile: React.FC<IProps> = ({
 
   useEffect(() => {
     const log = async () => {
-      if (primaryValue) {
+      if (primaryValue && primaryValue[0]) {
         setPrimaryImagePreview(getBlopUrlFromFile(primaryValue[0] as any));
       }
       if (secondaryValues) {

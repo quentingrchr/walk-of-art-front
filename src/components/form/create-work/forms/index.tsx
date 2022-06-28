@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./index.module.scss";
 import cn from "classnames";
-import { Button, Input, InputGroup, InputFile } from "@components";
+import { Button, Tooltip, InputGroup, InputFile } from "@components";
 import { useForm, useFormContext, FormProvider } from "react-hook-form";
 import { getBlopUrlFromFile } from "../../../../utility";
 
@@ -28,7 +28,6 @@ export const FormOne: React.FC<IProps> = ({
   } = useForm({ mode: "onBlur", defaultValues });
 
   const onSubmit = (e: any) => {
-    console.log("submit");
     e.preventDefault();
 
     handleSubmit((d) => {
@@ -76,7 +75,12 @@ export const FormTwo: React.FC<IProps> = ({
   handleBack,
   defaultValues = {},
 }: IProps) => {
-  const { register, handleSubmit, watch } = useForm({
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
     mode: "onBlur",
     defaultValues,
   });
@@ -102,8 +106,16 @@ export const FormTwo: React.FC<IProps> = ({
     }
   };
 
+  console.log({ errors });
+
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
+      {errors["primary-image"] && (
+        <Tooltip
+          type="error"
+          text="Veuillez renseignez au moins une image principale de type .jpg, .png"
+        />
+      )}
       <InputFile
         register={register}
         primaryInput={{
@@ -156,7 +168,13 @@ export const FormThree: React.FC<IRecapProps> = ({
 
         {/* SECONDARY IMAGES */}
         {formState["secondary-image-1"][0] && (
-          <div className={cn(styles.imageContainer, styles.secondary, styles.secondary1)}>
+          <div
+            className={cn(
+              styles.imageContainer,
+              styles.secondary,
+              styles.secondary1
+            )}
+          >
             <div
               className={styles.image}
               style={{
@@ -169,7 +187,13 @@ export const FormThree: React.FC<IRecapProps> = ({
         )}
 
         {formState["secondary-image-2"][0] && (
-          <div className={cn(styles.imageContainer, styles.secondary, styles.secondary2)}>
+          <div
+            className={cn(
+              styles.imageContainer,
+              styles.secondary,
+              styles.secondary2
+            )}
+          >
             <div
               className={styles.image}
               style={{
@@ -182,7 +206,13 @@ export const FormThree: React.FC<IRecapProps> = ({
         )}
 
         {formState["secondary-image-3"][0] && (
-          <div className={cn(styles.imageContainer, styles.secondary, styles.secondary3)}>
+          <div
+            className={cn(
+              styles.imageContainer,
+              styles.secondary,
+              styles.secondary3
+            )}
+          >
             <div
               className={styles.image}
               style={{
