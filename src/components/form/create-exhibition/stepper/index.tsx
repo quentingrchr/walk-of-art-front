@@ -3,38 +3,26 @@ import React from "react";
 import s from "./index.module.scss";
 
 import { FormOne, FormTwo, FormThree } from "../forms";
-import { Stepper, Artwork } from "@components";
-import image from '../../../../assets/images/artwork.png'
-export interface IStep {
-  id: number;
-  label: string;
-  number: number;
-  completed: boolean;
-}
+import { Stepper, Button } from "@components";
 
-export type IProps = {
-  activeStep: number;
-  steps: IStep[];
-  completeOne: (index: number) => void;
-  variant?: "default" | "checked";
-  setActiveStep:  (index: number) => void,
-};
+export type IProps = {};
+
 const STEPS = [
   {
     id: 1,
-    label: "Identification",
+    label: "Etape 1",
     number: 1,
     completed: false,
   },
   {
     id: 2,
-    label: "Fichiers",
+    label: "Etape 2",
     number: 2,
     completed: false,
   },
   {
     id: 3,
-    label: "Récapitulatif",
+    label: "Etape 3",
     number: 3,
     completed: false,
   },
@@ -68,14 +56,14 @@ const getStepComponent = (
         <FormThree
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
-          defaultValues={compiledForm.three}
+          formState={{ ...compiledForm.one, ...compiledForm.two }}
         />
       );
     default:
       return "Unknown step";
   }
 };
-export const ExhibitionStepper: React.FC<IProps> = (props: IProps) => {
+export const FormStepper: React.FC<IProps> = (props: IProps) => {
   const [compiledForm, setCompiledForm] = React.useState({});
   const [steps, setSteps] = React.useState(STEPS);
 
@@ -102,6 +90,7 @@ export const ExhibitionStepper: React.FC<IProps> = (props: IProps) => {
   };
 
   const handleStepSubmit = (data: any) => {
+    console.log({ data }, "in handleStepSubmit");
     switch (activeStep) {
       case 0:
         setCompiledForm({ ...compiledForm, one: data });
@@ -138,19 +127,29 @@ export const ExhibitionStepper: React.FC<IProps> = (props: IProps) => {
     return true;
   };
 
+  useEffect(() => {
+    console.log({ compiledForm });
+  }, [compiledForm]);
+
   return (
     <div className={s.container}>
       <div>
         <Stepper
+        // setActiveStep={setActiveStep}
           variant="checked"
           activeStep={activeStep}
           steps={steps}
           completeOne={() => {}}
-          setActiveStep={setActiveStep}
         />
       </div>
-      <Artwork src={image} alt={"test"} size={"small"}/>
-      {getStepComponent(activeStep, compiledForm, handleStepSubmit, handleBack)}
+      <div className={s.formContainer}>
+        {getStepComponent(
+          activeStep,
+          compiledForm,
+          handleStepSubmit,
+          handleBack
+        )}
+      </div>
     </div>
   );
 };
