@@ -5,9 +5,10 @@ import { Semantic } from "@interfaces/index";
 import { Icon } from ".."
 
 export interface IProps {
-    icon: string;
+    icon?: string;
     text: string;
     type: Semantic;
+    classname?: string
 }
 
 const IconSelector = {
@@ -16,9 +17,9 @@ const IconSelector = {
     "error" : <Icon type="cross" size="medium" color="error"/>
 }
 
-export const Tooltip: React.FC<IProps> = ({ text, type = 'info' }: IProps) => {
+export const Tooltip: React.FC<IProps> = ({ text, type = 'info', classname }: IProps) => {
     return (
-        <div className={cn(s.container, s[type])}>
+        <div className={cn(s.container, s[type], classname)}>
             {IconSelector[type]}
             <p>{text}</p>
         </div>

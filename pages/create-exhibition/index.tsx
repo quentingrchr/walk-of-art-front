@@ -1,27 +1,8 @@
-import React from "react";
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { TemplatePage, HeadingStrong, Stepper, Link, Input, Artwork  } from "@components"
-import { IStep } from "../../src/components/stepper"
-import styles from './index.module.scss'
-import image from '../../src/assets/images/artwork.png'
-=======
-import { TemplatePage, Text, HeadingStrong, Stepper, Link  } from "@components"
-import { IStep } from "../../src/components/stepper"
-import styles from './index.module.scss'
->>>>>>> 88e7ba0 (passe d alexanne)
-=======
-import { TemplatePage, HeadingStrong, Stepper, Link, Input, Artwork  } from "@components"
-import { IStep } from "../../src/components/stepper"
-import styles from './index.module.scss'
-import image from '../../src/assets/images/artwork.png'
->>>>>>> a66858c (ADD Inputs and artwork component)
-=======
+
+import React from 'react';
 import { TemplatePage, HeadingStrong, Stepper, Link, Input, Artwork, CreateExhibitionForm  } from "@components"
 import { IStep } from "../../src/components/stepper"
 import styles from './index.module.scss'
->>>>>>> 6586fea (added create-exhibition, ( je crois que c'est bon je suis pas sur les amis))
 
 const STEPS = [
     {
@@ -73,6 +54,11 @@ return (
 
             <label htmlFor="exhibitionDescription">Descriptif de l'exposition</label>
             <Input type='text' placeholder='Deescription de mon exposition' id={"exhibitionDescription"} value={"Titre"} register={undefined}/> 
+
+         <Link to='/' label='Retour à la connexion' classname={styles.link}/>
+         </div>
+        <div className={styles.heading}>
+
             <HeadingStrong elementColor="success" color="black" content="Création d'une oeuvre" size="md" /> 
         </div>
          <CreateExhibitionForm />

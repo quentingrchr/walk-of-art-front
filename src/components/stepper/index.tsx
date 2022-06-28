@@ -15,6 +15,7 @@ export type IProps = {
   steps: IStep[];
   completeOne: (index: number) => void;
   variant?: "default" | "checked";
+  setActiveStep:  (index: number) => void,
 };
 
 const STEPS = [
@@ -42,9 +43,11 @@ export const Stepper: React.FC<IProps> = ({
   steps,
   completeOne,
   variant = "default",
+  setActiveStep,
 }: IProps) => {
   const dummyFunction = (index) => {
     completeOne(index);
+    setActiveStep(index)
   };
 
   const arePreviousStepsCompleted = (index: number) => {

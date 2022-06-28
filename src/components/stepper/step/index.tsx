@@ -11,7 +11,7 @@ export type IProps = {
     onClick?: () => void
     disable?: boolean
     variant?: "default" | "checked"
-    stepInfo? : boolean
+    stepInfo? : boolean,
 }
 
 export const Step: React.FC<IProps> = (props: IProps) => {

@@ -13,19 +13,19 @@ export type IProps = {};
 const STEPS = [
   {
     id: 1,
-    label: "Etape 1",
+    label: "Identification",
     number: 1,
     completed: false,
   },
   {
     id: 2,
-    label: "Etape 2",
+    label: "Fichiers",
     number: 2,
     completed: false,
   },
   {
     id: 3,
-    label: "Etape 3",
+    label: "Récapitulatif",
     number: 3,
     completed: false,
   },
@@ -137,6 +137,7 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
           activeStep={activeStep}
           steps={steps}
           completeOne={() => {}}
+          setActiveStep={setActiveStep}
         />
       </div>
       <Artwork src={image} alt={"test"} size={"small"}/>

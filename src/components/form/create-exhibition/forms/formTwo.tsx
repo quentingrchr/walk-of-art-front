@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./index.module.scss";
-import { Button, Input, InputGroup } from "@components";
+import { Button, Input, InputGroup, Tooltip, MediaSelector} from "@components";
 import { useForm, useFormContext, FormProvider } from "react-hook-form";
 
 export type IProps = {
@@ -8,6 +8,8 @@ export type IProps = {
   handleBack: () => void;
   defaultValues?: any;
 };
+
+const toolTipText = "Votre mot de passe doit contenir au minimum 8 caractères dont au moins une lettre majuscule, un chiffre et un caractère spécial."
 
 export const FormTwo: React.FC<IProps> = ({
   handleStepSubmit,
@@ -26,51 +28,20 @@ export const FormTwo: React.FC<IProps> = ({
 
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
-      <label>Artiste</label>
-      <input {...register("artist", { required: true })} type="text" />
+      {/* <label>Artiste</label>
+      <input {...register("artist", { required: true })} type="text" /> */}ous
+      <Tooltip type="info" text={toolTipText} classname={styles.toolTip}/>
+      <div className={styles.formTwoContainer}>
+     <MediaSelector/>
+      </div>
       <div className={styles.ctaContainer}>
-      <InputGroup
-        placeholder="ex: Le radeau de la méduse"
-        register={register}
-        required
-        id="title"
-        type="text"
-        label="Titre de l'oeuvre"
-        guidance={null}
-      /> <InputGroup
-      placeholder="ex: Le radeau de la méduse"
-      register={register}
-      required
-      id="title"
-      type="text"
-      label="Titre de l'oeuvre"
-      guidance={null}
-    /> <InputGroup
-    placeholder="ex: Le radeau de la méduse"
-    register={register}
-    required
-    id="title"
-    type="text"
-    label="Titre de l'oeuvre"
-    guidance={null}
-  /> <InputGroup
-  placeholder="ex: Le radeau de la méduse"
-  register={register}
-  required
-  id="title"
-  type="text"
-  label="Titre de l'oeuvre"
-  guidance={null}
-/>
-<InputGroup
-        placeholder="ex: Le radeau de la méduse"
-        register={register}
-        required
-        id="title"
-        type="text"
-        label="Titre de l'oeuvre"
-        guidance={null}
-      />
+        <Button
+          label={"Précédent"}
+          color="white"
+          bg="dark"
+          onClick={handleBack}
+        />
+        <Button label={"Suivant"} color="white" bg="dark" type="submit" />
       </div>
     </form>
   );

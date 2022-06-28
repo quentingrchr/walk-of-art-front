@@ -11,10 +11,17 @@
   gap: 3rem;
 }
 
+.formTwoContainer,
 .ctaContainer {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2rem;
+}
+
+
+.toolTip {
+  width: 416px;
+  margin-top: 40px;
 }

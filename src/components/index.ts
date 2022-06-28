@@ -23,3 +23,4 @@ export { Cards } from "./cards"
 export { NavLink } from "./nav-link"
 export { Tooltip } from "./tooltip"
 export { Artwork } from './artwork'
+export { MediaSelector } from './mediaSelector'
