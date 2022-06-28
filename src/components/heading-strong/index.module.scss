@@ -72,6 +72,10 @@
     background-color: $color-success-light;
 }
 
+.violet::before {
+  background-color: $color-violet;
+}
+
 .info::before {
     background-color: $color-info;
 }

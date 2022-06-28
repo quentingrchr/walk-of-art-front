@@ -1,0 +1,11 @@
+@import "@styles/theme.scss";
+.artwork {
+  background-color: $color-black;
+  padding: 8px;
+}
+
+.image {
+  height: 100%;
+  border: 2px solid $color-white;
+}
+

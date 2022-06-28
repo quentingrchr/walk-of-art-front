@@ -16,7 +16,6 @@ export type IProps = {
 }
 
 export const HeadingStrong: React.FC<IProps> = ({ elementColor, content, color, size = "lg" }) => {
-    console.log(`heading-${size}`);
     return (
             <div className={ cn(s[elementColor], s["heading-strong"], s[size] ) }>
                 <Text tag="h1" typo={`heading-${size}`} color={color}>
