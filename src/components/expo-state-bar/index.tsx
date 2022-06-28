@@ -27,7 +27,7 @@ export const ExpoStateBar: React.FC<IProps> = ({states}: IProps) => {
                                 onClick={() =>
                                 {
                                     value.onClick()
-                                    toggleClass(value.label)
+                                    toggleClass(index)
                                 }}>
                                 <Text
                                     tag="p"
