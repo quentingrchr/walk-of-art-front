@@ -13,3 +13,4 @@ export type Icons =
   | "information"
   | "drop-file"
   | "";
+export type NotificationType = "success" | "error" | "commentary";
