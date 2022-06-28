@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import s from "./index.module.scss";
 import { Icon } from "@components";
+import { getBlopUrlFromFile } from "../../../utility";
 interface InputData {
   name: string;
   required?: boolean;
@@ -11,8 +12,8 @@ export type IProps = {
   register: any;
   primaryInput: InputData;
   secondaryInputs?: [InputData, InputData, InputData];
-  primaryValue?: string;
-  secondaryValues?: [string, string, string];
+  primaryValue?: any;
+  secondaryValues?: [any, any, any];
   label?: string;
   fileType?: string;
 };
@@ -22,17 +23,52 @@ export const InputFile: React.FC<IProps> = ({
   primaryInput,
   secondaryInputs,
   label = "fichiers acceptés : .jpg, .png, .pdf, .stl, .etc",
-  // fileType = "file",
+  fileType = "image/png, image/jpeg",
   primaryValue,
   secondaryValues,
 }: IProps) => {
+  const [primaryImagePreview, setPrimaryImagePreview] =
+    useState<null | string>(null);
+  const [secondaryImagesPreview, setSecondaryImagesPreview] = useState<any>([
+    null,
+    null,
+    null,
+  ]);
+
   useEffect(() => {
-    console.log(primaryValue);
-  }, [primaryValue]);
+    const log = async () => {
+      if (primaryValue) {
+        setPrimaryImagePreview(getBlopUrlFromFile(primaryValue[0] as any));
+      }
+      if (secondaryValues) {
+        setSecondaryImagesPreview(
+          secondaryValues.map((value) => {
+            if (value && value[0]) {
+              return getBlopUrlFromFile(value[0] as any);
+            } else {
+              return null;
+            }
+          })
+        );
+      }
+    };
+    log();
+  }, [primaryValue, secondaryValues]);
+
+  useEffect(() => {
+    console.log({
+      primaryImagePreview,
+      secondaryImagesPreview,
+    });
+  }, [primaryImagePreview, secondaryImagesPreview]);
 
   return (
     <div className={s.container}>
-      <label className={cn(s.input, s.primary)}>
+      <label
+        className={cn(s.input, s.primary, {
+          [s.hasPreview]: primaryImagePreview !== null,
+        })}
+      >
         <div className={s.inputContent}>
           <div className={s.inputIcon}>
             <Icon type="drop-file" size="xxlarge" />
@@ -43,16 +79,15 @@ export const InputFile: React.FC<IProps> = ({
               required: !!primaryInput.required,
             })}
             type="file"
-            // accept={fileType}
+            accept={fileType}
             name={primaryInput.name}
           />
         </div>
-        {primaryValue && (
+        {primaryImagePreview && (
           <div
             className={s.preview}
             style={{
-              backgroundImage: `url(${primaryValue})`,
-              background: "red",
+              backgroundImage: `url(${primaryImagePreview})`,
             }}
           ></div>
         )}
@@ -61,7 +96,9 @@ export const InputFile: React.FC<IProps> = ({
         secondaryInputs.map(({ name, required }, index) => {
           return (
             <label
-              className={cn(s.input, s.secondary, s[`secondary${index + 1}`])}
+              className={cn(s.input, s.secondary, s[`secondary${index + 1}`], {
+                [s.hasPreview]: secondaryImagesPreview[index] !== null,
+              })}
             >
               <div className={s.inputContent}>
                 <div className={s.inputIcon}>
@@ -70,10 +107,18 @@ export const InputFile: React.FC<IProps> = ({
                 <input
                   {...register(name, { required: !!required })}
                   type="file"
-                  // accept={fileType}
+                  accept={fileType}
                   name={name}
                 />
               </div>
+              {secondaryImagesPreview[index] && (
+                <div
+                  className={s.preview}
+                  style={{
+                    backgroundImage: `url(${secondaryImagesPreview[index]})`,
+                  }}
+                ></div>
+              )}
             </label>
           );
         })}

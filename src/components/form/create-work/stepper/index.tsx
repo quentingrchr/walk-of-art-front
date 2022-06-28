@@ -57,7 +57,7 @@ const getStepComponent = (
         <FormThree
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
-          defaultValues={compiledForm.three}
+          formState={{ ...compiledForm.one, ...compiledForm.two }}
         />
       );
     default:
@@ -91,6 +91,7 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
   };
 
   const handleStepSubmit = (data: any) => {
+    console.log({ data }, "in handleStepSubmit");
     switch (activeStep) {
       case 0:
         setCompiledForm({ ...compiledForm, one: data });
@@ -128,7 +129,7 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
   };
 
   useEffect(() => {
-    console.log(compiledForm);
+    console.log({ compiledForm });
   }, [compiledForm]);
 
   return (

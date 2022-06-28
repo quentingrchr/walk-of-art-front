@@ -1,5 +1,5 @@
 import React from "react";
-import { TemplatePage, Text, CreateWorkForm, InputFile } from "@components";
+import { TemplatePage, Text, CreateWorkForm } from "@components";
 
 const CreateWork: React.FC = () => {
   return (

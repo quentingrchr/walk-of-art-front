@@ -18,6 +18,10 @@
   position: relative;
   width: 100%;
 
+  &.hasPreview {
+    background-color: transparent;
+  }
+
   &.primary {
     grid-area: 1 / 1 / 2 / 4;
   }
@@ -61,6 +65,15 @@
   width: 100%;
   height: 100%;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+}
+
+.h1 {
+  font-family: $font-inter;
+  font-size: 5rem;
+  line-height: 1.5em;
+  color: black;
 }

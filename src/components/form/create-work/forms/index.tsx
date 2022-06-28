@@ -1,13 +1,21 @@
 import React, { useEffect } from "react";
 import s from "./index.module.scss";
+import cn from "classnames";
 import { Button, Input, InputGroup, InputFile } from "@components";
 import { useForm, useFormContext, FormProvider } from "react-hook-form";
+import { getBlopUrlFromFile } from "../../../../utility";
 
-export type IProps = {
+export interface IProps {
   handleStepSubmit: (data: any) => void;
   handleBack: () => void;
   defaultValues?: any;
-};
+}
+
+export interface IRecapProps {
+  handleStepSubmit: (data: any) => void;
+  handleBack: () => void;
+  formState: any;
+}
 
 export const FormOne: React.FC<IProps> = ({
   handleStepSubmit,
@@ -66,14 +74,18 @@ export const FormTwo: React.FC<IProps> = ({
     "secondary-image-3",
   ]);
 
-  console.log({ watchPrimaryImage, watchSecondaryImages });
-
   const onSubmit = (e: any) => {
-    console.log("submit");
     e.preventDefault();
-    handleSubmit((d) => {
-      handleStepSubmit(d);
-    })(e);
+
+    const requiredFieldIsAlreadyFilled = watch("primary-image").length > 0;
+
+    if (requiredFieldIsAlreadyFilled) {
+      handleStepSubmit(watch());
+    } else {
+      handleSubmit((d) => {
+        handleStepSubmit(d);
+      })(e);
+    }
   };
 
   return (
@@ -84,13 +96,13 @@ export const FormTwo: React.FC<IProps> = ({
           name: "primary-image",
           required: true,
         }}
-        primaryValue={watchPrimaryImage}
+        primaryValue={watchPrimaryImage || defaultValues.primaryImage}
         secondaryInputs={[
           { name: "secondary-image-1", required: false },
           { name: "secondary-image-2", required: false },
           { name: "secondary-image-3", required: false },
         ]}
-        secondaryValues={watchSecondaryImages}
+        secondaryValues={watchSecondaryImages || defaultValues.secondaryImages}
       />
       <div className={s.ctaContainer}>
         <Button
@@ -105,25 +117,69 @@ export const FormTwo: React.FC<IProps> = ({
   );
 };
 
-export const FormThree: React.FC<IProps> = ({
+export const FormThree: React.FC<IRecapProps> = ({
   handleStepSubmit,
   handleBack,
-  defaultValues = {},
-}: IProps) => {
-  const { register, handleSubmit } = useForm({ mode: "onBlur", defaultValues });
-
-  const onSubmit = (e: any) => {
-    console.log("submit");
-    e.preventDefault();
-    handleSubmit((d) => {
-      handleStepSubmit(d);
-    })(e);
-  };
-
+  formState,
+}: IRecapProps) => {
+  console.log({ formState });
   return (
-    <form className={s.formContainer} onSubmit={onSubmit}>
-      <label>Price</label>
-      <input {...register("price", { required: true })} type="number" />
+    <div className={cn(s.formContainer, s.recap)}>
+      <div className={s.imagesContainer}>
+        {/* IMAGES */}
+
+        {/* PRIMARY IMAGE  */}
+        <div className={cn(s.imageContainer, s.primary)}>
+          <div
+            className={s.image}
+            style={{
+              backgroundImage: `url(${getBlopUrlFromFile(
+                formState["primary-image"][0]
+              )})`,
+            }}
+          ></div>
+        </div>
+
+        {/* SECONDARY IMAGES */}
+        {formState["secondary-image-1"] && (
+          <div className={cn(s.imageContainer, s.secondary, s.secondary1)}>
+            <div
+              className={s.image}
+              style={{
+                backgroundImage: `url(${getBlopUrlFromFile(
+                  formState["secondary-image-1"][0]
+                )})`,
+              }}
+            ></div>
+          </div>
+        )}
+
+        {formState["secondary-image-2"] && (
+          <div className={cn(s.imageContainer, s.secondary, s.secondary2)}>
+            <div
+              className={s.image}
+              style={{
+                backgroundImage: `url(${getBlopUrlFromFile(
+                  formState["secondary-image-2"][0]
+                )})`,
+              }}
+            ></div>
+          </div>
+        )}
+
+        {formState["secondary-image-3"] && (
+          <div className={cn(s.imageContainer, s.secondary, s.secondary3)}>
+            <div
+              className={s.image}
+              style={{
+                backgroundImage: `url(${getBlopUrlFromFile(
+                  formState["secondary-image-3"][0]
+                )})`,
+              }}
+            ></div>
+          </div>
+        )}
+      </div>
       <div className={s.ctaContainer}>
         <Button
           label={"Précédent"}
@@ -131,8 +187,15 @@ export const FormThree: React.FC<IProps> = ({
           bg="dark"
           onClick={handleBack}
         />
-        <Button label={"Suivant"} color="white" bg="dark" type="submit" />
+        <Button
+          label={"Suivant"}
+          color="white"
+          bg="dark"
+          onClick={() => {
+            handleStepSubmit(null);
+          }}
+        />
       </div>
-    </form>
+    </div>
   );
 };
