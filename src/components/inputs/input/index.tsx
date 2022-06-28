@@ -21,14 +21,16 @@ const TextInput = ({ id, placeholder, register, required }: IProps) => {
         placeholder={placeholder}
         className={styles.input}
         type="text"
-        required={required}
-        {...register(id)}
+        // required={required}
+        {...register(id, {
+          required: required ? true : false,
+        })}
       />
     </div>
   );
 };
 
-const PasswordInput = ({ id, placeholder, register }: IProps) => {
+const PasswordInput = ({ id, placeholder, register, required }: IProps) => {
   const [showPassword, setShowPassword] = React.useState(false);
 
   return (
@@ -38,7 +40,9 @@ const PasswordInput = ({ id, placeholder, register }: IProps) => {
         placeholder={placeholder}
         className={styles.input}
         type={showPassword ? "text" : "password"}
-        {...register(id)}
+        {...register(id, {
+          required: required ? true : false,
+        })}
       />
       <div
         className={cx("icon", "cta")}

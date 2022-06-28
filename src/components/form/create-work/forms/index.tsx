@@ -21,12 +21,18 @@ export const FormOne: React.FC<IProps> = ({
   handleStepSubmit,
   defaultValues = {},
 }: IProps) => {
-  const { register, handleSubmit } = useForm({ mode: "onBlur", defaultValues });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onBlur", defaultValues });
 
   const onSubmit = (e: any) => {
     console.log("submit");
     e.preventDefault();
+
     handleSubmit((d) => {
+      console.log(d);
       handleStepSubmit(d);
     })(e);
   };
@@ -40,7 +46,15 @@ export const FormOne: React.FC<IProps> = ({
         id="title"
         type="text"
         label="Titre de l'oeuvre"
-        guidance={null}
+        guidance={
+          errors.title
+            ? {
+                type: "error",
+                message:
+                  "Le titre doit être rempli pour passer à l’étape suivante",
+              }
+            : null
+        }
       />
       <InputGroup
         placeholder="Descriptif de mon oeuvre"
