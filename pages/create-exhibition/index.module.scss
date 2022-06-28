@@ -8,13 +8,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: $color-beige;
   width: 100%;
-  z-index: 100;
+  z-index: 9;
 }
 .link {
   position: fixed;
   top: calc(52px + 8.6rem);
   left: 100px;
-  z-index: 101;
+  z-index: 10;
+}
+
+.background {
+  position: fixed;
+  background-color: $color-beige;
+  height: 80px;
+  width: 100%;
+  left: 0;
+  top: 8.6rem;
+  z-index: 8;
 }

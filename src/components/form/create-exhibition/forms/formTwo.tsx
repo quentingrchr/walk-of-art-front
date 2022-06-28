@@ -31,9 +31,11 @@ export const FormTwo: React.FC<IProps> = ({
       {/* <label>Artiste</label>
       <input {...register("artist", { required: true })} type="text" /> */}ous
       <Tooltip type="info" text={toolTipText} classname={styles.toolTip}/>
-      <div className={styles.formTwoContainer}>
      <MediaSelector/>
-      </div>
+     <MediaSelector/>
+     <MediaSelector/>
+     <MediaSelector/>
+     <MediaSelector/>
       <div className={styles.ctaContainer}>
         <Button
           label={"Précédent"}
