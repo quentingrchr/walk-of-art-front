@@ -8,11 +8,11 @@ export type IProps = {
 }
 
 export const ExpoStateBar: React.FC<IProps> = ({states}: IProps) => {
-    const [activeState, setActiveState] = useState(states[0].label)
+    const [activeStateIndex, setActiveStateIndex] = useState(0)
 
-    const toggleClass = (state) =>
+    const toggleClass = (stateIndex) =>
     {
-        setActiveState(state) 
+        setActiveStateIndex(stateIndex) 
     }
 
     return (
@@ -23,7 +23,7 @@ export const ExpoStateBar: React.FC<IProps> = ({states}: IProps) => {
                         return (
                             <li
                                 key={index}
-                                className={`${styles.state} ${activeState === value.label && styles.isActive}`}
+                                className={`${styles.state} ${activeStateIndex === index && styles.isActive}`}
                                 onClick={() =>
                                 {
                                     value.onClick()
