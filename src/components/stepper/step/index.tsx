@@ -11,7 +11,7 @@ export type IProps = {
     onClick?: () => void
     disable?: boolean
     variant?: "default" | "checked"
-    stepInfo? : boolean
+    stepInfo? : boolean,
 }
 
 export const Step: React.FC<IProps> = (props: IProps) => {
@@ -26,7 +26,7 @@ export const Step: React.FC<IProps> = (props: IProps) => {
         <div className={cn(s.step, { [s.active]: active }, {[s.disable] : disable}, s[variant], {[s.completed]: completed} )} onClick={handleClick}>
             <div className={s.step__circle_container}>
                 <svg className={s.step__svg} height="50" width="50">
-                    <circle cx="25" cy="25" r="22" stroke="black" stroke-width="1" fill="none"/>
+                    <circle cx="25" cy="25" r="22" stroke="black" strokeWidth="1" fill="none"/>
                 </svg>
                 <div className={s.step__circle}>
                     <span className={s.step__circle_icon}>
