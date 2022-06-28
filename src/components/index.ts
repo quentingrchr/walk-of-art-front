@@ -32,3 +32,4 @@ export { NotificationWrapper } from "./notification-wrapper"
 export { EditProfile } from "./form/edit-profile"
 export { CreateWorkForm } from "./form/create-work/index";
 export { Artwork } from './artwork'
+export { MediaSelector } from './mediaSelector'
