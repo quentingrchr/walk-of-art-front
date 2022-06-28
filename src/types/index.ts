@@ -22,3 +22,29 @@ export interface ExpoStates {
     label: string,
     onClick: () => void,
 }
+
+export interface Exposition {
+    id: number,
+    title: string,
+    description: string | null,
+    reaction: boolean,
+    created_at: string,
+    revision_id: number,
+    work_id: number,
+    user_id: number
+}
+
+export interface Reservation {
+    id: number,
+    date_start: string,
+    duration: number,
+    created_at: string,
+    exhibition_id: number,
+    gallery_id: number
+}
+
+export interface ReservationWithExposition extends Reservation {
+    title: string,
+    description: string | null,
+    reaction: boolean,
+}
