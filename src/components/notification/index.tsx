@@ -1,11 +1,13 @@
 import React from "react"
 import { Button, Icon, Text } from ".."
 
+import {NotificationType} from "../../interfaces/index"
+
 import styles from "./index.module.scss"
 import cn from 'classnames'
 
 export type IProps = {
-    type: "success" | "error" | "commentary"
+    type: NotificationType
     children: React.ReactNode
     cta?: {
         label: string
