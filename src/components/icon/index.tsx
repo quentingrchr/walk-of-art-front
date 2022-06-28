@@ -15,6 +15,7 @@ import Information from "./information";
 import DropFile from "./drop-file";
 import DownArrow from "./down-arrow";
 import DropFile from "./drop-file";
+import DownArrow from "./down-arrow";
 
 interface IProps {
   type: IconsType;
