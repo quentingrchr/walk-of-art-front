@@ -62,7 +62,7 @@ const getStepComponent = (
     default:
       return "Unknown step";
   }
-};
+}
 
 export const FormStepper: React.FC<IProps> = (props: IProps) => {
   const [compiledForm, setCompiledForm] = React.useState({});

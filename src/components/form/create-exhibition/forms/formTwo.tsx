@@ -1,10 +1,8 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./index.module.scss";
-import cn from "classnames";
-import { Button, Input, InputGroup, InputFile } from "@components";
-import { useForm, useFormContext, FormProvider } from "react-hook-form";
-import { getBlopUrlFromFile } from "../../../../utility";
+import { Button, InputGroup } from "@components";
+import { useForm } from "react-hook-form";
 
 export interface IProps {
   handleStepSubmit: (data: any) => void;

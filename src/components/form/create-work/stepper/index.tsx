@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-import { useFormContext } from "react-hook-form";
 
 import s from "./index.module.scss";
 
 import { FormOne, FormTwo, FormThree } from "../forms";
-import { Stepper, Button } from "@components";
+import { Stepper } from "@components";
 
 export type IProps = {};
 
