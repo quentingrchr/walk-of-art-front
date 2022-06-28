@@ -141,7 +141,7 @@ export const FormThree: React.FC<IRecapProps> = ({
         </div>
 
         {/* SECONDARY IMAGES */}
-        {formState["secondary-image-1"] && (
+        {formState["secondary-image-1"][0] && (
           <div className={cn(s.imageContainer, s.secondary, s.secondary1)}>
             <div
               className={s.image}
@@ -154,7 +154,7 @@ export const FormThree: React.FC<IRecapProps> = ({
           </div>
         )}
 
-        {formState["secondary-image-2"] && (
+        {formState["secondary-image-2"][0] && (
           <div className={cn(s.imageContainer, s.secondary, s.secondary2)}>
             <div
               className={s.image}
@@ -167,7 +167,7 @@ export const FormThree: React.FC<IRecapProps> = ({
           </div>
         )}
 
-        {formState["secondary-image-3"] && (
+        {formState["secondary-image-3"][0] && (
           <div className={cn(s.imageContainer, s.secondary, s.secondary3)}>
             <div
               className={s.image}
@@ -180,6 +180,9 @@ export const FormThree: React.FC<IRecapProps> = ({
           </div>
         )}
       </div>
+
+      <p className={s.title}>{formState.title}</p>
+      <p className={s.description}>{formState.description}</p>
       <div className={s.ctaContainer}>
         <Button
           label={"Précédent"}
@@ -188,7 +191,7 @@ export const FormThree: React.FC<IRecapProps> = ({
           onClick={handleBack}
         />
         <Button
-          label={"Suivant"}
+          label={"Valider"}
           color="white"
           bg="dark"
           onClick={() => {

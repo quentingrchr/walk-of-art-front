@@ -65,4 +65,16 @@
     position: absolute;
     top: 0;
   }
+
+  .title {
+    font-size: 3.2rem;
+    font-family: $font-decay;
+    font-weight: normal;
+    line-height: 1.5em;
+  }
+  .description {
+    font-family: $font-inter;
+    font-size: 1.8rem;
+    line-height: 1.5em;
+  }
 }
