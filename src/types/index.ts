@@ -17,3 +17,8 @@ export type TextTypography = "heading-lg" | "heading-md" | "heading-sm" | "parag
 export type InputTypes = "password" | "email" | "text"
 
 export type BadgeTypes = "completed" | "progress"
+
+export interface ExpoStates {
+    label: string,
+    onClick: () => void,
+}
