@@ -1,5 +1,5 @@
 import React from "react";
-import { TemplatePage, Text, CreateWorkForm } from "@components";
+import { TemplatePage, Text} from "@components";
 
 const CreateWork: React.FC = () => {
   return (
@@ -9,7 +9,6 @@ const CreateWork: React.FC = () => {
         Page de création d'une oeuvre
       </Text>
 
-      <CreateWorkForm />
     </TemplatePage>
   );
 };

@@ -6,10 +6,20 @@ import s from "./index.module.scss";
 import { FormOne, FormTwo, FormThree } from "../forms";
 import { Stepper, Button, Artwork } from "@components";
 import image from '../../../../assets/images/artwork.png'
+export interface IStep {
+  id: number;
+  label: string;
+  number: number;
+  completed: boolean;
+}
 
-
-export type IProps = {};
-
+export type IProps = {
+  activeStep: number;
+  steps: IStep[];
+  completeOne: (index: number) => void;
+  variant?: "default" | "checked";
+  setActiveStep:  (index: number) => void,
+};
 const STEPS = [
   {
     id: 1,
@@ -66,7 +76,7 @@ const getStepComponent = (
       return "Unknown step";
   }
 };
-export const FormStepper: React.FC<IProps> = (props: IProps) => {
+export const ExhibitionStepper: React.FC<IProps> = (props: IProps) => {
   const [compiledForm, setCompiledForm] = React.useState({});
   const [steps, setSteps] = React.useState(STEPS);
 

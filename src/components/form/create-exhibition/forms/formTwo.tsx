@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./index.module.scss";
-import { Button, Input, InputGroup, Tooltip, MediaSelector} from "@components";
+import { Button, Input, InputGroup, Tooltip, InputFile} from "@components";
 import { useForm, useFormContext, FormProvider } from "react-hook-form";
 
 export type IProps = {
@@ -16,7 +16,13 @@ export const FormTwo: React.FC<IProps> = ({
   handleBack,
   defaultValues = {},
 }: IProps) => {
-  const { register, handleSubmit } = useForm({ mode: "onBlur", defaultValues });
+  const { register, handleSubmit, watch } = useForm({ mode: "onBlur", defaultValues });
+  const watchPrimaryImage = watch("primary-image");
+  const watchSecondaryImages = watch([
+    "secondary-image-1",
+    "secondary-image-2",
+    "secondary-image-3",
+  ]);
 
   const onSubmit = (event: any) => {
     console.log("submit");
@@ -31,11 +37,20 @@ export const FormTwo: React.FC<IProps> = ({
       {/* <label>Artiste</label>
       <input {...register("artist", { required: true })} type="text" /> */}ous
       <Tooltip type="info" text={toolTipText} classname={styles.toolTip}/>
-     <MediaSelector/>
-     <MediaSelector/>
-     <MediaSelector/>
-     <MediaSelector/>
-     <MediaSelector/>
+      <InputFile
+        register={register}
+        primaryInput={{
+          name: "primary-image",
+          required: true,
+        }}
+        primaryValue={watchPrimaryImage || defaultValues.primaryImage}
+        secondaryInputs={[
+          { name: "secondary-image-1", required: false },
+          { name: "secondary-image-2", required: false },
+          { name: "secondary-image-3", required: false },
+        ]}
+        secondaryValues={watchSecondaryImages || defaultValues.secondaryImages}
+      />
       <div className={styles.ctaContainer}>
         <Button
           label={"Précédent"}
