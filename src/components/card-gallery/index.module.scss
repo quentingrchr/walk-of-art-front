@@ -1,0 +1,103 @@
+@import "@styles/theme.scss";
+
+.cardGallery {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    justify-content: space-evenly;
+    width: 416px;
+    text-align: center;
+
+    &:hover {
+        .cardGallery__link {
+            opacity: 1;
+
+            & > div > div {
+                transform: translateY(0px);
+            }
+        }
+    }
+
+    & > a {
+        text-decoration: none;
+        color: $color-black;
+
+        & > p {
+            display: block;
+            margin-top: 1.6rem;
+            margin-bottom: 1.6rem;
+        }
+    }
+
+    &__isExposed {
+        width: 127px;
+        border: 2px solid $color-success;
+        color: $color-success;
+        background-color: $color-white;
+        align-items: center;
+        padding: .8rem;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        & > p {
+            font-weight: bold;
+            
+        }
+    }
+
+    &__pictureContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+    }
+
+    &__picture {
+        width: 100%;
+        height: 250px;
+        object-fit:fill;
+    }
+
+
+    &__link {
+        opacity: 0;
+        width: 100%;
+        position: absolute;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity .2s ease-in-out;
+
+
+        & > div > div {
+            transition: transform .3s ease;
+            transform: translateY(40px);
+        }
+    }
+
+    &__overlay {
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-color: $color-black;
+        opacity: .7;
+    }
+
+    &__createdAt {
+        width: 100%;
+        background-color: $color-info;
+        color: $color-white;
+        padding: .8rem;
+    }
+
+    &__seperator {
+        margin-top: 2rem;
+        border: 2px solid $color-black;
+    }
+}

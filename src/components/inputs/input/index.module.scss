@@ -10,26 +10,25 @@
   margin: 0;
   background-color: $color-beige;
   border: 2px solid $color-black;
-  border-radius: 0.4rem;
   box-sizing: border-box;
 }
 
-.input{
+.input {
   border: none;
   outline: none;
   background-color: $color-beige;
   width: 100%;
   @include typo-placeholder;
   &:-webkit-autofill,
-  &:-webkit-autofill:hover, 
-  &:-webkit-autofill:focus, 
-  &:-webkit-autofill:active{
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px $color-beige inset !important;
   }
 }
 
-.icon{
-  &.cta{
+.icon {
+  &.cta {
     cursor: pointer;
   }
 }
