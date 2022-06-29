@@ -28,10 +28,12 @@
   a {
     text-decoration: none;
   }
-  &.black, &.black > a{
+  &.black,
+  &.black > a {
     color: $color-black;
   }
-  &.white, &.white > a{
+  &.white,
+  &.white > a {
     color: $color-white;
   }
   &.success &.success > a {
@@ -44,7 +46,7 @@
     color: $color-info;
   }
 
-  &.light{
+  &.light {
     background-color: $color-white;
     border: 2px solid $color-black;
   }
@@ -54,15 +56,13 @@
   }
 }
 
-
 .icon {
   font-weight: 400;
-  padding: .8rem;
+  padding: 0.8rem;
 
   & div {
     margin-right: 12px;
   }
-
 
   & div > svg {
     width: 18px;

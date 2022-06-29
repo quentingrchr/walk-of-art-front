@@ -1,0 +1,38 @@
+@import "@styles/theme.scss";
+
+// Your style here
+.title {
+  @include typo-heading-lg;
+  width: 100%;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 90rem;
+  margin: auto;
+}
+
+.avatar {
+  max-width: 50%;
+  height: auto;
+  margin-top: 4rem;
+}
+
+.form {
+  margin-top: 4rem;
+  display: flex;
+  width: 100%;
+  gap: 3.2rem;
+}
+
+.formCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
