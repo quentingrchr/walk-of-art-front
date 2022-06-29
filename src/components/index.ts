@@ -28,3 +28,4 @@ export { Tooltip } from "./tooltip";
 export { Artwork } from "./artwork";
 export { Notification } from "./notification";
 export { NotificationWrapper } from "./notification-wrapper";
+export { EditProfile } from "./form/edit-profile";

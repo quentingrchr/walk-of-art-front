@@ -1,13 +1,15 @@
 import React from "react";
-import { TemplatePage, Text } from "@components"
+import { EditProfile, TemplatePage, Text } from "@components";
 
 const Profile: React.FC = () => {
-    return (
-        <TemplatePage isLogged={true}>
-            {/* PAGE CONTENT */}
-            <Text tag="h1" typo="paragraph-md">Page Profile</Text>
-        </TemplatePage>
-    )
-}
+  return (
+    <TemplatePage isLogged={true}>
+      <Text tag="h1" typo="paragraph-md">
+        Page Profile
+      </Text>
+      <EditProfile />
+    </TemplatePage>
+  );
+};
 
 export default Profile;
