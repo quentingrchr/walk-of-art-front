@@ -4,10 +4,11 @@ import { Text } from "./../text/index"
 import { ExpoStates } from "./../../types"
 
 export type IProps = {
-    states: ExpoStates[]
+    states: ExpoStates[],
+    onClick: (index: number) => void
 }
 
-export const ExpoStateBar: React.FC<IProps> = ({states}: IProps) => {
+export const ExpoStateBar: React.FC<IProps> = ({states, onClick}: IProps) => {
     const [activeStateIndex, setActiveStateIndex] = useState(0)
 
     const toggleClass = (stateIndex) =>
@@ -26,7 +27,7 @@ export const ExpoStateBar: React.FC<IProps> = ({states}: IProps) => {
                                 className={`${styles.state} ${activeStateIndex === index && styles.isActive}`}
                                 onClick={() =>
                                 {
-                                    value.onClick()
+                                    onClick(index)
                                     toggleClass(index)
                                 }}>
                                 <Text

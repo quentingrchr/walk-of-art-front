@@ -20,7 +20,7 @@ export type BadgeTypes = "completed" | "progress"
 
 export interface ExpoStates {
     label: string,
-    onClick: () => void,
+    // onClick: () => void,
 }
 
 export interface Exposition {
