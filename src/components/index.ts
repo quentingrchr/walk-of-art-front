@@ -6,6 +6,7 @@ export { Icon } from "./icon";
 export { Input } from "./inputs/input";
 export { InputGroup } from "./inputs/input-group";
 export { InputFile } from "./inputs/input-file";
+export { InputDropdown } from "./inputs/input-dropdown";
 export { Guidance } from "./form/guidance";
 export { LoginForm } from "./form/login-form";
 export { Link } from "./link";

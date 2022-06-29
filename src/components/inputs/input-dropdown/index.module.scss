@@ -1,0 +1,73 @@
+@import "@styles/theme.scss";
+
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: fit-content;
+    padding: 0 2.4rem;
+    margin: 0;
+    background-color: $color-beige;
+    border: 2px solid $color-black;
+    border-radius: 0.4rem;
+    box-sizing: border-box;
+
+    &:after {
+        content: '';
+        display: block;
+        height: .8rem;
+        width: .8rem;
+        border-top: 4px solid $color-black;
+        border-right: 4px solid $color-black;
+        transform: rotate(135deg);
+    }
+
+    button {
+        border: none;
+        outline: none;
+        background: transparent;
+        width: 100%;
+        padding: 1.6rem 0;
+        text-align: start;
+        cursor: pointer;
+        @include typo-placeholder;
+
+        &.hasValue {
+            opacity: 1;
+        }
+    }
+
+    ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: .8rem;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        min-width: 100%;
+        border: .2rem solid transparent;
+        border-radius: .4rem;
+        background-color: $color-white;
+        overflow: hidden;
+        transition: all .3s linear;
+
+        &.open {
+            border: .2rem solid $color-black;
+            transition: all .3s linear;
+        }
+    }
+
+    li {
+        padding: 1.6rem 2.4rem;
+        @include typo-label;
+
+
+        &:hover {
+            background-color: $color-beige;
+            cursor: pointer;
+        }
+    }
+}
