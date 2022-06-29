@@ -1,14 +1,14 @@
 import React from "react";
 import st from "./index.module.scss";
 import { useForm, useFormContext, FormProvider } from "react-hook-form";
-
 import { InputGroup } from "@components";
 
 export type IProps = {};
 
 export const EditProfile: React.FC<IProps> = (props: IProps) => {
   // useform
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit  } = useForm();
+
 
   return (
     <div className={st.container}>

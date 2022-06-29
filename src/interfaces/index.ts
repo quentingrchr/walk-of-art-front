@@ -14,3 +14,8 @@ export type Icons =
   | "drop-file"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
+
+export interface SelectOption {
+  label: string;
+  value: string;
+}

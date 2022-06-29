@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styles from "./index.module.scss";
 import cx from "classnames";
 import { Icon } from "@components";
@@ -54,13 +54,31 @@ const PasswordInput = ({ id, placeholder, register, required }: IProps) => {
   );
 };
 
+const TextareaInput = ({ id, placeholder, register, required }: IProps) => {
+
+  return (
+    <div className={styles.container}>
+      <textarea
+        id={id}
+        placeholder={placeholder}
+        className={cx(styles.input, styles.textarea)}
+        {...register(id, {
+          required: required ? true : false,
+        })}
+      />
+    </div>
+  );
+};
+
 export const Input: React.FC<IProps> = ({ type, ...otherProps }: IProps) => {
   switch (type) {
     case "text":
-      return <TextInput {...otherProps} />;
+      return <TextInput {...otherProps} />
     case "password":
-      return <PasswordInput {...otherProps} />;
+      return <PasswordInput {...otherProps} />
+    case "textarea":
+      return <TextareaInput {...otherProps} />
     default:
-      return <TextInput {...otherProps} />;
+      return <TextInput {...otherProps} />
   }
 };

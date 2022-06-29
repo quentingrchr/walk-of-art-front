@@ -1,70 +1,64 @@
 import React, { useState, useEffect,  useRef } from "react"
 import styles from "./index.module.scss"
 import cn from "classnames"
+import { useController } from "react-hook-form"
+import { SelectOption } from "@interfaces/index"
 
-
-interface InputOption {
-    label: string;
-    value: string;
-}
 
 export type IProps = {
-    register: any;
+    control: any;
     id: string;
     placeholder: string;
-    options: InputOption[];
+    defaultValue?: SelectOption;
+    options?: SelectOption[];
     required: boolean;
 }
 
 export const InputDropdown: React.FC<IProps> = (props: IProps) => {
 
-    let selectRef: any = useRef()
-
-    let { register, id, placeholder, options, required } = props
+    let { control, id, placeholder, defaultValue, options, required } = props
 
     const [openDropdown, setOpenDropdown] = useState(false)
-    const [valueSelected, setValueSelected] = useState(null)
+    const [optionSelected, setOptionSelected] = useState <SelectOption | null>(null)
 
+    const {
+        field: { onChange, ref },
+    } = useController({
+        name: id,
+        control,
+        rules: { required: required },
+        defaultValue: defaultValue,
+    })
 
-    const handleSelect = (e, value) => {
+    const handleSelect = (e: any, option: SelectOption) => {
         e.stopPropagation()
-        selectRef.current.value = value
         
-        setValueSelected(e.target.innerText)
+        onChange(option.value)
+        
+        setOptionSelected(option)
         setOpenDropdown(false)
     }
 
 
     return (
-        <fieldset className={styles.container}>
+        <fieldset className={styles.container} ref={ref}>
             <button 
-                className={cn(valueSelected ? styles.hasValue : null)} 
+                className={cn(optionSelected ? styles.hasValue : null)} 
                 onClick={() => setOpenDropdown(prev => !prev)}
             >
-                {valueSelected ? valueSelected : placeholder}
+                {optionSelected ? optionSelected.label : placeholder}
             </button>
                 
-            <ul className={cn(openDropdown ? styles.open : null)} style={{maxHeight: openDropdown ? `${options.length * 100}%` : '0%'}}>
-                {options.map((option, index) => (
+            <ul className={cn(openDropdown ? styles.open : null)} style={{maxHeight: openDropdown ? `${options && options.length * 100}%` : '0%'}}>
+                {options?.map((option, index) => (
                     <li 
                         key={index} 
-                        onClick={(e) => handleSelect(e, option.value)}
+                        onClick={(e) => handleSelect(e, option)}
                     >
                         {option.label}
                     </li>
                 ))}
             </ul>
-
-            <select 
-                id={id} 
-                ref={selectRef} 
-                style={{display: "none"}} 
-                {...register(id, { required: required})}
-            >
-                {options.map((option, index) => (
-                    <option key={`option-hidden-${index}`}  value={option.value}>{option.label}</option>
-                ))}
-            </select>
         </fieldset>
     )
 }
