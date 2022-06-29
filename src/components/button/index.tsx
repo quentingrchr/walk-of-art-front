@@ -51,13 +51,13 @@ export const Button: React.FC<IProps> = ({
     ) : (
       <div>
         <div
-          className={cn(styles.icon, styles.button, styles[color], {
+          className={cn(styles.icon, styles.button, styles[color], styles[bg], {
             [styles.fullWidth]: fullWidth,
           })}
         >
           <NextLink href={to}>
             <>
-              {icon && <Icon type={icon} size="medium" />}
+              {icon && <Icon type={icon} size="medium" color={bg === "dark" ? "white" : "black"} />}
               {<span>{label}</span>}
             </>
           </NextLink>
