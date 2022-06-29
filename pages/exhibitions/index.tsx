@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { TemplatePage, Text, ExpoStateBar, ExpoList } from "@components"
 import { checkReservationState } from "./../../src/utility"
+import { ExpoStates, ReservationWithExposition } from './../../src/types'
 
 const Exhibitions: React.FC = () => {
     
-    const fetchedList = [
+    const fetchedList: ReservationWithExposition[] = [
         {
-            id: 11,
+            id: 'id1',
             date_start: '2022-06-29 10:15:27',
             duration: 5,
-            created_at: 12,
+            created_at: '2022-06-22 06:15:27',
             exhibition_id: 150,
             gallery_id: 110,
             title: 'EN COURS',
@@ -17,10 +18,10 @@ const Exhibitions: React.FC = () => {
             reaction: false,
         },
         {
-            id: 11,
+            id: 'id2',
             date_start: '2022-06-22 06:15:27',
             duration: 1,
-            created_at: 12,
+            created_at: '2022-06-22 06:15:27',
             exhibition_id: 150,
             gallery_id: 110,
             title: 'Passed',
@@ -28,10 +29,10 @@ const Exhibitions: React.FC = () => {
             reaction: false,
         },
         {
-            id: 11,
+            id: 'id3',
             date_start: '2022-07-02 10:15:27',
             duration: 2,
-            created_at: 12,
+            created_at: '2022-06-22 06:15:27',
             exhibition_id: 150,
             gallery_id: 110,
             title: 'u have to wait',
@@ -46,7 +47,7 @@ const Exhibitions: React.FC = () => {
         'completed': [] as any[]
     }
 
-    const expoStates = [
+    const expoStates: ExpoStates[] = [
         {
             label: 'En cours',
             listComponent: <ExpoList exposList={exposList.remaining} type="remaining"/>
@@ -64,8 +65,6 @@ const Exhibitions: React.FC = () => {
     const [exposedListType, setExposedListType] = useState<number>(0)
 
     const today: number = Date.now()
-
-
 
     fetchedList.forEach(el => {
         const expoState = checkReservationState(el, today)

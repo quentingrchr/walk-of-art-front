@@ -1,3 +1,4 @@
+import { ReactNode } from "react"
 
 export type ColorsType =
     | "black"
@@ -20,7 +21,7 @@ export type BadgeTypes = "completed" | "progress"
 
 export interface ExpoStates {
     label: string,
-    // onClick: () => void,
+    listComponent: ReactNode
 }
 
 export interface Exposition {
