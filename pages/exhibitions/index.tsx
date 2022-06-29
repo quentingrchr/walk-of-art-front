@@ -3,23 +3,7 @@ import { TemplatePage, Text, ExpoStateBar, ExpoList } from "@components"
 import { getDate } from "./../../src/utility"
 
 const Exhibitions: React.FC = () => {
-    const expoStates = [
-        {
-            label: 'En cours',
-            // onClick: function() {setExposedListType('remaining')}
-        },
-
-        {
-            label: 'Terminées',
-            // onClick: function() {setExposedListType('completed')}
-        },
-        {
-            label: 'À venir',
-            // onClick: function() {setExposedListType('incoming')}
-        },
-
-    ]
-
+    
     const fetchedList = [
         {
             id: 11,
@@ -62,6 +46,21 @@ const Exhibitions: React.FC = () => {
         'completed': [] as any[]
     }
 
+    const expoStates = [
+        {
+            label: 'En cours',
+            listComponent: <ExpoList exposList={exposList.remaining} type="remaining"/>
+        },
+        {
+            label: 'Terminées',
+            listComponent: <ExpoList exposList={exposList.completed} type="completed"/>
+        },
+        {
+            label: 'À venir',
+            listComponent: <ExpoList exposList={exposList.incoming} type="incoming"/>
+        },
+    ]
+
     const [exposedListType, setExposedListType] = useState<number>(0)
 
     const today: number = Date.now()
@@ -82,21 +81,7 @@ const Exhibitions: React.FC = () => {
                 exposList.remaining.push(el)
             }
         }
-
     })
-
-    const renderExpoList = (listType) =>
-    {
-        if(listType === 1) {
-            return <ExpoList exposList={exposList.completed} type="completed"/>
-        }
-
-        if((listType === 2)) {
-            return <ExpoList exposList={exposList.incoming} type="incoming"/>
-        }
-
-        return <ExpoList exposList={exposList.remaining} type="remaining"/>
-    }
 
     console.log(exposList)
     return (
@@ -105,7 +90,7 @@ const Exhibitions: React.FC = () => {
             <Text tag="h1" typo="paragraph-md">Page de présentation</Text>
             <ExpoStateBar states={expoStates} onClick={setExposedListType}/>
             {
-                renderExpoList(exposedListType)
+                expoStates[exposedListType].listComponent
             }
             
         </TemplatePage>
