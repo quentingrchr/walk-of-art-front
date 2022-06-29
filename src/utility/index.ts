@@ -1,4 +1,4 @@
-
+import { displayTimeType } from './../types'
 export function isEternalUrl(url: string): boolean {
     return url.startsWith('https') || url.startsWith('https') || url.startsWith('www');
 }
@@ -7,7 +7,6 @@ export function getDate(date: string): any {
     return new Date(date)
 }
 
-type displayTimeType = "completed" | "remaining" | "incoming";
 
 export function displayTime(type: displayTimeType, hours: number): string {
   if (type === "remaining") {
@@ -44,7 +43,7 @@ export function displayTime(type: displayTimeType, hours: number): string {
   throw new Error()
 }
 
-export function checkReservationState(reservation, todaysDate) {
+export function checkReservationState(reservation, todaysDate: number): displayTimeType {
     // diff en seconde
     const diff = (todaysDate - getDate(reservation.date_start)) / 1000
 

@@ -21,8 +21,11 @@ export type BadgeTypes = "completed" | "progress"
 
 export interface ExpoStates {
     label: string,
-    listComponent: ReactNode
+    listComponent: any
 }
+
+export type displayTimeType = "completed" | "remaining" | "incoming";
+
 
 export interface Exposition {
     id: string,
