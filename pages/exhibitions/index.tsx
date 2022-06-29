@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TemplatePage, Text, ExpoStateBar, ExpoList } from "@components"
-import { getDate } from "./../../src/utility"
+import { checkReservationState } from "./../../src/utility"
 
 const Exhibitions: React.FC = () => {
     
@@ -65,25 +65,13 @@ const Exhibitions: React.FC = () => {
 
     const today: number = Date.now()
 
+
+
     fetchedList.forEach(el => {
-        // seconde
-        const diff = (today - getDate(el.date_start)) / 1000
-        if(diff < 0) {
-            // arrive
-            exposList.incoming.push(el)
-        } else {
-            // duration (j) convert to seconds
-            if(diff - (el.duration * 86400) > 0) {
-                // deja passe
-                exposList.completed.push(el)
-            } else {
-                // en cours
-                exposList.remaining.push(el)
-            }
-        }
+        const expoState = checkReservationState(el, today)
+        exposList[expoState].push(el)
     })
 
-    console.log(exposList)
     return (
         <TemplatePage isLogged={true}>
             {/* PAGE CONTENT */}

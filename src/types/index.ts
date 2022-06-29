@@ -24,7 +24,7 @@ export interface ExpoStates {
 }
 
 export interface Exposition {
-    id: number,
+    id: string,
     title: string,
     description: string | null,
     reaction: boolean,
@@ -35,7 +35,7 @@ export interface Exposition {
 }
 
 export interface Reservation {
-    id: number,
+    id: string,
     date_start: string,
     duration: number,
     created_at: string,

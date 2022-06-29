@@ -43,3 +43,15 @@ export function displayTime(type: displayTimeType, hours: number): string {
   }
   throw new Error()
 }
+
+export function checkReservationState(reservation, todaysDate) {
+    // diff en seconde
+    const diff = (todaysDate - getDate(reservation.date_start)) / 1000
+
+    // à venir
+    if(diff < 0) return 'incoming'
+    // terminées
+    if(diff - (reservation.duration * 86400) > 0) return 'completed'
+    // en cours
+    return 'remaining'
+}
