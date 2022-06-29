@@ -16,6 +16,7 @@ import DropFile from "./drop-file";
 import DownArrow from "./down-arrow";
 import DropFile from "./drop-file";
 import DownArrow from "./down-arrow";
+import SearchIcon from "./search-icon";
 
 interface IProps {
   type: IconsType;
@@ -40,6 +41,7 @@ const Icons: IIcons = {
   check: <Check/>,
   checkbox: <Checkbox/>,
   information: <Information />,
+  searchIcon: <SearchIcon />,
   "drop-file": <DropFile />,
 };
 

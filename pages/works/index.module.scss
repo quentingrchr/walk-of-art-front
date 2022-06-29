@@ -1,5 +1,22 @@
+@import "@styles/theme.scss";
+
 .a {
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-size: 16px;
 }
+
+.x {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+}
+
+.xx {
+    font-size: 16px;
+    font-family: $font-inter;
+}
+
