@@ -8,3 +8,4 @@ node_modules
 !.env.example
 storybook-static
 .idea/
+.vscode

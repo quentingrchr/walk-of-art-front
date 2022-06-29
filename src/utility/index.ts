@@ -1,12 +1,15 @@
 import { displayTimeType } from './../types'
 export function isEternalUrl(url: string): boolean {
-    return url.startsWith('https') || url.startsWith('https') || url.startsWith('www');
+  return (
+    url.startsWith("https") || url.startsWith("https") || url.startsWith("www")
+  );
 }
-
+export function getBlopUrlFromFile(file: File): string {
+  return URL.createObjectURL(file);
+}
 export function getDate(date: string): any {
     return new Date(date)
 }
-
 
 export function displayTime(type: displayTimeType, hours: number): string {
   if (type === "remaining") {
