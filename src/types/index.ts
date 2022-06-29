@@ -1,3 +1,4 @@
+import { ReactNode } from "react"
 
 export type ColorsType =
     | "black"
@@ -18,3 +19,37 @@ export type TextTypography = "heading-lg" | "heading-md" | "heading-sm" | "parag
 export type InputTypes = "password" | "email" | "text"
 
 export type BadgeTypes = "completed" | "progress"
+
+export interface ExpoStates {
+    label: string,
+    listComponent: any
+}
+
+export type displayTimeType = "completed" | "remaining" | "incoming";
+
+
+export interface Exposition {
+    id: string,
+    title: string,
+    description: string | null,
+    reaction: boolean,
+    created_at: string,
+    revision_id: number,
+    work_id: number,
+    user_id: number
+}
+
+export interface Reservation {
+    id: string,
+    date_start: string,
+    duration: number,
+    created_at: string,
+    exhibition_id: number,
+    gallery_id: number
+}
+
+export interface ReservationWithExposition extends Reservation {
+    title: string,
+    description: string | null,
+    reaction: boolean,
+}

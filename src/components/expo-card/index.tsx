@@ -2,6 +2,7 @@ import React from "react"
 import Link from "next/link"
 import { Icon } from "@components"
 import s from "./index.module.scss"
+import { displayTime } from "./../../utility"
 
 export type IProps = {
     id: string
@@ -10,11 +11,12 @@ export type IProps = {
         alt?: string
     }
     title: string
-    remainingHours: number
-
+    remainingHours: number,
+    type: "completed" | "remaining" | "incoming"
 }
 
-export const ExpoCard: React.FC<IProps> = ({id, img, title, remainingHours}: IProps) => {
+
+export const ExpoCard: React.FC<IProps> = ({id, img, title, remainingHours, type}: IProps) => {
     return (
         <Link href={`/expo/${id}`}>
             <a className={s.card}>
@@ -28,7 +30,7 @@ export const ExpoCard: React.FC<IProps> = ({id, img, title, remainingHours}: IPr
                             <Icon type="avatar" size="small"/>
                         </span>
                         <span className={s.cardTime}>
-                            {`${remainingHours}h restantes`}
+                            {displayTime(type, remainingHours)}
                         </span>
                     </div>)}
                 </div>

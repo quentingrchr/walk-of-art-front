@@ -1,0 +1,25 @@
+@import "@styles/theme.scss";
+
+.state_bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $color-black;
+
+    .states_list {
+        display: flex;
+        align-items: center;
+    }
+
+    .state {
+        cursor: pointer;
+
+        & + .state {
+            margin-left: 2.4rem;
+        }
+
+        &.isActive, &:hover {
+            color: $color-sementic-progress;
+        }
+    }
+}
