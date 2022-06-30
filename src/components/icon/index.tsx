@@ -12,11 +12,6 @@ import Cross from "./cross";
 import Check from "./check";
 import Checkbox from "./checkbox";
 import Information from "./information";
-<<<<<<< HEAD
-import DropFile from "./drop-file";
-import DownArrow from "./down-arrow";
-=======
->>>>>>> fc5ba5d (ADD Better naming)
 import DropFile from "./drop-file";
 import DownArrow from "./down-arrow";
 import SearchIcon from "./search-icon";

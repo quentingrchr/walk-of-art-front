@@ -1,20 +1,32 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import style from "./index.module.scss"
 import cn from "classnames"
 import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search } from "@components"
+import { useScrollDirection } from "../../src/hooks/useScrollDirection"
+
+type scrollDirType = "up" | "down"
 
 const Works: React.FC = () => {
 
-    const [filterExposed, setFilterExposed] = useState(false)
-    const [filterUnexposed, setFilterUnexposed] = useState(false)
+    const [filterExposed, setFilterExposed] = useState<boolean>(false)
+    const [filterUnexposed, setFilterUnexposed] = useState<boolean>(false)
+    const [direction, setDirection] = useState<scrollDirType>()
+
+    const scrollDirection = useScrollDirection()
+
+    useEffect(() => {
+        scrollDirection === "down" ?
+            setDirection("down")
+            :
+            setDirection("up")
+    }, [scrollDirection])
 
 
     return (
         <TemplatePage isLogged={true}>
-<>
-            <section className={style.header}>
+            <section className={cn(style.headSection, direction === "down" ? style.scrollDown : null)}>
                 <HeadingStrong content="Mes oeuvres" elementColor="pink" size="md" />
-                <aside>
+                <aside className={style.searchBox}>
                     <ul className={style.filters}>
                         <li>
                             <Checkbox 
@@ -32,29 +44,17 @@ const Works: React.FC = () => {
                                 onChange={() => setFilterUnexposed(prev => !prev)}
                             />
                         </li>
-                        <li>
-                            <Icon type="rightArrow" size="small" color="black" />
+                        <li className={style.date}>
+                            <Icon type="downArrow" size="small" color="black" />
                             <Text tag="p" typo="label">Date de création</Text>
                         </li>
                     </ul>
-                    <div></div>
+                    <Search id={""} placeholder={"Rechercher une oeuvre par son titre"}/>
                 </aside>
             </section>
-            <Text tag="h1" typo="heading-md">Mes Oeuvres</Text>
+            <section className={style.bodySection}>
 
-            <div className={style.researchContainer}>
-                <div className={style.checkboxesContainer}>
-                    <Checkbox checkboxName={"Tous"} checkboxLabel={"Tous"} />
-                    <Checkbox checkboxName={"Exposées"} checkboxLabel={"Exposées"} />
-                    <Checkbox checkboxName={"Non exposées"} checkboxLabel={"Non exposées"} />
-                    <div className={style.dateChoiceContainer}>
-                    <Icon type="downArrow" size={"small"} />
-                        <p className={cn(style.textStyle, style.margin)}>Date de création</p>
-                    </div>
-                </div>
-                <Search id={""} placeholder={"Recherche oeuvre par le titre"}/>
-            </div>
-            </>
+            </section>
         </TemplatePage>
     )
 }
