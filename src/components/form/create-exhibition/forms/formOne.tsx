@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import styles from "./index.module.scss";
 import cn from "classnames";
@@ -17,78 +16,61 @@ export interface IRecapProps {
   handleBack: () => void;
   formState: any;
 }
+
 export const FormOne: React.FC<IProps> = ({
     handleStepSubmit,
+    handleBack,
     defaultValues = {},
   }: IProps) => {
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm({ mode: "onBlur", defaultValues });
+    const { register, handleSubmit, watch } = useForm({
+      mode: "onBlur",
+      defaultValues,
+    });
+  
+    const watchPrimaryImage = watch("primary-image");
+    const watchSecondaryImages = watch([
+      "secondary-image-1",
+      "secondary-image-2",
+      "secondary-image-3",
+    ]);
   
     const onSubmit = (e: any) => {
-      console.log("submit");
       e.preventDefault();
   
-      handleSubmit((d) => {
-        console.log(d);
-        handleStepSubmit(d);
-      })(e);
+      const requiredFieldIsAlreadyFilled = watch("primary-image").length > 0;
+  
+      if (requiredFieldIsAlreadyFilled) {
+        handleStepSubmit(watch());
+      } else {
+        handleSubmit((d) => {
+          handleStepSubmit(d);
+        })(e);
+      }
     };
   
     return (
       <form className={styles.formContainer} onSubmit={onSubmit}>
-        <InputGroup
-          placeholder="ex: Le radeau de la méduse"
+        <InputFile
           register={register}
-          required={true}
-          id="title"
-          type="text"
-          label="Titre de l'oeuvre"
-          guidance={
-            errors.title
-              ? {
-                  type: "error",
-                  message:
-                    "Le titre doit être rempli pour passer à l’étape suivante",
-                }
-              : null
-          }
-        />
-        <InputGroup
-          placeholder="https://www.linkedin.com/in/quentin-grancher/?original_referer=https%3A%2F%2Fwww%2Egoogle%2Ecom%2F&originalSubdomain=fr"
-          register={register}
-          id="description"
-          type="text"
-          label="Lien du réseau social (optionnel)"
-          guidance={null}
-        />
-        <InputGroup
-          placeholder="www.abcde.com"
-          register={register}
-          id="description"
-          type="text"
-          label="Portfolio/site web (optionnel)"
-          guidance={null}
-        />
-          <InputGroup
-            placeholder="Ex : @artiste.pro"
-            register={register}
-            id="description"
-            type="text"
-            label="Réseau social (optionnel)"
-            guidance={null}
-          />
-        <InputGroup
-          placeholder="Ex : donne.com"
-          register={register}
-          id="description"
-          type="text"
-          label="Lien de donnation (optionnel)"
-          guidance={null}
+          primaryInput={{
+            name: "primary-image",
+            required: true,
+          }}
+          primaryValue={watchPrimaryImage || defaultValues.primaryImage}
+          secondaryInputs={[
+            { name: "secondary-image-1", required: false },
+            { name: "secondary-image-2", required: false },
+            { name: "secondary-image-3", required: false },
+          ]}
+          secondaryValues={watchSecondaryImages || defaultValues.secondaryImages}
         />
         <div className={styles.ctaContainer}>
+          <Button
+            label={"Précédent"}
+            color="white"
+            bg="dark"
+            onClick={handleBack}
+          />
           <Button label={"Suivant"} color="white" bg="dark" type="submit" />
         </div>
       </form>
