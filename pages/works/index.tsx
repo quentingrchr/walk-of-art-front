@@ -4,27 +4,44 @@ import cn from "classnames"
 import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search } from "@components"
 import { useScrollDirection } from "../../src/hooks/useScrollDirection"
 
-type scrollDirType = "up" | "down"
+enum scrollDirType  {
+    up = "up",
+    down = "down"
+}
 
 const Works: React.FC = () => {
 
     const [filterExposed, setFilterExposed] = useState<boolean>(false)
     const [filterUnexposed, setFilterUnexposed] = useState<boolean>(false)
-    const [direction, setDirection] = useState<scrollDirType>()
+    const [direction, setDirection] = useState<scrollDirType.up | scrollDirType.down>()
 
     const scrollDirection = useScrollDirection()
 
+    const onChangeCheckbox = (event) => {
+        
+        if(event.target.name === "works-exposed") {
+            setFilterExposed(prev => !prev)
+            filterUnexposed && setFilterUnexposed(false)
+        }
+
+        if(event.target.name === "works-unexposed") {
+            setFilterUnexposed(prev => !prev)
+            filterExposed && setFilterExposed(false)
+        }
+    }
+    
+
     useEffect(() => {
         scrollDirection === "down" ?
-            setDirection("down")
+            setDirection(scrollDirType.down)
             :
-            setDirection("up")
+            setDirection(scrollDirType.up)
     }, [scrollDirection])
 
 
     return (
         <TemplatePage isLogged={true}>
-            <section className={cn(style.headSection, direction === "down" ? style.scrollDown : null)}>
+            <section className={cn(style.headSection, direction === scrollDirType.down ? style.scrollDown : null)}>
                 <HeadingStrong content="Mes oeuvres" elementColor="pink" size="md" />
                 <aside className={style.searchBox}>
                     <ul className={style.filters}>
@@ -33,7 +50,7 @@ const Works: React.FC = () => {
                                 checkboxLabel="Exposées"
                                 checkboxName="works-exposed"
                                 isChecked={filterExposed}
-                                onChange={() => setFilterExposed(prev => !prev)}
+                                onChange={onChangeCheckbox}
                             />
                         </li>
                         <li>
@@ -41,7 +58,7 @@ const Works: React.FC = () => {
                                 checkboxLabel="Non exposées"
                                 checkboxName="works-unexposed"
                                 isChecked={filterUnexposed}
-                                onChange={() => setFilterUnexposed(prev => !prev)}
+                                onChange={onChangeCheckbox}
                             />
                         </li>
                         <li className={style.date}>
