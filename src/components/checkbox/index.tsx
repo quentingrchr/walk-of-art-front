@@ -12,7 +12,7 @@ export type IProps = {
     guidanceType?: Semantic,
     isDisabled?: boolean,
     isChecked?: boolean,
-    onChange?: () => void 
+    onChange?: (e) => void 
 }
 
 export const Checkbox: React.FC<IProps> = ({
@@ -30,10 +30,11 @@ export const Checkbox: React.FC<IProps> = ({
                 <input 
                     className={styles.input} 
                     type="checkbox" 
-                    defaultChecked={isChecked ?? 'checked'} 
-                    name={checkboxName} 
+                    //defaultChecked={isChecked ?? 'checked'}
+                    checked={isChecked}
+                    name={checkboxName}
                     id={checkboxName} 
-                    onChange={onChange ? () => onChange() : undefined}
+                    onChange={onChange ? (e) => onChange(e) : undefined}
                 />
                 <div tabIndex={0} className={styles.box} ></div>
                 {
