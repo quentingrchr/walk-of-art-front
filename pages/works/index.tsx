@@ -1,22 +1,34 @@
-import React, { useState } from "react"
-import styles from "./index.module.scss"
+import React, { useState, useEffect } from "react"
+import style from "./index.module.scss"
 import cn from "classnames"
-import { TemplatePage, HeadingStrong, Checkbox, Icon, Text } from "@components"
+import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search } from "@components"
+import { useScrollDirection } from "../../src/hooks/useScrollDirection"
 
+type scrollDirType = "up" | "down"
 
 const Works: React.FC = () => {
 
-    const [filterExposed, setFilterExposed] = useState(false)
-    const [filterUnexposed, setFilterUnexposed] = useState(false)
+    const [filterExposed, setFilterExposed] = useState<boolean>(false)
+    const [filterUnexposed, setFilterUnexposed] = useState<boolean>(false)
+    const [direction, setDirection] = useState<scrollDirType>()
+
+    const scrollDirection = useScrollDirection()
+
+    useEffect(() => {
+        scrollDirection === "down" ?
+            setDirection("down")
+            :
+            setDirection("up")
+    }, [scrollDirection])
 
 
     return (
         <TemplatePage isLogged={true}>
-            <section className={styles.header}>
+            <section className={cn(style.headSection, direction === "down" ? style.scrollDown : null)}>
                 <HeadingStrong content="Mes oeuvres" elementColor="pink" size="md" />
-                <aside>
-                    <ul className={styles.filters}>
-                        <li className={styles.filter}>
+                <aside className={style.searchBox}>
+                    <ul className={style.filters}>
+                        <li>
                             <Checkbox 
                                 checkboxLabel="Exposées"
                                 checkboxName="works-exposed"
@@ -24,7 +36,7 @@ const Works: React.FC = () => {
                                 onChange={() => setFilterExposed(prev => !prev)}
                             />
                         </li>
-                        <li className={styles.filter}>
+                        <li className={style.filter}>
                             <Checkbox 
                                 checkboxLabel="Non exposées"
                                 checkboxName="works-unexposed"
@@ -32,13 +44,16 @@ const Works: React.FC = () => {
                                 onChange={() => setFilterUnexposed(prev => !prev)}
                             />
                         </li>
-                        <li className={cn(styles.filter, styles.filterDate)}>
-                            <Icon type="rightArrow" size="small" color="black" />
+                        <li className={style.date}>
+                            <Icon type="downArrow" size="small" color="black" />
                             <Text tag="p" typo="label">Date de création</Text>
                         </li>
                     </ul>
-                    <div></div>
+                    <Search id={""} placeholder={"Rechercher une oeuvre par son titre"} value={""} onChange={() => {}}/>
                 </aside>
+            </section>
+            <section className={style.bodySection}>
+
             </section>
         </TemplatePage>
     )
