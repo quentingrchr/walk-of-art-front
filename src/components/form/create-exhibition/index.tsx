@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ExhibitionStepper as CreateWorkStepper } from "./stepper";
+import {  CreateWorkStepper } from "./stepper";
 
 export type IProps = {};
 

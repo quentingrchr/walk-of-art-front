@@ -23,6 +23,7 @@ import Warning from "./warning"
 import Twitter from "./twitter"
 import Facebook from "./facebook"
 import Smiley from "./smiley"
+import LittleDownArrow from './little-down-arrow'
 
 interface IProps {
   type: IconsType;
@@ -50,6 +51,7 @@ const Icons: IIcons = {
   checkbox: <Checkbox/>,
   information: <Information />,
   searchIcon: <SearchIcon />,
+  litteleDownArrow: <LittleDownArrow />,
   "drop-file": <DropFile />,
   chrono: <Chrono />,
   calendar: <Calendar />,
