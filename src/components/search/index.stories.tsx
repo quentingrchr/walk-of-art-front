@@ -1,28 +1,19 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react"
-import { Input, IProps } from "./index"
+import { Search, IProps } from "./index"
 
 export default {
-    title: "Input",
-    component: Input,
-} as ComponentMeta<typeof Input>
+  title: "Search",
+  component: Search,
+} as ComponentMeta<typeof Search>
 
-const Template: ComponentStory<typeof Input> = (args: IProps) => <Input {...args} />
+const Template: ComponentStory<typeof Search> = (args: IProps) => (
+  <Search {...args} />
+)
 
-const Text = Template.bind({})
-Text.args = {
-    id: "text",
-    placeholder: "Text",
-    type: "text",
-    register: () => {},
+const Default = Template.bind({})
+Default.args = {
+  id: "text",
+  placeholder: "Text",
 }
 
-const Password = Template.bind({})
-Password.args = {
-    id: "text",
-    placeholder: "Password",
-    type: "password",
-    register: () => {},
-}
-
-
-export { Text, Password }
+export { Default }

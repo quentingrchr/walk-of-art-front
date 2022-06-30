@@ -8,7 +8,7 @@ const Dashboard: React.FC = () => {
         <TemplatePage isLogged={true}>
             {/* PAGE CONTENT */}
             <Text tag="h1" typo="paragraph-md">Page de dashboard (Principale)</Text>
-            <Cards />
+            <Cards title="Temp title" />
         </TemplatePage>
     )
 }
