@@ -17,6 +17,7 @@ import DownArrow from "./down-arrow";
 import SearchIcon from "./search-icon";
 import Chrono from "./chrono";
 import Calendar from "./calendar";
+import LittleDownArrow from './little-down-arrow'
 
 interface IProps {
   type: IconsType;
@@ -42,6 +43,7 @@ const Icons: IIcons = {
   checkbox: <Checkbox/>,
   information: <Information />,
   searchIcon: <SearchIcon />,
+  litteleDownArrow: <LittleDownArrow />,
   "drop-file": <DropFile />,
   chrono: <Chrono />,
   calendar: <Calendar />,
