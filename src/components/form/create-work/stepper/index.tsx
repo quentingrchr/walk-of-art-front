@@ -64,7 +64,8 @@ const getStepComponent = (
       return "Unknown step";
   }
 };
-export const FormStepper: React.FC<IProps> = (props: IProps) => {
+
+export const FormStepper: React.FC<IProps> = () => {
   const [compiledForm, setCompiledForm] = React.useState({});
   const [steps, setSteps] = React.useState(STEPS);
 
@@ -139,7 +140,8 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
           variant="checked"
           activeStep={activeStep}
           steps={steps}
-          completeOne={() => {}}
+          completeOne={() => { } }
+          setActiveStep={setActiveStep}
         />
       </div>
       <div className={s.formContainer}>

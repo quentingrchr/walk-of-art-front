@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-import { useFormContext } from "react-hook-form";
+import React from "react";
 
 import s from "./index.module.scss";
 
 import { FormOne, FormTwo, FormThree } from "../forms";
-import { Stepper, Button, Artwork } from "@components";
+import { Stepper, Artwork } from "@components";
 import image from '../../../../assets/images/artwork.png'
 export interface IStep {
   id: number;
