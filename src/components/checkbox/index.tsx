@@ -31,7 +31,7 @@ export const Checkbox: React.FC<IProps> = ({
                     className={styles.input} 
                     type="checkbox" 
                     defaultChecked={isChecked ?? 'checked'} 
-                    name={checkboxName} 
+                    name={checkboxName}
                     id={checkboxName} 
                     onChange={onChange ? () => onChange() : undefined}
                 />

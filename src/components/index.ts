@@ -1,5 +1,3 @@
-/* import all components here */
-
 export { Button } from "./button"
 export { Card } from "./card"
 export { Text } from "./text"
@@ -8,6 +6,7 @@ export { Icon } from "./icon"
 export { Input } from "./inputs/input"
 export { InputGroup } from "./inputs/input-group"
 export { InputDropdown } from "./inputs/input-dropdown";
+export { InputFile } from "./inputs/input-file";
 export { Guidance } from "./form/guidance"
 export { LoginForm } from "./form/login-form"
 export { Link } from "./link"
@@ -18,6 +17,7 @@ export { Navbar } from "./navbar"
 export { Badge } from "./badge"
 export { BadgeSelector } from "./badge-selector"
 export { Stepper } from "./stepper"
+export { ExhibitionStepper } from "./form/create-exhibition/stepper"
 export { CreateForm } from "./form/create-form"
 export { ExpoCard } from "./expo-card"
 export { DropdownButton } from "./dropdown-button"
@@ -32,3 +32,5 @@ export { Notification } from "./notification"
 export { NotificationWrapper } from "./notification-wrapper"
 export { EditProfile } from "./form/edit-profile"
 export { Checkbox } from "./checkbox"
+export { CreateWorkForm } from "./form/create-work/index"
+export { Search } from './search'

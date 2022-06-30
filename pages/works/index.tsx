@@ -1,8 +1,7 @@
 import React, { useState } from "react"
-import styles from "./index.module.scss"
+import style from "./index.module.scss"
 import cn from "classnames"
-import { TemplatePage, HeadingStrong, Checkbox, Icon, Text } from "@components"
-
+import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search } from "@components"
 
 const Works: React.FC = () => {
 
@@ -12,11 +11,12 @@ const Works: React.FC = () => {
 
     return (
         <TemplatePage isLogged={true}>
-            <section className={styles.header}>
+<>
+            <section className={style.header}>
                 <HeadingStrong content="Mes oeuvres" elementColor="pink" size="md" />
                 <aside>
-                    <ul className={styles.filters}>
-                        <li className={styles.filter}>
+                    <ul className={style.filters}>
+                        <li>
                             <Checkbox 
                                 checkboxLabel="Exposées"
                                 checkboxName="works-exposed"
@@ -24,7 +24,7 @@ const Works: React.FC = () => {
                                 onChange={() => setFilterExposed(prev => !prev)}
                             />
                         </li>
-                        <li className={styles.filter}>
+                        <li>
                             <Checkbox 
                                 checkboxLabel="Non exposées"
                                 checkboxName="works-unexposed"
@@ -32,7 +32,7 @@ const Works: React.FC = () => {
                                 onChange={() => setFilterUnexposed(prev => !prev)}
                             />
                         </li>
-                        <li className={cn(styles.filter, styles.filterDate)}>
+                        <li>
                             <Icon type="rightArrow" size="small" color="black" />
                             <Text tag="p" typo="label">Date de création</Text>
                         </li>
@@ -40,6 +40,21 @@ const Works: React.FC = () => {
                     <div></div>
                 </aside>
             </section>
+            <Text tag="h1" typo="heading-md">Mes Oeuvres</Text>
+
+            <div className={style.researchContainer}>
+                <div className={style.checkboxesContainer}>
+                    <Checkbox checkboxName={"Tous"} checkboxLabel={"Tous"} />
+                    <Checkbox checkboxName={"Exposées"} checkboxLabel={"Exposées"} />
+                    <Checkbox checkboxName={"Non exposées"} checkboxLabel={"Non exposées"} />
+                    <div className={style.dateChoiceContainer}>
+                    <Icon type="downArrow" size={"small"} />
+                        <p className={cn(style.textStyle, style.margin)}>Date de création</p>
+                    </div>
+                </div>
+                <Search id={""} placeholder={"Recherche oeuvre par le titre"}/>
+            </div>
+            </>
         </TemplatePage>
     )
 }

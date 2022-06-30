@@ -13,6 +13,8 @@ export type Icons =
   | "rightArrow"
   | "information"
   | "drop-file"
+  | "downArrow"
+  | "searchIcon"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 

@@ -12,7 +12,14 @@ import Cross from "./cross";
 import Check from "./check";
 import Checkbox from "./checkbox";
 import Information from "./information";
+<<<<<<< HEAD
 import DropFile from "./drop-file";
+import DownArrow from "./down-arrow";
+=======
+>>>>>>> fc5ba5d (ADD Better naming)
+import DropFile from "./drop-file";
+import DownArrow from "./down-arrow";
+import SearchIcon from "./search-icon";
 
 interface IProps {
   type: IconsType;
@@ -30,12 +37,14 @@ const Icons: IIcons = {
   notification: <Notification />,
   logout: <Logout />,
   profile: <Profile />,
-  commentary: <Commentary />,
-  rightArrow: <RightArrow />,
-  cross: <Cross />,
-  check: <Check />,
-  checkbox: <Checkbox />,
+  commentary: <Commentary/>,
+  rightArrow: <RightArrow/>,
+  downArrow: <DownArrow />,
+  cross: <Cross/>,
+  check: <Check/>,
+  checkbox: <Checkbox/>,
   information: <Information />,
+  searchIcon: <SearchIcon />,
   "drop-file": <DropFile />,
 };
 
