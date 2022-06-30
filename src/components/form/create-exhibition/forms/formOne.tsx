@@ -105,7 +105,6 @@ export const FormOne: React.FC<IProps> = ({
       // ? ADDED TO GO STEP 2 FAST.
 
       // NEED TO CHECK IF REQURIEF FIELD ARE REMPLIE
-
       if (requiredFieldIsAlreadyFilled) {
         handleStepSubmit(watch());
       } else {
