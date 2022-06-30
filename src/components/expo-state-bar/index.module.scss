@@ -7,8 +7,34 @@
     border-bottom: 1px solid $color-black;
 
     .states_list {
+        --after-width: 0;
+        --after-left: 0;
+        position: relative;
         display: flex;
         align-items: center;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: var(--after-left);
+            height: 3px;
+            width: var(--after-width);
+            background-color: $color-sementic-progress;
+            transform: translate3d(0, 50%, 0);
+            transition: all .4s ease-in-out;
+        }
+
+        &[data-activeindex = "1"]::after {
+            left: 50%;
+            transform: translate3d(-50%, 50%, 0)
+        }
+
+        &[data-activeindex = "2"]::after {
+            left: 100%;
+            transform: translate3d(-100%, 50%, 0)
+        }
+
     }
 
     .state {
