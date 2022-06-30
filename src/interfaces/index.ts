@@ -12,6 +12,7 @@ export type Icons =
   | "commentary"
   | "rightArrow"
   | "information"
+  | "littleDownArrow"
   | "drop-file"
   | "downArrow"
   | "searchIcon"

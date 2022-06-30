@@ -17,7 +17,6 @@ export { Navbar } from "./navbar"
 export { Badge } from "./badge"
 export { BadgeSelector } from "./badge-selector"
 export { Stepper } from "./stepper"
-export { ExhibitionStepper } from "./form/create-exhibition/stepper"
 export { CreateForm } from "./form/create-form"
 export { CreateWorkForm } from "./form/create-work"
 export { CreateExhibitionForm } from "./form/create-exhibition"
@@ -33,5 +32,4 @@ export { Artwork } from "./artwork"
 export { Notification } from "./notification"
 export { NotificationWrapper } from "./notification-wrapper"
 export { EditProfile } from "./form/edit-profile"
-export { CreateWorkForm } from "./form/create-work/index";
 export { Search } from './search'
