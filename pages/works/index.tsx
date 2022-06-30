@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, TemplatePage, Text, Search } from "@components"
+import { Icon, TemplatePage, Text, Search, HeadingStrong } from "@components"
 import { Checkbox } from "@components/checkbox";
 import style from './index.module.scss'
 import cn from "classnames"
