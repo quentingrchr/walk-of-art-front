@@ -95,7 +95,6 @@ export const FormOne: React.FC<IProps> = ({
       e.preventDefault();
   
       const requiredFieldIsAlreadyFilled = watch("primary-image").length > 0;
-
       if (requiredFieldIsAlreadyFilled) {
         handleStepSubmit(watch());
       } else {
