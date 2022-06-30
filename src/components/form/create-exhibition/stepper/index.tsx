@@ -3,7 +3,7 @@ import React from "react";
 import s from "./index.module.scss";
 
 import { FormOne, FormTwo, FormThree } from "../forms";
-import { Stepper, Button } from "@components";
+import { Stepper } from "@components";
 
 export type IProps = {};
 
@@ -135,7 +135,7 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
     <div className={s.container}>
       <div>
         <Stepper
-        // setActiveStep={setActiveStep}
+          setActiveStep={setActiveStep}
           variant="checked"
           activeStep={activeStep}
           steps={steps}
