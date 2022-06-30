@@ -41,14 +41,14 @@ const CreateExhibition: React.FC = () => {
 return (
     <TemplatePage isLogged={true}>
         {/* PAGE CONTENT */}
-         <Link to='/' label='Retour à la connexion' classname={styles.link}/>
-         <div className={styles.background}></div>
+        <Link to='/' label='Retour à la connexion' classname={styles.link}/>
+        <div className={styles.background}></div>
         <div className={styles.heading}>
             <HeadingStrong elementColor="success" color="black" content="Création d'une oeuvre" size="md" /> 
 
             {/* <Artwork src={Image} alt={"test"} size={"small"}/>  */}
         </div>
-            <ExhibitionStepper activeStep={activeStep} steps={steps} completeOne={completeStep} setActiveStep={setActiveStep}/>
+            {/* <ExhibitionStepper activeStep={activeStep} steps={steps} completeOne={completeStep} setActiveStep={setActiveStep}/> */}
     </TemplatePage>
 )
 }
