@@ -9,7 +9,8 @@ export type IProps = {
 }
 
 export const ExpoStateBar: React.FC<IProps> = ({states, onClick}: IProps) => {
-    const [activeStateIndex, setActiveStateIndex] = useState(0)
+    const [activeStateIndex, setActiveStateIndex] = useState<number>(0)
+    const [afterInfos, setAfterInfos] = useState<React.CSSProperties>({})
 
     const toggleClass = (stateIndex) =>
     {
@@ -18,17 +19,24 @@ export const ExpoStateBar: React.FC<IProps> = ({states, onClick}: IProps) => {
 
     return (
         <div className={styles.state_bar}>
-            <ul className={styles.states_list}>
+            <ul className={styles.states_list} style={afterInfos}>
                 {
                     states.map((value, index) => {
                         return (
                             <li
                                 key={index}
                                 className={`${styles.state} ${activeStateIndex === index && styles.isActive}`}
-                                onClick={() =>
+                                onClick={(_event: any) =>
                                 {
                                     onClick(index)
                                     toggleClass(index)
+
+                                    const cssVars = {
+                                        '--after-width': `${_event.target.clientWidth}px`,
+                                        '--after-left': `${_event.target.offsetLeft}px`
+                                    } as React.CSSProperties
+
+                                    setAfterInfos(cssVars)
                                 }}>
                                 <Text
                                     tag="p"
