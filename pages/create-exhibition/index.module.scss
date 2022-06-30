@@ -8,13 +8,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+<<<<<<< HEAD
   width: 100%;
   z-index: 9;
+=======
+  background-color: $color-beige;
+  width: 100%;
+  z-index: 100;
+>>>>>>> b9dd4f1 (added mediaSelector, steps, refacto some stuff)
 }
 .link {
   position: fixed;
   top: calc(52px + 8.6rem);
   left: 100px;
+<<<<<<< HEAD
   z-index: 10;
 }
 
@@ -26,4 +33,7 @@
   left: 0;
   top: 8.6rem;
   z-index: 8;
+=======
+  z-index: 101;
+>>>>>>> b9dd4f1 (added mediaSelector, steps, refacto some stuff)
 }

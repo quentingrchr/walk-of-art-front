@@ -11,7 +11,7 @@ export type IProps = {
     guidanceLabel?: string,
     guidanceType?: Semantic,
     isDisabled?: boolean
-    isChecked?: boolean
+    isChecked?: boolean,
 }
 
 export const Checkbox: React.FC<IProps> = ({
@@ -20,7 +20,7 @@ export const Checkbox: React.FC<IProps> = ({
     isDisabled = false,
     isChecked = false,
     guidanceLabel,
-    guidanceType = 'success'
+    guidanceType = 'success',
 }: IProps) => {
     return (
         <div className={styles.container}>

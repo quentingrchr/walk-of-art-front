@@ -1,0 +1,39 @@
+@import "@styles/theme.scss";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 416px;
+  height: 100%;
+  padding: 1.6rem 2.4rem;
+  margin: 0;
+  background-color: $color-beige;
+  border: 2px solid $color-black;
+  border-radius: 0.4rem;
+  box-sizing: border-box;
+}
+
+.input{
+  border: none;
+  outline: none;
+  background-color: $color-beige;
+  width: 100%;
+  @include typo-placeholder;
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover, 
+  &:-webkit-autofill:focus, 
+  &:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px $color-beige inset !important;
+  }
+}
+
+.icon{
+  &.cta{
+    cursor: pointer;
+  }
+}
+
+.d {
+  margin-left: 8px;
+}

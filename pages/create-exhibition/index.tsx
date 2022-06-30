@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { TemplatePage, HeadingStrong, ExhibitionStepper, Link, Input, Artwork  } from "@components"
 import { IStep } from "../../src/components/stepper"
