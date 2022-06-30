@@ -1,4 +1,4 @@
-import { Colors, Icons as IconsType } from "@interfaces/index";
+import { Colors, Icons as IconsType , sizeIcon } from "@interfaces/index";
 import cn from "classnames";
 import styles from "./index.module.scss";
 
@@ -16,7 +16,7 @@ import DropFile from "./drop-file";
 
 interface IProps {
   type: IconsType;
-  size: "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+  size: sizeIcon;
   color?: Colors | "none";
   children?: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;

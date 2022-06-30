@@ -4,7 +4,7 @@ import cn from "classnames";
 import styles from "./index.module.scss";
 import { ColorsType } from "../../types";
 import { isEternalUrl } from "../../utility";
-import { Icons } from "@interfaces/index";
+import { Icons, sizeIcon } from "@interfaces/index";
 import { Icon } from "..";
 
 export interface IProps {
@@ -19,6 +19,7 @@ export interface IProps {
   type?: "submit" | "button";
   fullWidth?: boolean;
   icon?: Icons;
+  size?: sizeIcon;
 }
 
 export const Button: React.FC<IProps> = ({
@@ -30,6 +31,7 @@ export const Button: React.FC<IProps> = ({
   color = "white",
   type = "button",
   bg = "dark",
+  size = "medium",
   fullWidth = true,
 }: IProps) => {
   const handleClick = (e: any) => {
@@ -57,7 +59,7 @@ export const Button: React.FC<IProps> = ({
         >
           <NextLink href={to}>
             <>
-              {icon && <Icon type={icon} size="medium" color={bg === "dark" ? "white" : "black"} />}
+              {icon && <Icon type={icon} size={size} color={bg === "dark" ? "white" : "black"} />}
               {<span>{label}</span>}
             </>
           </NextLink>
@@ -67,7 +69,7 @@ export const Button: React.FC<IProps> = ({
   } else if (onClick || type === "submit") {
     return (
       <button type={type} className={internalStyle} onClick={handleClick}>
-        {icon && <Icon type={icon} size="medium" />}
+        {icon && <Icon type={icon} size={size} />}
         {<span>{label}</span>}
       </button>
     );

@@ -1,5 +1,6 @@
 export type Semantic = "success" | "info" | "error";
 export type Colors = Semantic | "black" | "white";
+export type sizeIcon = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 export type Icons =
   | "avatar"
   | "notification"
