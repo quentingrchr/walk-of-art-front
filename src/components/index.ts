@@ -35,3 +35,4 @@ export { NotificationWrapper } from "./notification-wrapper"
 export { EditProfile } from "./form/edit-profile"
 export { Search } from './search'
 export { ExpositionBoard } from './exposition-board'
+export { Checkbox } from "./checkbox"
