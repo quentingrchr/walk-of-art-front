@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import styles from "./index.module.scss"
 import { Text } from "./../text/index"
 import { ExpoStates } from "./../../types"
@@ -11,11 +11,22 @@ export type IProps = {
 export const ExpoStateBar: React.FC<IProps> = ({states, onClick}: IProps) => {
     const [activeStateIndex, setActiveStateIndex] = useState<number>(0)
     const [afterInfos, setAfterInfos] = useState<React.CSSProperties>({})
+    const liRef = useRef<HTMLLIElement>(null)
 
     const toggleClass = (stateIndex) =>
     {
         setActiveStateIndex(stateIndex) 
     }
+
+    useEffect(() => {
+        if(!liRef.current) return
+        const cssVars = {
+            '--after-width': `${liRef.current.clientWidth}px`,
+            '--after-left': `${liRef.current.offsetLeft}px`
+        } as React.CSSProperties
+
+        setAfterInfos(cssVars)
+    },[liRef])
 
     return (
         <div className={styles.state_bar}>
@@ -25,9 +36,9 @@ export const ExpoStateBar: React.FC<IProps> = ({states, onClick}: IProps) => {
                         return (
                             <li
                                 key={index}
+                                ref={index === 0 ? liRef: null}
                                 className={`${styles.state} ${activeStateIndex === index && styles.isActive}`}
-                                onClick={(_event: any) =>
-                                {
+                                onClick={(_event: any) => {
                                     onClick(index)
                                     toggleClass(index)
 
