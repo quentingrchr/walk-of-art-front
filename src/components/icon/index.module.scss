@@ -1,44 +1,66 @@
-
-
 @import "@styles/theme.scss";
 
-
-.icon{
+.center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.success{
-  svg, path, circle, rect{
+.inline {
+  display: inline;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.success {
+  svg,
+  path,
+  circle,
+  rect {
     fill: $color-success;
     stroke: $color-success;
   }
 }
 
-.info{
-  svg, path, circle, rect{
+.info {
+  svg,
+  path,
+  circle,
+  rect {
     fill: $color-info;
     stroke: $color-info;
   }
 }
 
-.error{
-  svg, path, circle, rect{
+.error {
+  svg,
+  path,
+  circle,
+  rect {
     fill: $color-error;
     stroke: $color-error;
   }
 }
 
-.black{
-  svg, path, circle, rect{
-    fill: $color-black;
+.black {
+  svg,
+  path,
+  circle,
+  rect {
+    // fill: $color-black;
     stroke: $color-black;
   }
 }
 
-.white{
-  svg, path, circle, rect{
+.white {
+  svg,
+  path,
+  circle,
+  rect {
     fill: $color-white;
     stroke: $color-white;
   }

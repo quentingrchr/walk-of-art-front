@@ -1,6 +1,13 @@
-export type Semantic = "success" | "info" | "error";
-export type Colors = Semantic | "black" | "white";
-export type sizeIcon = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+export type Semantic = "success" | "info" | "error"
+export type Colors = Semantic | "black" | "white"
+export type sizeIcon =
+  | "xsmall"
+  | "small"
+  | "medium"
+  | "large"
+  | "xlarge"
+  | "xxlarge"
+
 export type Icons =
   | "avatar"
   | "notification"
@@ -10,17 +17,22 @@ export type Icons =
   | "checkbox"
   | "check"
   | "commentary"
-  | "rightArrow"
-  | "information"
+  | "informations"
   | "drop-file"
-  | "downArrow"
-  | "searchIcon"
-  | "chrono"
+  | "down-arrow"
+  | "top-arrow"
+  | "left-arrow"
+  | "right-arrow"
+  | "search"
+  | "plus"
+  | "pen"
+  | "bin"
   | "calendar"
-  | "";
-export type NotificationType = "success" | "error" | "commentary";
+  | "chrono"
+  | ""
+export type NotificationType = "success" | "error" | "commentary"
 
 export interface SelectOption {
-  label: string;
-  value: string;
+  label: string
+  value: string
 }
