@@ -32,5 +32,6 @@ export { Notification } from "./notification"
 export { NotificationWrapper } from "./notification-wrapper"
 export { EditProfile } from "./form/edit-profile"
 export { Checkbox } from "./checkbox"
-export { CreateWorkForm } from "./form/create-work/index"
+export { CreateWorkForm } from "./form/create-work"
 export { Search } from './search'
+export { CardGallery } from './card-gallery'

@@ -7,10 +7,11 @@
     gap: 3.2rem;
     position: sticky;
     top: 8.6rem;
+    z-index: 10;
     background-color: $color-beige;
     padding-top: 4.8rem;
-    height: 17.7rem;
-    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    height: 21.7rem;
     overflow: hidden;
     transition: height .2s ease-in;
 
@@ -41,6 +42,8 @@
 .bodySection {
     height: 1500px;
     width: 100%;
-    border: 1px solid red;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: max-content;
+    grid-gap: 1.6rem;
 }
-
