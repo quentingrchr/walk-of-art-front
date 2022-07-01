@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
+import foStyles from "./formOne.module.scss"
 import cn from "classnames";
-import { Button, Input, InputGroup, InputFile, ExpoCard } from "@components";
+import { Button, Input, InputGroup, InputFile, ExpoCard,  } from "@components";
 import { useForm, useFormContext, FormProvider } from "react-hook-form";
 import { getBlopUrlFromFile } from "../../../../utility";
 import Xx from '../../../../assets/images/artwork.png'
@@ -13,17 +14,72 @@ export interface IProps {
   defaultValues?: any;
 }
 
+interface SelectWorkProps {
+  selectedWork?: boolean;
+  setSelectedWork: (boolean) => void;
+}
+
 export interface IRecapProps {
   handleStepSubmit: (data: any) => void;
   handleBack: () => void;
   formState: any;
 }
 
+
+const SelectWorks: React.FC<SelectWorkProps> = ({
+  selectedWork,
+  setSelectedWork,
+}: SelectWorkProps) => {
+
+  const handleImageClick = () => {
+    setSelectedWork(true)
+  }
+  const handleBack = () => {
+    setSelectedWork(false)
+  }
+
+  const titleText = selectedWork ? "Choix de l’oeuvre" : "Sélection de l’oeuvre"
+  return (
+  <div>
+      <h3 className={foStyles.selectionTitle}>{titleText}</h3>
+      <div className={foStyles.selectionContainer}>
+        { 
+        selectedWork ?
+          <div className={foStyles.selectionChoice}>
+                 <div className={foStyles.huit}>enifj</div>
+
+                 <div className={foStyles.ctas}>
+                 <Button label={"Utiliser le titre comme titre d’exposition"} color="black" bg="light" type="submit" />
+                 <div className={foStyles.modify} onClick={handleBack}>
+                 <Button label={"Modifier"} color="white" bg="dark" type="submit"  />
+                 </div>
+
+                 </div>
+          </div> 
+        : 
+            <div className={foStyles.selectWorks}>
+              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
+              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
+              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
+              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
+              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
+              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
+              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
+              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>     
+            </div>
+        }
+      </div>
+    </div>
+  )
+};
+
 export const FormOne: React.FC<IProps> = ({
     handleStepSubmit,
     handleBack,
     defaultValues = {},
   }: IProps) => {
+
+    const [selectedWork, setSelectedWork] = useState(false)
     const { register, handleSubmit, watch } = useForm({
       mode: "onBlur",
       defaultValues,
@@ -40,7 +96,7 @@ export const FormOne: React.FC<IProps> = ({
       e.preventDefault();
   
       const requiredFieldIsAlreadyFilled = watch("primary-image").length > 0;
-  
+
       if (requiredFieldIsAlreadyFilled) {
         handleStepSubmit(watch());
       } else {
@@ -52,26 +108,18 @@ export const FormOne: React.FC<IProps> = ({
   
     return (
       <form className={styles.formContainer} onSubmit={onSubmit}>
-        <div className={styles.selectWorks}>
-        <div className={styles.huit}>enifj</div>
-        <div className={styles.huit}>enifj</div>
-        <div className={styles.huit}>enifj</div>
-        <div className={styles.huit}>enifj</div>
-        <div className={styles.huit}>enifj</div>
-        <div className={styles.huit}>enifj</div>
-        <div className={styles.huit}>enifj</div>
-        <div className={styles.huit}>enifj</div>
-        <div className={styles.huit}>enifj</div>
-        <div className={styles.huit}>enifj</div>
-      </div>
+      <SelectWorks selectedWork={selectedWork} setSelectedWork={setSelectedWork}/>
 
-<InputGroup
-          placeholder="Titre de l'exposition"
-          register={register}
-          id="description"
-          type="text"
-          label="Titre de l'exposition"
-          guidance={null}
+
+      <div className={styles.ctaContainer}>
+
+      <InputGroup
+                placeholder="Titre de l'exposition"
+                register={register}
+                id="description"
+                type="text"
+                label="Titre de l’exposition*"
+                guidance={null}
         />
         <InputGroup
           placeholder="Description de mon exposition..."
@@ -85,14 +133,8 @@ export const FormOne: React.FC<IProps> = ({
         <Checkbox checkboxName={"autoriseVistisors"} checkboxLabel={"Autoriser les commentaires des visiteurs"} />
         <Checkbox checkboxName={"showTitle"} checkboxLabel={"Afficher le titre de mon exposition aux visiteurs"} />
 
-        <div className={styles.ctaContainer}>
-          <Button
-            label={"Précédent"}
-            color="white"
-            bg="dark"
-            onClick={handleBack}
-          />
-          <Button label={"Suivant"} color="white" bg="dark" type="submit" />
+
+          <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
         </div>
       </form>
     );
