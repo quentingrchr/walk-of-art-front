@@ -20,7 +20,7 @@ interface Work {
 const data = [
     {
         "id": "1",
-        "title": "Unn titre",
+        "title": "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
         "description": "Une description",
         "created_at": "2022-06-30T23:09:10.693Z",
     },
@@ -47,6 +47,7 @@ const data = [
 const Works: React.FC = () => {
 
     const [works, setWorks] = useState<Work[]>([])
+    console.log(works)
 
     const [filterExposed, setFilterExposed] = useState<boolean>(false)
     const [filterUnexposed, setFilterUnexposed] = useState<boolean>(false)
@@ -76,25 +77,33 @@ const Works: React.FC = () => {
     }
     
     const searchProcess = (value: string) => {
-        return works.filter(work => {
+        let search =  works.filter(work => {
             let normalizedTitle = makeCaseAndAccentInsensitiveString(work.title)
             return normalizedTitle.includes(searchValue)
         })
+
+        return search
     }
 
+    /* Init works */
     useEffect(() => {
+        setWorks(data)
+        setSearchList(data)
+    }, [])
+    
+    /* Search process */
+    useEffect(() => {
+        console.log("ici")
         if(searchValue) {
+            console.log("oui")
             let newSearchList = searchProcess(searchValue)
             setSearchList(newSearchList)
         } else {
             setSearchList(works)
         }
-    }, [searchValue])
+    }, [searchValue, works])
 
-    useEffect(() => {
-        setWorks(data)
-    }, [])
-    
+    /* Scroll Event */
     useEffect(() => {
         scrollDirection === "down" ?
             setDirection(scrollDirType.down)

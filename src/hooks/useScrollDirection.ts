@@ -6,7 +6,7 @@ enum ScrollDirection {
 }
 
 export const useScrollDirection = () => {
-    const threshold = 100
+    const threshold = 70
     const [scrollDir, setScrollDir] = useState(ScrollDirection.up)
 
     useEffect(() => {
