@@ -15,6 +15,8 @@ export type Icons =
   | "drop-file"
   | "downArrow"
   | "searchIcon"
+  | "chrono"
+  | "calendar"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 

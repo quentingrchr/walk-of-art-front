@@ -76,18 +76,34 @@
     font-family: $font-inter;
 }
 
-.cardInfo{
+.cardInfo {
+    font-family: $font-inter;
     color: #757575;
     font-size: 1.6rem;
     line-height: 1.8em;
     display: flex;
     justify-content: center;
     gap: .3rem;
+
+    &.remaining {
+        color: $color-success;
+    }
+
+    &.completed {
+        color: $color-error;
+    }
+
+    &.incoming {
+        color: $color-info;
+    }
 }
 
-.cardTime{
+.cardTime {
     display: inline;
 }
-.cardIcon{
-    display: inline;
+.cardIcon {
+    display: grid;
+    align-content: center;
+    line-height: 1.8em;
+
 }
