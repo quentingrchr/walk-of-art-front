@@ -70,7 +70,8 @@ const Icons: IIcons = {
   trash: <Trash />,
   chevronRight: <ChevronRight />,
   chevronLeft: <ChevronLeft />,
-  warning : <Warning/>
+  warning : <Warning/>,
+  selectCheck: <SelectCheck />
 };
 
 const sizes: any = {
