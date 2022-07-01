@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import styles from "./index.module.scss";
 import cn from "classnames";
-import { Button, Input, InputGroup, InputFile } from "@components";
+import { Button, Input, InputGroup, InputFile, ExpoCard } from "@components";
 import { useForm, useFormContext, FormProvider } from "react-hook-form";
 import { getBlopUrlFromFile } from "../../../../utility";
+import Xx from '../../../../assets/images/artwork.png'
+import { Checkbox } from "@components/checkbox";
 
 export interface IProps {
   handleStepSubmit: (data: any) => void;
@@ -50,20 +52,39 @@ export const FormOne: React.FC<IProps> = ({
   
     return (
       <form className={styles.formContainer} onSubmit={onSubmit}>
-        <InputFile
+        <div className={styles.selectWorks}>
+        <div className={styles.huit}>enifj</div>
+        <div className={styles.huit}>enifj</div>
+        <div className={styles.huit}>enifj</div>
+        <div className={styles.huit}>enifj</div>
+        <div className={styles.huit}>enifj</div>
+        <div className={styles.huit}>enifj</div>
+        <div className={styles.huit}>enifj</div>
+        <div className={styles.huit}>enifj</div>
+        <div className={styles.huit}>enifj</div>
+        <div className={styles.huit}>enifj</div>
+      </div>
+
+<InputGroup
+          placeholder="Titre de l'exposition"
           register={register}
-          primaryInput={{
-            name: "primary-image",
-            required: true,
-          }}
-          primaryValue={watchPrimaryImage || defaultValues.primaryImage}
-          secondaryInputs={[
-            { name: "secondary-image-1", required: false },
-            { name: "secondary-image-2", required: false },
-            { name: "secondary-image-3", required: false },
-          ]}
-          secondaryValues={watchSecondaryImages || defaultValues.secondaryImages}
+          id="description"
+          type="text"
+          label="Titre de l'exposition"
+          guidance={null}
         />
+        <InputGroup
+          placeholder="Description de mon exposition..."
+          register={register}
+          id="description"
+          type="text"
+          label="Description de mon exposition"
+          guidance={null}
+        />
+
+        <Checkbox checkboxName={"autoriseVistisors"} checkboxLabel={"Autoriser les commentaires des visiteurs"} />
+        <Checkbox checkboxName={"showTitle"} checkboxLabel={"Afficher le titre de mon exposition aux visiteurs"} />
+
         <div className={styles.ctaContainer}>
           <Button
             label={"Précédent"}

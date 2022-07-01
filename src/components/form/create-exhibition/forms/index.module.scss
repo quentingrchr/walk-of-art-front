@@ -79,3 +79,17 @@
     line-height: 1.5em;
   }
 }
+
+.selectWorks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 24px;
+  border: 2px solid $color-black;
+  gap: 48px;
+}
+
+.huit {
+  width: 112px;
+  height: 149px;
+  border: 1px solid red;
+}
