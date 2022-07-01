@@ -11,13 +11,6 @@
     overflow: scroll;
   }
   
-  .huit {
-    width: 112px;
-    height: 130px;
-    border: 1px solid red;
-    cursor: pointer;
-  }
-  
   .selectionTitle {
     font-family: 'Inter';
     font-style: normal;
@@ -45,4 +38,17 @@
     width: 192px;
     margin-top: 16px;
     margin-inline: auto;
+}
+
+.selectCheckIcon {
+  position: absolute;
+    left: 50%;
+    top: -16px;
+    z-index: 1;
+    transform: translateX(-50%);
+}
+
+.containerSelectedExhibition {
+  position: relative;
+  
 }

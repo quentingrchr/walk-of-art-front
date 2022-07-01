@@ -1,6 +1,6 @@
 export type Semantic = "success" | "info" | "error";
 export type Colors = Semantic | "black" | "white";
-export type sizeIcon = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+export type sizeIcon = "none" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 export type Icons =
   | "avatar"
   | "notification"
@@ -18,6 +18,7 @@ export type Icons =
   | "searchIcon"
   | "chrono"
   | "calendar"
+  | "selectCheck"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 

@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./index.module.scss";
 import foStyles from "./formOne.module.scss"
-import cn from "classnames";
-import { Button, Input, InputGroup, InputFile, ExpoCard,  } from "@components";
-import { useForm, useFormContext, FormProvider } from "react-hook-form";
-import { getBlopUrlFromFile } from "../../../../utility";
-import Xx from '../../../../assets/images/artwork.png'
+import { Button, InputGroup, Cards, Icon  } from "@components";
+import { useForm } from "react-hook-form";
+import cardImage from '../../../../assets/images/cardImg.png'
 import { Checkbox } from "@components/checkbox";
 
 export interface IProps {
@@ -46,27 +44,28 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
         { 
         selectedWork ?
           <div className={foStyles.selectionChoice}>
-                 <div className={foStyles.huit}>enifj</div>
-
+            <div className={foStyles.containerSelectedExhibition}>
+              <div className={foStyles.selectCheckIcon}>
+                <Icon type={"selectCheck"} size={"none"} />
+              </div>
+              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={true}/>
+            </div>
+    
                  <div className={foStyles.ctas}>
-                 <Button label={"Utiliser le titre comme titre d’exposition"} color="black" bg="light" type="submit" />
-                 <div className={foStyles.modify} onClick={handleBack}>
-                 <Button label={"Modifier"} color="white" bg="dark" type="submit"  />
-                 </div>
-
-                 </div>
+                  <Button label={"Utiliser le titre comme titre d’exposition"} color="black" bg="light" type="submit" />
+                    <div className={foStyles.modify} onClick={handleBack}>
+                      <Button label={"Modifier"} color="white" bg="dark" type="submit"  />
+                    </div>
+                </div>
           </div> 
         : 
             <div className={foStyles.selectWorks}>
-              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
-              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
-              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
-              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
-              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
-              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
-              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>
-              <div className={foStyles.huit} onClick={handleImageClick}>enifj</div>     
-            </div>
+              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
+              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
+              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
+              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
+              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
+             </div>
         }
       </div>
     </div>
