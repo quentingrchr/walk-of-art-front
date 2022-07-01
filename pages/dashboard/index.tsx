@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TemplatePage, Text, ExpoStateBar, ExpoList } from "@components"
+import { TemplatePage, Text, ExpoStateBar, ExpoList, Cards } from "@components"
 import s from './index.module.scss'
 import { checkReservationState } from "./../../src/utility"
 import { ExpoStates, ReservationWithExposition, displayTimeType } from './../../src/types'
@@ -91,12 +91,24 @@ const Dashboard: React.FC = () => {
 
     return (
         <TemplatePage isLogged={true}>
-            <Text tag="h1" typo="heading-lg">Expositions</Text>
-            <div className={s.exposList}>
-                <ExpoStateBar states={expoStates} onClick={setExposedListType}/>
-                {
-                    list && expoStates[exposedListType].listComponent(list)
-                }
+            <div className={s.title}>
+                <Text tag="h1" typo="heading-xl">Bonjour Michael</Text>
+            </div>
+            <div className={s.subtitle}>
+                <Text tag="h2" typo="heading-lg">Expositions</Text>
+            </div>
+            <ExpoStateBar states={expoStates} onClick={setExposedListType}/>
+            {
+                list && expoStates[exposedListType].listComponent(list)
+            }
+            <div className={s.subtitle}>
+                <Text tag="h2" typo="heading-lg">Oeuvres</Text>
+            </div>
+            <div className={s.worksList}>
+                <Cards title="Le livre de la jungle Le livre de la jungle"/>
+                <Cards title="Le livre de la jungle 2"/>
+                <Cards title="Le livre de la jungle 3"/>
+                <Cards title="Le livre de la jungle 4"/>
             </div>
         </TemplatePage>
     )
