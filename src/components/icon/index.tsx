@@ -24,6 +24,7 @@ import Twitter from "./twitter"
 import Facebook from "./facebook"
 import Smiley from "./smiley"
 import LittleDownArrow from './little-down-arrow'
+import SelectCheck from './select-check'
 
 interface IProps {
   type: IconsType;
@@ -59,9 +60,11 @@ const Icons: IIcons = {
   twitter : <Twitter/>,
   facebook : <Facebook/>,
   smiley : <Smiley/>,
+  selectCheck: <SelectCheck />
 };
 
 const sizes: any = {
+  none: "unset",
   xsmall: "0.8rem",
   small: "1.6rem",
   medium: "1.8rem",
