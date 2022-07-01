@@ -2,25 +2,26 @@
 
 // Your style here
 
-.container{
+.container {
   display: flex;
   flex-direction: column;
   width: 42rem;
+  padding: 4rem 0;
 }
 
-.title{
+.title {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 5.6rem;
 }
 
-.form{
+.form {
   display: flex;
   flex-direction: column;
   gap: 4rem;
 }
 
-.text{
+.text {
   width: 100%;
   margin-bottom: 4rem;
 }

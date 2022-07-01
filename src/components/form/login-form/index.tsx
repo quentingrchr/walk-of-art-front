@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import s from "./index.module.scss"
 
-import { InputGroup, HeadingStrong, Button } from "@components"
+import { InputGroup, HeadingStrong, Button, Tooltip } from "@components"
 import { IFormInput } from "./interfaces"
 import { ColorsType } from "../../../types"
 
@@ -15,6 +15,7 @@ export interface IProps {
   children?: React.ReactNode
   onSubmit: (data: any) => void
   titleColor?: ColorsType
+  globalFormError?: string | null
 }
 
 export const LoginForm: React.FC<IProps> = ({
@@ -25,6 +26,7 @@ export const LoginForm: React.FC<IProps> = ({
   titleColor = "success",
   onSubmit,
   schema,
+  globalFormError,
 }: IProps) => {
   let formOptions: any = {
     criteriaMode: "all",
@@ -48,8 +50,12 @@ export const LoginForm: React.FC<IProps> = ({
           size="xl"
         />
       </div>
+
       {children && <div className={s.text}>{children}</div>}
       <form className={s.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+        {!!globalFormError && (
+          <Tooltip text={globalFormError} icon="cross" type="error" />
+        )}
         {inputs.map((input, index) => (
           <InputGroup
             {...input}

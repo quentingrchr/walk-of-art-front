@@ -4,24 +4,39 @@ import axios from "axios"
 import { Text, LoginForm, SplitScreen, Link } from "@components"
 import { signUpInputs, signUpInputsSchema } from "../../data/form"
 
+import { BASE_API_URL } from "@const/index"
+
 const Form = () => {
   const router = useRouter()
+  const [globalFormError, setGlobalFormError] =
+    React.useState<string | null>(null)
   const onSubmit = (data: any) => {
+    setGlobalFormError(null)
     const formattedData = {
       email: data.email,
       password: data.password,
-      fisrtname: data.firstName,
+      firstname: data.firstName,
       lastname: data.lastName,
     }
-    console.log(formattedData)
     axios
-      .post(`${process.env.API_BASE_URL}/register`, data)
+      .post(`${BASE_API_URL}/register`, formattedData)
       .then((res: { status: number; data: any }) => {
-        console.log(res.data)
-
-        // if (res.status === 200) {
-        //   router.push("/")
-        // }
+        if (res.status === 201) {
+          router.push("/")
+        } else if (res.status === 409) {
+          setGlobalFormError("Cet email existe déjà")
+        } else {
+          console.log("error")
+        }
+      })
+      .catch((err: any) => {
+        if (err.response.status) {
+          setGlobalFormError("Cet email existe déjà")
+        } else {
+          setGlobalFormError(
+            "Oups il semblerait que quelque chose se soit mal passé"
+          )
+        }
       })
   }
 
@@ -32,6 +47,7 @@ const Form = () => {
       onSubmit={onSubmit}
       submitText="Je m'inscris"
       title="Inscription"
+      globalFormError={globalFormError}
     >
       <Text color="black" tag="div" typo="paragraph-md">
         Vous avez déjà un compte ? &nbsp;
