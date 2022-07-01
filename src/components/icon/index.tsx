@@ -15,6 +15,7 @@ import Information from "./information";
 import DropFile from "./drop-file";
 import DownArrow from "./down-arrow";
 import SearchIcon from "./search-icon";
+import Chrono from "./chrono";
 
 interface IProps {
   type: IconsType;
@@ -41,6 +42,7 @@ const Icons: IIcons = {
   information: <Information />,
   searchIcon: <SearchIcon />,
   "drop-file": <DropFile />,
+  chrono: <Chrono />,
 };
 
 const sizes: any = {

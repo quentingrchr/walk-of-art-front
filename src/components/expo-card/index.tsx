@@ -29,9 +29,9 @@ export const ExpoCard: React.FC<IProps> = ({id, img, title, remainingHours, type
                 </div>
                 <div className={s.cardContent}>
                     <p className={s.cardTitle}>{title}</p>
-                    {remainingHours && (<div className={s.cardInfo}>
+                    {remainingHours && (<div className={`${s.cardInfo} ${s.success}`}>
                         <span className={s.cardIcon}>
-                            <Icon type="avatar" size="small"/>
+                            <Icon type="chrono" size="small" color="success"/>
                         </span>
                         <span className={s.cardTime}>
                             {displayTime(type, remainingHours)}
