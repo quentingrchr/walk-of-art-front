@@ -16,6 +16,7 @@ export type Icons =
   | "downArrow"
   | "searchIcon"
   | "chrono"
+  | "calendar"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 

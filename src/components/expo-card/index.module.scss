@@ -85,8 +85,16 @@
     justify-content: center;
     gap: .3rem;
 
-    &.success {
+    &.remaining {
         color: $color-success;
+    }
+
+    &.completed {
+        color: $color-error;
+    }
+
+    &.incoming {
+        color: $color-info;
     }
 }
 
