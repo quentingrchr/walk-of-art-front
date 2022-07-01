@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import s from "./index.module.scss";
-import { Separator } from "../separator";
-import { Step } from "./step";
+import React, { useState } from "react"
+import s from "./index.module.scss"
+import { Separator } from "../separator"
+import { Step } from "./step"
 
 export interface IStep {
-  id: number;
-  label: string;
-  number: number;
-  completed: boolean;
+  id: number
+  label: string
+  number: number
+  completed: boolean
 }
 
 export type IProps = {
-  activeStep: number;
-  steps: IStep[];
-  completeOne: (index: number) => void;
-  variant?: "default" | "checked";
-  setActiveStep:  (index: number) => void,
-};
+  activeStep: number
+  steps: IStep[]
+  completeOne: (index: number) => void
+  variant?: "default" | "checked"
+  setActiveStep: (index: number) => void
+}
 
 const STEPS = [
   {
@@ -37,7 +37,7 @@ const STEPS = [
     number: 3,
     completed: false,
   },
-];
+]
 export const Stepper: React.FC<IProps> = ({
   activeStep,
   steps,
@@ -46,13 +46,13 @@ export const Stepper: React.FC<IProps> = ({
   setActiveStep,
 }: IProps) => {
   const dummyFunction = (index) => {
-    completeOne(index);
+    completeOne(index)
     setActiveStep(index)
-  };
+  }
 
   const arePreviousStepsCompleted = (index: number) => {
-    return steps.slice(0, index).every((step) => step.completed);
-  };
+    return steps.slice(0, index).every((step) => step.completed)
+  }
 
   return (
     <div className={s.container}>
@@ -69,7 +69,7 @@ export const Stepper: React.FC<IProps> = ({
                 disable={!arePreviousStepsCompleted(index)}
                 variant={variant}
                 onClick={() => {
-                  dummyFunction(index);
+                  dummyFunction(index)
                 }}
               />
               {index !== steps.length - 1 && (
@@ -80,5 +80,5 @@ export const Stepper: React.FC<IProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

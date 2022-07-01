@@ -2,6 +2,10 @@
 
 
 // Headings style
+.heading-xl {
+    @include typo-heading-xl;
+}
+
 .heading-lg {
     @include typo-heading-lg;
 }
@@ -12,6 +16,14 @@
 
 .heading-sm {
     @include typo-heading-sm;
+}
+
+.heading-xs {
+    @include typo-heading-xs;
+}
+
+.heading-xxs {
+    @include typo-heading-xxs;
 }
 
 .paragraph-md {
