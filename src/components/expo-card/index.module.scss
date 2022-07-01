@@ -1,59 +1,93 @@
 @import "@styles/theme.scss";
 
-// Your style here
+.imgContainer {
+    position: relative;
+    background-color: $color-black;
+    padding: 1.2rem;
+    width: fit-content;
+    height: 192px;
+    width: 192px;
+
+    .img {
+        border: 2px solid $color-white;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .cards__frame__button {
+        width: 60%;
+        position: absolute;
+        z-index: 1000;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, calc(-50% + 15px), 0);
+        opacity: 0;
+        transition: all .3s ease-in-out;
+
+        & > div > div {
+            overflow: hidden;
+            height: 28px;
+        }
 
 
-.imgContainer{
-  background-color: $color-black;
-  padding: 1.2rem;
-  width: fit-content;
-  height: 192px;
-  width: 192px;
-}
+        & div > div > span {
+            font-size: 1rem;
+        }
 
-.img{
-  border: 2px solid $color-white;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+        & div > div > svg {
+            transition: all .3s ease-in-out;
+            transform: translateX(-40px);
+        }
+    }
 }
 
 
 .card {
-  display: flex;
-  flex-direction: column;
-  gap: .8rem;
-  width: fit-content;
-  text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    width: fit-content;
+    text-decoration: none;
+
+    &:hover {
+        .cards__frame__button {
+            opacity: 1;
+            transform: translate3d(-50%, -50%, 0);
+
+            & div > div > svg {
+                transform: translateX(0px);
+            }
+        }
+    }
 }
 
 .cardContent {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .cardTitle {
-  font-size: 1.8rem;
-  color: $color-black;
-  line-height: 2em;
-  width: 100%;
-  text-align: center;
-  font-family: $font-inter;
+    font-size: 1.8rem;
+    color: $color-black;
+    line-height: 2em;
+    width: 100%;
+    text-align: center;
+    font-family: $font-inter;
 }
 
 .cardInfo{
-  color: #757575;
-  font-size: 1.6rem;
-  line-height: 1.8em;
-  display: flex;
-  justify-content: center;
-  gap: .3rem;
-
+    color: #757575;
+    font-size: 1.6rem;
+    line-height: 1.8em;
+    display: flex;
+    justify-content: center;
+    gap: .3rem;
 }
 
 .cardTime{
-  display: inline;
+    display: inline;
 }
 .cardIcon{
-  display: inline;
+    display: inline;
 }
