@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import s from "./index.module.scss";
 
@@ -63,6 +63,7 @@ const getStepComponent = (
       return "Unknown step";
   }
 };
+
 export const FormStepper: React.FC<IProps> = (props: IProps) => {
   const [compiledForm, setCompiledForm] = React.useState({});
   const [steps, setSteps] = React.useState(STEPS);
