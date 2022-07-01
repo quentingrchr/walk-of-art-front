@@ -106,7 +106,7 @@ const Works: React.FC = () => {
     return (
         <TemplatePage isLogged={true}>
             <section className={cn(style.headSection, direction === scrollDirType.down ? style.scrollDown : null)}>
-                <HeadingStrong content="Mes oeuvres" elementColor="pink" size="md" />
+                <HeadingStrong content="Mes oeuvres" elementColor="pink" size="xl" />
                 <aside className={style.searchBox}>
                     <ul className={style.filters}>
                         <li>
