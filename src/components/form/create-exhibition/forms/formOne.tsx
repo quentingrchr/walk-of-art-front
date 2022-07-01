@@ -135,5 +135,5 @@ export const FormOne: React.FC<IProps> = ({
           <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
         </div>
       </form>
-    );
-  };
+    )
+  }
