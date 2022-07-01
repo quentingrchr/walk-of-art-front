@@ -107,6 +107,7 @@ export const FormTwo: React.FC<IProps> = ({
 
         <div className={styles.ctaContainer}>
           <Button label={"Suivant"} color="white" bg="dark" type="submit" />
+          <Button label={"Suivant"} color="white" bg="dark" type="submit" />
         </div>
       </form>
     );
