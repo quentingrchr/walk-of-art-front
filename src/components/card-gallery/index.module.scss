@@ -5,7 +5,8 @@
     flex-direction: column;
     text-align: justify;
     justify-content: space-evenly;
-    width: 416px;
+    max-width: 416px;
+    height: max-content;
     text-align: center;
 
     &:hover {

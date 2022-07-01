@@ -6,10 +6,11 @@ import cn from "classnames";
 export type IProps = {
   id: string;
   placeholder: string;
-  value?: string;
+  value: string;
+  onChange: (e) => void;
 };
 
-export const Search = ({ id, placeholder }: IProps) => {
+export const Search = ({ id, placeholder, value, onChange }: IProps) => {
   return (
     <div className={styles.container}>
       <Icon type="searchIcon" size={"small"} />
@@ -19,7 +20,9 @@ export const Search = ({ id, placeholder }: IProps) => {
         placeholder={placeholder}
         className={cn(styles.input, styles.d)}
         type="text"
+        value={value}
+        onChange={(e) => onChange(e)}
       />
     </div>
-  );
-};
+  )
+}
