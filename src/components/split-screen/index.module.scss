@@ -2,57 +2,59 @@
 
 // Your style here
 
-@keyframes appears{
-  0%{
+@keyframes appears {
+  0% {
     clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
   }
-  100%{
+  100% {
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   }
 }
 
-.container{
+.container {
   display: flex;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   height: fit-content;
   align-items: center;
- 
 }
 
-.left, .right{
+.left,
+.right {
   box-sizing: content-box;
   overflow: hidden;
   width: 50%;
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   height: 100vh;
-  @include respond-below(sm){
+  @include respond-below(sm) {
     width: 100%;
   }
 }
 
-.imageContainer{
+.left {
+  overflow: scroll;
+}
+
+.imageContainer {
   clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
   animation: appears 1.2s ease-in-out forwards;
-  animation-delay: .1s;
-  @include respond-below(sm){
+  animation-delay: 0.1s;
+  @include respond-below(sm) {
     display: none;
   }
 }
 
-.image{
+.image {
   height: 100%;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   display: flex;
-  @include respond-below(sm){
+  @include respond-below(sm) {
     display: none;
   }
 }
-
-
