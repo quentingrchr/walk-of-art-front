@@ -27,6 +27,7 @@ export type Icons =
   | "hasNotification"
   | "bellNotification"
   | "warning"
+  | "selectCheck"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 

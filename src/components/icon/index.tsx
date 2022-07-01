@@ -26,6 +26,7 @@ import ChevronLeft from './chevron-left'
 import TopArrow from "./top-arrow"
 import LeftArrow from "./left-arrow"
 import Warning from "./warning";
+import SelectCheck from './select-check'
 
 interface IProps {
   type: IconsType;
@@ -63,6 +64,7 @@ const Icons: IIcons = {
   chevronRight: <ChevronRight />,
   chevronLeft: <ChevronLeft />,
   warning : <Warning/>
+  selectCheck: <SelectCheck />
 };
 
 const sizes: any = {
