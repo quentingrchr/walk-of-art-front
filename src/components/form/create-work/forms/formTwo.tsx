@@ -37,7 +37,7 @@ export const FormTwo: React.FC<IProps> = ({
     const onSubmit = (e: any) => {
       e.preventDefault();
   
-      const requiredFieldIsAlreadyFilled = watch("primary-image").length > 0;
+      const requiredFieldIsAlreadyFilled = watch("primary-image");
   
       if (requiredFieldIsAlreadyFilled) {
         handleStepSubmit(watch());
