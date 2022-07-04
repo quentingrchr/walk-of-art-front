@@ -79,7 +79,7 @@ export const Icon = ({
   return (
     <div
       onClick={(e) => onClick !== undefined && onClick(e)}
-      className={cn(styles[color], "icon", classname)}
+      className={cn(styles[color], styles.icon)}
       style={{ width: sizes[size], height: sizes[size] }}
     >
       {Icons[type]}
