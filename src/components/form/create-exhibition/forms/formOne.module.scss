@@ -1,6 +1,13 @@
 @import "@styles/theme.scss";
 
 
+.ctaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 420px
+}
+
 .selectWorks {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

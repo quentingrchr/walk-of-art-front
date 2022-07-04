@@ -19,6 +19,8 @@ import Chrono from "./chrono";
 import Calendar from "./calendar";
 import LittleDownArrow from './little-down-arrow'
 import SelectCheck from './select-check'
+import Trash from './trash'
+
 
 interface IProps {
   type: IconsType;
@@ -48,7 +50,8 @@ const Icons: IIcons = {
   "drop-file": <DropFile />,
   chrono: <Chrono />,
   calendar: <Calendar />,
-  selectCheck: <SelectCheck />
+  selectCheck: <SelectCheck />,
+  trash: <Trash />
 };
 
 const sizes: any = {

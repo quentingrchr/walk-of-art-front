@@ -7,7 +7,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 416px;
+  margin: auto;
   gap: 3rem;
 }
 
@@ -19,11 +20,17 @@
   gap: 2rem;
 }
 
+.toolTip {
+  width: 416px;
+  margin: auto;
+  margin-bottom: 46px;
+}
+
 .ctaContainer {
   display: flex;
-  flex-direction: column;
   gap: 32px;
-  width: 420px
+  width: 100%;
+  justify-content: space-between;
 }
 
 .recap {

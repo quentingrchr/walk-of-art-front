@@ -1,15 +1,17 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import cn from "classnames";
-import { Button, Input, InputGroup, InputFile } from "@components";
+import { Button, Input, InputGroup, InputFile, InputCustomDouble, Tooltip } from "@components";
 import { useForm, useFormContext, FormProvider } from "react-hook-form";
 import { getBlopUrlFromFile } from "../../../../utility";
 
+const toolTipText = "Toutes les informations qui figurent dans ces champs ont été prises sur le profil. Si vous voulez les modifier, merci de vous rendre sur votre profil"
 export interface IProps {
   handleStepSubmit: (data: any) => void;
   handleBack: () => void;
   defaultValues?: any;
+  amountOfAdditionalLinks: Array<string>;
 }
 
 export interface IRecapProps {
@@ -26,7 +28,18 @@ export const FormTwo: React.FC<IProps> = ({
       handleSubmit,
       formState: { errors },
     } = useForm({ mode: "onBlur", defaultValues });
-  
+
+    const [amountOfAdditionalLinks, setAmountOfAdditionalLinks] = useState<any>([])
+    const handleAddLink = (e: any) => {
+      console.log(amountOfAdditionalLinks);
+     setAmountOfAdditionalLinks([...amountOfAdditionalLinks, `id-${amountOfAdditionalLinks.length + 1}`])
+    }
+    const handleRemoveLink = (idFieldValue: string, e: any) => {    
+         console.log('this is ==== id' , idFieldValue);
+          setAmountOfAdditionalLinks(amountOfAdditionalLinks.filter(value => value !== idFieldValue))
+      }
+
+    
     const onSubmit = (e: any) => {
       console.log("submit");
       e.preventDefault();
@@ -38,77 +51,89 @@ export const FormTwo: React.FC<IProps> = ({
     };
   
     return (
-      <form className={styles.formContainer} onSubmit={onSubmit}>
-        <InputGroup
-          placeholder="https://facebook.com/mon-profil"
-          register={register}
-          required={true}
-          id="title"
-          type="text"
-          label="URL de mon profil Facebook"
-          guidance={
-            errors.title
-              ? {
-                  type: "error",
-                  message:
-                    "Le titre doit être rempli pour passer à l’étape suivante",
-                }
-              : null
-          }
-        />
-        <InputGroup
-          placeholder="https://twitter.com/mon-profil"
-          register={register}
-          id="description"
-          type="text"
-          label="URL de mon profil Twitter"
-          guidance={null}
-        />
-        <InputGroup
-          placeholder="https://mon-site-personnel.com/"
-          register={register}
-          id="description"
-          type="text"
-          label="URL de mon site personnel"
-          guidance={null}
-        />
+      <>
+        <div className={styles.toolTip}>
+          <Tooltip text={toolTipText} icon="info" type="info" />
+        </div>
+        <form className={styles.formContainer} onSubmit={onSubmit}>
+
           <InputGroup
-            placeholder="https://mon-portoflio.com/"
+            placeholder="https://facebook.com/mon-profil"
+            register={register}
+            required={true}
+            id="title"
+            type="text"
+            label="URL de mon profil Facebook"
+            guidance={
+              errors.title
+                ? {
+                    type: "error",
+                    message:
+                      "Le titre doit être rempli pour passer à l’étape suivante",
+                  }
+                : null
+            }
+          />
+          <InputGroup
+            placeholder="https://twitter.com/mon-profil"
             register={register}
             id="description"
             type="text"
-            label="URL de mon portfolio"
+            label="URL de mon profil Twitter"
             guidance={null}
           />
-        <InputGroup
-          placeholder="https://ma-boutique-en-ligne.com/"
-          register={register}
-          id="description"
-          type="text"
-          label="URL de ma boutique en ligne"
-          guidance={null}
-        />
-        <InputGroup
-          placeholder="https://ma-boutique-en-ligne.com/"
-          register={register}
-          id="description"
-          type="text"
-          label="URL de ma boutique en ligne"
-          guidance={null}
-        />
-        <InputGroup
-          placeholder="Texte avant le lien de donation"
-          register={register}
-          id="description"
-          type="text"
-          guidance={null}
-        />
-                  <Button label={"Ajouter un lien personnel"} color="white" bg="dark" type="submit" />
+          <InputGroup
+            placeholder="https://mon-site-personnel.com/"
+            register={register}
+            id="description"
+            type="text"
+            label="URL de mon site personnel"
+            guidance={null}
+          />
+            <InputGroup
+              placeholder="https://mon-portoflio.com/"
+              register={register}
+              id="description"
+              type="text"
+              label="URL de mon portfolio"
+              guidance={null}
+            />
+          <InputGroup
+            placeholder="https://ma-boutique-en-ligne.com/"
+            register={register}
+            id="description"
+            type="text"
+            label="URL de ma boutique en ligne"
+            guidance={null}
+          />
 
-        <div className={styles.ctaContainer}>
-          <Button label={"Suivant"} color="white" bg="dark" type="submit" />
-          <Button label={"Suivant"} color="white" bg="dark" type="submit" />
-        </div>
-      </form>
+      {
+        amountOfAdditionalLinks.length > 0 && 
+        amountOfAdditionalLinks.map((el, indexInLinks) => {
+          return (
+            <>
+              <InputCustomDouble
+                key={amountOfAdditionalLinks[indexInLinks]}
+                customInputTitle="Lien personnel additionnel"
+                idDescription={`description-${indexInLinks}`}
+                placeholder="Intitulé du lien/"
+                idFieldValue={amountOfAdditionalLinks[indexInLinks]}
+                fieldValuePlaceHolder="https://lien-personnel.com/"
+                register={register}
+                handleRemoveLink={handleRemoveLink}            
+              />
+        </>
+      )
+        })
+      }
+      <Button label={"Ajouter un lien personnel"} color="black" bg="light" type="button" onClick={handleAddLink}/>
+
+
+          <div className={styles.ctaContainer}>
+            <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
+            <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
+          </div>
+        </form>
+      </>
     );
   };

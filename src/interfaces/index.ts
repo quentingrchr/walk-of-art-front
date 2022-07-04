@@ -19,6 +19,7 @@ export type Icons =
   | "chrono"
   | "calendar"
   | "selectCheck"
+  | "trash"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 
