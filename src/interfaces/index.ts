@@ -25,6 +25,7 @@ export type Icons =
   | "facebook"
   | "smiley"
   | "selectCheck"
+  | "trash"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 

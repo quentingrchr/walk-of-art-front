@@ -1,13 +1,15 @@
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./index.module.scss";
-import { Button, InputGroup } from "@components";
+import { Button, InputGroup, InputCustomDouble, Tooltip } from "@components";
 import { useForm } from "react-hook-form";
 
+const toolTipText = "Toutes les informations qui figurent dans ces champs ont été prises sur le profil. Si vous voulez les modifier, merci de vous rendre sur votre profil"
 export interface IProps {
   handleStepSubmit: (data: any) => void;
   handleBack: () => void;
   defaultValues?: any;
+  amountOfAdditionalLinks: Array<string>;
 }
 
 export interface IRecapProps {
@@ -16,27 +18,43 @@ export interface IRecapProps {
   formState: any;
 }
 export const FormTwo: React.FC<IProps> = ({
-    handleStepSubmit,
-    defaultValues = {},
-  }: IProps) => {
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm({ mode: "onBlur", defaultValues });
-  
-    const onSubmit = (e: any) => {
-      console.log("submit");
-      e.preventDefault();
-  
-      handleSubmit((d) => {
-        console.log(d);
-        handleStepSubmit(d);
-      })(e);
-    };
-  
-    return (
+  handleStepSubmit,
+  defaultValues = {},
+}: IProps) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onBlur", defaultValues });
+
+  const [amountOfAdditionalLinks, setAmountOfAdditionalLinks] = useState<any>([])
+  const handleAddLink = (e: any) => {
+    console.log(amountOfAdditionalLinks);
+    setAmountOfAdditionalLinks([...amountOfAdditionalLinks, `id-${amountOfAdditionalLinks.length + 1}`])
+  }
+  const handleRemoveLink = (idFieldValue: string, e: any) => {
+    console.log('this is ==== id', idFieldValue);
+    setAmountOfAdditionalLinks(amountOfAdditionalLinks.filter(value => value !== idFieldValue))
+  }
+
+
+  const onSubmit = (e: any) => {
+    console.log("submit");
+    e.preventDefault();
+
+    handleSubmit((d) => {
+      console.log(d);
+      handleStepSubmit(d);
+    })(e);
+  };
+
+  return (
+    <>
+      <div className={styles.toolTip}>
+        <Tooltip text={toolTipText} icon="info" type="info" />
+      </div>
       <form className={styles.formContainer} onSubmit={onSubmit}>
+
         <InputGroup
           placeholder="https://facebook.com/mon-profil"
           register={register}
@@ -47,10 +65,10 @@ export const FormTwo: React.FC<IProps> = ({
           guidance={
             errors.title
               ? {
-                  type: "error",
-                  message:
-                    "Le titre doit être rempli pour passer à l’étape suivante",
-                }
+                type: "error",
+                message:
+                  "Le titre doit être rempli pour passer à l’étape suivante",
+              }
               : null
           }
         />
@@ -70,20 +88,12 @@ export const FormTwo: React.FC<IProps> = ({
           label="URL de mon site personnel"
           guidance={null}
         />
-          <InputGroup
-            placeholder="https://mon-portoflio.com/"
-            register={register}
-            id="description"
-            type="text"
-            label="URL de mon portfolio"
-            guidance={null}
-          />
         <InputGroup
-          placeholder="https://ma-boutique-en-ligne.com/"
+          placeholder="https://mon-portoflio.com/"
           register={register}
           id="description"
           type="text"
-          label="URL de ma boutique en ligne"
+          label="URL de mon portfolio"
           guidance={null}
         />
         <InputGroup
@@ -94,19 +104,34 @@ export const FormTwo: React.FC<IProps> = ({
           label="URL de ma boutique en ligne"
           guidance={null}
         />
-        <InputGroup
-          placeholder="Texte avant le lien de donation"
-          register={register}
-          id="description"
-          type="text"
-          guidance={null}
-        />
-                  <Button label={"Ajouter un lien personnel"} color="white" bg="dark" type="submit" />
+
+        {
+          amountOfAdditionalLinks.length > 0 &&
+          amountOfAdditionalLinks.map((el, indexInLinks) => {
+            return (
+              <>
+                <InputCustomDouble
+                  key={amountOfAdditionalLinks[indexInLinks]}
+                  customInputTitle="Lien personnel additionnel"
+                  idDescription={`description-${indexInLinks}`}
+                  placeholder="Intitulé du lien/"
+                  idFieldValue={amountOfAdditionalLinks[indexInLinks]}
+                  fieldValuePlaceHolder="https://lien-personnel.com/"
+                  register={register}
+                  handleRemoveLink={handleRemoveLink}
+                />
+              </>
+            )
+          })
+        }
+        <Button label={"Ajouter un lien personnel"} color="black" bg="light" type="button" onClick={handleAddLink} />
+
 
         <div className={styles.ctaContainer}>
-          <Button label={"Suivant"} color="white" bg="dark" type="submit" />
-          <Button label={"Suivant"} color="white" bg="dark" type="submit" />
+          <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
+          <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
         </div>
       </form>
-    );
-  };
+    </>
+  );
+};

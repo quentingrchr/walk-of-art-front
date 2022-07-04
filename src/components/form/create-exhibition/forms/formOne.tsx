@@ -94,7 +94,12 @@ export const FormOne: React.FC<IProps> = ({
     const onSubmit = (e: any) => {
       e.preventDefault();
   
-      const requiredFieldIsAlreadyFilled = watch("primary-image").length > 0;
+      const requiredFieldIsAlreadyFilled = watch("primary-image")?.length > 0;
+
+      // ? ADDED TO GO STEP 2 FAST.
+
+      // NEED TO CHECK IF REQURIEF FIELD ARE REMPLIE
+
       if (requiredFieldIsAlreadyFilled) {
         handleStepSubmit(watch());
       } else {
@@ -109,7 +114,7 @@ export const FormOne: React.FC<IProps> = ({
       <SelectWorks selectedWork={selectedWork} setSelectedWork={setSelectedWork}/>
 
 
-      <div className={styles.ctaContainer}>
+      <div className={foStyles.ctaContainer}>
 
       <InputGroup
                 placeholder="Titre de l'exposition"
