@@ -1,6 +1,55 @@
 @import "@styles/theme.scss";
 
 // Your style here
-s.button {
-    background-color: tomato;
+.button {
+    --arrows-size: 1.6rem;
+    --anim-time: .3s;
+    display: flex;
+    cursor: pointer;
+
+    &:hover {
+        .button__arrows_ctn {
+            transform: translate3d(calc(-100% - 1rem), 0, 0);
+        }
+
+        .button__label::after {
+            transform: scaleX(1);
+        }
+    }
+
+    &__label {
+        position: relative;
+        width: 100%;
+        // overflow-x: hidden;
+        margin-right: .4rem;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            height: 1px;
+            width: 100%;
+            background-color: $color-black;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--anim-time) ease-in-out;
+        }
+    }
+
+    &__arrows {
+        height: var(--arrows-size);
+        width: var(--arrows-size);
+        min-width: var(--arrows-size);
+        overflow: hidden;
+
+        &_ctn {
+            display: flex;
+            transition: transform var(--anim-time) ease-in-out;
+        }
+    }
+
+    li + li {
+        margin-left: 1rem;
+    }
 }
