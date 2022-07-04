@@ -1,7 +1,5 @@
 @import "@styles/theme.scss";
 
-// Your style here
-
 .formContainer {
   display: flex;
   flex-direction: column;
@@ -93,37 +91,4 @@
     font-size: 1.8rem;
     line-height: 1.5em;
   }
-}
-
-.panneauOrientation {
-font-weight: 400;
-line-height: 19px;
-display: flex;
-align-items: center;
-letter-spacing: -0.02em;
-}
-
-.orientationChoice {
-  display: flex;
-flex-direction: row;
-justify-content: space-between;
-font-size: 14px;
-}
-
-.eheheh {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 80px;
-}
-
-.x {
-  display: flex;
-  flex-direction: column;
-}
-
-.y {
-  display: flex;
-  flex-direction: row;
-  gap: 32px;
 }
