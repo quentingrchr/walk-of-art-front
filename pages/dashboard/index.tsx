@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TemplatePage, Text, ExpoStateBar, ExpoList, Cards } from "@components"
+import { TemplatePage, Text, ExpoStateBar, ExpoList, Cards, ButtonArrow } from "@components"
 import s from './index.module.scss'
 import { checkReservationState } from "./../../src/utility"
 import { ExpoStates, ReservationWithExposition, displayTimeType } from './../../src/types'
@@ -103,6 +103,7 @@ const Dashboard: React.FC = () => {
             }
             <div className={s.subtitle}>
                 <Text tag="h2" typo="heading-lg">Oeuvres</Text>
+                <ButtonArrow to={'/works'} label={'Voir tout'}/>
             </div>
             <div className={s.worksList}>
                 <Cards title="Le livre de la jungle Le livre de la jungle"/>
