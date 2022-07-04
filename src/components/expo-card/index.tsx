@@ -38,7 +38,7 @@ export const ExpoCard: React.FC<IProps> = ({id, img, title, remainingHours, type
                 <div className={s.imgContainer}>
                     <img className={s.img} src={img.src} alt={img.alt} />
                     <div className={s.cards__frame__button}>
-                        <Button label="Voir l'exposition" to={"/"} icon="rightArrow" bg="light" color="black" size="small"/>
+                        <Button label="Voir" to={"/"} icon="rightArrow" bg="light" color="black" size="small"/>
                     </div>
                 </div>
                 <div className={s.cardContent}>
