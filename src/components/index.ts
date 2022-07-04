@@ -41,3 +41,4 @@ export { ButtonArrow } from "./button-arrow"
 export { ConfirmWorkDeleteModal } from "./modal/confirm-work-delete-modal"
 export { Unauthorized } from "./unauthorized"
 export { Search } from './search'
+export { ExpositionBoard } from './exposition-board'
