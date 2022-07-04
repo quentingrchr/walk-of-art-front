@@ -16,7 +16,7 @@ export const Cards: React.FC<IProps> = ({ link, img, title }: IProps) => {
             <div className={styles.cards__frame}>
                 <img className={styles.cards__picture} src={img ? img : cardImg.src} alt="" />
                 <div className={styles.cards__frame__button}>
-                    <Button label="Voir l’oeuvre" to={"/"} icon="rightArrow" bg="light" color="black" size="small"/>
+                    <Button label="Voir" to={"/"} icon="rightArrow" bg="light" color="black" size="small"/>
                 </div>
             </div>
             <a className={styles.cards__link} href={link}>{title}</a>
