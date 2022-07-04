@@ -11,9 +11,14 @@ export { InputFile } from "./inputs/input-file"
 export { InputCustomDouble } from "./inputs/input-custom-double"
 =======
 export { InputCustomDouble } from "./inputs/input-custom-double"
+<<<<<<< HEAD
 export { InputDropdown } from "./inputs/input-dropdown"
 export { InputFile } from "./inputs/input-file"
 >>>>>>> 58619f4 (wip)
+=======
+export { InputDropdown } from "./inputs/input-dropdown";
+export { InputFile } from "./inputs/input-file";
+>>>>>>> 01f3f15 (added custom linComponent)
 export { Guidance } from "./form/guidance"
 export { LoginForm } from "./form/login-form"
 export { Link } from "./link"
@@ -49,5 +54,3 @@ export { Unauthorized } from "./unauthorized"
 export { ExpositionBoard } from './exposition-board'
 export { Search } from "./search"
 export { Modal } from "./modal"
-export { Unauthorized } from "./unauthorized"
-export { ConfirmWorkDeleteModal } from "./modal/confirm-work-delete-modal"

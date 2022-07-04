@@ -24,11 +24,12 @@ import Twitter from "./twitter"
 import Facebook from "./facebook"
 import Smiley from "./smiley"
 import LittleDownArrow from './little-down-arrow'
-import SelectCheck from './select-check'
-import Trash from './trash'
 import ChevronRight from './chevron-right'
 import ChevronLeft from './chevron-left'
 import TopArrow from "./top-arrow"
+import SelectCheck from './select-check'
+import Trash from './trash'
+
 
 interface IProps {
   type: IconsType;
@@ -70,8 +71,7 @@ const Icons: IIcons = {
   trash: <Trash />,
   chevronRight: <ChevronRight />,
   chevronLeft: <ChevronLeft />,
-  warning : <Warning/>,
-  selectCheck: <SelectCheck />
+  warning : <Warning/>
 };
 
 const sizes: any = {

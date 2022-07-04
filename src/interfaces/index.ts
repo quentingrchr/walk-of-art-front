@@ -34,6 +34,7 @@ export type Icons =
   | "bellNotification"
   | "warning"
   | "selectCheck"
+  | "trash"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 
