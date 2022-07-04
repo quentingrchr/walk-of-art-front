@@ -3,7 +3,8 @@
 // Your style here
 
 .expos_list {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 30px;
     margin-top: 16px;
 }
