@@ -15,76 +15,75 @@ export interface IRecapProps {
   handleStepSubmit: (data: any) => void;
   handleBack: () => void;
   formState: any;
-} 
+}
 
 export const FormThree: React.FC<IRecapProps> = ({
-    handleStepSubmit,
-    handleBack,
-    formState,
-  }: IRecapProps) => {
-    console.log({ formState });
-    return (
-      <div className={cn(styles.formContainer, styles.recap)}>
-        <h1 className={styles.panneauOrientation}>Orientation du panneau</h1>
+  handleStepSubmit,
+  handleBack,
+  formState,
+}: IRecapProps) => {
+  console.log({ formState });
+  return (
+    <div className={cn(styles.formContainer, styles.recap)}>
+      <h1 className={styles.panneauOrientation}>Orientation du panneau</h1>
 
-        <form action="" className={styles.orientationChoice}>
-          <div>
-          <input type="radio" id="cc" name="cc" value={'cc'}/>
-            <label htmlFor="cc">Paysage</label>
-          </div>
-           
-<div>
-<input type="radio" id="cc" name="cc" value={'cc'}/>
-            <label htmlFor="cc">Portrait</label>
-</div>
-           
-        </form>
+      <form action="" className={styles.orientationChoice}>
+        <div>
+          <input type="radio" id="cc" name="cc" value={'cc'} />
+          <label htmlFor="cc">Paysage</label>
+        </div>
 
-        <img src="" alt="" />
+        <div>
+          <input type="radio" id="cc" name="cc" value={'cc'} />
+          <label htmlFor="cc">Portrait</label>
+        </div>
 
-        <h1 className={styles.panneauOrientation}>Choix du panneau d'exposition</h1>
+      </form>
 
-        <p>Maps</p>
+      <img src="" alt="" />
 
-        <InputGroup
-                placeholder="Selectionner la ville"
-                id="description"
-                type="text"
-                label="Ville d'exposition*"
-                guidance={null}
-        />
+      <h1 className={styles.panneauOrientation}>Choix du panneau d'exposition</h1>
 
-<InputGroup
-                placeholder="Selectionner la galerie"
-                id="description"
-                type="text"
-                label="Galerie d'exposition*"
-                guidance={null}
-        />
+      <p>Maps</p>
 
-        <h2>Date d'exposition</h2>
+      <InputGroup
+        placeholder="Selectionner la ville"
+        id="description"
+        type="text"
+        label="Ville d'exposition*"
+        guidance={null}
+      />
 
-<form action="" className={styles.eheheh}>
-  <div className={styles.x}><label htmlFor="startExpositionDate">Début</label>
+      <InputGroup
+        placeholder="Selectionner la galerie"
+        id="description"
+        type="text"
+        label="Galerie d'exposition*"
+        guidance={null}
+      />
 
-<input type="date" id="startExpositionDate" name="startExpositionDate"
-     value="2018-07-22"
-     min="2018-01-01" max="2018-12-31"></input></div>
+      <h2>Date d'exposition</h2>
 
-     <div className={styles.x}>
-     <label htmlFor="endExpositionDate">Fin</label>
+      <form action="" className={styles.eheheh}>
+        <div className={styles.x}><label htmlFor="startExpositionDate">Début</label>
 
-<input type="date" id="endExpositionDate" name="endExpositionDate"
-     value="2018-07-22"
-     min="2018-01-01" max="2018-12-31"></input>
-     </div>
-</form>
+          <input type="date" id="startExpositionDate" name="startExpositionDate"
+            value="2018-07-22"
+            min="2018-01-01" max="2018-12-31"></input></div>
 
-<div className={styles.y}>
-<Button label={"Étape suivante"} color="black" bg="light" type="submit" />
-<Button label={"Étape précédente"} color="white" bg="dark" type="submit" />
-</div>
+        <div className={styles.x}>
+          <label htmlFor="endExpositionDate">Fin</label>
+
+          <input type="date" id="endExpositionDate" name="endExpositionDate"
+            value="2018-07-22"
+            min="2018-01-01" max="2018-12-31"></input>
+        </div>
+      </form>
+
+      <div className={styles.y}>
+        <Button label={"Étape suivante"} color="black" bg="light" type="submit" />
+        <Button label={"Étape précédente"} color="white" bg="dark" type="submit" />
       </div>
-    );
-  };
-  
+    </div>
+  );
+};
