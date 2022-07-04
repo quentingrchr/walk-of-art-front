@@ -5,9 +5,14 @@ export { HeadingStrong } from "./heading-strong"
 export { Icon } from "./icon"
 export { Input } from "./inputs/input"
 export { InputGroup } from "./inputs/input-group"
+<<<<<<< HEAD
 export { InputCustomDouble } from "./inputs/input-custom-double"
 export { InputDropdown } from "./inputs/input-dropdown";
 export { InputFile } from "./inputs/input-file";
+=======
+export { InputDropdown } from "./inputs/input-dropdown"
+export { InputFile } from "./inputs/input-file"
+>>>>>>> fa7ba84 (new component)
 export { Guidance } from "./form/guidance"
 export { LoginForm } from "./form/login-form"
 export { Link } from "./link"
@@ -35,5 +40,6 @@ export { NotificationWrapper } from "./notification-wrapper"
 export { EditProfile } from "./form/edit-profile"
 export { ExpositionBoard } from './exposition-board'
 export { Checkbox } from "./checkbox"
-export { Search } from './search'
 export { CardGallery } from './card-gallery'
+export { Search } from "./search"
+export { ImagesPreview } from "./images-preview"
