@@ -35,8 +35,8 @@ export { NotificationWrapper } from "./notification-wrapper"
 export { EditProfile } from "./form/edit-profile"
 export { ExpositionBoard } from './exposition-board'
 export { Checkbox } from "./checkbox"
-export { CardGallery } from './card-gallery'
 export { Search } from "./search"
+export { CardGallery } from "./card-gallery"
 export { ImagesPreview } from "./images-preview"
 export { ButtonArrow } from "./button-arrow"
 export { Map } from "./map"
