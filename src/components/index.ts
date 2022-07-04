@@ -5,20 +5,9 @@ export { HeadingStrong } from "./heading-strong"
 export { Icon } from "./icon"
 export { Input } from "./inputs/input"
 export { InputGroup } from "./inputs/input-group"
-<<<<<<< HEAD
 export { InputDropdown } from "./inputs/input-dropdown"
 export { InputFile } from "./inputs/input-file"
 export { InputCustomDouble } from "./inputs/input-custom-double"
-=======
-export { InputCustomDouble } from "./inputs/input-custom-double"
-<<<<<<< HEAD
-export { InputDropdown } from "./inputs/input-dropdown"
-export { InputFile } from "./inputs/input-file"
->>>>>>> 58619f4 (wip)
-=======
-export { InputDropdown } from "./inputs/input-dropdown";
-export { InputFile } from "./inputs/input-file";
->>>>>>> 01f3f15 (added custom linComponent)
 export { Guidance } from "./form/guidance"
 export { LoginForm } from "./form/login-form"
 export { Link } from "./link"
