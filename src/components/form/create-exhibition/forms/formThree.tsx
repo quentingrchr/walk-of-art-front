@@ -15,7 +15,7 @@ export interface IRecapProps {
   handleStepSubmit: (data: any) => void;
   handleBack: () => void;
   formState: any;
-}
+} 
 
 
 export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues = {} } ) => {
