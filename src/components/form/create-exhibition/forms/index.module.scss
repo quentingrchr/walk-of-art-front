@@ -9,6 +9,8 @@
   justify-content: center;
   width: 100%;
   gap: 3rem;
+  font-family: $font-inter;
+  font-size: 16px;
 }
 
 .formTwoContainer {
@@ -86,5 +88,35 @@
   }
 }
 
+.panneauOrientation {
+font-weight: 400;
+line-height: 19px;
+display: flex;
+align-items: center;
+letter-spacing: -0.02em;
+}
 
+.orientationChoice {
+  display: flex;
+flex-direction: row;
+justify-content: space-between;
+font-size: 14px;
+}
 
+.eheheh {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+.x {
+  display: flex;
+  flex-direction: column;
+}
+
+.y {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}

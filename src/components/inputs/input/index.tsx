@@ -9,7 +9,7 @@ export type IProps = {
   placeholder: string;
   value?: string;
   type?: InputTypes;
-  register: any;
+  register?: any;
   required?: boolean;
 };
 
@@ -22,9 +22,9 @@ const TextInput = ({ id, placeholder, register, required }: IProps) => {
         className={styles.input}
         type="text"
         // required={required}
-        {...register(id, {
-          required: required ? true : false,
-        })}
+        // {...register(id, {
+        //   required: required ? true : false,
+        // })}
       />
     </div>
   );
