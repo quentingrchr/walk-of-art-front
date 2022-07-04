@@ -43,3 +43,4 @@ export { Checkbox } from "./checkbox"
 export { CardGallery } from './card-gallery'
 export { Search } from "./search"
 export { ImagesPreview } from "./images-preview"
+export { ButtonArrow } from "./button-arrow"
