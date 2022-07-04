@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import styles from "./index.module.scss"
-import { Text } from "./../text/index"
 import { ExpoStates } from "./../../types"
+import { ButtonArrow, Text } from '@components'
 
 export type IProps = {
     states: ExpoStates[],
@@ -58,6 +58,7 @@ export const ExpoStateBar: React.FC<IProps> = ({states, onClick}: IProps) => {
                     })
                 }
             </ul>
+            <ButtonArrow to={'/exhibitions'} label={'Voir tout'}/>
         </div>
     )
 }

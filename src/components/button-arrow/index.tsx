@@ -1,14 +1,23 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { useRouter } from 'next/router'
 import s from "./index.module.scss"
 
 export type IProps = {
-    label: string
+    label: string,
+    to: string
 }
 
-export const ButtonArrow: React.FC<IProps> = ({ label }: IProps) => {
+export const ButtonArrow: React.FC<IProps> = ({ label, to }: IProps) => {
+    const router = useRouter()
+    
+    const handleClick = (_event) => {
+        _event.preventDefault()
+        router.push(to)
+    }
+    
     return (
-        <button className={s.button}>
+        <a className={s.button} href={to} onClick={handleClick}>
             {label}
-        </button>
+        </a>
     )
 }
