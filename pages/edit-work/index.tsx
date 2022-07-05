@@ -9,7 +9,7 @@ const CreateWork: React.FC = () => {
         Page d'édition d'une oeuvre
       </Text>
       <CreateWorkForm /> */}
-      <Map />
+      {/* <Map /> */}
     </TemplatePage>
   )
 }

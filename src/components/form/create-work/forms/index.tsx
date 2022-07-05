@@ -155,15 +155,19 @@ export const FormThree: React.FC<IRecapProps> = ({
   formState,
 }: IRecapProps) => {
   console.log({ formState })
+  let secondaryImages: any = []
+  if (formState["secondary-image-1"])
+    secondaryImages = [...secondaryImages, formState["secondary-image-1"]]
+  if (formState["secondary-image-2"])
+    secondaryImages = [...secondaryImages, formState["secondary-image-2"]]
+  if (formState["secondary-image-3"])
+    secondaryImages = [...secondaryImages, formState["secondary-image-3"]]
+
   return (
     <div className={cn(styles.formContainer, styles.recap)}>
       <ImagesPreview
         primaryImage={getBlopUrlFromFile(formState["primary-image"][0])}
-        secondaryImages={[
-          getBlopUrlFromFile(formState["secondary-image-1"][0]),
-          getBlopUrlFromFile(formState["secondary-image-2"][0]),
-          getBlopUrlFromFile(formState["secondary-image-3"][0]),
-        ]}
+        secondaryImages={secondaryImages.length > 0 ? secondaryImages : null}
       />
 
       <p className={styles.title}>{formState.title}</p>

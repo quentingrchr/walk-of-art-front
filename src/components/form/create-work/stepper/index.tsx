@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
-import { useFormContext } from "react-hook-form";
+import React, { useEffect } from "react"
+import { useFormContext } from "react-hook-form"
 
-import s from "./index.module.scss";
+import s from "./index.module.scss"
 
-import { FormOne, FormTwo, FormThree } from "../forms";
-import { Stepper, Button } from "@components";
+import { FormOne, FormTwo, FormThree } from "../forms"
+import { Stepper, Button } from "@components"
 
-export type IProps = {};
+export type IProps = {
+  onFormSubmit: (values: any) => void
+  hasSubmittedForm: boolean
+}
 
 const STEPS = [
   {
@@ -27,13 +30,14 @@ const STEPS = [
     number: 3,
     completed: false,
   },
-];
+]
 
 const getStepComponent = (
   step: number,
   compiledForm,
   handleStepSubmit,
-  handleBack
+  handleBack,
+  handleFormSubmit
 ) => {
   switch (step) {
     case 0:
@@ -43,7 +47,7 @@ const getStepComponent = (
           handleBack={handleBack}
           defaultValues={compiledForm.one}
         />
-      );
+      )
     case 1:
       return (
         <FormTwo
@@ -51,7 +55,7 @@ const getStepComponent = (
           handleBack={handleBack}
           defaultValues={compiledForm.two}
         />
-      );
+      )
     case 2:
       return (
         <FormThree
@@ -59,99 +63,102 @@ const getStepComponent = (
           handleBack={handleBack}
           formState={{ ...compiledForm.one, ...compiledForm.two }}
         />
-      );
+      )
+
+    case 3:
+      handleFormSubmit({ ...compiledForm.one, ...compiledForm.two })
+      return <h1>Completed</h1>
     default:
-      return "Unknown step";
+      return "Unknown step"
   }
-};
+}
 
-export const FormStepper: React.FC<IProps> = () => {
-  const [compiledForm, setCompiledForm] = React.useState({});
-  const [steps, setSteps] = React.useState(STEPS);
+export const FormStepper: React.FC<IProps> = ({
+  onFormSubmit,
+  hasSubmittedForm,
+}: IProps) => {
+  const [compiledForm, setCompiledForm] = React.useState({})
+  const [steps, setSteps] = React.useState(STEPS)
 
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState(0)
 
   const completeStep = (step: number) => {
     const newSteps = steps.map((s, i) => {
       if (i === step) {
-        return { ...s, completed: true };
+        return { ...s, completed: true }
       }
-      return s;
-    });
-    setSteps(newSteps);
-  };
+      return s
+    })
+    setSteps(newSteps)
+  }
 
   const uncompleteStep = (step: number) => {
     const newSteps = steps.map((s, i) => {
       if (i === step) {
-        return { ...s, completed: false };
+        return { ...s, completed: false }
       }
-      return s;
-    });
-    setSteps(newSteps);
-  };
+      return s
+    })
+    setSteps(newSteps)
+  }
 
   const handleStepSubmit = (data: any) => {
-    console.log({ data }, "in handleStepSubmit");
     switch (activeStep) {
       case 0:
-        setCompiledForm({ ...compiledForm, one: data });
-        break;
+        setCompiledForm({ ...compiledForm, one: data })
+        break
       case 1:
-        setCompiledForm({ ...compiledForm, two: data });
-        break;
+        setCompiledForm({ ...compiledForm, two: data })
+        break
       case 2:
-        setCompiledForm({ ...compiledForm, three: data });
-        break;
+        setCompiledForm({ ...compiledForm })
+        break
       default:
-        throw new Error("not a valid step");
+        throw new Error("not a valid step")
     }
     setActiveStep((prevActiveStep) => {
-      completeStep(prevActiveStep);
-      return prevActiveStep + 1;
-    });
-  };
+      completeStep(prevActiveStep)
+      return prevActiveStep + 1
+    })
+  }
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => {
-      uncompleteStep(prevActiveStep - 1);
-      return prevActiveStep - 1;
-    });
-  };
+      uncompleteStep(prevActiveStep - 1)
+      return prevActiveStep - 1
+    })
+  }
 
   const handleReset = () => {
-    setActiveStep(0);
-    setCompiledForm({});
-  };
-
-  const handleSubmit = (form: any) => {
-    console.log("submit", form);
-    return true;
-  };
+    setActiveStep(0)
+  }
 
   useEffect(() => {
-    console.log({ compiledForm });
-  }, [compiledForm]);
+    console.log({ compiledForm })
+  }, [compiledForm])
 
   return (
     <div className={s.container}>
       <div>
-        <Stepper
-          variant="checked"
-          activeStep={activeStep}
-          steps={steps}
-          completeOne={() => { } }
-          setActiveStep={setActiveStep}
-        />
+        {!hasSubmittedForm && (
+          <Stepper
+            variant="checked"
+            activeStep={activeStep}
+            steps={steps}
+            completeOne={() => {}}
+            setActiveStep={setActiveStep}
+          />
+        )}
       </div>
       <div className={s.formContainer}>
         {getStepComponent(
           activeStep,
           compiledForm,
           handleStepSubmit,
-          handleBack
+          handleBack,
+          onFormSubmit
         )}
       </div>
     </div>
-  );
-};
+  )
+}
