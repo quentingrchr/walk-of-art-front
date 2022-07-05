@@ -9,7 +9,7 @@
 
     &:hover {
         .button__arrows_ctn {
-            transform: translate3d(calc(-100% - 1rem), 0, 0);
+            transform: none;
         }
 
         .button__label::after {
@@ -20,7 +20,6 @@
     &__label {
         position: relative;
         width: 100%;
-        // overflow-x: hidden;
         margin-right: .4rem;
 
         &::after {
@@ -42,9 +41,10 @@
         width: var(--arrows-size);
         min-width: var(--arrows-size);
         overflow: hidden;
-
+        
         &_ctn {
             display: flex;
+            transform: translate3d(calc(-100% - 1rem), 0, 0);
             transition: transform var(--anim-time) ease-in-out;
         }
     }
