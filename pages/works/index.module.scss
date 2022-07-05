@@ -9,14 +9,13 @@
     top: 8.6rem;
     z-index: 10;
     background-color: $color-beige;
-    padding-top: 4.8rem;
-    padding-bottom: 4rem;
+    padding: 4rem 0;
     height: 21.7rem;
     overflow: hidden;
     transition: height .2s ease-in;
 
     &.scrollDown {
-        height: 12rem;
+        height: 11.2rem;
     }
 }
 

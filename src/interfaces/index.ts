@@ -28,6 +28,7 @@ export type Icons =
   | "trash"
   | "chevronRight"
   | "chevronLeft"
+  | "topArrow"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 
