@@ -1,10 +1,8 @@
 
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import styles from "./index.module.scss";
-import cn from "classnames";
-import { Button, Input, InputGroup, InputFile, InputCustomDouble, Tooltip } from "@components";
-import { useForm, useFormContext, FormProvider } from "react-hook-form";
-import { getBlopUrlFromFile } from "../../../../utility";
+import { Button,  InputGroup,  InputCustomDouble, Tooltip } from "@components";
+import { useForm } from "react-hook-form";
 
 const toolTipText = "Toutes les informations qui figurent dans ces champs ont été prises sur le profil. Si vous voulez les modifier, merci de vous rendre sur votre profil"
 export interface IProps {
@@ -19,6 +17,7 @@ export interface IRecapProps {
   handleBack: () => void;
   formState: any;
 }
+
 export const FormTwo: React.FC<IProps> = ({
     handleStepSubmit,
     defaultValues = {},
@@ -120,7 +119,7 @@ export const FormTwo: React.FC<IProps> = ({
                 idFieldValue={amountOfAdditionalLinks[indexInLinks]}
                 fieldValuePlaceHolder="https://lien-personnel.com/"
                 register={register}
-                handleRemoveLink={handleRemoveLink}            
+                handleRemoveLink={() => handleRemoveLink}            
               />
         </>
       )

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styles from "./formThree.module.scss";
-import cn from "classnames";
 import { Button, InputGroup, ExpositionBoard } from "@components";
 import cardImg from "../../../../assets/images/cardImg.png"
+import { useForm } from "react-hook-form";
+
 
 
 export interface IProps {
@@ -19,12 +20,25 @@ export interface IRecapProps {
 }
 
 
-export const FormThree: React.FC<IRecapProps> = () => {
+export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues = {} } ) => {
 
   const [orientation, setOrientation] = useState<string>('landscape')
 
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onBlur", defaultValues });
+
+  const onSubmit = (event: any) => {
+    event.preventDefault();
+
+    handleSubmit((data) => {
+      handleStepSubmit(data);
+    })(event);
+  };
+
   return (
-    <div className={styles.formContainer}>
+    <form className={styles.formContainer} onSubmit={onSubmit}>
       <h1 className={styles.boardOrientation}>Orientation du panneau</h1>
 
       <div className={styles.boardOrientationChoice}>
@@ -82,9 +96,9 @@ export const FormThree: React.FC<IRecapProps> = () => {
       </form>
 
       <div className={styles.containerOfButtons}>
-        <Button label={"Étape suivante"} color="black" bg="light" type="submit" />
-        <Button label={"Étape précédente"} color="white" bg="dark" type="submit" />
+        <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
+        <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
       </div>
-    </div>
+    </form>
   )
 }
