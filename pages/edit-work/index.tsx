@@ -1,14 +1,15 @@
 import React from "react"
-import { TemplatePage, Text, CreateWorkForm, InputFile } from "@components"
+import { TemplatePage, Text, CreateWorkForm, InputFile, Map } from "@components"
 
 const CreateWork: React.FC = () => {
   return (
     <TemplatePage isLogged={true}>
-      {/* PAGE CONTENT */}
+      {/* PAGE CONTENT
       <Text tag="h1" typo="paragraph-md">
         Page d'édition d'une oeuvre
       </Text>
-      <CreateWorkForm />
+      <CreateWorkForm /> */}
+      <Map />
     </TemplatePage>
   )
 }
