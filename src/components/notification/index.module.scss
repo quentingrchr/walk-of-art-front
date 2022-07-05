@@ -19,13 +19,16 @@
         text-align: center;
 
         & > p {
-            text-align: initial;
             margin: 0 1.6rem 0 1.6rem;
 
             & > span {
-                display: inline-block;
-                width: 130px;
-                overflow: hidden;
+                display: flex;
+            }
+
+            & > span > b {
+                display: block;
+                width: 120px;
+                overflow-x: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
             }

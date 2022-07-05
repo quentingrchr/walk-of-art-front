@@ -4,12 +4,34 @@ import styles from "./index.module.scss"
 import Link from "next/link"
 import { Logo, Navbar, DropdownButton, Icon, Button } from "@components"
 import { useRouter } from "next/router"
+import { NotificationWrapper } from "@components/notification-wrapper"
+import { Notification } from "@components/notification"
 
 export type IProps = {
   isLogged: boolean
 }
 
 export const Header: React.FC<IProps> = (props: IProps) => {
+
+  const [appear, setAppear] = useState(false)
+  const array = [
+    // {
+    //   id: 1,
+    //   title: 'Au dela du monde hjgjhgjhjhgjgkjghjhgjghhj',
+    //   type: 'success'
+    // },
+    // {
+    //   id: 2,
+    //   title: 'Au dela du monde',
+    //   type: 'success'
+    // },
+    // {
+    //   id: 3,
+    //   'title': 'Au deekjenlrejknlkern',
+    //   type: 'success'
+    // },
+  ]
+
   const router = useRouter()
   if (
     typeof window == "undefined" ||
@@ -21,6 +43,10 @@ export const Header: React.FC<IProps> = (props: IProps) => {
   const logout = () => {
     clearAuthTokens()
     router.push("/")
+  }
+
+  const notificationAppear = () => {
+    setAppear(!appear)
   }
 
   return (
@@ -40,11 +66,32 @@ export const Header: React.FC<IProps> = (props: IProps) => {
               className={styles.dropdownButton}
             />
             <span className={styles.link}>
-              <Icon
-                type="notification"
-                size="large"
-                onClick={() => console.log("notification")}
-              />
+                {array.length === 0 ? <Icon
+                  type="notification"
+                  size="large"
+                  onClick={() => setAppear(!appear)}
+                />
+                  :
+                <Icon 
+                  type="hasNotification" 
+                  size="large"
+                  onClick={() => setAppear(!appear)}
+                />}
+
+                {appear ?
+                <NotificationWrapper notifList={array}>
+                  {/* { array.map(item => {
+                     return (<Notification key={item.id} type='success' cta={{
+                      label: 'Voir l’exposition',
+                      to : '/'
+                    }}>
+                        <span>L’exposition <b>“{item.title}”</b>a été commentée</span>
+                    </Notification>)
+                  })
+                  } */}
+                </NotificationWrapper>
+                  : null
+                }
             </span>
             <span className={styles.link}>
               <Link href="/profile">
