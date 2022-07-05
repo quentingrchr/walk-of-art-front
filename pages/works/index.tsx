@@ -223,9 +223,27 @@ const Works: React.FC = () => {
                 </aside>
             </section>
             <section className={style.bodySection}>
-                {filterWorksList(works, filters).map((work) => (
-                    <CardGallery key={work.id} title={work.title} createdAt={work.created_at}/>
-                ))}
+                <div>
+                    {
+                        filterWorksList(works, filters).map((work, index) => (
+                            (index % 3) === 0 && <CardGallery key={work.id} title={work.title} createdAt={work.created_at}/>
+                        ))
+                    }
+                </div>
+                <div>
+                    {
+                        filterWorksList(works, filters).map((work, index) => (
+                            (index % 3) === 1 && <CardGallery key={work.id} title={work.title} createdAt={work.created_at}/>
+                        ))
+                    }
+                </div>
+                <div>
+                    {
+                        filterWorksList(works, filters).map((work, index) => (
+                            (index % 3) === 2 && <CardGallery key={work.id} title={work.title} createdAt={work.created_at}/>
+                        ))
+                    }
+                </div>
             </section>
         </TemplatePage>
     )
