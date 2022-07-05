@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import s from "./index.module.scss";
 
-import { FormOne, FormTwo, FormThree } from "../forms";
+import { FormOne, FormTwo, FormThree, FormFour } from "../forms";
 import { Stepper } from "@components";
 
 export type IProps = {};
@@ -24,6 +24,12 @@ const STEPS = [
     id: 3,
     label: "Etape 3",
     number: 3,
+    completed: false,
+  },
+  {
+    id: 4,
+    label: "Etape 4",
+    number: 4,
     completed: false,
   },
 ];
@@ -49,7 +55,7 @@ const getStepComponent = (
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
           defaultValues={compiledForm.two}
-        />
+          amountOfAdditionalLinks={[]} />
       );
     case 2:
       return (
@@ -57,6 +63,14 @@ const getStepComponent = (
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
           formState={{ ...compiledForm.one, ...compiledForm.two }}
+        />
+      );
+    case 3:
+      return (
+        <FormFour
+          handleStepSubmit={handleStepSubmit}
+          handleBack={handleBack}
+          formState={{ ...compiledForm.three }}
         />
       );
     default:
@@ -140,7 +154,7 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
           variant="checked"
           activeStep={activeStep}
           steps={steps}
-          completeOne={() => {}}
+          completeOne={() => { }}
         />
       </div>
       <div className={s.formContainer}>

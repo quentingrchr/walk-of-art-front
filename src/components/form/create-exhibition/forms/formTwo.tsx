@@ -17,6 +17,7 @@ export interface IRecapProps {
   handleBack: () => void;
   formState: any;
 }
+
 export const FormTwo: React.FC<IProps> = ({
   handleStepSubmit,
   defaultValues = {},
