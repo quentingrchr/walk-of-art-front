@@ -15,7 +15,7 @@ export type IProps = {
   type?: InputTypes;
   register: any;
   required?: boolean;
-  handleRemoveLink: (idFieldValue: string) => any;
+  handleRemoveLink: any;
 };
 
 const TextInput = ({ customInputTitle, idDescription, idFieldValue, placeholder, fieldValuePlaceHolder, register, required, handleRemoveLink }: IProps) => {

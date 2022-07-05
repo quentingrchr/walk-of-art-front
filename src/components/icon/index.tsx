@@ -26,13 +26,15 @@ import Smiley from "./smiley"
 import LittleDownArrow from './little-down-arrow'
 import SelectCheck from './select-check'
 import Trash from './trash'
-
+import ChevronRight from './chevron-right'
+import ChevronLeft from './chevron-left'
 
 interface IProps {
   type: IconsType;
   size: sizeIcon;
   color?: Colors | "none";
   children?: React.ReactNode;
+  classname?: string,
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 interface IIcons {
@@ -63,7 +65,9 @@ const Icons: IIcons = {
   facebook : <Facebook/>,
   smiley : <Smiley/>,
   selectCheck: <SelectCheck />,
-  trash: <Trash />
+  trash: <Trash />,
+  chevronRight: <ChevronRight />,
+  chevronLeft: <ChevronLeft />
 };
 
 const sizes: any = {
@@ -81,6 +85,7 @@ export const Icon = ({
   onClick,
   size,
   color = "none",
+  classname,
   ...props
 }: IProps) => {
   return (

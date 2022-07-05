@@ -46,9 +46,15 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
           <div className={foStyles.selectionChoice}>
             <div className={foStyles.containerSelectedExhibition}>
               <div className={foStyles.selectCheckIcon}>
-                <Icon type={"selectCheck"} size={"none"} />
+                <Icon classname={foStyles.arrow} type={"selectCheck"} size={"none"} />
               </div>
+              <div className={foStyles.cardContainer}>
+              <Icon classname={foStyles.arrowLeft} type={"chevronLeft"} size={"small"} />
+
               <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={true}/>
+              <Icon classname={foStyles.arrowRight} type={"chevronRight"} size={"small"} />
+
+              </div>
             </div>
     
                  <div className={foStyles.ctas}>

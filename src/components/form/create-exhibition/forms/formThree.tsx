@@ -25,6 +25,7 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
   const [orientation, setOrientation] = useState<string>('landscape')
 
   const {
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "onBlur", defaultValues });
@@ -43,12 +44,12 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
 
       <div className={styles.boardOrientationChoice}>
         <div onClick={() => setOrientation('landscape')}>
-          <input type="radio" id="cc" name="cc" value={'cc'} />
+          <input type="radio" id="cc" name="cc" value={'cc'} checked={orientation === 'landscape'}/>
           <label htmlFor="cc">Paysage</label>
         </div>
 
         <div onClick={() => setOrientation('portrait')} >
-          <input type="radio" id="cc" name="cc" value={'cc'} />
+          <input type="radio" id="cc" name="cc" value={'cc'} checked={orientation === 'portrait'} />
           <label htmlFor="cc">Portrait</label>
         </div>
       </div>
@@ -67,6 +68,7 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
         type="text"
         label="Ville d'exposition*"
         guidance={null}
+        register={register}
       />
 
       <InputGroup
@@ -75,6 +77,7 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
         type="text"
         label="Galerie d'exposition*"
         guidance={null}
+        register={register}
       />
 
       <h2>Date d'exposition</h2>
