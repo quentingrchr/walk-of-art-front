@@ -8,7 +8,7 @@ import Logout from "./logout"
 import Profile from "./profile"
 import Commentary from "./commentary"
 import RightArrow from "./right-arrow"
-import TopArrow from "./top-arrow"
+import LeftArrow from "./left-arrow"
 import DownArrow from "./down-arrow"
 import Cross from "./cross"
 import Check from "./check"
@@ -38,7 +38,7 @@ const Icons: IIcons = {
   commentary: <Commentary/>,
   rightArrow: <RightArrow/>,
   downArrow: <DownArrow />,
-  topArrow: <TopArrow />,
+  leftArrow: <LeftArrow />,
   cross: <Cross/>,
   check: <Check/>,
   checkbox: <Checkbox/>,

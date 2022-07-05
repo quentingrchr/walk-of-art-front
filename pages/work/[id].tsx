@@ -4,6 +4,7 @@ import style from "./index.module.scss"
 import cn from "classnames"
 import { TemplatePage, HeadingStrong, Text, Icon, ImagesPreview, Button } from "@components"
 import cardImg from "../../src/assets/images/cardImg.png"
+import { getDateWithoutHours } from "../../src/utility"
 
 
 interface Work {
@@ -60,7 +61,7 @@ const Works: React.FC = () => {
         <TemplatePage isLogged={true}>
             <span className={style.backLink}>
                 <a href="/works">
-                    <Icon type="topArrow" size="small" color="black" />
+                    <Icon type="leftArrow" size="small" color="black" />
                     <Text tag="p" typo="paragraph-md">Retour à la liste des oeuvres</Text>
                 </a>
             </span>
@@ -68,7 +69,7 @@ const Works: React.FC = () => {
                 <ImagesPreview primaryImage={cardImg.src} secondaryImages={[cardImg.src, cardImg.src]} />
                 <Text tag="h1" typo="heading-lg">{work.title}</Text>
                 <Text tag="p" typo="paragraph-md">{work.description}</Text>
-                <span className={style.date}>{`Crée le ${work.created_at}`}</span>
+                <span className={style.date}>{`Créée le ${getDateWithoutHours(work.created_at)}`}</span>
 
                 <button className={style.exhibButton} onClick={() => console.log('ok')}>Créer une exposition avec cette oeuvre</button>
                 
