@@ -25,6 +25,7 @@ export type Icons =
   | "topArrow"
   | "leftArrow"
   | "hasNotification"
+  | "bellNotification"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 
