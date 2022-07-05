@@ -224,7 +224,7 @@ const Works: React.FC = () => {
             </section>
             <section className={style.bodySection}>
                 {filterWorksList(works, filters).map((work) => (
-                    <CardGallery key={work.id} title={work.title} createdAt={work.created_at}/>
+                    <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
                 ))}
             </section>
         </TemplatePage>

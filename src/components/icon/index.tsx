@@ -1,22 +1,23 @@
-import { Colors, Icons as IconsType , sizeIcon } from "@interfaces/index";
-import cn from "classnames";
-import styles from "./index.module.scss";
+import { Colors, Icons as IconsType , sizeIcon } from "@interfaces/index"
+import cn from "classnames"
+import styles from "./index.module.scss"
 
-import Avatar from "./avatar";
-import Notification from "./notification";
-import Logout from "./logout";
-import Profile from "./profile";
-import Commentary from "./commentary";
-import RightArrow from "./right-arrow";
-import Cross from "./cross";
-import Check from "./check";
-import Checkbox from "./checkbox";
-import Information from "./information";
-import DropFile from "./drop-file";
-import DownArrow from "./down-arrow";
-import SearchIcon from "./search-icon";
-import Chrono from "./chrono";
-import Calendar from "./calendar";
+import Avatar from "./avatar"
+import Notification from "./notification"
+import Logout from "./logout"
+import Profile from "./profile"
+import Commentary from "./commentary"
+import RightArrow from "./right-arrow"
+import TopArrow from "./top-arrow"
+import DownArrow from "./down-arrow"
+import Cross from "./cross"
+import Check from "./check"
+import Checkbox from "./checkbox"
+import Information from "./information"
+import DropFile from "./drop-file"
+import SearchIcon from "./search-icon"
+import Chrono from "./chrono"
+import Calendar from "./calendar"
 
 interface IProps {
   type: IconsType;
@@ -37,6 +38,7 @@ const Icons: IIcons = {
   commentary: <Commentary/>,
   rightArrow: <RightArrow/>,
   downArrow: <DownArrow />,
+  topArrow: <TopArrow />,
   cross: <Cross/>,
   check: <Check/>,
   checkbox: <Checkbox/>,
