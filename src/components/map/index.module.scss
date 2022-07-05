@@ -1,0 +1,23 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+.map-container {
+  height: 400px;
+  width: 400px;
+}
+
+.marker {
+  width: 5rem;
+  height: 5rem;
+  background-color: $color-black;
+  color: $color-white;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

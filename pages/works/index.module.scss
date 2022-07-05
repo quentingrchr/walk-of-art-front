@@ -9,13 +9,15 @@
     top: 8.6rem;
     z-index: 10;
     background-color: $color-beige;
-    padding: 4rem 0;
-    height: 21.7rem;
+    padding-top: 3.2rem;
+    padding-bottom: 2rem;
+    height: 18rem;
     overflow: hidden;
     transition: height .2s ease-in;
 
+
     &.scrollDown {
-        height: 11.2rem;
+        height: 10rem;
     }
 }
 
@@ -36,6 +38,22 @@
         align-items: center;
         gap: .8rem;
         cursor: pointer;
+
+        div {
+            transition: transform .3s ease-in-out;
+        }
+
+        &[data-order="asc"] {
+            div {
+                transform: rotate(180deg);
+            }
+        }
+
+        &[data-order="dsc"] {
+            div {
+                transform: none;
+            }
+        }
     }
 }
 

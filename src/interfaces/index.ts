@@ -18,6 +18,7 @@ export type Icons =
   | "chrono"
   | "calendar"
   | "leftArrow"
+  | "bellNotification"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 

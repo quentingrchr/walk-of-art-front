@@ -1,16 +1,29 @@
 import React, { ReactElement, ReactNode } from "react"
 import styles from "./index.module.scss"
+import { Notification } from ".."
 
 export type IProps = {
-    children: ReactNode[] | null
+    notifList: ReactNode[], 
 }
 
-export const NotificationWrapper: React.FC<IProps> = ({children}: IProps) => {
+export const NotificationWrapper: React.FC<IProps> = ({notifList}: IProps) => {
     return (
         <div className={styles.containerWrapper}>
-            <div className={children ? styles.notificationWrapper : styles.notificationWrapper__empty}>
+            <div className={notifList.length ? styles.notificationWrapper : styles.notificationWrapper__empty}>
                 {
-                    !children ? <p>Vous n’avez pas de notifications</p> : children
+                 notifList.length ? notifList.map(item => {
+                     return (<Notification key={item.id} type={item.type} cta={{
+                      label: 'Voir l’exposition',
+                      to : '/'
+                    }}>
+                        {
+                            item.type === 'commentary' ? <span>L’exposition <b>“{item.title}”</b> a été commentée</span> :
+                            item.type === 'success' ? <span>L’exposition <b>“{item.title}”</b> a été validée pour publication</span> :
+                            <span>L’exposition <b>“{item.title}”</b> a été refusée pour publication</span>
+                        }
+                        
+                    </Notification>)
+                  }) : <p>Vous n'avez pas de notifications</p>
                 }
             </div> 
         </div>
