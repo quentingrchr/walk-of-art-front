@@ -163,8 +163,7 @@ const Works: React.FC = () => {
         })
     }
 
-    const filterWorksList = (list: Work[], filters) => {
-        console.log("fiiiltre")
+    const filterWorksList = (list: Work[], filters: Filters) => {
         let newList: Work[] = [...list]
 
         if(filters.search !== null) {
@@ -184,7 +183,6 @@ const Works: React.FC = () => {
 
     /* Init works */
     useEffect(() => {
-        console.log('use init')
         setWorks(data)
     }, [])
     
