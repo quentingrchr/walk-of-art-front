@@ -35,6 +35,8 @@ export type Icons =
   | "warning"
   | "selectCheck"
   | "trash"
+  | "chevronRight"
+  | "chevronLeft"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 
