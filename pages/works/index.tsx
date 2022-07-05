@@ -133,6 +133,8 @@ const Works: React.FC = () => {
                 orderDate: "asc"
             }
         })
+
+        console.log(filters.orderDate)
     }
 
     const filterExhibitionsProcess = (list: Work[]) => {
@@ -209,7 +211,7 @@ const Works: React.FC = () => {
                                 onChange={handleCheckExhibitions}
                             />
                         </li>
-                        <li className={style.date} onClick={() => handleSortDate()}>
+                        <li className={style.date} onClick={() => handleSortDate()} data-order={filters.orderDate}>
                             <Icon type="downArrow" size="small" color="black" />
                             <Text tag="p" typo="label">Date de création</Text>
                         </li>

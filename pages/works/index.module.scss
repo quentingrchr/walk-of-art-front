@@ -37,6 +37,22 @@
         align-items: center;
         gap: .8rem;
         cursor: pointer;
+
+        div {
+            transition: transform .3s ease-in-out;
+        }
+
+        &[data-order="asc"] {
+            div {
+                transform: rotate(180deg);
+            }
+        }
+
+        &[data-order="dsc"] {
+            div {
+                transform: none;
+            }
+        }
     }
 }
 
