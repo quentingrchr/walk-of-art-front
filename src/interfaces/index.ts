@@ -17,7 +17,7 @@ export type Icons =
   | "searchIcon"
   | "chrono"
   | "calendar"
-  | "";
+  | "hasNotification";
 export type NotificationType = "success" | "error" | "commentary";
 
 export interface SelectOption {

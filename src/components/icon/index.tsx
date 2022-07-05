@@ -4,6 +4,7 @@ import styles from "./index.module.scss";
 
 import Avatar from "./avatar";
 import Notification from "./notification";
+import HasNotification from "./hasNotification";
 import Logout from "./logout";
 import Profile from "./profile";
 import Commentary from "./commentary";
@@ -32,6 +33,7 @@ interface IIcons {
 const Icons: IIcons = {
   avatar: <Avatar />,
   notification: <Notification />,
+  hasNotification: <HasNotification />,
   logout: <Logout />,
   profile: <Profile />,
   commentary: <Commentary/>,
