@@ -23,6 +23,7 @@ import Trash from './trash'
 import ChevronRight from './chevron-right'
 import ChevronLeft from './chevron-left'
 import TopArrow from "./top-arrow"
+import LeftArrow from "./left-arrow"
 
 interface IProps {
   type: IconsType;
@@ -44,7 +45,7 @@ const Icons: IIcons = {
   commentary: <Commentary/>,
   rightArrow: <RightArrow/>,
   downArrow: <DownArrow />,
-  topArrow: <TopArrow />,
+  leftArrow: <LeftArrow />,
   cross: <Cross/>,
   check: <Check/>,
   checkbox: <Checkbox/>,

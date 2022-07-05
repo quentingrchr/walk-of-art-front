@@ -15,8 +15,18 @@ export function isEternalUrl(url: string): boolean {
 export function getBlopUrlFromFile(file: File): string {
   return URL.createObjectURL(file)
 }
+
 export function getDate(date: string): any {
   return new Date(date)
+}
+
+export const getDateWithoutHours = (createdAt: string) => {
+  let date = getDate(createdAt)
+  let day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
+  let month = date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth()
+  let formatDate = `${day}/${month}/${date.getFullYear()}`
+
+  return formatDate
 }
 
 export function displayTime(type: displayTimeType, hours: number): string {
@@ -61,12 +71,10 @@ export function checkReservationState(
   // diff en seconde
   const diff = (todaysDate - getDate(reservation.date_start)) / 1000
 
-  // à venir
-  if (diff < 0) return "incoming"
-  // terminées
-  if (diff - reservation.duration * 86400 > 0) return "completed"
-  // en cours
-  return "remaining"
+export const makeCaseAndAccentInsensitiveString = (param) => {
+  return param.toLowerCase()
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')
 }
 
 // Axios jwt utility

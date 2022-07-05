@@ -23,6 +23,7 @@ export type Icons =
   | "chevronRight"
   | "chevronLeft"
   | "topArrow"
+  | "leftArrow"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 
