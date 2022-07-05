@@ -134,7 +134,7 @@ export const FormOne: React.FC<IProps> = ({
           placeholder="Description de mon exposition..."
           register={register}
           id="description"
-          type="text"
+          type="textarea"
           label="Description de mon exposition"
           guidance={null}
         />
