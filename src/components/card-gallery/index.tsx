@@ -6,13 +6,14 @@ import { formatSqlToJsDate } from "../../utility"
 
 
 export type IProps = {
+    id: string,
     img?: string,
     title: string,
     isExposed?: boolean,
     createdAt: string,
 }
 
-export const CardGallery: React.FC<IProps> = ({img, title, isExposed, createdAt}: IProps) => {
+export const CardGallery: React.FC<IProps> = ({id, img, title, isExposed, createdAt}: IProps) => {
 
     const getFormatDate = (createdAt: string) => {
         let date = formatSqlToJsDate(createdAt)
@@ -23,7 +24,7 @@ export const CardGallery: React.FC<IProps> = ({img, title, isExposed, createdAt}
 
     return (
         <div className={styles.cardGallery}>
-            <a href="">
+            <a href={`work/${id}`}>
             <div className={styles.cardGallery__pictureContainer}>
                 {
                     isExposed ? <div className={styles.cardGallery__isExposed}>

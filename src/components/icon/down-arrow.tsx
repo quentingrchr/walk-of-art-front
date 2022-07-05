@@ -1,5 +1,5 @@
 
-import React from "react";
+import React from "react"
 
 function DownArrow() {
   return (
@@ -17,7 +17,7 @@ function DownArrow() {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }
 
-export default DownArrow;
+export default DownArrow

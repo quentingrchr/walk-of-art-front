@@ -1,6 +1,6 @@
-import { Colors, Icons as IconsType , sizeIcon } from "@interfaces/index";
-import cn from "classnames";
-import styles from "./index.module.scss";
+import { Colors, Icons as IconsType , sizeIcon } from "@interfaces/index"
+import cn from "classnames"
+import styles from "./index.module.scss"
 
 import Avatar from "./avatar";
 import Notification from "./notification";
@@ -22,6 +22,7 @@ import SelectCheck from './select-check'
 import Trash from './trash'
 import ChevronRight from './chevron-right'
 import ChevronLeft from './chevron-left'
+import TopArrow from "./top-arrow"
 
 interface IProps {
   type: IconsType;
@@ -43,6 +44,7 @@ const Icons: IIcons = {
   commentary: <Commentary/>,
   rightArrow: <RightArrow/>,
   downArrow: <DownArrow />,
+  topArrow: <TopArrow />,
   cross: <Cross/>,
   check: <Check/>,
   checkbox: <Checkbox/>,
