@@ -38,10 +38,12 @@
     flex-direction: column;
 }
     
-.containerOfButtons {
+.ctaContainer {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     gap: 32px;
+    margin-top: 40px;
 }
 
 .portrait {
@@ -60,6 +62,7 @@
 
 .alignLeft {
     text-align: left;
+    width: 416px;
 }
 
 .marginTop40 {
@@ -68,4 +71,10 @@
 
 .marginTop16 {
     margin-top: 16px;
+}
+
+.toolTip {
+    width: 416px;
+    margin: auto;
+    margin-bottom: 46px;
 }
