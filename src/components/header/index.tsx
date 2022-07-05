@@ -14,22 +14,42 @@ export type IProps = {
 export const Header: React.FC<IProps> = (props: IProps) => {
 
   const [appear, setAppear] = useState(false)
-  const array = [
-    // {
-    //   id: 1,
-    //   title: 'Au dela du monde hjgjhgjhjhgjgkjghjhgjghhj',
-    //   type: 'success'
-    // },
-    // {
-    //   id: 2,
-    //   title: 'Au dela du monde',
-    //   type: 'success'
-    // },
-    // {
-    //   id: 3,
-    //   'title': 'Au deekjenlrejknlkern',
-    //   type: 'success'
-    // },
+  const notifs = [
+    {
+      id: 1,
+      title: 'Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor',
+      type: 'success'
+    },
+    {
+      id: 2,
+      title: 'Au dela du monde',
+      type: 'commentary'
+    },
+    {
+      id: 3,
+      'title': 'Au Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor',
+      type: 'error'
+    },
+    {
+      id: 4,
+      'title': 'Ma mère, musicienne, est morte de maladie maligne à minuit',
+      type: 'success'
+    },
+    {
+      id: 5,
+      'title': 'Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor',
+      type: 'success'
+    },
+    {
+      id: 6,
+      'title': 'Ma mère, musicienne, est morte de maladie maligne à minuit',
+      type: 'commentary'
+    },
+    {
+      id: 7,
+      'title': 'Ma mère, musicienne, est morte de maladie maligne à minuit',
+      type: 'error'
+    },
   ]
 
   const router = useRouter()
@@ -43,10 +63,6 @@ export const Header: React.FC<IProps> = (props: IProps) => {
   const logout = () => {
     clearAuthTokens()
     router.push("/")
-  }
-
-  const notificationAppear = () => {
-    setAppear(!appear)
   }
 
   return (
@@ -66,32 +82,19 @@ export const Header: React.FC<IProps> = (props: IProps) => {
               className={styles.dropdownButton}
             />
             <span className={styles.link}>
-                {array.length === 0 ? <Icon
+                {notifs.length === 0 ? <Icon
                   type="notification"
                   size="large"
                   onClick={() => setAppear(!appear)}
                 />
                   :
                 <Icon 
-                  type="hasNotification" 
+                  type="bellNotification" 
                   size="large"
                   onClick={() => setAppear(!appear)}
                 />}
 
-                {appear ?
-                <NotificationWrapper notifList={array}>
-                  {/* { array.map(item => {
-                     return (<Notification key={item.id} type='success' cta={{
-                      label: 'Voir l’exposition',
-                      to : '/'
-                    }}>
-                        <span>L’exposition <b>“{item.title}”</b>a été commentée</span>
-                    </Notification>)
-                  })
-                  } */}
-                </NotificationWrapper>
-                  : null
-                }
+                {appear ? <NotificationWrapper notifList={notifs}></NotificationWrapper> : null }
             </span>
             <span className={styles.link}>
               <Link href="/profile">

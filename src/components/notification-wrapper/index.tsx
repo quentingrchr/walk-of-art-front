@@ -12,11 +12,16 @@ export const NotificationWrapper: React.FC<IProps> = ({notifList}: IProps) => {
             <div className={notifList.length ? styles.notificationWrapper : styles.notificationWrapper__empty}>
                 {
                  notifList.length ? notifList.map(item => {
-                     return (<Notification key={item.id} type='success' cta={{
+                     return (<Notification key={item.id} type={item.type} cta={{
                       label: 'Voir l’exposition',
                       to : '/'
                     }}>
-                        <span>L’exposition <b>“{item.title}”</b>a été commentée</span>
+                        {
+                            item.type === 'commentary' ? <span>L’exposition <b>“{item.title}”</b> a été commentée</span> :
+                            item.type === 'success' ? <span>L’exposition <b>“{item.title}”</b> a été validée pour publication</span> :
+                            <span>L’exposition <b>“{item.title}”</b> a été refusée pour publication</span>
+                        }
+                        
                     </Notification>)
                   }) : <p>Vous n'avez pas de notifications</p>
                 }
