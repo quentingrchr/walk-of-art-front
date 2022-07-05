@@ -11,6 +11,7 @@ export type ColorsType =
     | "info"
     | "info-light"
     | "violet"
+    | "pink"
 
 export type HTMLTextTag = "p" | "span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "b" | "i" | "u" | "label"
 

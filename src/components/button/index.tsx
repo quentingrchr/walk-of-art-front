@@ -57,7 +57,6 @@ export const Button: React.FC<IProps> = ({
             [styles.fullWidth]: fullWidth,
           })}
         >
-          <a>
             {icon && (
               <Icon
                 type={icon}
@@ -66,7 +65,6 @@ export const Button: React.FC<IProps> = ({
               />
             )}
             {<span>{label}</span>}
-          </a>
         </div>
       </NextLink>
     )

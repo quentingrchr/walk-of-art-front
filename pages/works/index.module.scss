@@ -1,30 +1,67 @@
 @import "@styles/theme.scss";
 
-.researchContainer {
+.headSection {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    font-size: 16px;
+    gap: 3.2rem;
+    position: sticky;
+    top: 8.6rem;
+    z-index: 10;
+    background-color: $color-beige;
+    padding-top: 3.2rem;
+    padding-bottom: 2rem;
+    height: 18rem;
+    overflow: hidden;
+    transition: height .2s ease-in;
+
+
+    &.scrollDown {
+        height: 10rem;
+    }
 }
 
-.checkboxesContainer {
-    width: 80%;
+.searchBox {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: 24px;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.textStyle {
-    font-size: 16px;
-    font-family: $font-inter;
-}
-
-.dateChoiceContainer {
+.filters {
     display: flex;
+    align-items: center;
+    gap: 2.4rem;
+
+    .date {
+        display: flex;
+        align-items: center;
+        gap: .8rem;
+        cursor: pointer;
+
+        div {
+            transition: transform .3s ease-in-out;
+        }
+
+        &[data-order="asc"] {
+            div {
+                transform: rotate(180deg);
+            }
+        }
+
+        &[data-order="dsc"] {
+            div {
+                transform: none;
+            }
+        }
+    }
 }
 
-.margin {
-    margin-left: 8px;
+.bodySection {
+    height: 1500px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: max-content;
+    grid-gap: 1.6rem;
 }
-

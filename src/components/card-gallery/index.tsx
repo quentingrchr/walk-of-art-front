@@ -2,16 +2,25 @@ import React from "react"
 import styles from "./index.module.scss"
 import { Button, Text } from ".."
 import cardImg from "../../assets/images/cardImg.png"
+import { formatSqlToJsDate } from "../../utility"
 
 
 export type IProps = {
     img?: string,
     title: string,
     isExposed?: boolean,
-    createdAt?: Date,
+    createdAt: string,
 }
 
 export const CardGallery: React.FC<IProps> = ({img, title, isExposed, createdAt}: IProps) => {
+
+    const getFormatDate = (createdAt: string) => {
+        let date = formatSqlToJsDate(createdAt)
+        let formatDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+
+        return formatDate
+    }
+
     return (
         <div className={styles.cardGallery}>
             <a href="">
@@ -30,11 +39,11 @@ export const CardGallery: React.FC<IProps> = ({img, title, isExposed, createdAt}
                 </div>
             </div>
             <Text tag="p" typo="heading-sm">
-               {title}
+                {title}
             </Text>
             <div className={styles.cardGallery__createdAt}>
                 <Text tag="p" typo="guidance">
-                    Créée le {createdAt}
+                    Créée le {getFormatDate(createdAt)}
                 </Text>
             </div>
             <div className={styles.cardGallery__seperator}></div>

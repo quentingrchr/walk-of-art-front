@@ -22,12 +22,12 @@ export const Logo: React.FC<IProps> = (props: IProps) => {
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
-          <Text tag="h2" typo="heading-md">Walk of art</Text>
+          <Text tag="h2" typo="heading-xl">Walk of art</Text>
         </div>
       </Link>
     :
       <div className={cx(styles.logo, isHover ? styles.isHover : null)}>
-        <Text tag="h2" typo="heading-md">Walk of art</Text>
+        <Text tag="h2" typo="heading-xl">Walk of art</Text>
       </div>
 	)
 }

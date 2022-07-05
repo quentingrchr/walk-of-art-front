@@ -10,8 +10,9 @@ export type IProps = {
     checkboxLabel?: string,
     guidanceLabel?: string,
     guidanceType?: Semantic,
-    isDisabled?: boolean
+    isDisabled?: boolean,
     isChecked?: boolean,
+    onChange?: (e) => void 
 }
 
 export const Checkbox: React.FC<IProps> = ({
@@ -21,11 +22,20 @@ export const Checkbox: React.FC<IProps> = ({
     isChecked = false,
     guidanceLabel,
     guidanceType = 'success',
+    onChange
 }: IProps) => {
     return (
         <div className={styles.container}>
             <label className={styles.custom} htmlFor={checkboxName} data-guidance={guidanceLabel ? true : false} data-disabled={isDisabled}>
-                <input className={styles.input} type="checkbox" defaultChecked={isChecked ?? 'checked'} name={checkboxName} id={checkboxName} />
+                <input 
+                    className={styles.input} 
+                    type="checkbox" 
+                    //defaultChecked={isChecked ?? 'checked'}
+                    checked={isChecked}
+                    name={checkboxName}
+                    id={checkboxName} 
+                    onChange={onChange ? (e) => onChange(e) : undefined}
+                />
                 <div tabIndex={0} className={styles.box} ></div>
                 {
                     checkboxLabel && (
