@@ -5,7 +5,6 @@ import Link from "next/link"
 import { Logo, Navbar, DropdownButton, Icon, Button } from "@components"
 import { useRouter } from "next/router"
 import { NotificationWrapper } from "@components/notification-wrapper"
-import { Notification } from "@components/notification"
 
 export type IProps = {
   isLogged: boolean
