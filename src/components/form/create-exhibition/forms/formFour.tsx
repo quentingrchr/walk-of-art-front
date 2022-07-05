@@ -33,10 +33,10 @@ export const FormFour: React.FC<IRecapProps> = () => {
         <div className={orientation === 'portrait' ? styles.portrait : ''}>
           <ExpositionBoard src={cardImg} alt={""} orientation={orientation} />
         </div>
-        <h1 className={styles.title}>Exposition title</h1>
-
         <div className={styles.alignLeft}>
-          <ul>
+        <h1 className={styles.title}>Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi,</h1>
+        <p className={styles.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent adipiscing suspendisse varius sit risus. In arcu, lorem ridiculus dui faucibus. Lectus aenean morbi purus amet quis. Mi habitant diam id dignissim tempus. Pharetra, amet sit malesuada interdum accumsan adipiscing eros imperdiet. Neque, volutpat at commodo, mauris a ut et libero imperdiet. Id nibh a, volutpat sollicitudin aliquet. Et ipsum aliquam scelerisque mauris laoreet sit ac facilisis. In phasellus nisi cras vitae, tortor, leo.</p>
+          <ul className={styles.list}>
             <li>
               <strong className={styles.bold}>Votre profil facebook :</strong> https://facebook.com/mon-profil
             </li>

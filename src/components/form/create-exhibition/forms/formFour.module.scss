@@ -54,6 +54,18 @@
 .title {
     font-style: $font-decay;
     font-size: 32px;
+    margin-bottom: 16px;
+    line-height: 40px;
+}
+.description {
+    line-height: 24px;
+    margin-bottom: 40px;
+}
+
+.list {
+    line-height: 24px;
+    white-space: nowrap;
+    max-width: 416px;
 }
 
 .bold {
@@ -63,10 +75,12 @@
 .alignLeft {
     text-align: left;
     width: 416px;
+    line-height: 24px;
 }
 
 .marginTop40 {
     margin-top: 40px;
+    line-height: 24px;
 }
 
 .marginTop16 {

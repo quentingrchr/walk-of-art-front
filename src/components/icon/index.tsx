@@ -20,13 +20,15 @@ import Calendar from "./calendar";
 import LittleDownArrow from './little-down-arrow'
 import SelectCheck from './select-check'
 import Trash from './trash'
-
+import ChevronRight from './chevron-right'
+import ChevronLeft from './chevron-left'
 
 interface IProps {
   type: IconsType;
   size: sizeIcon;
   color?: Colors | "none";
   children?: React.ReactNode;
+  classname?: string,
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 interface IIcons {
@@ -51,7 +53,9 @@ const Icons: IIcons = {
   chrono: <Chrono />,
   calendar: <Calendar />,
   selectCheck: <SelectCheck />,
-  trash: <Trash />
+  trash: <Trash />,
+  chevronRight: <ChevronRight />,
+  chevronLeft: <ChevronLeft />
 };
 
 const sizes: any = {
@@ -69,12 +73,13 @@ export const Icon = ({
   onClick,
   size,
   color = "none",
+  classname,
   ...props
 }: IProps) => {
   return (
     <div
       onClick={(e) => onClick !== undefined && onClick(e)}
-      className={cn(styles[color], "icon")}
+      className={cn(styles[color], "icon", classname)}
       style={{ width: sizes[size], height: sizes[size] }}
     >
       {Icons[type]}

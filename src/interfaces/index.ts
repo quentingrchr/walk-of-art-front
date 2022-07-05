@@ -20,6 +20,8 @@ export type Icons =
   | "calendar"
   | "selectCheck"
   | "trash"
+  | "chevronRight"
+  | "chevronLeft"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 

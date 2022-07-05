@@ -29,8 +29,7 @@ export const FormTwo: React.FC<IProps> = ({
     } = useForm({ mode: "onBlur", defaultValues });
 
     const [amountOfAdditionalLinks, setAmountOfAdditionalLinks] = useState<any>([])
-    const handleAddLink = (e: any) => {
-      console.log(amountOfAdditionalLinks);
+    const handleAddLink = () => {
      setAmountOfAdditionalLinks([...amountOfAdditionalLinks, `id-${amountOfAdditionalLinks.length + 1}`])
     }
     const handleRemoveLink = (idFieldValue: string, e: any) => {    
@@ -112,14 +111,14 @@ export const FormTwo: React.FC<IProps> = ({
           return (
             <>
               <InputCustomDouble
-                key={amountOfAdditionalLinks[indexInLinks]}
+                key={indexInLinks}
                 customInputTitle="Lien personnel additionnel"
                 idDescription={`description-${indexInLinks}`}
                 placeholder="Intitulé du lien/"
                 idFieldValue={amountOfAdditionalLinks[indexInLinks]}
                 fieldValuePlaceHolder="https://lien-personnel.com/"
                 register={register}
-                handleRemoveLink={() => handleRemoveLink}            
+                handleRemoveLink={handleRemoveLink}            
               />
         </>
       )
