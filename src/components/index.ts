@@ -5,8 +5,8 @@ export { HeadingStrong } from "./heading-strong"
 export { Icon } from "./icon"
 export { Input } from "./inputs/input"
 export { InputGroup } from "./inputs/input-group"
-export { InputDropdown } from "./inputs/input-dropdown";
-export { InputFile } from "./inputs/input-file";
+export { InputDropdown } from "./inputs/input-dropdown"
+export { InputFile } from "./inputs/input-file"
 export { Guidance } from "./form/guidance"
 export { LoginForm } from "./form/login-form"
 export { Link } from "./link"
@@ -35,3 +35,5 @@ export { Checkbox } from "./checkbox"
 export { CreateWorkForm } from "./form/create-work"
 export { Search } from './search'
 export { CardGallery } from './card-gallery'
+export { ImagesPreview } from "./images-preview"
+export { ButtonArrow } from "./button-arrow"

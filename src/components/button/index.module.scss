@@ -60,6 +60,10 @@
   font-weight: 400;
   padding: 0.8rem;
 
+  a {
+    display: flex;
+  }
+
   & div {
     margin-right: 12px;
   }

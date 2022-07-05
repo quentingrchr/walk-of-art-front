@@ -1,0 +1,19 @@
+@import "@styles/theme.scss";
+
+.title {
+    text-align: center;
+}
+
+.subtitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.6rem 0;
+}
+
+.worksList {
+    width: 50%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}

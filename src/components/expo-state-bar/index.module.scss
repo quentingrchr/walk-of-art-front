@@ -22,7 +22,7 @@
             width: var(--after-width);
             background-color: $color-sementic-progress;
             transform: translate3d(0, 50%, 0);
-            transition: all .4s ease-in-out;
+            transition: all .2s ease-in-out;
         }
 
         &[data-activeindex = "1"]::after {
