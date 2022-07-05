@@ -23,7 +23,7 @@ import Warning from "./warning"
 import Twitter from "./twitter"
 import Facebook from "./facebook"
 import Smiley from "./smiley"
-import LittleDownArrow from './little-down-arrow'
+import HasNotification from "./hasNotification";
 import SelectCheck from './select-check'
 import Trash from './trash'
 import ChevronRight from './chevron-right'
@@ -46,6 +46,7 @@ const Icons: IIcons = {
   avatar: <Avatar />,
   notification: <Notification />,
   bellNotification: <BellNotification />,
+  hasNotification: <HasNotification />,
   logout: <Logout />,
   profile: <Profile />,
   commentary: <Commentary/>,
