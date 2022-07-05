@@ -133,8 +133,6 @@ const Works: React.FC = () => {
                 orderDate: "asc"
             }
         })
-
-        console.log(filters.orderDate)
     }
 
     const filterExhibitionsProcess = (list: Work[]) => {
