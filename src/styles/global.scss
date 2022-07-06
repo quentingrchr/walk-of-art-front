@@ -1,6 +1,6 @@
 @import "@styles/theme.scss";
 
-:root{
+:root {
   font-size: 10px;
 }
 
@@ -15,12 +15,11 @@ body {
   color: $color-black;
 }
 
-body.modal-open {
+body.no-scroll {
   height: 100vh;
   overflow-y: hidden;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
-

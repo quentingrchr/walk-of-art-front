@@ -29,7 +29,8 @@
       "@assets/*": ["src/assets/*"],
       "@utility/*": ["src/utility/*"],
       "@data/*": ["src/data/*"],
-      "@const/*": ["src/const/*"]
+      "@const/*": ["src/const/*"],
+      "@recoil/*": ["src/recoil/*"]
     },
     "incremental": true
   },
