@@ -15,6 +15,7 @@ import {
   Button,
   Icon,
   Unauthorized,
+  ButtonArrow
 } from "@components"
 import cardImg from "../../src/assets/images/cardImg.png"
 import { getDateWithoutHours, windowIsNotReady } from "../../src/utility"
@@ -75,12 +76,7 @@ const Works: React.FC = () => {
       {isLoggedIn() ? (
         <>
           <span className={style.backLink}>
-            <a href="/works">
-              <Icon type="leftArrow" size="small" color="black" />
-              <Text tag="p" typo="paragraph-md">
-                Retour à la liste des oeuvres
-              </Text>
-            </a>
+            <ButtonArrow label="Retour à la liste des oeuvres" side="left" to="/works"/>
           </span>
           <section className={style.mainSection}>
             <ImagesPreview
