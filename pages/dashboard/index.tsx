@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { TemplatePage, Text, ExpoStateBar, ExpoList, Cards, ButtonArrow } from "@components"
+import { isLoggedIn } from "axios-jwt"
+import { TemplatePage, Text, ExpoStateBar, ExpoList, Cards, ButtonArrow, Unauthorized } from "@components"
 import s from './index.module.scss'
-import { checkReservationState } from "./../../src/utility"
+import { checkReservationState, windowIsNotReady } from "./../../src/utility"
 import { ExpoStates, ReservationWithExposition, displayTimeType } from './../../src/types'
 const rawData: ReservationWithExposition[] = [
     {
@@ -89,28 +90,39 @@ const Dashboard: React.FC = () => {
     //-------- fetch end
 
 
+    if(windowIsNotReady()) {
+        return null
+    }
+
+
     return (
         <TemplatePage>
-            <div className={s.title}>
-                <Text tag="h1" typo="heading-xl">Bonjour Michael</Text>
-            </div>
-            <div className={s.subtitle}>
-                <Text tag="h2" typo="heading-lg">Expositions</Text>
-            </div>
-            <ExpoStateBar states={expoStates} onClick={setExposedListType}/>
-            {
-                list && expoStates[exposedListType].listComponent(list)
+            {isLoggedIn() ? 
+                <>
+                    <div className={s.title}>
+                        <Text tag="h1" typo="heading-xl">Bonjour Michael</Text>
+                    </div>
+                    <div className={s.subtitle}>
+                        <Text tag="h2" typo="heading-lg">Expositions</Text>
+                    </div>
+                    <ExpoStateBar states={expoStates} onClick={setExposedListType}/>
+                    {
+                        list && expoStates[exposedListType].listComponent(list)
+                    }
+                    <div className={s.subtitle}>
+                        <Text tag="h2" typo="heading-lg">Oeuvres</Text>
+                        <ButtonArrow to={'/works'} label={'Voir tout'}/>
+                    </div>
+                    <div className={s.worksList}>
+                        <Cards title="Le livre de la jungle Le livre de la jungle"/>
+                        <Cards title="Le livre de la jungle 2"/>
+                        <Cards title="Le livre de la jungle 3"/>
+                        <Cards title="Le livre de la jungle 4"/>
+                    </div>
+                </>
+            :
+                <Unauthorized />
             }
-            <div className={s.subtitle}>
-                <Text tag="h2" typo="heading-lg">Oeuvres</Text>
-                <ButtonArrow to={'/works'} label={'Voir tout'}/>
-            </div>
-            <div className={s.worksList}>
-                <Cards title="Le livre de la jungle Le livre de la jungle"/>
-                <Cards title="Le livre de la jungle 2"/>
-                <Cards title="Le livre de la jungle 3"/>
-                <Cards title="Le livre de la jungle 4"/>
-            </div>
         </TemplatePage>
     )
 }

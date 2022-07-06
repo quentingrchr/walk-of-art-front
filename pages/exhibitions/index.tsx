@@ -1,12 +1,23 @@
 import React from "react"
-import { TemplatePage, Text } from "@components"
+import { isLoggedIn } from "axios-jwt"
+import { TemplatePage, Text, Unauthorized } from "@components"
+import { windowIsNotReady } from "./../../src/utility"
 
 const Exhibitions: React.FC = () => {
+
+  if(windowIsNotReady()) {
+    return null
+  }
+
   return (
     <TemplatePage>
-      <Text tag="h1" typo="heading-lg">
-        Expositions
-      </Text>
+      {isLoggedIn() ? 
+        <>
+          <Text tag="h1" typo="heading-lg">Expositions</Text>
+        </>
+        :
+        <Unauthorized />
+      }
     </TemplatePage>
   )
 }

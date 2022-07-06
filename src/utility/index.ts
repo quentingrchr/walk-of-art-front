@@ -81,7 +81,7 @@ export const makeCaseAndAccentInsensitiveString = (param) => {
               .replace(/[\u0300-\u036f]/g, '')
 }
 
-export const windowIsReady = () => {
+export const windowIsNotReady = () => {
   return (typeof window == "undefined" ||
   typeof window.localStorage == "undefined")
 }

@@ -3,7 +3,7 @@ import style from "./index.module.scss"
 import cn from "classnames"
 import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, CardGallery, Unauthorized } from "@components"
 import { useScrollDirection } from "../../src/hooks/useScrollDirection"
-import { makeCaseAndAccentInsensitiveString, windowIsReady } from "../../src/utility"
+import { makeCaseAndAccentInsensitiveString, windowIsNotReady } from "../../src/utility"
 import { isLoggedIn } from "axios-jwt"
 
 enum scrollDirType  {
@@ -195,7 +195,7 @@ const Works: React.FC = () => {
             setDirection(scrollDirType.up)
     }, [scrollDirection])
     
-    if(windowIsReady()) {
+    if(windowIsNotReady()) {
         return null
     }
 
@@ -204,7 +204,7 @@ const Works: React.FC = () => {
             {isLoggedIn() ?
                 <>
                     <span className={style.backLink}>
-                        <a href="/">
+                        <a href="/dashboard">
                             <Icon type="leftArrow" size="small" color="black" />
                             <Text tag="p" typo="paragraph-md">Retour à l'accueil</Text>
                         </a>
