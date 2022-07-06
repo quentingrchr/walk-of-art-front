@@ -8,8 +8,8 @@ const CreateWork: React.FC = () => {
       <Text tag="h1" typo="paragraph-md">
         Page d'édition d'une oeuvre
       </Text>
-      <CreateWorkForm /> */}
-      <Map />
+      <CreateWorkForm />
+      <Map />*/}
     </TemplatePage>
   )
 }

@@ -15,6 +15,11 @@ body {
   color: $color-black;
 }
 
+body.modal-open {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
 * {
     box-sizing: border-box;
 }
