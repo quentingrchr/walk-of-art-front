@@ -49,3 +49,4 @@ export { Unauthorized } from "./unauthorized"
 export { ExpositionBoard } from './exposition-board'
 export { Search } from "./search"
 export { Modal } from "./modal"
+export { Unauthorized } from "./unauthorized"
