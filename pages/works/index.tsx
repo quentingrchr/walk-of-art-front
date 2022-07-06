@@ -197,6 +197,12 @@ const Works: React.FC = () => {
 
     return (
         <TemplatePage isLogged={true}>
+            <span className={style.backLink}>
+                <a href="/">
+                    <Icon type="leftArrow" size="small" color="black" />
+                    <Text tag="p" typo="paragraph-md">Retour à l'accueil</Text>
+                </a>
+            </span>
             <section className={cn(style.headSection, direction === scrollDirType.down ? style.scrollDown : null)}>
                 <HeadingStrong content="Mes oeuvres" elementColor="pink" size="xl" />
                 <aside className={style.searchBox}>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import style from "./index.module.scss"
 import cn from "classnames"
-import { TemplatePage, HeadingStrong, Text, Icon, ImagesPreview, Button } from "@components"
+import { TemplatePage, Text, ImagesPreview, Button, Icon, Modal } from "@components"
 import cardImg from "../../src/assets/images/cardImg.png"
 import { getDateWithoutHours } from "../../src/utility"
 
@@ -51,6 +51,8 @@ const Works: React.FC = () => {
         "exhibitions": []
     })
 
+    const [openModal, setOpenModal] = useState<boolean>(false)
+
     /* Init work */
     useEffect(() => {
         setWork(data)
@@ -75,9 +77,22 @@ const Works: React.FC = () => {
                 
                 <div className={style.actionsWrapper}>
                     <Button label="Modifier l'oeuvre" bg="light" color="black" onClick={() => console.log('modifier')} />
-                    <Button label="Supprimer l'oeuvre" bg="dark" onClick={() => console.log('supprimer')} />
+                    <Button label="Supprimer l'oeuvre" bg="dark" onClick={() => setOpenModal(true)} />
                 </div>
             </section>
+
+            {openModal && 
+                <Modal  isOpen={openModal} closeModal={() => setOpenModal(false)}>
+                    <section className={style.modalContent}>
+                        <Text tag="p" typo="paragraph-md">Êtes vous sûrs de vouloir supprimer cette oeuvre ?</Text>
+                        <div className={style.modalActionsWrapper}>
+                            <Button label="Oui" bg="dark" onClick={() => console.log('supprimer')} />
+                            <Button label="Non" bg="light" color="black" onClick={() => setOpenModal(false)} />
+                        </div>
+                    </section>
+                </Modal>
+            }
+            
         </TemplatePage>
     )
 }
