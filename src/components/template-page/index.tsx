@@ -1,19 +1,34 @@
-import React from "react"
-import { Header } from "@components"
+import React, { useEffect } from "react"
+import cn from "classnames"
+import { Header, ConfirmWorkDeleteModal } from "@components"
 import styles from "./index.module.scss"
+import { scrollDisabledState } from "@recoil/scroll/atom"
+import { useRecoilValue } from "recoil"
 
 export type IProps = {
-    children: React.ReactNode; 
+  children: React.ReactNode
 }
 
-export const TemplatePage: React.FC<IProps> = ({children}: IProps) => {
+export const TemplatePage: React.FC<IProps> = ({ children }: IProps) => {
+  const scrollDisabled = useRecoilValue(scrollDisabledState)
 
-    return (
-        <>
-            <Header />
-            <main className={styles.mainContainer}>
-                { children }
-            </main>
-        </>
-    )
+  useEffect(() => {
+    let body = document.querySelector("body")
+    if (scrollDisabled) {
+      body?.classList.add("no-scroll")
+    } else {
+      body?.classList.remove("no-scroll")
+    }
+  }, [scrollDisabled])
+
+  return (
+    <>
+      <div>
+        <Header />
+        <main className={cn(styles.mainContainer)}>{children}</main>
+      </div>
+      {/* All modals */}
+      <ConfirmWorkDeleteModal />
+    </>
+  )
 }

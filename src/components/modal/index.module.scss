@@ -2,31 +2,52 @@
 
 // Your style here
 
+.container {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: rgba(45,45,45,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(45, 45, 45, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal {
-    position: relative;
-    width: 48rem;
-    max-height: 80vh;
-    padding: 2.4rem 3.2rem;
-    border: .2rem solid $color-black;
-    background-color: $color-white;
+  max-width: 100vw;
+  max-height: 80vh;
+  padding: 2.4rem 3.2rem;
+  border: 0.2rem solid $color-black;
+  background-color: $color-white;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
 
-    .cross {
-        position: absolute;
-        top: 1.6rem;
-        right: 1.6rem;
-        cursor: pointer;
-    }
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cross {
+  cursor: pointer;
+  margin-left: 2rem;
 }
