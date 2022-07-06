@@ -7,7 +7,7 @@ import { useRouter } from "next/router"
 import { NotificationWrapper } from "@components/notification-wrapper"
 
 export type IProps = {
-  isLogged: boolean
+
 }
 
 export const Header: React.FC<IProps> = (props: IProps) => {

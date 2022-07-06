@@ -3,7 +3,7 @@ import { TemplatePage, Text } from "@components"
 
 const Exhibitions: React.FC = () => {
   return (
-    <TemplatePage isLogged={true}>
+    <TemplatePage>
       <Text tag="h1" typo="heading-lg">
         Expositions
       </Text>

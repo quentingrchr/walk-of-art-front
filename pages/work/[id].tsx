@@ -60,7 +60,7 @@ const Works: React.FC = () => {
 
 
     return (
-        <TemplatePage isLogged={true}>
+        <TemplatePage>
             <span className={style.backLink}>
                 <a href="/works">
                     <Icon type="leftArrow" size="small" color="black" />

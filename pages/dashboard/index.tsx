@@ -90,7 +90,7 @@ const Dashboard: React.FC = () => {
 
 
     return (
-        <TemplatePage isLogged={true}>
+        <TemplatePage>
             <div className={s.title}>
                 <Text tag="h1" typo="heading-xl">Bonjour Michael</Text>
             </div>
