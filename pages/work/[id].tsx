@@ -13,7 +13,6 @@ import {
   Text,
   ImagesPreview,
   Button,
-  Icon,
   Unauthorized,
   ButtonArrow,
 } from "@components"
