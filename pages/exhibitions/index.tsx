@@ -239,7 +239,7 @@ const Exhibitions: React.FC = () => {
             </section>
             <section className={style.bodySection}>
             {filterExhibitionsList(Exhibitions, filters).map((exhibition) => (
-                    <CardGallery key={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status}/>
+                    <CardGallery id={exhibition.id} key={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status}/>
                 ))}
             </section>
         </TemplatePage>
