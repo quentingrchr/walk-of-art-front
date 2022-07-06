@@ -1,13 +1,29 @@
 import React, { useState } from "react"
 import { TemplatePage, Text, CreateWorkForm, InputFile } from "@components"
+import { axiosInstance } from "@utility/index"
+import {
+  isLoggedIn,
+  setAuthTokens,
+  clearAuthTokens,
+  getAccessToken,
+  getRefreshToken,
+} from "axios-jwt"
 
 const CreateWork: React.FC = () => {
   const [hasSubmittedForm, setHasSubmittedForm] = useState(false)
-  const handleFormSubmit = (values: any) => {
+  const handleFormSubmit = async (form: any) => {
     if (hasSubmittedForm) return
-    setHasSubmittedForm((state) => {
-      // console.log(values, hasSubmittedForm)
-      // todo : handle form submit
+    setHasSubmittedForm(() => {
+      console.log({ form })
+      axiosInstance
+        .post("/works", {
+          title: form.title,
+          description: form.description,
+        })
+        .then((response) => {
+          console.log(response)
+        })
+
       return true
     })
   }
