@@ -8,7 +8,15 @@ import {
   CONFIRM_WORK_DELETE_MODAL_ID,
 } from "@recoil/modal/atom"
 import cn from "classnames"
-import { TemplatePage, Text, ImagesPreview, Button, Icon, Unauthorized } from "@components"
+import {
+  TemplatePage,
+  Text,
+  ImagesPreview,
+  Button,
+  Icon,
+  Unauthorized,
+  ButtonArrow
+} from "@components"
 import cardImg from "../../src/assets/images/cardImg.png"
 import { getDateWithoutHours, windowIsNotReady } from "../../src/utility"
 
@@ -68,28 +76,25 @@ const Works: React.FC = () => {
 
   return (
     <TemplatePage>
-      <span className={style.backLink}>
-        <a href="/works">
-          <Icon type="leftArrow" size="small" color="black" />
-          <Text tag="p" typo="paragraph-md">
-            Retour à la liste des oeuvres
-          </Text>
-        </a>
-      </span>
-      <section className={style.mainSection}>
-        <ImagesPreview
-          primaryImage={cardImg.src}
-          secondaryImages={[cardImg.src, cardImg.src]}
-        />
-        <Text tag="h1" typo="heading-lg">
-          {work.title}
-        </Text>
-        <Text tag="p" typo="paragraph-md">
-          {work.description}
-        </Text>
-        <span className={style.date}>{`Créée le ${getDateWithoutHours(
-          work.created_at
-        )}`}</span>
+      {isLoggedIn() ? (
+        <>
+          <span className={style.backLink}>
+            <ButtonArrow label="Retour à la liste des oeuvres" side="left" to="/works"/>
+          </span>
+          <section className={style.mainSection}>
+            <ImagesPreview
+              primaryImage={cardImg.src}
+              secondaryImages={[cardImg.src, cardImg.src]}
+            />
+            <Text tag="h1" typo="heading-lg">
+              {work.title}
+            </Text>
+            <Text tag="p" typo="paragraph-md">
+              {work.description}
+            </Text>
+            <span className={style.date}>{`Créée le ${getDateWithoutHours(
+              work.created_at
+            )}`}</span>
 
         <button className={style.exhibButton} onClick={() => console.log("ok")}>
           Créer une exposition avec cette oeuvre
