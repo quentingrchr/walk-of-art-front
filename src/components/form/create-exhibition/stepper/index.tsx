@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import s from "./index.module.scss";
 
-import { FormOne, FormTwo, FormThree, FormFour } from "../forms";
+import { FormOne, FormTwo, FormThree, FormFour, FormFive } from "../forms";
 import { Stepper } from "@components";
 
 export type IProps = {};
@@ -78,6 +78,13 @@ const getStepComponent = (
           handleBack={handleBack}
           formState={{ ...compiledForm.three }}
         />
+      );
+      case 4:
+      return (
+        <FormFive
+          handleStepSubmit={handleStepSubmit}
+          handleBack={handleBack} onClick={() => {} }   />
+          formState={{ ...compiledForm.four }}
       );
     default:
       return "Unknown step";
