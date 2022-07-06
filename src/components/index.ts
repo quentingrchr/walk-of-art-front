@@ -50,3 +50,4 @@ export { ExpositionBoard } from './exposition-board'
 export { Search } from "./search"
 export { Modal } from "./modal"
 export { Unauthorized } from "./unauthorized"
+export { ConfirmWorkDeleteModal } from "./modal/confirm-work-delete-modal"
