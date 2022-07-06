@@ -91,6 +91,13 @@ const getStepComponent = (
           onClick={() => { }}
         />
       );
+      case 4:
+      return (
+        <FormFive
+          handleStepSubmit={handleStepSubmit}
+          handleBack={handleBack} onClick={() => {} }   />
+          formState={{ ...compiledForm.four }}
+      );
     default:
       return "Unknown step";
   }
