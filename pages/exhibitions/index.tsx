@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from "react";
 import style from "./index.module.scss"
 import cn from "classnames"
-import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search } from "@components"
+import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, Unauthorized } from "@components"
 import { CardGallery } from "@components";
 import { useScrollDirection } from "../../src/hooks/useScrollDirection"
 import { makeCaseAndAccentInsensitiveString } from "../../src/utility"
+import { isLoggedIn } from "axios-jwt";
 
 enum scrollDirType  {
     up = "up",
@@ -177,73 +178,84 @@ const Exhibitions: React.FC = () => {
         return newList
     }
 
-    /* Init Exhibitions */
-    useEffect(() => {
-        setExhibitions(list)
-    }, [])
-    
-    /* Scroll Event */
-    useEffect(() => {
-        scrollDirection === "down" ?
-            setDirection(scrollDirType.down)
-            :
-            setDirection(scrollDirType.up)
-    }, [scrollDirection])
-
-    return (
-        <TemplatePage isLogged={true}>
-            <section className={cn(style.headSection, direction === scrollDirType.down ? style.scrollDown : null)}>
-                <HeadingStrong content="Mes exposition" elementColor="specific-expo" size="xl" />
-                <Search 
-                        id="works-search" 
-                        placeholder="Rechercher une oeuvre par son titre" 
-                        value={filters?.search ? filters.search : '' } 
-                        onChange={handleSearch}
-                    />
-                    <ul className={style.filters}>
-                            <Checkbox 
-                                checkboxLabel="En exposition"
-                                checkboxName="validate"
-                                isChecked={false}
-                                onChange={handleCheckStatus}
-                            />
-                             <Checkbox 
-                                checkboxLabel="En modération"
-                                checkboxName="moderate"
-                                isChecked={false}
-                                onChange={handleCheckStatus}
-                            />
-                             <Checkbox 
-                                checkboxLabel="Terminées"
-                                checkboxName="finish"
-                                isChecked={false}
-                                onChange={handleCheckStatus}
-                            />
-                             <Checkbox 
-                                checkboxLabel="À venir"
-                                checkboxName="pending"
-                                isChecked={false}
-                                onChange={handleCheckStatus}
-                            />
-                             <Checkbox 
-                                checkboxLabel="Refusées"
-                                checkboxName="refused"
-                                isChecked={false}
-                                onChange={handleCheckStatus}
-                            />
-                        <li className={style.date} onClick={() => handleSortDate()}>
-                            <Icon type="downArrow" size="small" color="black" />
-                            <Text tag="p" typo="label">Date de création</Text>
-                        </li>
-                    </ul>
+  return (
+    <TemplatePage>
+      {isLoggedIn() ? 
+        <>
+          <section className={cn(style.headSection, direction === scrollDirType.down ? style.scrollDown : null)}>
+          <HeadingStrong content="Mes exposition" elementColor="specific-expo" size="xl" />
+          <Search 
+            id="works-search" 
+            placeholder="Rechercher une oeuvre par son titre" 
+            value={filters?.search ? filters.search : '' } 
+            onChange={handleSearch}
+          />
+          <ul className={style.filters}>
+            <Checkbox 
+              checkboxLabel="En exposition"
+              checkboxName="validate"
+              isChecked={false}
+              onChange={handleCheckStatus}
+            />
+            <Checkbox 
+              checkboxLabel="En modération"
+              checkboxName="moderate"
+              isChecked={false}
+              onChange={handleCheckStatus}
+            />
+            <Checkbox 
+              checkboxLabel="Terminées"
+              checkboxName="finish"
+              isChecked={false}
+              onChange={handleCheckStatus}
+            />
+            <Checkbox 
+              checkboxLabel="À venir"
+              checkboxName="pending"
+              isChecked={false}
+              onChange={handleCheckStatus}
+            />
+            <Checkbox 
+              checkboxLabel="Refusées"
+              checkboxName="refused"
+              isChecked={false}
+              onChange={handleCheckStatus}
+            />
+            <li className={style.date} onClick={() => handleSortDate()}>
+              <Icon type="downArrow" size="small" color="black" />
+              <Text tag="p" typo="label">Date de création</Text>
+            </li>
+          </ul>
+        </section>
+        <section className={style.bodySection}>
+                <div className={style.body__ctn}>
+                    {
+                        filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
+                            (index % 3) === 0 && <CardGallery key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status}/>
+                        ))
+                    }
+                </div>
+                <div className={style.body__ctn}>
+                    {
+                        filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
+                            (index % 3) === 1 && <CardGallery key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status}/>
+                        ))
+                    }
+                </div>
+                <div className={style.body__ctn}>
+                    {
+                        filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
+                            (index % 3) === 2 && <CardGallery key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status}/>
+                        ))
+                    }
+                </div>
             </section>
-            <section className={style.bodySection}>
-            {filterExhibitionsList(Exhibitions, filters).map((exhibition) => (
-                    <CardGallery key={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status} id={""}/>
-                ))}
-            </section>
-        </TemplatePage>
-    )
+        </>
+        :
+        <Unauthorized />
+      }
+    </TemplatePage>
+  )
 }
 
 export default Exhibitions
