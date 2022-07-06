@@ -30,11 +30,8 @@
         }
     }
 
-    &__isExposed {
-        width: 127px;
-        border: 2px solid $color-success;
-        color: $color-success;
-        background-color: $color-white;
+    &__tag {
+        width: fit-content;
         align-items: center;
         padding: .8rem;
         position: absolute;
@@ -43,8 +40,60 @@
 
         & > p {
             font-weight: bold;
-            
         }
+    }
+
+    &__validate {
+        width: 100%;
+        background-color: $color-info;
+        color: $color-white;
+        padding: .8rem;
+        background-color: $color-success;
+    }
+
+    &__pending {
+        width: 100%;
+        background-color: $color-sementic-progress;
+        color: $color-white;
+        padding: .8rem;
+    }
+
+    &__refused {
+        width: 100%;
+        background-color: $color-error;
+        color: $color-white;
+        padding: .8rem;
+    }
+
+    &__finish {
+        width: 100%;
+        background-color: $color-grey-dark;
+        color: $color-white;
+        padding: .8rem; 
+    }
+
+
+    &__isValidate {
+        border: 2px solid $color-success;
+        color: $color-success;
+        background-color: $color-white;
+    }
+
+    &__isPending {
+        border: 2px solid $color-sementic-progress;
+        color: $color-sementic-progress;
+        background-color: $color-white;
+    }
+
+    &__isModerated {
+        border: 2px solid $color-sementic-warning;
+        color: $color-sementic-warning;
+        background-color: $color-white;
+    }
+
+    &__isRefused {
+        border: 2px solid $color-error;
+        background-color: $color-white;
     }
 
     &__pictureContainer {
@@ -89,6 +138,7 @@
         background-color: $color-black;
         opacity: .7;
     }
+
 
     &__createdAt {
         width: 100%;
