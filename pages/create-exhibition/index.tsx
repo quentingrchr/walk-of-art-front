@@ -39,7 +39,7 @@ const CreateExhibition: React.FC = () => {
         }))
     }
 return (
-    <TemplatePage isLogged={true}>
+    <TemplatePage>
         {/* PAGE CONTENT */}
         <Link to='/' label='Retour à la connexion' classname={styles.link}/>
         <div className={styles.background}></div>
