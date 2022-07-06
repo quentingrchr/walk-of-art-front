@@ -61,7 +61,7 @@ const Icons: IIcons = {
   selectCheck: <SelectCheck />,
   trash: <Trash />,
   chevronRight: <ChevronRight />,
-  chevronLeft: <ChevronLeft />
+  chevronLeft: <ChevronLeft />,
   warning : <Warning/>
 };
 
