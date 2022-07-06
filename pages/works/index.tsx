@@ -3,7 +3,7 @@ import style from "./index.module.scss"
 import cn from "classnames"
 import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, CardGallery, Unauthorized } from "@components"
 import { useScrollDirection } from "../../src/hooks/useScrollDirection"
-import { makeCaseAndAccentInsensitiveString } from "../../src/utility"
+import { makeCaseAndAccentInsensitiveString, windowIsReady } from "../../src/utility"
 import { isLoggedIn } from "axios-jwt"
 
 enum scrollDirType  {
@@ -194,11 +194,14 @@ const Works: React.FC = () => {
             :
             setDirection(scrollDirType.up)
     }, [scrollDirection])
-
+    
+    if(windowIsReady()) {
+        return null
+    }
 
     return (
         <TemplatePage>
-            {/* {isLoggedIn() ?
+            {isLoggedIn() ?
                 <>
                     <span className={style.backLink}>
                         <a href="/">
@@ -255,9 +258,9 @@ const Works: React.FC = () => {
                         </div>
                     </section>
                 </>
-                : */}
+                :
                 <Unauthorized />
-                {/* } */}
+            }
         </TemplatePage>
     )
 }
