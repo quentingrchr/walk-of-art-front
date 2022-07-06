@@ -1,6 +1,10 @@
 @import "@styles/theme.scss";
 
 .mainContainer {
-    --headerHeight: 8.6rem;
-    padding: var(--headerHeight) 10rem 0 10rem;
+  --headerHeight: 8.6rem;
+  padding: var(--headerHeight) 10rem 0 10rem;
+}
+.noScroll {
+  height: 100vh;
+  overflow-y: hidden;
 }

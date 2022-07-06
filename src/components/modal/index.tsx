@@ -1,32 +1,56 @@
-import React, { useEffect } from "react"
+import React, { Children, useEffect } from "react"
+import cn from "classnames"
 import style from "./index.module.scss"
-import { Icon } from "@components"
+import { useRecoilValue, useSetRecoilState } from "recoil"
+import { activeModalState } from "@recoil/modal/atom"
+import { scrollDisabledState } from "@recoil/scroll/atom"
+
+import { Icon, Text } from "@components"
 
 export type IProps = {
-    isOpen: boolean
-    closeModal: () => void
-    children: React.ReactNode
+  id: string
+  children: React.ReactNode
+  title?: string
 }
 
-export const Modal: React.FC<IProps> = ({isOpen, closeModal, children}: IProps) => {
+export const Modal: React.FC<IProps> = ({ id, children, title }: IProps) => {
+  const activeModal = useRecoilValue(activeModalState)
+  const setActiveModal = useSetRecoilState(activeModalState)
+  const setScrollDisabled = useSetRecoilState(scrollDisabledState)
 
-    useEffect(() => {
-        let body = document.querySelector("body")
-        
-        if(isOpen) body?.classList.add("modal-open")
-            
-        return () => body?.classList.remove("modal-open")
-        
-    }, [isOpen])
+  function closeModal() {
+    setActiveModal((s) => {
+      return null
+    })
+  }
 
-    return (
-        <div className={style.overlay}>
-            <div className={style.modal}>
-                <span className={style.cross}>
-                    <Icon type="cross" size="medium" onClick={() => closeModal()}/>
-                </span>
-                {children}
-            </div>
+  useEffect(() => {
+    if (activeModal === id) {
+      // Modal is open
+      setScrollDisabled(true)
+    } else {
+      // Modal is closed
+      setScrollDisabled(false)
+    }
+  }, [activeModal])
+
+  return (
+    <div className={cn(style.container, { [style.open]: id === activeModal })}>
+      <div className={style.overlay} onClick={closeModal}>
+        <div className={style.modal}>
+          <div className={style.modalHeader}>
+            {title && (
+              <Text tag="p" typo="paragraph-md">
+                {title}
+              </Text>
+            )}
+            <span className={style.cross}>
+              <Icon type="cross" size="medium" onClick={closeModal} />
+            </span>
+          </div>
+          <div className={style.modalBody}>{children}</div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
