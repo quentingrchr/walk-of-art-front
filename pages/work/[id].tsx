@@ -8,7 +8,7 @@ import {
   CONFIRM_WORK_DELETE_MODAL_ID,
 } from "@recoil/modal/atom"
 import cn from "classnames"
-import { TemplatePage, Text, ImagesPreview, Button, Icon } from "@components"
+import { TemplatePage, Text, ImagesPreview, Button, Icon, Unauthorized } from "@components"
 import cardImg from "../../src/assets/images/cardImg.png"
 import { getDateWithoutHours, windowIsNotReady } from "../../src/utility"
 
@@ -95,16 +95,24 @@ const Works: React.FC = () => {
           Créer une exposition avec cette oeuvre
         </button>
 
-        <div className={style.actionsWrapper}>
-          <Button
-            label="Modifier l'oeuvre"
-            bg="light"
-            color="black"
-            onClick={() => console.log("modifier")}
-          />
-          <Button label="Supprimer l'oeuvre" bg="dark" onClick={openModal} />
-        </div>
-      </section>
+            <div className={style.actionsWrapper}>
+              <Button
+                label="Modifier l'oeuvre"
+                bg="light"
+                color="black"
+                onClick={() => console.log("modifier")}
+              />
+              <Button
+                label="Supprimer l'oeuvre"
+                bg="dark"
+                onClick={openModal}
+              />
+            </div>
+          </section>
+        </>
+      ) : (
+        <Unauthorized />
+      )}
     </TemplatePage>
   )
 }
