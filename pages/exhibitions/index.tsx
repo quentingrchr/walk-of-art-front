@@ -33,7 +33,7 @@ const Exhibitions: React.FC = () => {
     const list: Exhibitions[] = [
         {
             "id": "1",
-            "title": "Un ti",
+            "title": "Un titttttttttttjbsfjbksdfsdjbf",
             "description": "Une description",
             "created_at": "2022-05-02T23:09:10.693Z",
             "status": "moderate"
@@ -238,9 +238,27 @@ const Exhibitions: React.FC = () => {
                     </ul>
             </section>
             <section className={style.bodySection}>
-            {filterExhibitionsList(Exhibitions, filters).map((exhibition) => (
-                    <CardGallery id={exhibition.id} key={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status}/>
-                ))}
+                <div className={style.body__ctn}>
+                    {
+                        filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
+                            (index % 3) === 0 && <CardGallery key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status}/>
+                        ))
+                    }
+                </div>
+                <div className={style.body__ctn}>
+                    {
+                        filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
+                            (index % 3) === 1 && <CardGallery key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status}/>
+                        ))
+                    }
+                </div>
+                <div className={style.body__ctn}>
+                    {
+                        filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
+                            (index % 3) === 2 && <CardGallery key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status}/>
+                        ))
+                    }
+                </div>
             </section>
         </TemplatePage>
     )
