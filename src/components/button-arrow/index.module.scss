@@ -17,10 +17,14 @@
         }
     }
 
+    &.left:hover .button__arrows_ctn {
+        transform: translate3d(calc(-100% - 1rem), 0, 0);
+    }
+
     &__label {
         position: relative;
         width: 100%;
-        margin-right: .4rem;
+        margin: 0 .4rem;
 
         &::after {
             content: '';
@@ -36,6 +40,10 @@
         }
     }
 
+    &.left .button__label::after {
+        transform-origin: right;
+    }
+
     &__arrows {
         height: var(--arrows-size);
         width: var(--arrows-size);
@@ -47,6 +55,10 @@
             transform: translate3d(calc(-100% - 1rem), 0, 0);
             transition: transform var(--anim-time) ease-in-out;
         }
+    }
+
+    &.left .button__arrows_ctn {
+        transform: none;
     }
 
     li + li {
