@@ -6,7 +6,7 @@ import { useScrollDirection } from "../../../src/hooks/useScrollDirection"
 import { makeCaseAndAccentInsensitiveString, windowIsNotReady } from "../../../src/utility"
 import { isLoggedIn } from "axios-jwt"
 
-enum scrollDirType {
+enum scrollDirType  {
     up = "up",
     down = "down"
 }
@@ -29,7 +29,7 @@ interface Work {
 
 interface AttachedExhib {
     id: string
-    date_start: string,
+    date_start : string,
     date_end: string,
     adress: string,
     gallerie: string
@@ -134,7 +134,7 @@ const Works: React.FC = () => {
 
     const handleSearch = (event) => {
         let normalizedValue = makeCaseAndAccentInsensitiveString(event.target.value)
-        setFilters(prev => {
+        setFilters( prev => {
             return {
                 ...prev,
                 search: normalizedValue === "" ? null : normalizedValue
@@ -143,14 +143,14 @@ const Works: React.FC = () => {
     }
 
     const handleSortDate = () => {
-        filters.orderDate === "asc" && setFilters(prev => {
+        filters.orderDate === "asc" && setFilters( prev => {
             return {
                 ...prev,
                 orderDate: "dsc"
             }
         })
 
-        filters.orderDate === "dsc" && setFilters(prev => {
+        filters.orderDate === "dsc" && setFilters( prev => {
             return {
                 ...prev,
                 orderDate: "asc"
@@ -160,14 +160,14 @@ const Works: React.FC = () => {
 
     const filterExhibitionsProcess = (list: Work[]) => {
         let attachedExhibitions = list.filter(item => {
-            return item.exhibitions
+            return item.exhibitions 
         })
 
         return attachedExhibitions
     }
 
     const searchProcess = (value: string, list: Work[]) => {
-        let search = list.filter(item => {
+        let search =  list.filter(item => {
             let normalizedTitle = makeCaseAndAccentInsensitiveString(item.title)
             return normalizedTitle.includes(value)
         })
@@ -189,15 +189,15 @@ const Works: React.FC = () => {
     const filterWorksList = (list: Work[], filters: Filters) => {
         let newList: Work[] = [...list]
 
-        if (filters.search !== null) {
+        if(filters.search !== null) {
             newList = searchProcess(filters.search, list)
-        }
+        } 
 
-        if (filters.exhibitions) {
+        if(filters.exhibitions) {
             newList = filterExhibitionsProcess(newList)
         }
 
-        if (filters.orderDate !== null) {
+        if(filters.orderDate !== null) {
             newList = sortDateProcess(newList)
         }
 
@@ -208,7 +208,7 @@ const Works: React.FC = () => {
     useEffect(() => {
         setWorks(data)
     }, [])
-
+    
     /* Scroll Event */
     useEffect(() => {
         scrollDirection === "down" ?
@@ -216,8 +216,8 @@ const Works: React.FC = () => {
             :
             setDirection(scrollDirType.up)
     }, [scrollDirection])
-
-    if (windowIsNotReady()) {
+    
+    if(windowIsNotReady()) {
         return null
     }
 
@@ -226,14 +226,14 @@ const Works: React.FC = () => {
             {isLoggedIn() ?
                 <>
                     <span className={style.backLink}>
-                        <ButtonArrow label="Retour à l'accueil" side="left" to="/dashboard" />
+                        <ButtonArrow label="Retour à l'accueil" side="left" to="/dashboard"/>
                     </span>
                     <section className={cn(style.headSection, direction === scrollDirType.down ? style.scrollDown : null)}>
                         <HeadingStrong content="Mes oeuvres" elementColor="pink" size="xl" />
                         <aside className={style.searchBox}>
                             <ul className={style.filters}>
                                 <li>
-                                    <Checkbox
+                                    <Checkbox 
                                         checkboxLabel="Assignée à une Exposition"
                                         checkboxName="works-exposed"
                                         isChecked={filters.exhibitions}
@@ -245,10 +245,10 @@ const Works: React.FC = () => {
                                     <Text tag="p" typo="label">Date de création</Text>
                                 </li>
                             </ul>
-                            <Search
-                                id="works-search"
-                                placeholder="Rechercher une oeuvre par son titre"
-                                value={filters?.search ? filters.search : ''}
+                            <Search 
+                                id="works-search" 
+                                placeholder="Rechercher une oeuvre par son titre" 
+                                value={filters?.search ? filters.search : '' } 
                                 onChange={handleSearch}
                             />
                         </aside>
@@ -257,21 +257,21 @@ const Works: React.FC = () => {
                         <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
-                                    (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at} />
+                                    (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
                                 ))
                             }
                         </div>
                         <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
-                                    (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at} />
+                                    (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
                                 ))
                             }
                         </div>
                         <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
-                                    (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at} />
+                                    (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
                                 ))
                             }
                         </div>

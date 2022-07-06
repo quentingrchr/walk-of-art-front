@@ -1,16 +1,24 @@
-import React from "react";
-import { TemplatePage, Text, CreateWorkForm, InputFile } from "@components";
+import React from "react"
+import { isLoggedIn } from "axios-jwt"
+import { TemplatePage, CreateWorkForm, Unauthorized } from "@components"
+import { windowIsNotReady } from "../../src/utility"
+
 
 const CreateWork: React.FC = () => {
-  return (
-    <TemplatePage isLogged={true}>
-      {/* PAGE CONTENT */}
-      <Text tag="h1" typo="paragraph-md">
-        Page de création d'une oeuvre
-      </Text>
-    <CreateWorkForm />
-    </TemplatePage>
-  );
-};
 
-export default CreateWork;
+  if(windowIsNotReady()) {
+    return null
+  }
+
+  return (
+    <TemplatePage>
+      {isLoggedIn() ? 
+        <CreateWorkForm />
+        :
+        <Unauthorized />
+      }
+    </TemplatePage>
+  )
+}
+
+export default CreateWork
