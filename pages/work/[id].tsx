@@ -114,7 +114,7 @@ const Works: React.FC = () => {
               <Button
                 label="Supprimer l'oeuvre"
                 bg="dark"
-                onClick={() => setOpenModal(true)}
+                onClick={openModal}
               />
             </div>
           </section>
