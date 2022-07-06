@@ -29,7 +29,7 @@ export const CardGallery: React.FC<IProps> = ({id, img, title, isExposed, create
                 <img className={styles.cardGallery__picture} src={img ? img : cardImg.src} alt="gallery" />
                 <div className={styles.cardGallery__link}>
                     <div className={styles.cardGallery__overlay}></div>
-                    <Button label="voir plus" type="button" icon="rightArrow" fullWidth={false} bg="light" color="black" to={"/"}/>
+                    <Button label="voir plus" type="button" icon="rightArrow" fullWidth={false} bg="light" color="black" to={`/work/${id}`}/>
                 </div>
             </div>
             <Text tag="p" typo="heading-sm">
