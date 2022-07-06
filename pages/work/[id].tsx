@@ -5,7 +5,7 @@ import style from "./index.module.scss"
 import cn from "classnames"
 import { TemplatePage, Text, ImagesPreview, Button, Icon, Modal, Unauthorized } from "@components"
 import cardImg from "../../src/assets/images/cardImg.png"
-import { getDateWithoutHours, windowIsReady } from "../../src/utility"
+import { getDateWithoutHours, windowIsNotReady } from "../../src/utility"
 
 
 
@@ -61,7 +61,7 @@ const Works: React.FC = () => {
     }, [])
 
     
-    if(windowIsReady()) {
+    if(windowIsNotReady()) {
         return null
     }
     return (
