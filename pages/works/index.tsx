@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
 import style from "./index.module.scss"
 import cn from "classnames"
-import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, CardGallery } from "@components"
+import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, CardGallery, Unauthorized } from "@components"
 import { useScrollDirection } from "../../src/hooks/useScrollDirection"
-import { makeCaseAndAccentInsensitiveString } from "../../src/utility"
+import { makeCaseAndAccentInsensitiveString, windowIsReady } from "../../src/utility"
+import { isLoggedIn } from "axios-jwt"
 
 enum scrollDirType  {
     up = "up",
@@ -193,64 +194,73 @@ const Works: React.FC = () => {
             :
             setDirection(scrollDirType.up)
     }, [scrollDirection])
-
+    
+    if(windowIsReady()) {
+        return null
+    }
 
     return (
         <TemplatePage>
-            <span className={style.backLink}>
-                <a href="/">
-                    <Icon type="leftArrow" size="small" color="black" />
-                    <Text tag="p" typo="paragraph-md">Retour à l'accueil</Text>
-                </a>
-            </span>
-            <section className={cn(style.headSection, direction === scrollDirType.down ? style.scrollDown : null)}>
-                <HeadingStrong content="Mes oeuvres" elementColor="pink" size="xl" />
-                <aside className={style.searchBox}>
-                    <ul className={style.filters}>
-                        <li>
-                            <Checkbox 
-                                checkboxLabel="Assignée à une Exposition"
-                                checkboxName="works-exposed"
-                                isChecked={filters.exhibitions}
-                                onChange={handleCheckExhibitions}
+            {isLoggedIn() ?
+                <>
+                    <span className={style.backLink}>
+                        <a href="/">
+                            <Icon type="leftArrow" size="small" color="black" />
+                            <Text tag="p" typo="paragraph-md">Retour à l'accueil</Text>
+                        </a>
+                    </span>
+                    <section className={cn(style.headSection, direction === scrollDirType.down ? style.scrollDown : null)}>
+                        <HeadingStrong content="Mes oeuvres" elementColor="pink" size="xl" />
+                        <aside className={style.searchBox}>
+                            <ul className={style.filters}>
+                                <li>
+                                    <Checkbox 
+                                        checkboxLabel="Assignée à une Exposition"
+                                        checkboxName="works-exposed"
+                                        isChecked={filters.exhibitions}
+                                        onChange={handleCheckExhibitions}
+                                    />
+                                </li>
+                                <li className={style.date} onClick={() => handleSortDate()} data-order={filters.orderDate}>
+                                    <Icon type="downArrow" size="small" color="black" />
+                                    <Text tag="p" typo="label">Date de création</Text>
+                                </li>
+                            </ul>
+                            <Search 
+                                id="works-search" 
+                                placeholder="Rechercher une oeuvre par son titre" 
+                                value={filters?.search ? filters.search : '' } 
+                                onChange={handleSearch}
                             />
-                        </li>
-                        <li className={style.date} onClick={() => handleSortDate()} data-order={filters.orderDate}>
-                            <Icon type="downArrow" size="small" color="black" />
-                            <Text tag="p" typo="label">Date de création</Text>
-                        </li>
-                    </ul>
-                    <Search 
-                        id="works-search" 
-                        placeholder="Rechercher une oeuvre par son titre" 
-                        value={filters?.search ? filters.search : '' } 
-                        onChange={handleSearch}
-                    />
-                </aside>
-            </section>
-            <section className={style.bodySection}>
-                <div>
-                    {
-                        filterWorksList(works, filters).map((work, index) => (
-                            (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
-                        ))
-                    }
-                </div>
-                <div>
-                    {
-                        filterWorksList(works, filters).map((work, index) => (
-                            (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
-                        ))
-                    }
-                </div>
-                <div>
-                    {
-                        filterWorksList(works, filters).map((work, index) => (
-                            (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
-                        ))
-                    }
-                </div>
-            </section>
+                        </aside>
+                    </section>
+                    <section className={style.bodySection}>
+                        <div>
+                            {
+                                filterWorksList(works, filters).map((work, index) => (
+                                    (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
+                                ))
+                            }
+                        </div>
+                        <div>
+                            {
+                                filterWorksList(works, filters).map((work, index) => (
+                                    (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
+                                ))
+                            }
+                        </div>
+                        <div>
+                            {
+                                filterWorksList(works, filters).map((work, index) => (
+                                    (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
+                                ))
+                            }
+                        </div>
+                    </section>
+                </>
+                :
+                <Unauthorized />
+            }
         </TemplatePage>
     )
 }
