@@ -1,15 +1,23 @@
-import React from "react";
-import { EditProfile, TemplatePage, Text } from "@components";
+import React from "react"
+import { isLoggedIn } from "axios-jwt"
+import { EditProfile, TemplatePage, Unauthorized } from "@components"
+import { windowIsReady } from "../../src/utility"
 
 const Profile: React.FC = () => {
+
+  if(windowIsReady()) {
+    return null
+  }
+  
   return (
     <TemplatePage>
-      <Text tag="h1" typo="paragraph-md">
-        Page Profile
-      </Text>
-      <EditProfile />
+      {isLoggedIn() ?
+        <EditProfile />
+        :
+        <Unauthorized />
+      }
     </TemplatePage>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

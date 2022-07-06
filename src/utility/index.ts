@@ -77,6 +77,11 @@ export const makeCaseAndAccentInsensitiveString = (param) => {
               .replace(/[\u0300-\u036f]/g, '')
 }
 
+export const windowIsReady = () => {
+  return (typeof window == "undefined" ||
+  typeof window.localStorage == "undefined")
+}
+
 // Axios jwt utility
 
 // 1. Create an axios instance that you wish to apply the interceptor to
