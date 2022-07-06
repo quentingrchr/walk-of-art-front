@@ -56,6 +56,10 @@
     background-color: $color-beige;
 }
 
+.specific-expo::before {
+  background-color: $color-specific-expo;
+}
+
 .pink::before {
     background-color: $color-pink;
 }
