@@ -70,6 +70,7 @@ const Icons: IIcons = {
   trash: <Trash />,
   chevronRight: <ChevronRight />,
   chevronLeft: <ChevronLeft />
+  warning : <Warning/>
 };
 
 const sizes: any = {
