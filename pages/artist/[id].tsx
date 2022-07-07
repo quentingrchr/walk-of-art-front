@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import s from "./index.module.scss"
-import { Logo, Text, ImagesPreview } from '@components'
+import { Logo, Text, ImagesPreview, Button } from '@components'
 
 const data = {
 
@@ -29,6 +29,15 @@ const Artist: React.FC = () => {
                     <div className={s.description__name}>
                         <Text tag="p" typo="paragraph-md">Fabien Deneau</Text>
                     </div>
+                </div>
+                <div className={s.reaction}>
+                    <Button
+                        label={'Je soutiens cet artiste'}
+                        to="https://www.google.com"
+                        bg="light"
+                        color="black"
+                        target="_blank"
+                    />
                 </div>
             </section>
         </>
