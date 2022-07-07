@@ -1,5 +1,5 @@
 export type Semantic = "success" | "info" | "error";
-export type Colors = Semantic | "black" | "white";
+export type Colors = Semantic | "black" | "white" | "dark";
 export type sizeIcon = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 export type Icons =
   | "avatar"
@@ -20,6 +20,7 @@ export type Icons =
   | "leftArrow"
   | "bellNotification"
   | "warning"
+  | "twitter"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 
