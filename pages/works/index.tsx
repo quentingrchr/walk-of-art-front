@@ -28,8 +28,11 @@ interface Work {
 }
 
 interface AttachedExhib {
-    title: string,
-    status: string
+    id: string
+    date_start : string,
+    date_end: string,
+    adress: string,
+    gallerie: string
 }
 
 
@@ -41,12 +44,25 @@ const data: Work[] = [
         "created_at": "2022-06-27T23:09:10.693Z",
         "exhibitions": [
             {
-                "title": "Titre de l'exhibition",
-                "status": "validate"
+                "id": "1",
+                "date_start": "2022-07-01T23:09:10.693Z",
+                "date_end": "2022-07-10T23:09:10.693Z",
+                "adress": "3 rue des plantes 75014 Paris",
+                "gallerie": "7",
             },
             {
-                "title": "Titre de l'exhibition 2",
-                "status": "pending"
+                "id": "2",
+                "date_start": "2022-07-08T23:09:10.693Z",
+                "date_end": "2022-07-25T23:09:10.693Z",
+                "adress": "22 rue de l’adresse 75000 PARIS",
+                "gallerie": "8",
+            },
+            {
+                "id": "25",
+                "date_start": "2022-10-01T23:09:10.693Z",
+                "date_end": "2022-10-08T23:09:10.693Z",
+                "adress": "22 rue de l’adresse qui est très longue et par conséquent elle fera 3 lignes avec ces mots 75000 PARIS",
+                "gallerie": "6",
             }
         ]
     },
@@ -57,8 +73,11 @@ const data: Work[] = [
         "created_at": "2022-06-12T23:09:10.693Z",
         "exhibitions": [
             {
-                "title": "Titre de l'exhibition",
-                "status": "validate"
+                "id": "9",
+                "date_start": "2022-08-01T23:09:10.693Z",
+                "date_end": "2022-08-05T23:09:10.693Z",
+                "adress": "32 rue de l’adresse qui est un peu plus longue 75000 PARIS",
+                "gallerie": "8",
             },
         ]
     },
@@ -75,9 +94,12 @@ const data: Work[] = [
         "created_at": "2022-06-30T23:09:10.693Z",
         "exhibitions": [
             {
-                "title": "Titre de l'exhibition",
-                "status": "refused"
-            }
+                "id": "25",
+                "date_start": "2022-10-01T23:09:10.693Z",
+                "date_end": "2022-10-08T23:09:10.693Z",
+                "adress": "22 rue de l’adresse qui est très longue et par conséquent elle fera 3 lignes avec ces mots 75000 PARIS",
+                "gallerie": "8",
+            },
         ]
     },
     {

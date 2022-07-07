@@ -30,6 +30,13 @@
     @include typo-paragraph-md;
 }
 
+.paragraph-md-semi {
+    @include typo-paragraph-md-semi;
+}
+.paragraph-md-bold {
+    @include typo-paragraph-md-bold;
+}
+
 .paragraph-sm {
     @include typo-paragraph-sm;
 }
