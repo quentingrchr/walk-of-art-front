@@ -30,6 +30,10 @@
     @include typo-paragraph-md;
 }
 
+.paragraph-sm {
+    @include typo-paragraph-sm;
+}
+
 .label {
     @include typo-label;
 }
