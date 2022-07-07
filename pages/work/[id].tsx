@@ -78,7 +78,6 @@ const Works: React.FC = () => {
     created_at: "",
     exhibitions: [],
   })
-	console.log(work);
 	
 
   const openModal = () => {
