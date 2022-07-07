@@ -1,0 +1,22 @@
+@import "@styles/theme.scss";
+
+.artist {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 1.6rem;
+    background-color: $color-artist-black;
+    color: $color-white;
+    text-align: center;
+    gap: 16px;
+}
+
+.description {
+    text-align: start;
+
+    &__name p{
+        text-align: end;
+        font-weight: 700;
+    }
+}
