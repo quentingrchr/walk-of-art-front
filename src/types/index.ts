@@ -15,7 +15,7 @@ export type ColorsType =
 
 export type HTMLTextTag = "p" | "span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "b" | "i" | "u" | "label"
 
-export type TextTypography = "heading-xl" | "heading-lg" | "heading-md" | "heading-sm" | "heading-xs" | "heading-xxs" | "paragraph-md" | "label" | "guidance" | "notification"
+export type TextTypography = "heading-xl" | "heading-lg" | "heading-md" | "heading-sm" | "heading-xs" | "heading-xxs" | "paragraph-md" | "paragraph-md-semi" | "paragraph-md-bold" | "paragraph-sm" | "label" | "guidance" | "notification"
 
 export type InputTypes = "password" | "email" | "text" | "textarea" | "select"
 
