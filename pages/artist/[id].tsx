@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import s from "./index.module.scss"
-import { Logo, Text, ImagesPreview, Button } from '@components'
+import { Logo, Text, ImagesPreview, Button, Icon } from '@components'
 
 const data = {
     name: 'Fabien Deneau'
@@ -40,6 +40,14 @@ const Artist: React.FC = () => {
                     />
                 </div>
                 <Text tag="h3" typo="heading-xs">Réseaux sociaux de<br/>{data.name}</Text>
+                <ul className={s.rs_list}>
+                    <li className={s.rs_list__rs}>
+                        <Icon type="facebook" size="xlarge" color="dark"/>
+                    </li>
+                    <li className={s.rs_list__rs}>
+                        <Icon type="twitter" size="xlarge" color="dark"/>
+                    </li>
+                </ul>
                 <Text tag="h3" typo="heading-xs">Liens de {data.name}</Text>
                 <Button
                     label={'Site personnel'}

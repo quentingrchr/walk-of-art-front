@@ -9,7 +9,7 @@
     background-color: $color-artist-black;
     color: $color-white;
     text-align: center;
-    gap: 16px;
+    gap: 1.6rem;
 }
 
 .description {
@@ -23,4 +23,21 @@
 
 .reaction {
     width: 100%;
+}
+
+.rs_list {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding-bottom: 2rem;
+
+    &__rs {
+        --rs-size: 4.4rem;
+        width: var(--rs-size);
+        height: var(--rs-size);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-white;
+    }
 }
