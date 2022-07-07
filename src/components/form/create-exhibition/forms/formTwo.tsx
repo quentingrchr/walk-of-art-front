@@ -42,7 +42,6 @@ export const FormTwo: React.FC<IProps> = ({
       e.preventDefault();
   
       handleSubmit((d) => {
-        console.log(d);
         handleStepSubmit(d);
       })(e);
     };
