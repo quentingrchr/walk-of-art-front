@@ -20,32 +20,32 @@ export interface IRecapProps {
 export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {} }) => {
 
   const [orientation, setOrientation] = useState<string>('landscape')
-  const [cardInfos, setCardInfos] = useState( {
-    cvc: '',
-    expiry: '',
-    focus: '',
-    name: '',
-    number: '',
-  })
+  const [cardNumber, setCardNumber] = useState('')
+  const [cardCvc, setCardCvc] = useState('')
+  const [cardExpiry, setCardExpiry] = useState('')
+  const [cardName, setCardName] = useState('')
 
-  const handleInputFocus = (event) => {
-    setCardInfos((previousState) => {
-      const newCardState = { ...previousState };
-      newCardState.focus = event.target.name;
-      return newCardState;
- })
+  // const handleInputFocus = (event) => {
+  //   setCardInfos((previousState) => {
+  //     const newCardState = { ...previousState };
+  //     newCardState.focus = event.target.name;
+  //     return newCardState;
+  //    })
+  // }
+
+
+  const handleNumberChange = (e) => {
+    setCardNumber(e.target.value)
   }
-
-  const handleInputChange = (event) => {
-    const value = event.target;
-
-    setCardInfos((previousState) => {
-      const newCardState = { ...previousState };
-      newCardState.name = value;
-      return newCardState;
- })
+  const handleCvcChange = (e) => {
+    setCardCvc(e.target.value)
   }
-
+  const handleExpiryChange = (e) => {
+    setCardExpiry(e.target.value)
+  }
+  const handleNameChange = (e) => {
+    setCardName(e.target.value)
+  }
 
   const {
     register,
@@ -115,26 +115,42 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
           guidance={null}
         />
       </div> */}
-
+  {/* // LES ID COMME CA EN REACT C'EST NON DANS 99% DES CAS */}
       <div id="PaymentForm">
         <Cards
-          cvc={cardInfos.cvc}
-          expiry={cardInfos.expiry}
-          focused={cardInfos.focus}
-          name={cardInfos.name}
-          number={cardInfos.number}
+          cvc={cardCvc}
+          expiry={cardExpiry}
+          focused={true}
+          name={cardName}
+          number={cardNumber}
         />
         
       </div>
       <form>
           <input
-            type="tel"
-            name="number"
+            type="number"
+            name="Cardnumber"
             placeholder="Card Number"
-            onChange={handleInputChange}
-            onFocus={handleInputFocus}
+            onChange={handleNumberChange}
           />
-          ...
+          <input
+            type="number"
+            name="Cardcvc"
+            placeholder="Card Cvc"
+            onChange={handleCvcChange}
+          />
+          <input
+            type="number"
+            name="Cardexpiry"
+            placeholder="Card Expiry"
+            onChange={handleExpiryChange}
+          />
+          <input
+            type="number"
+            name="Cardname"
+            placeholder="Card Name"
+            onChange={handleNameChange}
+          />
         </form>
 
       <div className={styles.containerOfButtons}>
