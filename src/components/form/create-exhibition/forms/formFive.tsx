@@ -17,7 +17,7 @@ export interface IRecapProps {
   formState: any;
 }
 
-export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = [] }) => {
+export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {} }) => {
 
   const [orientation, setOrientation] = useState<string>('landscape')
   const [cardInfos, setCardInfos] = useState( {
@@ -48,6 +48,7 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = [
 
 
   const {
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "onBlur", defaultValues });
@@ -72,13 +73,14 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = [
       </div>
 
       <label htmlFor="cardType">Liste des cartes enregistrées</label>
-      <InputDropdown control={undefined} id={"cardType"} placeholder={"Sélectionner la carte"} required={false} />
+      {/* <InputDropdown control={undefined} id={"cardType"} placeholder={"Sélectionner la carte"} required={false} /> */}
 
 
       <img src="../../../../assets/images/BankCard.png" alt="" />
 
-      <InputGroup
+      {/* <InputGroup
         placeholder="John Doe"
+        register={register}
         id="description"
         type="text"
         label="Nom du titulaire de la carte"
@@ -87,15 +89,17 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = [
 
       <InputGroup
         placeholder="0000 - 0000 - 0000 - 0000"
+        register={register}
         id="description"
         type="text"
         label="Numéros de carte"
         guidance={null}
-      />
+      /> */}
 
-      <div>
+      {/* <div>
         <InputGroup
           placeholder="00/0000"
+          register={register}
           id="description"
           type="text"
           label="Date d’expiration"
@@ -104,12 +108,13 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = [
 
         <InputGroup
           placeholder="000"
+          register={register}
           id="description"
           type="text"
           label="CVC"
           guidance={null}
         />
-      </div>
+      </div> */}
 
       <div id="PaymentForm">
         <Cards
@@ -119,8 +124,9 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = [
           name={cardInfos.name}
           number={cardInfos.number}
         />
-
-        <form>
+        
+      </div>
+      <form>
           <input
             type="tel"
             name="number"
@@ -130,7 +136,6 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = [
           />
           ...
         </form>
-      </div>
 
       <div className={styles.containerOfButtons}>
         <Button label={"Étape précédente"} color="black" bg="light" type="submit" />

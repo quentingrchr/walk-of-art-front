@@ -38,12 +38,12 @@ export const FormFour: React.FC<IProps> = ({handleStepSubmit, defaultValues = {}
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <>
       <div className={styles.toolTip}>
         <Tooltip text={toolTipText} icon="info" type="info" />
       </div>
 
-      <form className={styles.formContainer} >
+      <form className={styles.formContainer} onSubmit={onSubmit}>
         <div className={orientation === 'portrait' ? styles.portrait : ''}>
           <ExpositionBoard src={cardImg} alt={""} orientation={orientation} />
         </div>
@@ -84,6 +84,6 @@ export const FormFour: React.FC<IProps> = ({handleStepSubmit, defaultValues = {}
         </div>
 
       </form>
-    </form>
+    </>
   )
 }
