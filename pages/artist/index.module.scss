@@ -1,0 +1,43 @@
+@import "@styles/theme.scss";
+
+.artist {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 1.6rem;
+    background-color: $color-artist-black;
+    color: $color-white;
+    text-align: center;
+    gap: 1.6rem;
+}
+
+.description {
+    text-align: start;
+
+    &__name p{
+        text-align: end;
+        font-weight: 700;
+    }
+}
+
+.reaction {
+    width: 100%;
+}
+
+.rs_list {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding-bottom: 2rem;
+
+    &__rs {
+        --rs-size: 4.4rem;
+        width: var(--rs-size);
+        height: var(--rs-size);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-white;
+    }
+}
