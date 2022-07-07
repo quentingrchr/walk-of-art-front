@@ -14,7 +14,7 @@ const Artist: React.FC = () => {
     return (
         <>
             <section className={s.artist}>
-                <Logo to="/" />
+                <Logo to="/" color="white"/>
                 <ImagesPreview
                     primaryImage="https://iili.io/FhDd9R.jpg"
                     secondaryImages={[
@@ -39,6 +39,9 @@ const Artist: React.FC = () => {
                         target="_blank"
                     />
                 </div>
+                <form action="">
+
+                </form>
                 <Text tag="h3" typo="heading-xs">Réseaux sociaux de<br/>{data.name}</Text>
                 <ul className={s.rs_list}>
                     <li className={s.rs_list__rs}>
