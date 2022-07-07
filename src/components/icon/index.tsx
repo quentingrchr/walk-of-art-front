@@ -19,8 +19,9 @@ import DropFile from "./drop-file"
 import SearchIcon from "./search-icon"
 import Chrono from "./chrono"
 import Calendar from "./calendar"
-import Warning from "./warning";
-import Twitter from "./twitter";
+import Warning from "./warning"
+import Twitter from "./twitter"
+import Facebook from "./facebook"
 
 interface IProps {
   type: IconsType;
@@ -52,7 +53,8 @@ const Icons: IIcons = {
   chrono: <Chrono />,
   calendar: <Calendar />,
   warning : <Warning/>,
-  twitter : <Twitter/>
+  twitter : <Twitter/>,
+  facebook : <Facebook/>,
 };
 
 const sizes: any = {

@@ -21,6 +21,7 @@ export type Icons =
   | "bellNotification"
   | "warning"
   | "twitter"
+  | "facebook"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 
