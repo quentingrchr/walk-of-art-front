@@ -15,7 +15,6 @@ export interface IRecapProps {
   handleStepSubmit: (data: any) => void;
   handleBack: () => void;
   formState: any;
-  
 }
 
 export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = [] }) => {
@@ -114,11 +113,11 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = [
 
       <div id="PaymentForm">
         <Cards
-          cvc={cardState.cvc}
-          expiry={cardState.expiry}
-          focused={cardState.focus}
-          name={cardState.name}
-          number={cardState.number}
+          cvc={cardInfos.cvc}
+          expiry={cardInfos.expiry}
+          focused={cardInfos.focus}
+          name={cardInfos.name}
+          number={cardInfos.number}
         />
 
         <form>

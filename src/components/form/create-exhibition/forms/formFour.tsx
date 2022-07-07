@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./formFour.module.scss";
 import { Button, ExpositionBoard, Tooltip } from "@components";
 import cardImg from "../../../../assets/images/cardImg.png"
+import { useForm } from "react-hook-form";
 
 const toolTipText = "Veuillez vérifier miniteusement les informations concernant votre exposition car aucune modification ne sera possible par la suite."
 
@@ -19,17 +20,30 @@ export interface IRecapProps {
 }
 
 
-export const FormFour: React.FC<IRecapProps> = () => {
+export const FormFour: React.FC<IProps> = ({handleStepSubmit, defaultValues = {}} : IProps) => {
 
   const [orientation, setOrientation] = useState<string>('landscape')
 
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onBlur", defaultValues });
+
+  const onSubmit = (event: any) => {
+    event.preventDefault();
+
+    handleSubmit((data) => {
+      handleStepSubmit(data);
+    })(event);
+  };
+
   return (
-    <>
+    <form onSubmit={onSubmit}>
       <div className={styles.toolTip}>
         <Tooltip text={toolTipText} icon="info" type="info" />
       </div>
 
-      <form className={styles.formContainer}>
+      <form className={styles.formContainer} >
         <div className={orientation === 'portrait' ? styles.portrait : ''}>
           <ExpositionBoard src={cardImg} alt={""} orientation={orientation} />
         </div>
@@ -64,12 +78,12 @@ export const FormFour: React.FC<IRecapProps> = () => {
           </p>
 
           <div className={styles.ctaContainer}>
-            <Button label={"Étape suivante"} color="black" bg="light" type="submit" />
-            <Button label={"Étape précédente"} color="white" bg="dark" type="submit" />
+            <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
+            <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
           </div>
         </div>
 
       </form>
-    </>
+    </form>
   )
 }

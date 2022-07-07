@@ -68,23 +68,28 @@ const getStepComponent = (
         <FormThree
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
-          formState={{ ...compiledForm.one, ...compiledForm.two }}
-        />
+          defaultValues={compiledForm.three}
+          onClick={() => { }} />
       );
     case 3:
+      console.log(step);
       return (
         <FormFour
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
-          formState={{ ...compiledForm.three }}
+          defaultValues={compiledForm.four}
+          onClick={() => { }}
         />
       );
-      case 4:
+    case 4:
+      console.log(step);
       return (
         <FormFive
           handleStepSubmit={handleStepSubmit}
-          handleBack={handleBack} onClick={() => {} }   />
-          formState={{ ...compiledForm.four }}
+          handleBack={handleBack}
+          defaultValues={compiledForm.five}
+          onClick={() => { }}
+        />
       );
     default:
       return "Unknown step";
@@ -128,6 +133,12 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
         break;
       case 2:
         setCompiledForm({ ...compiledForm, three: data });
+        break;
+        case 3:
+        setCompiledForm({ ...compiledForm, four: data });
+        break;
+        case 4:
+        setCompiledForm({ ...compiledForm, five: data });
         break;
       default:
         throw new Error("not a valid step");

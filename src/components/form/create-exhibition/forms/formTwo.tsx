@@ -38,7 +38,6 @@ export const FormTwo: React.FC<IProps> = ({
     setAmountOfAdditionalLinks(amountOfAdditionalLinks.filter(value => value !== idFieldValue))
   }
 
-
   const onSubmit = (e: any) => {
     console.log("submit");
     e.preventDefault();
