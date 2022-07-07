@@ -4,33 +4,6 @@
     position: fixed;
     top: 13.6rem;
     z-index: 100;
-
-    &:after {
-        content: "";
-        display: block;
-        background-color: $color-black;
-        width: 3rem;
-        height: .1rem;
-        margin-top: .2rem;
-        position: absolute;
-        right: 0;
-        transform-origin : 100% 0 0;
-        transform: scaleX(1);
-        transition: transform .3s linear;
-    }
-
-    &:hover:after {
-        transform: scaleX(4.3);
-        transition: transform .3s linear;
-    }
-
-    a, a:focus, a:visited {
-        display: flex;
-        align-items: center;
-        gap: .8rem;
-        text-decoration: none;
-        color: $color-black;
-    }
 }
 
 .headSection {
@@ -97,4 +70,8 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: max-content;
     grid-gap: 1.6rem;
+
+    .body__ctn > div + div {
+        margin-top: 2rem;
+    }
 }

@@ -242,10 +242,28 @@ const Exhibitions: React.FC = () => {
           </ul>
         </section>
         <section className={style.bodySection}>
-          {filterExhibitionsList(Exhibitions, filters).map((exhibition) => (
-            <CardGallery id={exhibition.id} key={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status}/>
-          ))}
-        </section>
+                <div className={style.body__ctn}>
+                    {
+                        filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
+                            (index % 3) === 0 && <CardGallery key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status}/>
+                        ))
+                    }
+                </div>
+                <div className={style.body__ctn}>
+                    {
+                        filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
+                            (index % 3) === 1 && <CardGallery key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status}/>
+                        ))
+                    }
+                </div>
+                <div className={style.body__ctn}>
+                    {
+                        filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
+                            (index % 3) === 2 && <CardGallery key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.created_at} status={exhibition.status}/>
+                        ))
+                    }
+                </div>
+            </section>
         </>
         :
         <Unauthorized />

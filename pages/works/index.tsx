@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import style from "./index.module.scss"
 import cn from "classnames"
-import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, CardGallery, Unauthorized } from "@components"
+import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, CardGallery, Unauthorized, ButtonArrow } from "@components"
 import { useScrollDirection } from "../../src/hooks/useScrollDirection"
 import { makeCaseAndAccentInsensitiveString, windowIsNotReady } from "../../src/utility"
 import { isLoggedIn } from "axios-jwt"
@@ -226,10 +226,7 @@ const Works: React.FC = () => {
             {isLoggedIn() ?
                 <>
                     <span className={style.backLink}>
-                        <a href="/dashboard">
-                            <Icon type="leftArrow" size="small" color="black" />
-                            <Text tag="p" typo="paragraph-md">Retour à l'accueil</Text>
-                        </a>
+                        <ButtonArrow label="Retour à l'accueil" side="left" to="/dashboard"/>
                     </span>
                     <section className={cn(style.headSection, direction === scrollDirType.down ? style.scrollDown : null)}>
                         <HeadingStrong content="Mes oeuvres" elementColor="pink" size="xl" />
@@ -257,21 +254,21 @@ const Works: React.FC = () => {
                         </aside>
                     </section>
                     <section className={style.bodySection}>
-                        <div>
+                        <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
                                     (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
                                 ))
                             }
                         </div>
-                        <div>
+                        <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
                                     (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
                                 ))
                             }
                         </div>
-                        <div>
+                        <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
                                     (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
