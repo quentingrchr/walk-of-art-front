@@ -33,7 +33,7 @@ const renderIcon = (type) => {
 
 export const ExpoCard: React.FC<IProps> = ({id, img, title, remainingHours, type}: IProps) => {
     return (
-        <Link href={`/expo/${id}`}>
+        <Link href={`artist/expo/${id}`}>
             <a className={s.card}>
                 <div className={s.imgContainer}>
                     <img className={s.img} src={img.src} alt={img.alt} />

@@ -19,7 +19,7 @@ export const CardGallery: React.FC<IProps> = ({id ,img, title, status, createdAt
 
     return (
         <div className={styles.cardGallery}>
-            <a href={`work/${id}`}>
+            <a href={`artist/work/${id}`}>
             <div className={styles.cardGallery__pictureContainer}>
                 {
                     status === 'validate' ? 

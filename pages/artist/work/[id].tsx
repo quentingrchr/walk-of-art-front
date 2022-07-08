@@ -101,7 +101,7 @@ const Works: React.FC = () => {
             <ButtonArrow
               label="Retour à la liste des oeuvres"
               side="left"
-              to="/works"
+              to="/artist/works"
             />
           </span>
           <section className={style.mainSection}>
@@ -128,7 +128,7 @@ const Works: React.FC = () => {
                   work.exhibitions.map((exhibition) => (
                     <a
                       key={exhibition.id}
-                      href={`/exhibition/${exhibition.id}`}
+                      href={`artist/exhibition/${exhibition.id}`}
                       className={style.exhibitionLink}
                     >
                       <li className={style.exhibition}>
