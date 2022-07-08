@@ -22,6 +22,7 @@ export type Icons =
   | "warning"
   | "twitter"
   | "facebook"
+  | "smiley"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 
