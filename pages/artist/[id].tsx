@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { useRouter } from "next/router"
+import { useForm } from "react-hook-form";
 import s from "./index.module.scss"
-import { Logo, Text, ImagesPreview, Button, Icon } from '@components'
+import { Logo, Text, ImagesPreview, Button, Icon, Input } from '@components'
 
 const data = {
     name: 'Fabien Deneau'
@@ -10,6 +11,14 @@ const data = {
 const Artist: React.FC = () => {
     const router = useRouter()
     const { id } = router.query
+    const { register, handleSubmit } = useForm({ mode: "onBlur" });
+    const onSubmit = (e: any) => {
+        console.log("submit");
+        e.preventDefault();
+        handleSubmit((d) => {
+          console.log(d)
+        })(e);
+    };
 
     return (
         <>
@@ -39,8 +48,15 @@ const Artist: React.FC = () => {
                         target="_blank"
                     />
                 </div>
-                <form action="">
-
+                <form className={s.comments} onSubmit={onSubmit}>
+                    <Text typo="label" tag="label" color="white">Ajouter un commentaire</Text>
+                    <Input
+                        register={register}
+                        placeholder="placeholder here"
+                        type="text"
+                        required={true}
+                        id='id'
+                    />
                 </form>
                 <Text tag="h3" typo="heading-xs">Réseaux sociaux de<br/>{data.name}</Text>
                 <ul className={s.rs_list}>
