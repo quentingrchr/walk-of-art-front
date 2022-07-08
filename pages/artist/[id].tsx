@@ -45,10 +45,14 @@ const Artist: React.FC = () => {
                 <Text tag="h3" typo="heading-xs">Réseaux sociaux de<br/>{data.name}</Text>
                 <ul className={s.rs_list}>
                     <li className={s.rs_list__rs}>
-                        <Icon type="facebook" size="xlarge" color="dark"/>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                            <Icon type="facebook" size="xlarge" color="dark"/>
+                        </a>
                     </li>
                     <li className={s.rs_list__rs}>
-                        <Icon type="twitter" size="xlarge" color="dark"/>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                            <Icon type="twitter" size="xlarge" color="dark"/>
+                        </a>
                     </li>
                 </ul>
                 <Text tag="h3" typo="heading-xs">Liens de {data.name}</Text>
