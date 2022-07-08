@@ -19,6 +19,9 @@ const Artist: React.FC = () => {
           console.log(d)
         })(e);
     };
+    const handlePreviewClick = ():void => {
+        console.log('clicked')
+    }
 
     return (
         <>
@@ -32,6 +35,7 @@ const Artist: React.FC = () => {
                             'https://iili.io/dwagF2.png',
                             'https://iili.io/hy8bLv.jpg'
                         ]}
+                        onClick={handlePreviewClick}
                     />
                     <div className={s.title}>
                         <Text tag="h2" typo="heading-md">Voila le titre de l'exposition que je visite</Text>
