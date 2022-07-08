@@ -44,7 +44,6 @@ const CreateExhibition: React.FC = () => {
         }))
     }
 
-<<<<<<< HEAD
     if(windowIsNotReady()) {
         return null
     }
@@ -62,13 +61,6 @@ const CreateExhibition: React.FC = () => {
             }
         </TemplatePage>
     )
-=======
-            {/* <Artwork src={Image} alt={"test"} size={"small"}/>  */}
-        </div>
-            <CreateExhibitionForm activeStep={activeStep} steps={steps} completeOne={completeStep} setActiveStep={setActiveStep}/>
-    </TemplatePage>
-)
->>>>>>> 5ffb6e0 (refact oexhbitions)
 }
 
 export default CreateExhibition
