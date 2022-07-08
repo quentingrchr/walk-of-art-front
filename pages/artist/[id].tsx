@@ -65,7 +65,9 @@ const Artist: React.FC = () => {
                         />
                     </div>
                     <form className={s.comments} onSubmit={onSubmit}>
-                        <Text typo="label" tag="label" color="white">Ajouter un commentaire</Text>
+                        <div className={s.comments__label}>
+                            <Text typo="label" tag="label" color="white">Ajouter un commentaire</Text>
+                        </div>
                         <Input
                             register={register}
                             placeholder="Écrivez votre commentaire ici..."
