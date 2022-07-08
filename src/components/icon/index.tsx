@@ -22,6 +22,7 @@ import Calendar from "./calendar"
 import Warning from "./warning"
 import Twitter from "./twitter"
 import Facebook from "./facebook"
+import Smiley from "./smiley"
 
 interface IProps {
   type: IconsType;
@@ -55,6 +56,7 @@ const Icons: IIcons = {
   warning : <Warning/>,
   twitter : <Twitter/>,
   facebook : <Facebook/>,
+  smiley : <Smiley/>,
 };
 
 const sizes: any = {
