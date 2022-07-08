@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form";
 import s from "./index.module.scss"
-import { Logo, Text, ImagesPreview, Button, Icon, Input } from '@components'
+import { Logo, Text, ImagesPreview, Button, Icon, Input, ImagePreviewModal } from '@components'
+import { useSetRecoilState } from "recoil"
+import {
+    activeModalState,
+    IMAGE_PREVIEW_MODAL_ID,
+  } from "@recoil/modal/atom"
 
 const data = {
     name: 'Fabien Deneau'
@@ -11,16 +16,20 @@ const data = {
 const Artist: React.FC = () => {
     const router = useRouter()
     const { id } = router.query
-    const { register, handleSubmit } = useForm({ mode: "onBlur" });
+    const { register, handleSubmit } = useForm({ mode: "onBlur" })
+    const setActiveModal = useSetRecoilState(activeModalState)
+
+
     const onSubmit = (e: any) => {
-        console.log("submit");
-        e.preventDefault();
+        console.log("submit")
+        e.preventDefault()
         handleSubmit((d) => {
           console.log(d)
-        })(e);
-    };
+        })(e)
+    }
     const handlePreviewClick = ():void => {
         console.log('clicked')
+        setActiveModal(IMAGE_PREVIEW_MODAL_ID)
     }
 
     return (
@@ -103,6 +112,7 @@ const Artist: React.FC = () => {
                     />
                 </div>
             </section>
+            <ImagePreviewModal />
         </>
     )
 }
