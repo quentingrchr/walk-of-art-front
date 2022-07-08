@@ -59,7 +59,7 @@ const Artist: React.FC = () => {
                             type="text"
                             required={true}
                             id='id'
-                            icon='avatar'
+                            icon='smiley'
                         />
                     </form>
                     <Text tag="h3" typo="heading-xs">Réseaux sociaux de<br/>{data.name}</Text>
