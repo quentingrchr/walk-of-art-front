@@ -5,49 +5,50 @@ import Link from "next/link"
 import { Logo, Navbar, DropdownButton, Icon, Button } from "@components"
 import { useRouter } from "next/router"
 import { NotificationWrapper } from "@components/notification-wrapper"
+import { eraseCookie } from "@utility/index"
 
-export type IProps = {
-
-}
+export type IProps = {}
 
 export const Header: React.FC<IProps> = (props: IProps) => {
-
   const [appear, setAppear] = useState(false)
   const notifs = [
     {
       id: 1,
-      title: 'Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor',
-      type: 'success'
+      title:
+        "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
+      type: "success",
     },
     {
       id: 2,
-      title: 'Au dela du monde',
-      type: 'commentary'
+      title: "Au dela du monde",
+      type: "commentary",
     },
     {
       id: 3,
-      'title': 'Au Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor',
-      type: 'error'
+      title:
+        "Au Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
+      type: "error",
     },
     {
       id: 4,
-      'title': 'Ma mère, musicienne, est morte de maladie maligne à minuit',
-      type: 'success'
+      title: "Ma mère, musicienne, est morte de maladie maligne à minuit",
+      type: "success",
     },
     {
       id: 5,
-      'title': 'Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor',
-      type: 'success'
+      title:
+        "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
+      type: "success",
     },
     {
       id: 6,
-      'title': 'Ma mère, musicienne, est morte de maladie maligne à minuit',
-      type: 'commentary'
+      title: "Ma mère, musicienne, est morte de maladie maligne à minuit",
+      type: "commentary",
     },
     {
       id: 7,
-      'title': 'Ma mère, musicienne, est morte de maladie maligne à minuit',
-      type: 'error'
+      title: "Ma mère, musicienne, est morte de maladie maligne à minuit",
+      type: "error",
     },
   ]
 
@@ -61,6 +62,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
 
   const logout = () => {
     clearAuthTokens()
+    eraseCookie("token")
     router.push("/")
   }
 
@@ -81,23 +83,27 @@ export const Header: React.FC<IProps> = (props: IProps) => {
               className={styles.dropdownButton}
             />
             <span className={styles.link}>
-                {notifs.length === 0 ? <Icon
+              {notifs.length === 0 ? (
+                <Icon
                   type="notification"
                   size="large"
                   onClick={() => setAppear(!appear)}
                 />
-                  :
-                <Icon 
-                  type="bellNotification" 
+              ) : (
+                <Icon
+                  type="bellNotification"
                   size="large"
                   onClick={() => setAppear(!appear)}
-                />}
+                />
+              )}
 
-                {appear ? <NotificationWrapper notifList={notifs}></NotificationWrapper> : null }
+              {appear ? (
+                <NotificationWrapper notifList={notifs}></NotificationWrapper>
+              ) : null}
             </span>
             <span className={styles.link}>
               <Link href="/profile">
-                  <Icon type="profile" size="large" />
+                <Icon type="profile" size="large" />
               </Link>
             </span>
             <span className={styles.link}>

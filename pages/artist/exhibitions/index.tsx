@@ -3,8 +3,8 @@ import { isLoggedIn } from "axios-jwt"
 import style from "./index.module.scss"
 import cn from "classnames"
 import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, Unauthorized, CardGallery } from "@components"
-import { useScrollDirection } from "../../src/hooks/useScrollDirection"
-import { makeCaseAndAccentInsensitiveString, windowIsNotReady } from "./../../src/utility"
+import { useScrollDirection } from "../../../src/hooks/useScrollDirection"
+import { makeCaseAndAccentInsensitiveString, windowIsNotReady } from "../../../src/utility"
 
 enum scrollDirType  {
   up = "up",
