@@ -4,12 +4,9 @@ import cn from "classnames"
 import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, CardGallery, Unauthorized, ButtonArrow } from "@components"
 import { useScrollDirection } from "../../src/hooks/useScrollDirection"
 import { makeCaseAndAccentInsensitiveString, windowIsNotReady } from "../../src/utility"
+import { Work, scrollDirType } from "../../src/types"
 import { isLoggedIn } from "axios-jwt"
 
-enum scrollDirType  {
-    up = "up",
-    down = "down"
-}
 
 type sortDateType = "asc" | "dsc"
 
@@ -17,22 +14,6 @@ interface Filters {
     search: string | null,
     orderDate: sortDateType,
     exhibitions: boolean
-}
-
-interface Work {
-    id: string,
-    title: string,
-    description: string,
-    created_at: string,
-    exhibitions?: AttachedExhib[]
-}
-
-interface AttachedExhib {
-    id: string
-    date_start : string,
-    date_end: string,
-    adress: string,
-    gallerie: string
 }
 
 

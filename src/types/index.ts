@@ -21,36 +21,57 @@ export type InputTypes = "password" | "email" | "text" | "textarea" | "select"
 
 export type BadgeTypes = "completed" | "progress"
 
+export enum scrollDirType  {
+	up = "up",
+	down = "down"
+}
+
 export interface ExpoStates {
-    label: string,
-    listComponent: any
+	label: string,
+	listComponent: any
 }
 
 export type displayTimeType = "completed" | "remaining" | "incoming";
 
 
-export interface Exposition {
-    id: string,
-    title: string,
-    description: string | null,
-    reaction: boolean,
-    created_at: string,
-    revision_id: number,
-    work_id: number,
-    user_id: number
+export interface Exhibition {
+	id: string,
+	title: string,
+	description: string | null,
+	reaction: boolean,
+	created_at: string,
+	revision_id: number,
+	work_id: number,
+	user_id: number
+}
+
+export interface Work {
+  id: string
+  title: string
+  description: string
+  created_at: string
+  exhibitions?: AttachedExhib[]
+}
+
+interface AttachedExhib {
+  id: string
+  date_start : string,
+  date_end: string,
+  adress: string,
+  gallerie: string
 }
 
 export interface Reservation {
-    id: string,
-    date_start: string,
-    duration: number,
-    created_at: string,
-    exhibition_id: number,
-    gallery_id: number
+	id: string,
+	dateStart: string,
+	duration: number,
+	createdAt: string,
+	exhibitionId: number,
+	galleryId: number
 }
 
 export interface ReservationWithExposition extends Reservation {
-    title: string,
-    description: string | null,
-    reaction: boolean,
+	title: string,
+	description: string | null,
+	reaction: boolean,
 }

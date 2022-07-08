@@ -7,34 +7,17 @@ import {
   activeModalState,
   CONFIRM_WORK_DELETE_MODAL_ID,
 } from "@recoil/modal/atom"
-import cn from "classnames"
 import {
 	TemplatePage,
   Text,
   ImagesPreview,
   Button,
-  Icon,
   Unauthorized,
   ButtonArrow
 } from "@components"
 import cardImg from "../../src/assets/images/cardImg.png"
 import { getDateWithoutHours, windowIsNotReady } from "../../src/utility"
-
-interface Work {
-  id: string
-  title: string
-  description: string
-  created_at: string
-  exhibitions?: AttachedExhib[]
-}
-
-interface AttachedExhib {
-  id: string
-  date_start : string,
-  date_end: string,
-  adress: string,
-  gallerie: string
-}
+import { Work } from "../../src/types"
 
 const data: Work = {
   id: "1",
@@ -67,7 +50,7 @@ const data: Work = {
   ],
 }
 
-const Works: React.FC = () => {
+const WorkPage: React.FC = () => {
   const router = useRouter()
   const { id } = router.query
   const setActiveModal = useSetRecoilState(activeModalState)
@@ -172,4 +155,4 @@ const Works: React.FC = () => {
   )
 }
 
-export default Works
+export default WorkPage
