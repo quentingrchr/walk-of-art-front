@@ -33,7 +33,9 @@ const Artist: React.FC = () => {
                             'https://iili.io/hy8bLv.jpg'
                         ]}
                     />
-                    <Text tag="h2" typo="heading-md">Voila le titre de l'exposition que je visite</Text>
+                    <div className={s.title}>
+                        <Text tag="h2" typo="heading-md">Voila le titre de l'exposition que je visite</Text>
+                    </div>
                     <div className={s.description}>
                         <Text tag="p" typo="paragraph-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquet dictumst sed aliquet nulla sed. Arcu at sagittis a placerat. Aenean cum ut dolor platea diam. Aliquam mi ac dictum tempor eget dictum tristique imperdiet. Tristique consectetur vitae mi amet, adipiscing quis vitae ac. Nunc sit eu elementum cursus. Sagittis lectus eu turpis et adipiscing tempor quis id egestas. Ac mi nibh at interdum id turpis. Interdum sapien purus quis id varius molestie tristique sed.</Text>
                         <div className={s.description__name}>
@@ -53,10 +55,11 @@ const Artist: React.FC = () => {
                         <Text typo="label" tag="label" color="white">Ajouter un commentaire</Text>
                         <Input
                             register={register}
-                            placeholder="placeholder here"
+                            placeholder="Écrivez votre commentaire ici..."
                             type="text"
                             required={true}
                             id='id'
+                            icon='avatar'
                         />
                     </form>
                     <Text tag="h3" typo="heading-xs">Réseaux sociaux de<br/>{data.name}</Text>
