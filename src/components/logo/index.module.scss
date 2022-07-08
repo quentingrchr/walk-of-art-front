@@ -11,7 +11,6 @@
 	&:after {
 		content: "";
 		display: block;
-		background-color: $color-black;
 		height: 1px;
 		transition: all 0.3s linear;
 	}
@@ -47,5 +46,13 @@
 			width: 8rem;
 			transform: translateX(0%);
 		}
+	}
+
+	&.black:before, &.black:after {
+		background-color: $color-black;
+	}
+
+	&.white:before, &.white:after {
+		background-color: $color-white;
 	}
 }

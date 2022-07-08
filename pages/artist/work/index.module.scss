@@ -1,0 +1,103 @@
+@import "@styles/theme.scss";
+
+.backLink {
+  position: fixed;
+  top: 13.6rem;
+  z-index: 100;
+}
+
+.mainSection {
+  max-width: 416px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding-top: 4rem;
+
+  h1 {
+    text-align: center;
+  }
+
+  .date {
+    @include typo-paragraph-sm;
+    line-height: 2.4rem;
+    text-align: center;
+    color: $color-white;
+    padding: 0.8rem;
+    background-color: $color-grey-400;
+  }
+
+  .exhibButton {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 1.6rem 2.4rem;
+    background-color: $color-pink;
+    color: $color-white;
+    font-size: 1.4rem;
+    font-family: $font-inter;
+    font-weight: bold;
+  }
+
+  .actionsWrapper {
+    display: flex;
+    gap: 1.6rem;
+    margin-bottom: 4.8rem;
+  }
+
+	.attachedExhibs {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: .8rem;
+		margin: 3.2rem 0;
+
+		.exhibitionslist {
+			border: 2px solid $color-black;
+		}
+
+		a.exhibitionLink {
+			display: flex;
+			justify-content: center;
+			margin: 0 1.2rem;
+			color: $color-black;
+			text-decoration: none;
+			background-color: transparent;
+			transition: background-color .2s linear;
+
+			&:hover {
+				background-color: $color-white;
+				transition: background-color .2s linear;
+			}
+
+			&:first-child .exhibition {
+				padding-top: 1.2rem;
+			}
+
+			&:last-child .exhibition {
+				padding-bottom: 1.2rem;
+				border-bottom: none;
+			}
+
+			&:visited,
+			&:focus {
+				color: $color-black;
+			}
+		}
+
+		.exhibition {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 1.2rem;
+			width: 100%;
+			padding: 1.6rem 0;
+			border-bottom: 1px solid $color-grey;
+
+			p {
+				text-align: center;
+				line-height: 2.4rem;
+			}
+		}
+	}
+}

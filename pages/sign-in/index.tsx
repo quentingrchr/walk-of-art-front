@@ -8,7 +8,8 @@ import { Text, LoginForm, SplitScreen, Link } from "@components"
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import { userState } from "@recoil/user/atom"
 import { signInInputs, signInInputsSchema } from "../../data/form"
-import { axiosInstance } from "@utility/index"
+import { setCookie } from "@utility/index"
+import { IUser } from "../../src/types"
 import {
   isLoggedIn,
   setAuthTokens,
@@ -31,11 +32,13 @@ const Form = () => {
     const { status, data } = response
     if (status === 200) {
       console.log(response.data.token)
+      const user = jwt.decode(response.data.token) as IUser
       setUser(jwt.decode(response.data.token))
       setAuthTokens({
         accessToken: response.data.token,
         refreshToken: response.data.refresh_token,
       })
+      setCookie("token", response.data.token, 10000000)
       if (isLoggedIn()) {
         router.push("/")
       }
