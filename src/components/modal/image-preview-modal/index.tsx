@@ -6,7 +6,8 @@ import {
   IMAGE_PREVIEW_MODAL_ID,
   activeModalState,
 } from "@recoil/modal/atom"
-import { Button } from "@components"
+
+import { Text } from '@components'
 
 export type IProps = {}
 
@@ -22,9 +23,11 @@ export const ImagePreviewModal: React.FC<IProps> = (props: IProps) => {
   return (
     <BaseModal
       id={IMAGE_PREVIEW_MODAL_ID}
-      title="Êtes vous sûrs de vouloir supprimer cette oeuvre ?"
+      title='&nbsp;'
     >
-      hello world
+      <div className={styles.container}>
+        <Text tag="h2" typo="heading-md">Voila le titre de l'exposition que je visite</Text>
+      </div>
     </BaseModal>
   )
 }

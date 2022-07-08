@@ -2,17 +2,7 @@
 
 // Your style here
 
-.modalContent {
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
-
-  p {
-    text-align: center;
-  }
-
-  .modalActionsWrapper {
-    display: flex;
-    gap: 1.6rem;
-  }
+.container {
+    overflow: hidden;
+    background-color: tomato;
 }
