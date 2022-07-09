@@ -75,6 +75,15 @@ export function checkReservationState(reservation, todaysDate: number): displayT
     return 'remaining'
 }
 
+export function checkFilterExhibition(reservationStart, reservationEnd, todaysDate) {
+  // à venir
+  if(todaysDate < getDate(reservationStart) && todaysDate < getDate(reservationEnd)) return 'incoming'
+  // terminées
+  if(todaysDate > getDate(reservationStart) && todaysDate > getDate(reservationEnd)) return 'completed'
+  // remaining
+  return 'remaining'
+}
+
 export const makeCaseAndAccentInsensitiveString = (param) => {
   return param.toLowerCase()
               .normalize('NFD')

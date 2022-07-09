@@ -12,30 +12,33 @@ export type IProps = {
     title: string,
     status?: string,
     createdAt: string,
+    date_end: string,
+    date_start: string,
+    type: string
 }
 
-export const CardGallery: React.FC<IProps> = ({id ,img, title, status, createdAt}: IProps) => {
+export const CardGallery: React.FC<IProps> = ({id ,img, title, status, createdAt, date_end, date_start, type = 'work'}: IProps) => {
     
 
     return (
         <div className={styles.cardGallery}>
-            <a href={`work/${id}`}>
+            <a href={type === 'work' ? `work/${id}` : `exhibition/${id}`}>
             <div className={styles.cardGallery__pictureContainer}>
                 {
-                    status === 'validate' ? 
-                    <div className={cn(styles.cardGallery__tag, styles.cardGallery__isValidate)}>
+                    status === 'remaining' ? 
+                    <div className={cn(styles.cardGallery__tag, styles.cardGallery__isRemaining)}>
                         <Text tag="p" typo="guidance">
                             En exposition
                         </Text>
                     </div> 
-                    : status === 'pending' ?
-                    <div className={cn(styles.cardGallery__tag, styles.cardGallery__isPending)}>
+                    : status === 'incoming' ?
+                    <div className={cn(styles.cardGallery__tag, styles.cardGallery__isIncoming)}>
                         <Text tag="p" typo="guidance">
                             A venir
                         </Text>
                     </div>
-                    : status === 'moderate' ?
-                    <div className={cn(styles.cardGallery__tag, styles.cardGallery__isModerated)}>
+                    : status === 'pending' ?
+                    <div className={cn(styles.cardGallery__tag, styles.cardGallery__isPending)}>
                         <Text tag="p" typo="guidance">
                             En Modération
                         </Text>
@@ -49,7 +52,7 @@ export const CardGallery: React.FC<IProps> = ({id ,img, title, status, createdAt
                 <img className={styles.cardGallery__picture} src={img ? img : cardImg.src} alt="gallery" />
                 <div className={styles.cardGallery__link}>
                     <div className={styles.cardGallery__overlay}></div>
-                    <Button label="voir plus" type="button" icon="rightArrow" fullWidth={false} bg="light" color="black" to={`/work/${id}`}/>
+                    <Button label="voir plus" type="button" icon="rightArrow" fullWidth={false} bg="light" color="black" to={type === 'work' ? `work/${id}` : `exhibition/${id}`}/>
                 </div>
             </div>
             <Text tag="p" typo="heading-sm">
@@ -62,14 +65,14 @@ export const CardGallery: React.FC<IProps> = ({id ,img, title, status, createdAt
             </div>
             <br />
             {
-                status === 'validate' ? <div className={styles.cardGallery__validate}>
+                status === 'remaining' ? <div className={styles.cardGallery__remaining}>
                 <Text tag="p" typo="guidance">
-                    Exposée jusqu’au {getDateWithoutHours(createdAt)}
+                    Exposée jusqu’au {getDateWithoutHours(date_end)}
                 </Text> 
                 </div>
-                : status === 'pending' ? <div className={styles.cardGallery__pending}>
+                : status === 'incoming' ? <div className={styles.cardGallery__incoming}>
                 <Text tag="p" typo="guidance">
-                Sera exposée du {getDateWithoutHours(createdAt)} au {getDateWithoutHours(createdAt)}
+                Sera exposée du {getDateWithoutHours(date_start)} au {getDateWithoutHours(date_end)}
                 </Text> 
                 </div>
                 : status === 'refused' ? <div className={styles.cardGallery__refused}>
@@ -77,9 +80,9 @@ export const CardGallery: React.FC<IProps> = ({id ,img, title, status, createdAt
                 Réfusée en modération
                 </Text> 
                 </div>
-                : status === 'finish' ? <div className={styles.cardGallery__finish}>
+                : status === 'completed' ? <div className={styles.cardGallery__completed}>
                 <Text tag="p" typo="guidance">
-                Terminée depuis le {getDateWithoutHours(createdAt)}
+                Terminée depuis le {getDateWithoutHours(date_end)}
                 </Text> 
                 </div>
                 : ''
