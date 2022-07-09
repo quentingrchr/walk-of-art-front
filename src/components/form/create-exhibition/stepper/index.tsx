@@ -72,7 +72,6 @@ const getStepComponent = (
           onClick={() => { }} />
       );
     case 3:
-      console.log(step);
       return (
         <FormFour
           handleStepSubmit={handleStepSubmit}
@@ -82,7 +81,6 @@ const getStepComponent = (
         />
       );
     case 4:
-      console.log(step);
       return (
         <FormFive
           handleStepSubmit={handleStepSubmit}
@@ -90,13 +88,6 @@ const getStepComponent = (
           defaultValues={compiledForm.five}
           onClick={() => { }}
         />
-      );
-      case 4:
-      return (
-        <FormFive
-          handleStepSubmit={handleStepSubmit}
-          handleBack={handleBack} onClick={() => {} }   />
-          formState={{ ...compiledForm.four }}
       );
     default:
       return "Unknown step";
@@ -169,7 +160,6 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
   };
 
   const handleSubmit = (form: any) => {
-    console.log("submit", form);
     return true;
   };
 

@@ -226,7 +226,7 @@ const Works: React.FC = () => {
             {isLoggedIn() ?
                 <>
                     <span className={style.backLink}>
-                        <ButtonArrow label="Retour à l'accueil" side="left" to="/dashboard"/>
+                        <ButtonArrow label="Retour à l'accueil" to="/dashboard"/>
                     </span>
                     <section className={cn(style.headSection, direction === scrollDirType.down ? style.scrollDown : null)}>
                         <HeadingStrong content="Mes oeuvres" elementColor="pink" size="xl" />

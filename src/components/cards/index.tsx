@@ -17,13 +17,14 @@ export const Cards: React.FC<IProps> = ({ link, img, title, showLink, handleClic
         <div className={styles.cards} onClick={handleClick}>
             <div className={styles.cards__frame}>
                 <img className={styles.cards__picture} src={img ? img : cardImg.src} alt="" />
-                { showLink && 
-                <div className={styles.cards__frame__button}>
-                    <Button label="Voir" to={"/"} icon="rightArrow" bg="light" color="black" size="small"/>
-                </div>
+                {showLink &&
+                    <div className={styles.cards__frame__button}>
+                        <Button label="Voir" to={"/"} icon="rightArrow" bg="light" color="black" size="small" />
+                    </div>
+                }
             </div>
             <p className={styles.title}>{title}</p>
-            { showLink &&
+            {showLink &&
                 <a className={styles.cards__link} href={link} />}
         </div>
     )

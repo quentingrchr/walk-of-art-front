@@ -35,6 +35,7 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
 
 
   const handleNumberChange = (e) => {
+    console.log(cardCvc)
     setCardNumber(e.target.value)
   }
   const handleCvcChange = (e) => {
@@ -78,44 +79,6 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
 
       <img src="../../../../assets/images/BankCard.png" alt="" />
 
-      {/* <InputGroup
-        placeholder="John Doe"
-        register={register}
-        id="description"
-        type="text"
-        label="Nom du titulaire de la carte"
-        guidance={null}
-      />
-
-      <InputGroup
-        placeholder="0000 - 0000 - 0000 - 0000"
-        register={register}
-        id="description"
-        type="text"
-        label="Numéros de carte"
-        guidance={null}
-      /> */}
-
-      {/* <div>
-        <InputGroup
-          placeholder="00/0000"
-          register={register}
-          id="description"
-          type="text"
-          label="Date d’expiration"
-          guidance={null}
-        />
-
-        <InputGroup
-          placeholder="000"
-          register={register}
-          id="description"
-          type="text"
-          label="CVC"
-          guidance={null}
-        />
-      </div> */}
-  {/* // LES ID COMME CA EN REACT C'EST NON DANS 99% DES CAS */}
       <div id="PaymentForm">
         <Cards
           cvc={cardCvc}
@@ -146,7 +109,7 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
             onChange={handleExpiryChange}
           />
           <input
-            type="number"
+            type="text"
             name="Cardname"
             placeholder="Card Name"
             onChange={handleNameChange}
