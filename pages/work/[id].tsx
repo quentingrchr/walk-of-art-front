@@ -79,7 +79,7 @@ const Works: React.FC = () => {
       {isLoggedIn() ? (
         <>
           <span className={style.backLink}>
-            <ButtonArrow label="Retour à la liste des oeuvres" side="left" to="/works"/>
+            <ButtonArrow label="Retour à la liste des oeuvres" to="/works"/>
           </span>
           <section className={style.mainSection}>
             <ImagesPreview

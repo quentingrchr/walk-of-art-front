@@ -64,12 +64,16 @@ export function displayTime(type: displayTimeType, hours: number): string {
   throw new Error()
 }
 
-export function checkReservationState(
-  reservation,
-  todaysDate: number
-): displayTimeType {
-  // diff en seconde
-  const diff = (todaysDate - getDate(reservation.date_start)) / 1000
+export function checkReservationState(reservation, todaysDate: number): displayTimeType {
+    // diff en seconde
+    const diff = (todaysDate - getDate(reservation.date_start)) / 1000
+    // à venir
+    if(diff < 0) return 'incoming'
+    // terminées
+    if(diff - (reservation.duration * 86400) > 0) return 'completed'
+    // en cours
+    return 'remaining'
+}
 
 export const makeCaseAndAccentInsensitiveString = (param) => {
   return param.toLowerCase()
@@ -104,31 +108,6 @@ const requestRefresh: TokenRefreshRequest = async (
   //}
 
   return response.data.access_token
-export function checkReservationState(reservation, todaysDate: number): displayTimeType {
-    // diff en seconde
-    const diff = (todaysDate - getDate(reservation.date_start)) / 1000
-    // à venir
-    if(diff < 0) return 'incoming'
-    // terminées
-    if(diff - (reservation.duration * 86400) > 0) return 'completed'
-    // en cours
-    return 'remaining'
 }
 
 applyAuthTokenInterceptor(axiosInstance, { requestRefresh })
-export const makeCaseAndAccentInsensitiveString = (param) => {
-  return param.toLowerCase()
-              .normalize('NFD')
-              .replace(/[\u0300-\u036f]/g, '')
-}
-
-export const formatSqlToJsDate = (sqlDate: string) => {
-  //sqlDate in SQL DATETIME format ("yyyy-mm-dd hh:mm:ss.ms")
-  const sqlAllDate = sqlDate.split("-")
-  const sYear = Number(sqlAllDate[0])
-  const sMonth = Number(sqlAllDate[1])
-  const sqlDayAndHour = sqlAllDate[2].split("T")
-  const sDay = Number(sqlDayAndHour[0])
-
-  return new Date(sYear,sMonth,sDay)
-}

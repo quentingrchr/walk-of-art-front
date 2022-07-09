@@ -2,7 +2,7 @@ import React from "react"
 import styles from "./index.module.scss"
 import { Button, Text, Icon } from ".."
 import cardImg from "../../assets/images/cardImg.png"
-import { formatSqlToJsDate } from "../../utility"
+import { getDateWithoutHours } from "../../utility"
 import cn from 'classnames'
 
 
@@ -14,14 +14,7 @@ export type IProps = {
     createdAt: string,
 }
 
-export const CardGallery: React.FC<IProps> = ({img, title, status, createdAt}: IProps) => {
-
-    const getFormatDate = (createdAt: string) => {
-        let date = formatSqlToJsDate(createdAt)
-        let formatDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
-
-        return formatDate
-    }
+export const CardGallery: React.FC<IProps> = ({id ,img, title, status, createdAt}: IProps) => {
     
 
     return (
@@ -71,12 +64,12 @@ export const CardGallery: React.FC<IProps> = ({img, title, status, createdAt}: I
             {
                 status === 'validate' ? <div className={styles.cardGallery__validate}>
                 <Text tag="p" typo="guidance">
-                    Exposée jusqu’au {getFormatDate(createdAt)}
+                    Exposée jusqu’au {getDateWithoutHours(createdAt)}
                 </Text> 
                 </div>
                 : status === 'pending' ? <div className={styles.cardGallery__pending}>
                 <Text tag="p" typo="guidance">
-                Sera exposée du {getFormatDate(createdAt)} au {getFormatDate(createdAt)}
+                Sera exposée du {getDateWithoutHours(createdAt)} au {getDateWithoutHours(createdAt)}
                 </Text> 
                 </div>
                 : status === 'refused' ? <div className={styles.cardGallery__refused}>
@@ -86,7 +79,7 @@ export const CardGallery: React.FC<IProps> = ({img, title, status, createdAt}: I
                 </div>
                 : status === 'finish' ? <div className={styles.cardGallery__finish}>
                 <Text tag="p" typo="guidance">
-                Terminée depuis le {getFormatDate(createdAt)}
+                Terminée depuis le {getDateWithoutHours(createdAt)}
                 </Text> 
                 </div>
                 : ''

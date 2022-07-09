@@ -28,10 +28,10 @@ const STEPS = [
     
 ]
 
-
 const CreateExhibition: React.FC = () => {
     const [activeStep, setActiveStep] = React.useState<number>(0)
     const [steps, setSteps] = React.useState<IStep[]>(STEPS)
+
     const completeStep = (index: number) => {
         setSteps(steps.map((step, i) => {
             if (i === index) {
@@ -50,15 +50,20 @@ const CreateExhibition: React.FC = () => {
 
     return (
         <TemplatePage>
-            {isLoggedIn() ? 
+            {/* {isLoggedIn() ?  */}
                     <>
-                    <Link to='/' label='Retour à la connexion' classname={styles.link} /><div className={styles.background}></div><div className={styles.heading}>
+                    <Link to='/' label='Retour à la connexion' classname={styles.link} />
+                    <div className={styles.background} />
+                        
+                        
+                        <div className={styles.heading}>
                         <HeadingStrong elementColor="success" color="black" content="Création d'une oeuvre" size="md" />
-                        {/* <Artwork src={Image} alt={"test"} size={"small"}/>  */}
-                    </div><CreateExhibitionForm activeStep={activeStep} steps={steps} completeOne={completeStep} setActiveStep={setActiveStep} /></>
-                :
-                <Unauthorized />
-            }
+                        </div>
+                    <CreateExhibitionForm activeStep={activeStep} steps={steps} completeOne={completeStep} setActiveStep={setActiveStep} />
+                    </>
+                    {/* :
+                <Unauthorized /> */}
+            {/* } */}
         </TemplatePage>
     )
 }
