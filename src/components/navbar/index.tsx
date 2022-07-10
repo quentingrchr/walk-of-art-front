@@ -36,3 +36,4 @@ export const Navbar: React.FC<IProps> = (props: IProps) => {
 		</nav>
 	)
 }
+	

@@ -1,7 +1,7 @@
 import React from "react"
 import { isLoggedIn } from "axios-jwt"
 import { EditProfile, TemplatePage, Unauthorized } from "@components"
-import { windowIsNotReady } from "../../src/utility"
+import { windowIsNotReady } from "../../../src/utility"
 
 const Profile: React.FC = () => {
 

@@ -1,15 +1,26 @@
 @import "@styles/theme.scss";
 
 .artist {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 5rem 1.6rem;
     background-color: $color-artist-black;
     color: $color-white;
+    align-items: center;
     text-align: center;
-    gap: 1.6rem;
+
+    &__container {
+        min-height: 100vh;
+        max-width: 480px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.6rem;
+        padding: 5rem 1.6rem;
+    }
+}
+
+.title {
+    padding: 0 2rem;
 }
 
 .description {
@@ -23,6 +34,16 @@
 
 .reaction {
     width: 100%;
+}
+
+.comments {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    padding: 3.2rem 0;
+    text-align: start;
+
 }
 
 .rs_list {

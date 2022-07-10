@@ -1,21 +1,47 @@
 import { ReactNode } from "react"
 
 export type ColorsType =
-    | "black"
-    | "white"
-    | "beige"
-    | "error"
-    | "error-light"
-    | "success"
-    | "success-light"
-    | "info"
-    | "info-light"
-    | "violet"
-    | "pink"
+  | "black"
+  | "white"
+  | "beige"
+  | "error"
+  | "error-light"
+  | "success"
+  | "success-light"
+  | "info"
+  | "info-light"
+  | "violet"
+  | "pink"
 
-export type HTMLTextTag = "p" | "span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "b" | "i" | "u" | "label"
+export type HTMLTextTag =
+  | "p"
+  | "span"
+  | "div"
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "b"
+  | "i"
+  | "u"
+  | "label"
 
-export type TextTypography = "heading-xl" | "heading-lg" | "heading-md" | "heading-sm" | "heading-xs" | "heading-xxs" | "paragraph-md" | "paragraph-md-semi" | "paragraph-md-bold" | "paragraph-sm" | "label" | "guidance" | "notification"
+export type TextTypography =
+  | "heading-xl"
+  | "heading-lg"
+  | "heading-md"
+  | "heading-sm"
+  | "heading-xs"
+  | "heading-xxs"
+  | "paragraph-md"
+  | "paragraph-md-semi"
+  | "paragraph-md-bold"
+  | "paragraph-sm"
+  | "label"
+  | "guidance"
+  | "notification"
 
 export type InputTypes = "password" | "email" | "text" | "textarea" | "select"
 
@@ -27,12 +53,11 @@ export enum scrollDirType  {
 }
 
 export interface ExpoStates {
-	label: string,
-	listComponent: any
+  label: string
+  listComponent: any
 }
 
-export type displayTimeType = "completed" | "remaining" | "incoming";
-
+export type displayTimeType = "completed" | "remaining" | "incoming"
 
 export interface Exhibition {
 	id: string,
@@ -74,4 +99,14 @@ export interface ReservationWithExposition extends Reservation {
 	title: string,
 	description: string | null,
 	reaction: boolean,
+}
+
+export type UserRolesType = "ROLE_USER" | "ROLE_ARTIST" | "ROLE_MODERATOR"
+
+export interface IUser {
+  id: string
+  email: string
+  iat: number
+  exp: number
+  roles: [UserRolesType]
 }

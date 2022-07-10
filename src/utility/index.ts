@@ -64,26 +64,31 @@ export function displayTime(type: displayTimeType, hours: number): string {
   throw new Error()
 }
 
-export function checkReservationState(reservation, todaysDate: number): displayTimeType {
-    // diff en seconde
-    const diff = (todaysDate - getDate(reservation.date_start)) / 1000
-    // à venir
-    if(diff < 0) return 'incoming'
-    // terminées
-    if(diff - (reservation.duration * 86400) > 0) return 'completed'
-    // en cours
-    return 'remaining'
+export function checkReservationState(
+  reservation,
+  todaysDate: number
+): displayTimeType {
+  // diff en seconde
+  const diff = (todaysDate - getDate(reservation.date_start)) / 1000
+  // à venir
+  if (diff < 0) return "incoming"
+  // terminées
+  if (diff - reservation.duration * 86400 > 0) return "completed"
+  // en cours
+  return "remaining"
 }
 
 export const makeCaseAndAccentInsensitiveString = (param) => {
-  return param.toLowerCase()
-              .normalize('NFD')
-              .replace(/[\u0300-\u036f]/g, '')
+  return param
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
 }
 
 export const windowIsNotReady = () => {
-  return (typeof window == "undefined" ||
-  typeof window.localStorage == "undefined")
+  return (
+    typeof window == "undefined" || typeof window.localStorage == "undefined"
+  )
 }
 
 // Axios jwt utility
@@ -111,3 +116,26 @@ const requestRefresh: TokenRefreshRequest = async (
 }
 
 applyAuthTokenInterceptor(axiosInstance, { requestRefresh })
+
+export function setCookie(name, value, days) {
+  var expires = ""
+  if (days) {
+    var date = new Date()
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+    expires = "; expires=" + date.toUTCString()
+  }
+  document.cookie = name + "=" + (value || "") + expires + "; path=/"
+}
+export function getCookie(name) {
+  var nameEQ = name + "="
+  var ca = document.cookie.split(";")
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i]
+    while (c.charAt(0) == " ") c = c.substring(1, c.length)
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length)
+  }
+  return null
+}
+export function eraseCookie(name) {
+  document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;"
+}

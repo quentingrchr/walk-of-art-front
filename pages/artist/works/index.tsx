@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react"
 import style from "./index.module.scss"
 import cn from "classnames"
 import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, CardGallery, Unauthorized, ButtonArrow } from "@components"
-import { useScrollDirection } from "../../src/hooks/useScrollDirection"
-import { makeCaseAndAccentInsensitiveString, windowIsNotReady } from "../../src/utility"
-import { Work, scrollDirType } from "../../src/types"
+import { useScrollDirection } from "../../../src/hooks/useScrollDirection"
+import { makeCaseAndAccentInsensitiveString, windowIsNotReady } from "../../../src/utility"
+import { Work, scrollDirType } from "../../../src/types"
 import { isLoggedIn } from "axios-jwt"
 
 

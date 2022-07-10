@@ -3,6 +3,7 @@ import styles from "./index.module.scss";
 import cx from "classnames";
 import { Icon } from "@components";
 import { InputTypes } from "../../../types";
+import { Icons } from "@interfaces/index";
 
 export type IProps = {
   id: string;
@@ -11,9 +12,10 @@ export type IProps = {
   type?: InputTypes;
   register: any;
   required?: boolean;
+  icon?: Icons
 };
 
-const TextInput = ({ id, placeholder, register, required }: IProps) => {
+const TextInput = ({ id, placeholder, register, required, icon }: IProps) => {
   return (
     <div className={styles.container}>
       <input
@@ -26,6 +28,15 @@ const TextInput = ({ id, placeholder, register, required }: IProps) => {
           required: required ? true : false,
         })}
       />
+      {
+        icon && (
+          <div
+            className={styles.icon}
+          >
+            <Icon type={icon} size="large" />
+          </div>
+        )
+      }
     </div>
   );
 };
