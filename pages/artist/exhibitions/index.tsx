@@ -41,6 +41,14 @@ interface Exhibition {
   reservation: Reservation,
 }
 
+<<<<<<< HEAD:pages/artist/exhibitions/index.tsx
+=======
+// status de modération besoin pour gérer les autres status des cards exhib
+interface Exhibitions_status {
+    status: string,
+}
+
+>>>>>>> d428762 (refacto my function for styling and add param to checkFilterExhibition):pages/exhibitions/index.tsx
 const Exhibitions: React.FC = () => {
 
   const list: Exhibition[] = [

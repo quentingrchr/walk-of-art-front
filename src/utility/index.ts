@@ -78,11 +78,15 @@ export function checkReservationState(
   return "remaining"
 }
 
-export function checkFilterExhibition(reservationStart, reservationEnd, todaysDate) {
-  // à venir
+export function checkFilterExhibition(reservationStart, reservationEnd, todaysDate, exhibModerationStatus?) {
+  // à venir ajouter dans la condition le status de l'exhibition
   if(todaysDate < getDate(reservationStart) && todaysDate < getDate(reservationEnd)) return 'incoming'
   // terminées
   if(todaysDate > getDate(reservationStart) && todaysDate > getDate(reservationEnd)) return 'completed'
+  // refused
+  if(exhibModerationStatus === 'refused') return 'refused'
+  //pending
+  if(exhibModerationStatus === 'pending') return 'pending'
   // remaining
   return 'remaining'
 }
