@@ -42,9 +42,10 @@ interface Exhibition {
   reservation: Reservation,
 }
 
+// status de modération besoin pour gérer les autres status des cards exhib
 interface Exhibitions_status {
     status: string,
-  }
+}
 
 const Exhibitions: React.FC = () => {
 
@@ -156,7 +157,6 @@ const Exhibitions: React.FC = () => {
     orderDate: "dsc",
     type: [],
   })
-  const [statusStyle, setStatusStyle] = useState('')
 
   const [direction, setDirection] = useState<scrollDirType.up | scrollDirType.down>()
   const scrollDirection = useScrollDirection()
@@ -210,13 +210,6 @@ const Exhibitions: React.FC = () => {
       }
     })
 }
-
-    function addStyleStatus(start, end){
-        let today = new Date()
-        let statusCheck = ''
-            statusCheck = checkFilterExhibition(start, end, today);
-            return statusCheck
-    }
 
   const filterbyStatusExhibitions = (list: Exhibition[]) => {
     let date = Date.now()
@@ -345,21 +338,21 @@ const Exhibitions: React.FC = () => {
                 <div className={style.body__ctn}>
                     {
                         filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
-                            (index % 3) === 0 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.reservation.dateStart} date_end={exhibition.reservation.dateEnd} status={addStyleStatus(exhibition.reservation.dateStart, exhibition.reservation.dateEnd)}/>
+                            (index % 3) === 0 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.reservation.dateStart} date_end={exhibition.reservation.dateEnd} status={checkFilterExhibition(exhibition.reservation.dateStart, exhibition.reservation.dateEnd, new Date)}/>
                         ))
                     }
                 </div>
                 <div className={style.body__ctn}>
                     {
                         filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
-                            (index % 3) === 1 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.reservation.dateStart} date_end={exhibition.reservation.dateEnd} status={addStyleStatus(exhibition.reservation.dateStart, exhibition.reservation.dateEnd)}/>
+                            (index % 3) === 1 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.reservation.dateStart} date_end={exhibition.reservation.dateEnd} status={checkFilterExhibition(exhibition.reservation.dateStart, exhibition.reservation.dateEnd, new Date)}/>
                         ))
                     }
                 </div>
                 <div className={style.body__ctn}>
                     {
                         filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
-                            (index % 3) === 2 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.reservation.dateStart} date_end={exhibition.reservation.dateEnd} status={addStyleStatus(exhibition.reservation.dateStart, exhibition.reservation.dateEnd)}/>
+                            (index % 3) === 2 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.reservation.dateStart} date_end={exhibition.reservation.dateEnd} status={checkFilterExhibition(exhibition.reservation.dateStart, exhibition.reservation.dateEnd, new Date)}/>
                         ))
                     }
                 </div>
