@@ -102,7 +102,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
               ) : null}
             </span>
             <span className={styles.link}>
-              <Link href="artist/profile">
+              <Link href="/artist/profile">
                 <Icon type="profile" size="large" />
               </Link>
             </span>

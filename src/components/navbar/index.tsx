@@ -21,11 +21,11 @@ export const Navbar: React.FC<IProps> = (props: IProps) => {
 		},
 		{
 			label: "Oeuvres",
-			path: "/works",
+			path: "/artist/works",
 		},
 		{
 			label: "Expositions",
-			path: "/exhibitions"
+			path: "/artist/exhibitions"
 		}
 	]
 
