@@ -40,7 +40,7 @@ export const signInInputs: Array<IFormInput> = [
 export const signUpInputsSchema = yup
   .object()
   .shape({
-    email: yup.string().email().required(),
+    email: yup.string().required(),
     password: yup.string().min(2).required(),
     passwordConfirmation: yup.string().oneOf([yup.ref("password"), null]),
     firstName: yup.string().required(),

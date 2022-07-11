@@ -39,6 +39,7 @@ export { ImagesPreview } from "./images-preview"
 export { Map } from "./map"
 export { ButtonArrow } from "./button-arrow"
 export { ConfirmWorkDeleteModal } from "./modal/confirm-work-delete-modal"
+export { ImagePreviewModal } from "./modal/image-preview-modal"
 export { Unauthorized } from "./unauthorized"
 export { ExpositionBoard } from './exposition-board'
 export { Search } from "./search"
