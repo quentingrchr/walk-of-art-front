@@ -1,10 +1,8 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styles from "./index.module.scss"
 import { Modal as BaseModal } from "../index"
-import { useRecoilValue, useSetRecoilState } from "recoil"
 import {
     IMAGE_PREVIEW_MODAL_ID,
-    activeModalState,
 } from "@recoil/modal/atom"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -16,18 +14,12 @@ export type IProps = {
 }
 
 export const ImagePreviewModal: React.FC<IProps> = ({ title, images }: IProps) => {
-    const setActiveModal = useSetRecoilState(activeModalState)
-
-    function closeModal() {
-        setActiveModal((s) => {
-            return null
-        })
-    }
+    const [slideIndex, setSlideIndex] = useState<number>(0)
 
     return (
     <BaseModal
         id={IMAGE_PREVIEW_MODAL_ID}
-        title='&nbsp;'
+        title={`${slideIndex + 1}/${images.length}`}
         fullScreen={true}
         background="artist-black"
         iconColor="white"
@@ -37,7 +29,7 @@ export const ImagePreviewModal: React.FC<IProps> = ({ title, images }: IProps) =
                     <Swiper
                         spaceBetween={50}
                         slidesPerView={'auto'}
-                        onSlideChange={() => console.log('slide change')}
+                        onSlideChange={(index) => setSlideIndex(index.snapIndex)}
                         onSwiper={(swiper) => console.log(swiper)}
                     >
                         {

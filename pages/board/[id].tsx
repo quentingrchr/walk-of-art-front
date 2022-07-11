@@ -115,7 +115,10 @@ const Artist: React.FC = () => {
                     />
                 </div>
             </section>
-            <ImagePreviewModal title="Voice le titre de cette oeuvre" images={data.images} />
+            <ImagePreviewModal
+                title="Voice le titre de cette oeuvre"
+                images={data.images}
+            />
         </>
     )
 }
