@@ -23,10 +23,10 @@ const TextInput = ({ id, placeholder, register, required, icon }: IProps) => {
         placeholder={placeholder}
         className={styles.input}
         type="text"
-        // required={required}
-        // {...register(id, {
-        //   required: required ? true : false,
-        // })}
+        required={required}
+        {...register(id, {
+          required: required ? true : false,
+        })}
       />
       {
         icon && (
