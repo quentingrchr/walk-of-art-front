@@ -16,17 +16,18 @@ import {
   Unauthorized,
   ButtonArrow
 } from "@components"
-import cardImg from "../../src/assets/images/cardImg.png"
-import { getDateWithoutHours, windowIsNotReady } from "../../src/utility"
-import { Exhibition } from "../../src/types"
+import cardImg from "../../../src/assets/images/cardImg.png"
+import { getDateWithoutHours, windowIsNotReady } from "../../../src/utility"
+import { Exhibition } from "../../../src/types"
 
 
 const data: Exhibition = {
-  id: "1",
-  title:
-    "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Augue vestibulum diam elit pretium amet risus sed blandit. Vulputate et cras purus lobortis. Adipiscing at ut volutpat proin tempus fermentum faucibus. Senectus massa tortor eget sit non eleifend orci nulla. Id est ut id augue sapien risus ornare eget. Ipsum quis arcu, viverra gravida at sed. Pulvinar ut lobortis mauris vel purus pulvinar lacus volutpat quam. Nullam in purus viverra lorem mauris. Blandit faucibus nulla lobortis enim.",
-  reaction: false,
+  	id: "1",
+  	title: "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
+  	description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Augue vestibulum diam elit pretium amet risus sed blandit. Vulputate et cras purus lobortis. Adipiscing at ut volutpat proin tempus fermentum faucibus. Senectus massa tortor eget sit non eleifend orci nulla. Id est ut id augue sapien risus ornare eget. Ipsum quis arcu, viverra gravida at sed. Pulvinar ut lobortis mauris vel purus pulvinar lacus volutpat quam. Nullam in purus viverra lorem mauris. Blandit faucibus nulla lobortis enim.",
+  	dateStart: "2022-07-27T23:09:10.693Z",
+  	dateEnd: "2022-07-30T23:09:10.693Z", 
+  	reaction: false,
 	comment: false,
 	createdAt: "2022-06-27T23:09:10.693Z",
 	status: [{}],
@@ -38,24 +39,16 @@ const data: Exhibition = {
 			fileUrl: ""
 		}
 	},
-	reservations: [
-		{
-				"id": "45",
-				"dateStart": "2022-07-27T23:09:10.693Z",
-				"dateEnd": "2022-07-30T23:09:10.693Z",
-				"createdAt": "2022-07-02T23:09:10.693Z",
-				"board": {
-					"id": "48",
-					"gallery": {
-						"id": "5",
-						"name": "Nom de gallery",
-						"latitude": 48.87391471364133, 
-						"longitude": 2.295116384360164
-					},
-					"orientation": {}
-				}
-		}
-	],
+	board: {
+		id: "48",
+		gallery: {
+			id: "5",
+			name: "Nom de gallery",
+			latitude: 48.87391471364133, 
+			longitude: 2.295116384360164
+		},
+		orientation: {}
+	},
 	snapshot: [
 		{
 			name: "Facebook",
@@ -79,9 +72,11 @@ const ExhibitionPage: React.FC = () => {
 
   const [exhibition, setExhibition] = useState<Exhibition>({
     id: "",
-  title: "",
-  description: "",
-  reaction: false,
+  	title: "",
+  	description: "",
+  	dateStart: "",
+	dateEnd: "",
+  	reaction: false,
 	comment: false,
 	createdAt: "",
 	status: [{}],
@@ -93,24 +88,16 @@ const ExhibitionPage: React.FC = () => {
 			fileUrl: ""
 		}
 	},
-	reservations: [
-		{
-				id: "",
-				dateStart: "",
-				dateEnd: "",
-				createdAt: "",
-				board: {
-					id: "",
-					gallery: {
-						id: "",
-						name: "",
-						latitude: 0, 
-						longitude: 0
-					},
-					orientation: {}
-				}
-		}
-	],
+	board: {
+		id: "",
+		gallery: {
+			id: "",
+			name: "",
+			latitude: 0, 
+			longitude: 0
+		},
+		orientation: {}
+	},
 	snapshot: [
 		{
 			name: "",
@@ -159,11 +146,11 @@ const ExhibitionPage: React.FC = () => {
               {exhibition.description}
             </Text>
             <span className={cn(style.date, style.creation)}>
-							{`Créée le ${getDateWithoutHours(exhibition.createdAt)}`}
-						</span>
-						<span className={cn(style.date, style.exposition)}>
-							{`Sera exposée du ${getDateWithoutHours(exhibition.createdAt)} au ${getDateWithoutHours(exhibition.createdAt)}`}
-						</span>
+				{`Créée le ${getDateWithoutHours(exhibition.createdAt)}`}
+			</span>
+			<span className={cn(style.date, style.exposition)}>
+				{`Sera exposée du ${getDateWithoutHours(exhibition.dateStart)} au ${getDateWithoutHours(exhibition.dateEnd)}`}
+			</span>
 
             <div className={style.actionsWrapper}>
               <Button

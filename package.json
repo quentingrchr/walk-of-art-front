@@ -33,6 +33,7 @@
     "react-map-gl": "^7.0.16",
     "react-transition-group": "^4.4.2",
     "recoil": "^0.7.4",
+    "swiper": "^8.3.0",
     "tsc-alias": "^1.6.6",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
     "yup": "^0.32.11"

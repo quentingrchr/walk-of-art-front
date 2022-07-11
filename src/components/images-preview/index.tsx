@@ -5,14 +5,16 @@ import styles from "./index.module.scss"
 export type IProps = {
   primaryImage: string
   secondaryImages?: string[]
+  onClick?: () => void
 }
 
 export const ImagesPreview: React.FC<IProps> = ({
   primaryImage,
   secondaryImages,
+  onClick,
 }: IProps) => {
   return (
-    <div className={styles.imagesContainer}>
+    <div className={styles.imagesContainer} onClick={onClick}>
       {/* IMAGES */}
 
       {/* PRIMARY IMAGE  */}
