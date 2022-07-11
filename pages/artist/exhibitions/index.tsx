@@ -5,6 +5,7 @@ import cn from "classnames"
 import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, Unauthorized, CardGallery, ButtonArrow } from "@components"
 import { useScrollDirection } from "./../../../src/hooks/useScrollDirection"
 import { makeCaseAndAccentInsensitiveString, windowIsNotReady, checkFilterExhibition} from "./../../../src/utility"
+import { Exhibition } from "../../../src/types"
 
 enum scrollDirType  {
   up = "up",
@@ -20,31 +21,7 @@ interface Filters {
     orderDate: sortDateType,
     type: ExhibitionTypeStatus[],  
 }
-interface Link {
-    name:string, 
-    url:string
-}
 
-interface Reservation {
-    id: string,
-    dateStart: string,
-    dateEnd: string,
-    createdAt: string,
-    exhibition: string,
-}
-interface Exhibition {
-  id: string,
-  title: string,
-  description: string,
-  createdAt: string,
-  links: Link[]
-  reservation: Reservation,
-}
-
-// status de modération besoin pour gérer les autres status des cards exhib
-interface Exhibitions_status {
-    status: string,
-}
 
 const Exhibitions: React.FC = () => {
 
@@ -53,100 +30,304 @@ const Exhibitions: React.FC = () => {
       "id": "1",
       "title": "Un ti",
       "description": "Une description",
+      "dateStart": "2022-05-02T23:09:10.693Z",
+      "dateEnd": "2022-05-02T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
       "createdAt": "2022-05-02T23:09:10.693Z",
-      'links': [],
-      "reservation": {
-        id: '1',
-        dateStart: "2022-10-04T23:09:10.693Z",
-        dateEnd: "2022-10-08T23:09:10.693Z",
-        createdAt: "2022-05-02T23:09:10.693Z",
-        exhibition: '',
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": ""
+        }
       },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
+        },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
     },
     {
       "id": "2",
       "title": "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
       "description": "Une description",
+      "dateStart": "2022-06-01T23:09:10.693Z",
+      "dateEnd": "2022-08-15T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
       "createdAt": "2022-05-02T23:09:10.693Z",
-      'links': [],
-      "reservation": {
-        id: '2',
-        "dateStart": "2022-06-01T23:09:10.693Z",
-        "dateEnd": "2022-08-15T23:09:10.693Z",
-        createdAt: "2022-05-02T23:09:10.693Z",
-        exhibition: '',
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": ""
+        }
       },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
+        },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
     },
+  
     // terminé
     {
-        "id": "3",
-        "title": "refused",
-        "description": "Une description",
-        "createdAt": "2022-05-02T23:09:10.693Z",
-        'links': [],
-        "reservation": {
-            id: '3',
-            "dateStart": "2022-05-02T23:09:10.693Z",
-            "dateEnd": "2022-05-02T23:09:10.693Z",
-            createdAt: "2022-05-02T23:09:10.693Z",
-            exhibition: '',
+      "id": "3",
+      "title": "refused",
+      "description": "Une description",
+      "dateStart": "2022-05-02T23:09:10.693Z",
+      "dateEnd": "2022-05-02T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
+      "createdAt": "2022-05-02T23:09:10.693Z",
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": ""
+        }
+      },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
         },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
     },
     {
       "id": "4",
       "title": "mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
       "description": "Une description",
+      "dateStart": "2022-10-02T23:09:10.693Z",
+      "dateEnd": "2022-10-02T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
       "createdAt": "2021-09-02T23:09:10.693Z",
-      'links': [],
-      "reservation": {
-          id: '1',
-          "dateStart": "2022-10-02T23:09:10.693Z",
-          "dateEnd": "2022-10-02T23:09:10.693Z",
-          createdAt: "2022-05-02T23:09:10.693Z",
-          exhibition: '',
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": ""
+        }
       },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
+        },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
     },
     {
       "id": "5",
-      "title": "Un tttr",
+      "title": "un ttr",
       "description": "Une description",
+      "dateStart": "2022-07-02T23:09:10.693Z",
+      "dateEnd": "2022-07-15T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
       "createdAt": "2022-11-02T23:09:10.693Z",
-      'links': [],
-      "reservation": {
-          id: '1',
-          "dateStart": "2022-07-02T23:09:10.693Z",
-          "dateEnd": "2022-07-15T23:09:10.693Z",
-          createdAt: "2022-05-02T23:09:10.693Z",
-          exhibition: '',
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": ""
+        }
       },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
+        },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
     },
     {
-        "id": "6",
-        "title": "1 completer",
-        "description": "Une description",
-        "createdAt": "2022-11-02T23:09:10.693Z",
-        'links': [],
-        "reservation": {
-            id: '2',
-            "dateStart":  "2022-06-02T23:09:10.693Z",
-            "dateEnd": "2022-07-15T23:09:10.693Z",
-            createdAt: "2022-06-15T23:09:10.693Z",
-            exhibition: '',
+      "id": "6",
+      "title": "1 completer",
+      "description": "Une description",
+      "dateStart": "2022-06-02T23:09:10.693Z",
+      "dateEnd": "2022-07-15T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
+      "createdAt": "2022-11-02T23:09:10.693Z",
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": ""
+        }
+      },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
         },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
     },
     {
-        "id": "7",
-        "title": "2 completer",
-        "description": "Une description",
-        "createdAt": "2022-11-02T23:09:10.693Z",
-        'links': [],
-        "reservation": {
-            id: '2',
-            "dateStart":  "2022-06-02T23:09:10.693Z",
-            "dateEnd": "2022-07-15T23:09:10.693Z",
-            createdAt: "2022-06-15T23:09:10.693Z",
-            exhibition: '',
+      "id": "7",
+      "title": "2 completer",
+      "description": "Une description",
+      "dateStart": "2022-06-02T23:09:10.693Z",
+      "dateEnd": "2022-07-15T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
+      "createdAt": "2022-11-02T23:09:10.693Z",
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": ""
+        }
+      },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
         },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
     },
   ]
 
@@ -216,7 +397,7 @@ const Exhibitions: React.FC = () => {
     
     let filterList = list.filter(item => {
             let itemIsValid = false
-            let itemType =  checkFilterExhibition(item.reservation.dateStart, item.reservation.dateEnd, date)
+            let itemType =  checkFilterExhibition(item.dateStart, item.dateEnd, date)
 
             filters.type?.forEach(filterType => {
                 if(filterType === itemType) itemIsValid = true
@@ -340,21 +521,21 @@ const Exhibitions: React.FC = () => {
                 <div className={style.body__ctn}>
                     {
                         filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
-                            (index % 3) === 0 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.reservation.dateStart} date_end={exhibition.reservation.dateEnd} status={checkFilterExhibition(exhibition.reservation.dateStart, exhibition.reservation.dateEnd, new Date)}/>
+                            (index % 3) === 0 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.dateStart} date_end={exhibition.dateEnd} status={checkFilterExhibition(exhibition.dateStart, exhibition.dateEnd, new Date)}/>
                         ))
                     }
                 </div>
                 <div className={style.body__ctn}>
                     {
                         filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
-                            (index % 3) === 1 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.reservation.dateStart} date_end={exhibition.reservation.dateEnd} status={checkFilterExhibition(exhibition.reservation.dateStart, exhibition.reservation.dateEnd, new Date)}/>
+                            (index % 3) === 1 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.dateStart} date_end={exhibition.dateEnd} status={checkFilterExhibition(exhibition.dateStart, exhibition.dateEnd, new Date)}/>
                         ))
                     }
                 </div>
                 <div className={style.body__ctn}>
                     {
                         filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
-                            (index % 3) === 2 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.reservation.dateStart} date_end={exhibition.reservation.dateEnd} status={checkFilterExhibition(exhibition.reservation.dateStart, exhibition.reservation.dateEnd, new Date)}/>
+                            (index % 3) === 2 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.dateStart} date_end={exhibition.dateEnd} status={checkFilterExhibition(exhibition.dateStart, exhibition.dateEnd, new Date)}/>
                         ))
                     }
                 </div>

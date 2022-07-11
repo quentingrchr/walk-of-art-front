@@ -132,7 +132,7 @@ const ExhibitionPage: React.FC = () => {
       {isLoggedIn() ? (
         <>
           <span className={style.backLink}>
-            <ButtonArrow label="Retour à la liste des expositions" side="left" to="/exhibitions"/>
+            <ButtonArrow label="Retour à la liste des expositions" side="left" to="/artist/exhibitions"/>
           </span>
           <section className={style.mainSection}>
             <ImagesPreview
