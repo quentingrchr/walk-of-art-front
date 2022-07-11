@@ -17,7 +17,7 @@ export type IProps = {
   placeholder?: string;
   guidance: IGuidance | null;
   selectOptions?: SelectOption[];
-  register: any;
+  register?: any;
   control?: any;
   required?: boolean;
 };

@@ -12,6 +12,7 @@ export type ColorsType =
   | "info-light"
   | "violet"
   | "pink"
+  | "artist-black"
 
 export type HTMLTextTag =
   | "p"
@@ -86,15 +87,17 @@ export interface Exhibition {
   id: string,
   title: string,
   description: string,
+	dateStart: string,
+  dateEnd: string,
   reaction: boolean,
   comment: boolean,
   createdAt: string,
-  statuts: [
+  status: [
     {}
   ],
   work: AttachedWork,
-  reservations: AttachedReservation[],
-  snapshot: Link[]
+  board: Board,
+  snapshot?: Link[]
 }
 
 export interface Work {
@@ -111,23 +114,15 @@ export type AttachedExhibition = ExhibitionForWorks | ExhibitionForWork
 
 interface ExhibitionForWorks {
 	id: string,
-	createdAt: string,
-	reservations: AttachedReservation[]
 }
 
 interface ExhibitionForWork {
 	id: string,
 	title: string,
+	dateStart: string,
+  dateEnd: string,
 	createdAt: string,
 	work: string,
-	reservations: AttachedReservation[]
-}
-
-export interface AttachedReservation {
-	id: string,
-	dateStart: string,
-	dateEnd: string,
-	createdAt: string,
 	board: Board
 }
 

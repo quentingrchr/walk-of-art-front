@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { isLoggedIn, clearAuthTokens } from "axios-jwt"
 import styles from "./index.module.scss"
 import Link from "next/link"
@@ -8,7 +8,8 @@ import { useRouter } from "next/router"
 import { NotificationWrapper } from "@components/notification-wrapper"
 import { eraseCookie, userHasRole } from "@utility/index"
 import { userState } from "@recoil/user/atom"
-import { UserRolesType } from "../../types"
+import cn from 'classnames';
+
 
 interface IProps {}
 
@@ -16,6 +17,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
   const user = useRecoilValue(userState)
   console.log({ user }, "nav")
   const [appear, setAppear] = useState(false)
+
   const notifs = [
     {
       id: 1,
@@ -76,7 +78,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
 
   return (
     <header className={styles.header}>
-      <Logo to="/" />
+      <Logo to="/dashboard" />
 
       {isLoggedIn() ? (
         <>
@@ -94,6 +96,15 @@ export const Header: React.FC<IProps> = (props: IProps) => {
               />
             )}
             <span className={styles.link}>
+            {/* <DropdownButton
+              label="Créer"
+              choices={[
+                { label: "Créer une oeuvre", to: "/create-work" },
+                { label: "Créer une exposition", to: "/create-exhibition" },
+              ]}
+              className={styles.dropdownButton}
+            />
+            <span className={cn(styles.link, appear ? styles.active : null)}> */}
               {notifs.length === 0 ? (
                 <Icon
                   type="notification"
@@ -112,6 +123,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
                 <NotificationWrapper notifList={notifs}></NotificationWrapper>
               ) : null}
             </span>
+
             {isArtist && (
               <span className={styles.link}>
                 <Link href="/artist/profile">
@@ -119,6 +131,13 @@ export const Header: React.FC<IProps> = (props: IProps) => {
                 </Link>
               </span>
             )}
+
+            {/*  <span className={styles.link}>
+               <Link href="/artist/profile">
+                 <Icon type="profile" size="large"/>
+               </Link>
+            </span> */}
+
             <span className={styles.link}>
               <div onClick={logout}>
                 <Icon type="logout" size="large" />

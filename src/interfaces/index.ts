@@ -1,6 +1,6 @@
 export type Semantic = "success" | "info" | "error";
 export type Colors = Semantic | "black" | "white" | "dark";
-export type sizeIcon = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+export type sizeIcon = "none" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 export type Icons =
   | "avatar"
   | "notification"
@@ -12,6 +12,7 @@ export type Icons =
   | "commentary"
   | "rightArrow"
   | "information"
+  | "littleDownArrow"
   | "drop-file"
   | "downArrow"
   | "searchIcon"
@@ -23,6 +24,19 @@ export type Icons =
   | "twitter"
   | "facebook"
   | "smiley"
+  | "selectCheck"
+  | "trash"
+  | "chevronRight"
+  | "chevronLeft"
+  | "topArrow"
+  | "leftArrow"
+  | "hasNotification"
+  | "bellNotification"
+  | "warning"
+  | "selectCheck"
+  | "trash"
+  | "chevronRight"
+  | "chevronLeft"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 

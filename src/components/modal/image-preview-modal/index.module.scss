@@ -1,0 +1,29 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    align-content: center;
+    color: $color-white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.images {
+    width: 100%;
+    display: -webkit-box;
+    figure {
+        height: 100%;
+        width: 100%;
+        display: grid;
+        align-content: center;
+    }
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
+}

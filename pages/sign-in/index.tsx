@@ -61,6 +61,7 @@ const Form = () => {
       inputs={signInInputs}
       schema={signInInputsSchema}
       onSubmit={(data) => {
+        console.log('cc')
         login(data)
       }}
       submitText="Se connecter"

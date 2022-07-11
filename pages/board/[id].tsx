@@ -2,23 +2,40 @@ import React, { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form";
 import s from "./index.module.scss"
-import { Logo, Text, ImagesPreview, Button, Icon, Input } from '@components'
+import { Logo, Text, ImagesPreview, Button, Icon, Input, ImagePreviewModal } from '@components'
+import { useSetRecoilState } from "recoil"
+import {
+    activeModalState,
+    IMAGE_PREVIEW_MODAL_ID,
+  } from "@recoil/modal/atom"
 
 const data = {
-    name: 'Fabien Deneau'
+    name: 'Fabien Deneau',
+    images: [
+        'https://iili.io/A7NDAP.jpg',
+        'https://iili.io/dwagF2.png',
+        'https://iili.io/hy8bLv.jpg'
+    ]
 }
 
 const Artist: React.FC = () => {
     const router = useRouter()
     const { id } = router.query
-    const { register, handleSubmit } = useForm({ mode: "onBlur" });
+    const { register, handleSubmit } = useForm({ mode: "onBlur" })
+    const setActiveModal = useSetRecoilState(activeModalState)
+
+
     const onSubmit = (e: any) => {
-        console.log("submit");
-        e.preventDefault();
+        console.log("submit")
+        e.preventDefault()
         handleSubmit((d) => {
           console.log(d)
-        })(e);
-    };
+        })(e)
+    }
+    const handlePreviewClick = ():void => {
+        console.log('clicked')
+        setActiveModal(IMAGE_PREVIEW_MODAL_ID)
+    }
 
     return (
         <>
@@ -27,11 +44,8 @@ const Artist: React.FC = () => {
                     <Logo to="/" color="white"/>
                     <ImagesPreview
                         primaryImage="https://iili.io/FhDd9R.jpg"
-                        secondaryImages={[
-                            'https://iili.io/A7NDAP.jpg',
-                            'https://iili.io/dwagF2.png',
-                            'https://iili.io/hy8bLv.jpg'
-                        ]}
+                        secondaryImages={data.images}
+                        onClick={handlePreviewClick}
                     />
                     <div className={s.title}>
                         <Text tag="h2" typo="heading-md">Voila le titre de l'exposition que je visite</Text>
@@ -51,8 +65,11 @@ const Artist: React.FC = () => {
                             target="_blank"
                         />
                     </div>
-                    <form className={s.comments} onSubmit={onSubmit}>
-                        <Text typo="label" tag="label" color="white">Ajouter un commentaire</Text>
+                    {/* Commentaires */}
+                    {/* <form className={s.comments} onSubmit={onSubmit}>
+                        <div className={s.comments__label}>
+                            <Text typo="label" tag="label" color="white">Ajouter un commentaire</Text>
+                        </div>
                         <Input
                             register={register}
                             placeholder="Écrivez votre commentaire ici..."
@@ -61,7 +78,7 @@ const Artist: React.FC = () => {
                             id='id'
                             icon='smiley'
                         />
-                    </form>
+                    </form> */}
                     <Text tag="h3" typo="heading-xs">Réseaux sociaux de<br/>{data.name}</Text>
                     <ul className={s.rs_list}>
                         <li className={s.rs_list__rs}>
@@ -99,6 +116,10 @@ const Artist: React.FC = () => {
                     />
                 </div>
             </section>
+            <ImagePreviewModal
+                title="Voice le titre de cette oeuvre"
+                images={data.images}
+            />
         </>
     )
 }
