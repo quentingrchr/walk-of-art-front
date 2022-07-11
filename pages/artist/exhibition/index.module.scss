@@ -34,6 +34,52 @@
 		}
 	}
 
+  .linksList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+
+    .link {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+
+      a, a:visited, a:active, a:focus {
+        color: $color-black;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .maps {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+
+    .mapsLink {
+      position: relative;
+      text-decoration: none;
+      color: $color-black;
+      
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: $color-black;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform .3s ease-in-out;
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
   .actionsWrapper {
     display: flex;
     gap: 1.6rem;
