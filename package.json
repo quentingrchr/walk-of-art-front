@@ -35,6 +35,7 @@
     "recoil": "^0.7.4",
     "recoil-persist": "^4.2.0",
     "swiper": "^6.8.4",
+    "recoil-persist": "^4.2.0",
     "tsc-alias": "^1.6.6",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
     "yup": "^0.32.11"
