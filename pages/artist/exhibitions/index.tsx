@@ -42,6 +42,7 @@ interface Exhibition {
 }
 
 <<<<<<< HEAD:pages/artist/exhibitions/index.tsx
+<<<<<<< HEAD:pages/artist/exhibitions/index.tsx
 =======
 // status de modération besoin pour gérer les autres status des cards exhib
 interface Exhibitions_status {
@@ -49,6 +50,8 @@ interface Exhibitions_status {
 }
 
 >>>>>>> d428762 (refacto my function for styling and add param to checkFilterExhibition):pages/exhibitions/index.tsx
+=======
+>>>>>>> b80614c (remove interface in exhib page):pages/exhibitions/index.tsx
 const Exhibitions: React.FC = () => {
 
   const list: Exhibition[] = [
