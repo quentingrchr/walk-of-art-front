@@ -26,21 +26,32 @@ interface ILoginRequest {
 const Form = () => {
   const router = useRouter()
   const setUser = useSetRecoilState(userState)
+  const [globalError, setGlobalError] = React.useState<string | null>(null)
 
   const login = async (params: ILoginRequest) => {
-    const response = await axios.post(`${BASE_API_URL}/login_check`, params)
-    const { status, data } = response
-    if (status === 200) {
-      console.log(response.data.token)
-      const user = jwt.decode(response.data.token) as IUser
-      setUser(jwt.decode(response.data.token))
-      setAuthTokens({
-        accessToken: response.data.token,
-        refreshToken: response.data.refresh_token,
-      })
-      setCookie("token", response.data.token, 10000000)
-      if (isLoggedIn()) {
-        router.push("/")
+    setGlobalError(null)
+    try {
+      const response = await axios.post(`${BASE_API_URL}/login_check`, params)
+      const { status, data } = response
+      if (status === 200) {
+        console.log(response.data.token)
+        const user = jwt.decode(response.data.token) as IUser
+        setUser(jwt.decode(response.data.token))
+        setAuthTokens({
+          accessToken: response.data.token,
+          refreshToken: response.data.refresh_token,
+        })
+        setCookie("token", response.data.token, 10000000)
+        if (isLoggedIn()) {
+          router.push("/")
+        }
+      }
+    } catch (error: any) {
+      console.error("Error on login request", error)
+      if (error.response.status === 401) {
+        setGlobalError("Email ou mot de passe incorrect")
+      } else {
+        setGlobalError("Une erreur est survenue")
       }
     }
   }
@@ -54,6 +65,7 @@ const Form = () => {
       }}
       submitText="Se connecter"
       title="Connexion"
+      globalFormError={globalError}
     >
       <Text color="black" tag="div" typo="paragraph-md">
         Vous n'avez pas de compte ? &nbsp;
