@@ -22,7 +22,8 @@ export const ImagePreviewModal: React.FC<IProps> = ({ title, images }: IProps) =
         title={`${slideIndex + 1}/${images.length}`}
         fullScreen={true}
         background="artist-black"
-        iconColor="white"
+        color="white"
+        typo="heading-md"
     >
         <div className={styles.container}>
             <div className={styles.images}>
