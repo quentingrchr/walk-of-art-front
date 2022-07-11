@@ -3,7 +3,6 @@ import { isLoggedIn } from 'axios-jwt'
 import { TemplatePage, HeadingStrong, CreateExhibitionForm, Link, Input, Artwork, Unauthorized  } from "@components"
 import { IStep } from "../../../src/components/stepper"
 import styles from './index.module.scss'
-import Image from '../../src/assets/images/artwork.png'
 import { windowIsNotReady } from '../../../src/utility'
 
 const STEPS = [
