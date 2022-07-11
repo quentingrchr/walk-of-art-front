@@ -1,0 +1,26 @@
+@import "@styles/theme.scss";
+
+.header {
+  text-align: center;
+  margin-top: 4rem;
+  position: relative;
+}
+
+.filter {
+  position: absolute;
+  right: 0;
+}
+
+.subtitle {
+  margin: 1.6rem 0;
+  width: 100%;
+  background: red;
+  text-align: center;
+}
+
+.worksList {
+  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
