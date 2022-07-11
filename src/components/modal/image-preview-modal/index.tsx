@@ -5,7 +5,7 @@ import {
     IMAGE_PREVIEW_MODAL_ID,
 } from "@recoil/modal/atom"
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+// import 'swiper/css';
 import { Text } from '@components'
 
 export type IProps = {
