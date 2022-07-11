@@ -10,7 +10,12 @@ import {
   } from "@recoil/modal/atom"
 
 const data = {
-    name: 'Fabien Deneau'
+    name: 'Fabien Deneau',
+    images: [
+        'https://iili.io/A7NDAP.jpg',
+        'https://iili.io/dwagF2.png',
+        'https://iili.io/hy8bLv.jpg'
+    ]
 }
 
 const Artist: React.FC = () => {
@@ -39,11 +44,7 @@ const Artist: React.FC = () => {
                     <Logo to="/" color="white"/>
                     <ImagesPreview
                         primaryImage="https://iili.io/FhDd9R.jpg"
-                        secondaryImages={[
-                            'https://iili.io/A7NDAP.jpg',
-                            'https://iili.io/dwagF2.png',
-                            'https://iili.io/hy8bLv.jpg'
-                        ]}
+                        secondaryImages={data.images}
                         onClick={handlePreviewClick}
                     />
                     <div className={s.title}>
@@ -114,7 +115,7 @@ const Artist: React.FC = () => {
                     />
                 </div>
             </section>
-            <ImagePreviewModal />
+            <ImagePreviewModal title="Voice le titre de cette oeuvre" images={data.images} />
         </>
     )
 }
