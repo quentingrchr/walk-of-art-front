@@ -2,14 +2,19 @@ import React, { useState } from "react"
 import { isLoggedIn, clearAuthTokens } from "axios-jwt"
 import styles from "./index.module.scss"
 import Link from "next/link"
+import { useRecoilValue } from "recoil"
 import { Logo, Navbar, DropdownButton, Icon, Button } from "@components"
 import { useRouter } from "next/router"
 import { NotificationWrapper } from "@components/notification-wrapper"
 import { eraseCookie } from "@utility/index"
+import { userState } from "@recoil/user/atom"
+import { UserRolesType } from "../../types"
 
-export type IProps = {}
+interface IProps {}
 
 export const Header: React.FC<IProps> = (props: IProps) => {
+  const user = useRecoilValue(userState)
+  console.log({ user }, "nav")
   const [appear, setAppear] = useState(false)
   const notifs = [
     {
