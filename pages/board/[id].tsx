@@ -65,7 +65,8 @@ const Artist: React.FC = () => {
                             target="_blank"
                         />
                     </div>
-                    <form className={s.comments} onSubmit={onSubmit}>
+                    {/* Commentaires */}
+                    {/* <form className={s.comments} onSubmit={onSubmit}>
                         <div className={s.comments__label}>
                             <Text typo="label" tag="label" color="white">Ajouter un commentaire</Text>
                         </div>
@@ -77,7 +78,7 @@ const Artist: React.FC = () => {
                             id='id'
                             icon='smiley'
                         />
-                    </form>
+                    </form> */}
                     <Text tag="h3" typo="heading-xs">Réseaux sociaux de<br/>{data.name}</Text>
                     <ul className={s.rs_list}>
                         <li className={s.rs_list__rs}>
