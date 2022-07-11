@@ -47,6 +47,11 @@ export type InputTypes = "password" | "email" | "text" | "textarea" | "select"
 
 export type BadgeTypes = "completed" | "progress"
 
+export enum scrollDirType  {
+	up = "up",
+	down = "down"
+}
+
 export interface ExpoStates {
   label: string
   listComponent: any
@@ -54,30 +59,97 @@ export interface ExpoStates {
 
 export type displayTimeType = "completed" | "remaining" | "incoming"
 
-export interface Exposition {
-  id: string
-  title: string
-  description: string | null
-  reaction: boolean
-  created_at: string
-  revision_id: number
-  work_id: number
-  user_id: number
+interface Link {
+	name: string, 
+	url: string
+}
+
+interface File {
+	id: string,
+	fileUrl: string
+}
+
+interface Board {
+	id: string,
+	gallery: Gallery
+	orientation: object
+}
+
+interface Gallery {
+	id: string,
+	name: string,
+	latitude: number,
+	longitude: number
+}
+
+export interface Exhibition {
+  id: string,
+  title: string,
+  description: string,
+  reaction: boolean,
+  comment: boolean,
+  createdAt: string,
+  statuts: [
+    {}
+  ],
+  work: AttachedWork,
+  reservations: AttachedReservation[],
+  snapshot: Link[]
+}
+
+export interface Work {
+  id: string,
+  title: string,
+  description: string,
+  createdAt: string,
+  mainFile: File,
+  workFiles: File[],
+  exhibitions?: AttachedExhibition[]
+}
+
+export type AttachedExhibition = ExhibitionForWorks | ExhibitionForWork
+
+interface ExhibitionForWorks {
+	id: string,
+	createdAt: string,
+	reservations: AttachedReservation[]
+}
+
+interface ExhibitionForWork {
+	id: string,
+	title: string,
+	createdAt: string,
+	work: string,
+	reservations: AttachedReservation[]
+}
+
+export interface AttachedReservation {
+	id: string,
+	dateStart: string,
+	dateEnd: string,
+	createdAt: string,
+	board: Board
+}
+
+interface AttachedWork {
+	id: string,
+	title: string,
+	mainFile: File
 }
 
 export interface Reservation {
-  id: string
-  date_start: string
-  duration: number
-  created_at: string
-  exhibition_id: number
-  gallery_id: number
+	id: string,
+	dateStart: string,
+	duration: number,
+	createdAt: string,
+	exhibitionId: number,
+	galleryId: number
 }
 
 export interface ReservationWithExposition extends Reservation {
-  title: string
-  description: string | null
-  reaction: boolean
+	title: string,
+	description: string | null,
+	reaction: boolean,
 }
 
 export type UserRolesType = "ROLE_USER" | "ROLE_ARTIST" | "ROLE_MODERATOR"

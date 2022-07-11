@@ -3,7 +3,7 @@ import styles from "./index.module.scss"
 import { Notification } from ".."
 
 export type IProps = {
-    notifList: ReactNode[], 
+    notifList: ReactNode[any], 
 }
 
 export const NotificationWrapper: React.FC<IProps> = ({notifList}: IProps) => {
@@ -14,7 +14,7 @@ export const NotificationWrapper: React.FC<IProps> = ({notifList}: IProps) => {
                  notifList.length ? notifList.map(item => {
                      return (<Notification key={item.id} type={item.type} cta={{
                       label: 'Voir l’exposition',
-                      to : '/'
+                      to : '/artist/exhibitions'
                     }}>
                         {
                             item.type === 'commentary' ? <span>L’exposition <b>“{item.title}”</b> a été commentée</span> :
