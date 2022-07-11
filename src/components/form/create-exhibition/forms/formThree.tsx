@@ -1,42 +1,105 @@
-import React, { useEffect } from "react";
-import styles from "./index.module.scss";
-import { Button, Input, InputGroup } from "@components";
-import { useForm, useFormContext, FormProvider } from "react-hook-form";
+import React, { useState } from "react";
+import styles from "./formThree.module.scss";
+import { Button, InputGroup, ExpositionBoard } from "@components";
+import cardImg from "../../../../assets/images/cardImg.png"
+import { useForm } from "react-hook-form";
 
-export type IProps = {
+export interface IProps {
   handleStepSubmit: (data: any) => void;
   handleBack: () => void;
+  onClick: (any) => void;
   defaultValues?: any;
-};
+}
 
-export const FormThree: React.FC<IProps> = ({
-  handleStepSubmit,
-  handleBack,
-  defaultValues = {},
-}: IProps) => {
-  const { register, handleSubmit } = useForm({ mode: "onBlur", defaultValues });
+export interface IRecapProps {
+  handleStepSubmit: (data: any) => void;
+  handleBack: () => void;
+  formState: any;
+} 
 
-  const onSubmit = (e: any) => {
-    console.log("submit");
-    e.preventDefault();
-    handleSubmit((d) => {
-      handleStepSubmit(d);
-    })(e);
+
+export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues = {} } ) => {
+
+  const [orientation, setOrientation] = useState<string>('landscape')
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onBlur", defaultValues });
+
+  const onSubmit = (event: any) => {
+    event.preventDefault();
+
+    handleSubmit((data) => {
+      handleStepSubmit(data);
+    })(event);
   };
 
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
-      <label>Price</label>
-      <input {...register("price", { required: true })} type="number" />
-      <div className={styles.ctaContainer}>
-        <Button
-          label={"Précédent"}
-          color="white"
-          bg="dark"
-          onClick={handleBack}
-        />
-        <Button label={"Suivant"} color="white" bg="dark" type="submit" />
+      <h1 className={styles.boardOrientation}>Orientation du panneau</h1>
+
+      <div className={styles.boardOrientationChoice}>
+        <div onClick={() => setOrientation('landscape')}>
+          <input type="radio" id="cc" name="cc" value={'cc'} checked={orientation === 'landscape'}/>
+          <label htmlFor="cc">Paysage</label>
+        </div>
+
+        <div onClick={() => setOrientation('portrait')} >
+          <input type="radio" id="cc" name="cc" value={'cc'} checked={orientation === 'portrait'} />
+          <label htmlFor="cc">Portrait</label>
+        </div>
+      </div>
+
+      <div className={orientation === 'portrait' ? styles.portrait : ''}>
+        <ExpositionBoard src={cardImg} alt={""} orientation={orientation} />
+      </div>
+
+      <h1 className={styles.panneauOrientation}>Choix du panneau d'exposition</h1>
+
+      <p>Maps</p>
+
+      <InputGroup
+        placeholder="Selectionner la ville"
+        id="description"
+        type="text"
+        label="Ville d'exposition*"
+        guidance={null}
+        register={register}
+      />
+
+      <InputGroup
+        placeholder="Selectionner la galerie"
+        id="description"
+        type="text"
+        label="Galerie d'exposition*"
+        guidance={null}
+        register={register}
+      />
+
+      <h2>Date d'exposition</h2>
+
+      <form action="" className={styles.choiceExpositionDates}>
+        <div className={styles.containerExpositionDate}><label htmlFor="startExpositionDate">Début</label>
+
+          <input type="date" id="startExpositionDate" name="startExpositionDate"
+            value="2018-07-22"
+            min="2018-01-01" max="2018-12-31"></input></div>
+
+        <div className={styles.containerExpositionDate}>
+          <label htmlFor="endExpositionDate">Fin</label>
+
+          <input type="date" id="endExpositionDate" name="endExpositionDate"
+            value="2018-07-22"
+            min="2018-01-01" max="2018-12-31"></input>
+        </div>
+      </form>
+
+      <div className={styles.containerOfButtons}>
+        <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
+        <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
       </div>
     </form>
-  );
-};
+  )
+}

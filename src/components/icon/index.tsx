@@ -23,12 +23,18 @@ import Warning from "./warning"
 import Twitter from "./twitter"
 import Facebook from "./facebook"
 import Smiley from "./smiley"
+import LittleDownArrow from './little-down-arrow'
+import SelectCheck from './select-check'
+import Trash from './trash'
+import ChevronRight from './chevron-right'
+import ChevronLeft from './chevron-left'
 
 interface IProps {
   type: IconsType;
   size: sizeIcon;
   color?: Colors | "none";
   children?: React.ReactNode;
+  classname?: string,
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 interface IIcons {
@@ -50,6 +56,7 @@ const Icons: IIcons = {
   checkbox: <Checkbox/>,
   information: <Information />,
   searchIcon: <SearchIcon />,
+  litteleDownArrow: <LittleDownArrow />,
   "drop-file": <DropFile />,
   chrono: <Chrono />,
   calendar: <Calendar />,
@@ -57,9 +64,13 @@ const Icons: IIcons = {
   twitter : <Twitter/>,
   facebook : <Facebook/>,
   smiley : <Smiley/>,
+  selectCheck: <SelectCheck />,
+  trash: <Trash />,
+  chevronRight: <ChevronRight />
 };
 
 const sizes: any = {
+  none: "unset",
   xsmall: "0.8rem",
   small: "1.6rem",
   medium: "1.8rem",
@@ -73,6 +84,7 @@ export const Icon = ({
   onClick,
   size,
   color = "none",
+  classname,
   ...props
 }: IProps) => {
   return (

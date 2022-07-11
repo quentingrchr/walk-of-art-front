@@ -1,41 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import s from "./index.module.scss";
 
-import { FormOne, FormTwo, FormThree } from "../forms";
-import { Stepper, Artwork } from "@components";
-import image from '../../../../assets/images/artwork.png'
-export interface IStep {
-  id: number;
-  label: string;
-  number: number;
-  completed: boolean;
-}
+import { FormOne, FormTwo, FormThree, FormFour, FormFive } from "../forms";
+import { Stepper } from "@components";
 
-export type IProps = {
-  activeStep: number;
-  steps: IStep[];
-  completeOne: (index: number) => void;
-  variant?: "default" | "checked";
-  setActiveStep:  (index: number) => void,
-};
+export type IProps = {};
+
 const STEPS = [
   {
     id: 1,
-    label: "Identification",
+    label: "Sélection",
     number: 1,
     completed: false,
   },
   {
     id: 2,
-    label: "Fichiers",
+    label: "Liens",
     number: 2,
     completed: false,
   },
   {
     id: 3,
-    label: "Récapitulatif",
+    label: "Détails exposition",
     number: 3,
+    completed: false,
+  },
+  {
+    id: 4,
+    label: "Récapitulatif",
+    number: 4,
+    completed: false,
+  },
+  {
+    id: 5,
+    label: "Paiement",
+    number: 5,
     completed: false,
   },
 ];
@@ -61,7 +61,7 @@ const getStepComponent = (
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
           defaultValues={compiledForm.two}
-        />
+          amountOfAdditionalLinks={[]} />
       );
     case 2:
       return (
@@ -69,13 +69,32 @@ const getStepComponent = (
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
           defaultValues={compiledForm.three}
+          onClick={() => { }} />
+      );
+    case 3:
+      return (
+        <FormFour
+          handleStepSubmit={handleStepSubmit}
+          handleBack={handleBack}
+          defaultValues={compiledForm.four}
+          onClick={() => { }}
+        />
+      );
+    case 4:
+      return (
+        <FormFive
+          handleStepSubmit={handleStepSubmit}
+          handleBack={handleBack}
+          defaultValues={compiledForm.five}
+          onClick={() => { }}
         />
       );
     default:
       return "Unknown step";
   }
-};
-export const ExhibitionStepper: React.FC<IProps> = (props: IProps) => {
+}
+
+export const FormStepper: React.FC<IProps> = (props: IProps) => {
   const [compiledForm, setCompiledForm] = React.useState({});
   const [steps, setSteps] = React.useState(STEPS);
 
@@ -102,6 +121,7 @@ export const ExhibitionStepper: React.FC<IProps> = (props: IProps) => {
   };
 
   const handleStepSubmit = (data: any) => {
+    console.log({ data }, "in handleStepSubmit");
     switch (activeStep) {
       case 0:
         setCompiledForm({ ...compiledForm, one: data });
@@ -111,6 +131,12 @@ export const ExhibitionStepper: React.FC<IProps> = (props: IProps) => {
         break;
       case 2:
         setCompiledForm({ ...compiledForm, three: data });
+        break;
+        case 3:
+        setCompiledForm({ ...compiledForm, four: data });
+        break;
+        case 4:
+        setCompiledForm({ ...compiledForm, five: data });
         break;
       default:
         throw new Error("not a valid step");
@@ -134,23 +160,32 @@ export const ExhibitionStepper: React.FC<IProps> = (props: IProps) => {
   };
 
   const handleSubmit = (form: any) => {
-    console.log("submit", form);
     return true;
   };
+
+  useEffect(() => {
+    console.log({ compiledForm });
+  }, [compiledForm]);
 
   return (
     <div className={s.container}>
       <div>
         <Stepper
+          setActiveStep={setActiveStep}
           variant="checked"
           activeStep={activeStep}
           steps={steps}
-          completeOne={() => {}}
-          setActiveStep={setActiveStep}
+          completeOne={() => { }}
         />
       </div>
-      <Artwork src={image} alt={"test"} size={"small"}/>
-      {getStepComponent(activeStep, compiledForm, handleStepSubmit, handleBack)}
+      <div className={s.formContainer}>
+        {getStepComponent(
+          activeStep,
+          compiledForm,
+          handleStepSubmit,
+          handleBack
+        )}
+      </div>
     </div>
   );
 };
