@@ -42,10 +42,12 @@ export const Modal: React.FC<IProps> = ({ id, children, title, fullScreen = fals
 
   return (
     <div className={cn(style.container, { [style.open]: id === activeModal })}>
-      {/* <div className={style.overlay} onClick={closeModal}> */}
-      <div className={style.overlay} >
+      <div className={style.overlay} onClick={closeModal}>
         <div className={cn(style.modal, fullScreen && style.fullScreen, background && style[background])}>
           <div className={cn(style.modalHeader, color && style[color])}>
+            {
+              fullScreen && <div style={{width: '38px'}}></div>
+            }
             {title && (
               <Text tag="p" typo={typo}>
                 {title}
