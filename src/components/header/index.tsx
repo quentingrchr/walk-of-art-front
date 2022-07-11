@@ -8,7 +8,6 @@ import { useRouter } from "next/router"
 import { NotificationWrapper } from "@components/notification-wrapper"
 import { eraseCookie } from "@utility/index"
 import { userState } from "@recoil/user/atom"
-import { UserRolesType } from "../../types"
 
 interface IProps {}
 

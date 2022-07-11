@@ -1,0 +1,26 @@
+@import "@styles/theme.scss";
+.landscape {
+  height: 337px;
+  width: 600px;
+  background-color: $color-black;
+  padding: 22px 131px 22px 131px;
+}
+
+.portrait {
+  height: 337px;
+  width: 600px;
+  transform: rotate(90deg);
+  background-color: $color-black;
+  padding: 22px 131px 22px 131px;
+  & .image {
+    height: 293px;
+    width: 338px;
+    transform: rotate(-90deg);
+  }
+}
+
+.image {
+  height: 293px;
+  width: 338px;
+}
+

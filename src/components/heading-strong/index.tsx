@@ -5,11 +5,11 @@ import { ColorsType } from "../../types"
 import { Text } from "@components"
 
 export type IProps = {
-  elementColor: ColorsType
-  content: string
-  color?: ColorsType
-  attributes?: any
-  size?: "sm" | "md" | "lg" | "xl"
+    elementColor: ColorsType
+    content: string
+    color?: ColorsType
+    attributes?: any
+    size?: "sm" | "md" | "lg" | "xl"
 }
 
 export const HeadingStrong: React.FC<IProps> = ({
