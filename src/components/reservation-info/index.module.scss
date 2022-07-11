@@ -45,3 +45,27 @@ a.exhibitionLink {
         line-height: 2.4rem;
     }
 }
+
+.mapsLink {
+    @include typo-paragraph-md;
+    color: $color-black;
+    text-decoration: none;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: $color-black;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform .3s ease-in-out;
+    }
+
+    &:hover::after {
+        transform: scaleX(1);
+    }
+}

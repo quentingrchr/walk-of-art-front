@@ -15,7 +15,7 @@ import {
   Unauthorized,
   ButtonArrow,
 } from "@components"
-import cardImg from "../../src/assets/images/cardImg.png"
+import cardImg from "../../../src/assets/images/cardImg.png"
 import { getDateWithoutHours, windowIsNotReady } from "../../../src/utility"
 import { AttachedReservation, Work } from "../../../src/types"
 import { ReservationInfo } from "@components/reservation-info"
