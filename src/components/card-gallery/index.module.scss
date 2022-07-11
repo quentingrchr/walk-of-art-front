@@ -43,7 +43,7 @@
         }
     }
 
-    &__validate {
+    &__remaining {
         width: 100%;
         background-color: $color-info;
         color: $color-white;
@@ -51,7 +51,7 @@
         background-color: $color-success;
     }
 
-    &__pending {
+    &__incoming {
         width: 100%;
         background-color: $color-sementic-progress;
         color: $color-white;
@@ -65,7 +65,7 @@
         padding: .8rem;
     }
 
-    &__finish {
+    &__completed {
         width: 100%;
         background-color: $color-grey-dark;
         color: $color-white;
@@ -73,19 +73,19 @@
     }
 
 
-    &__isValidate {
+    &__isRemaining {
         border: 2px solid $color-success;
         color: $color-success;
         background-color: $color-white;
     }
 
-    &__isPending {
+    &__isIncoming {
         border: 2px solid $color-sementic-progress;
         color: $color-sementic-progress;
         background-color: $color-white;
     }
 
-    &__isModerated {
+    &__isPending {
         border: 2px solid $color-sementic-warning;
         color: $color-sementic-warning;
         background-color: $color-white;

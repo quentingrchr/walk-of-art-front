@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useRouter } from 'next/router'
 import cx from 'classnames';
 import styles from "./index.module.scss"
+import Link from 'next/link'
 
 export type IProps = {
     label: string
@@ -25,12 +26,14 @@ export const NavLink: React.FC<IProps> = (props: IProps) => {
     }, [router])
 
     return (
-        <a 
-            href={href} 
+        <Link href={href}>
+
+        <a  
             onClick={e => handleClick(e)} 
             className={cx(styles.navLink, isActive ? styles.active : null)}
         >
             {label}
         </a>
+        </Link>
     )
 }
