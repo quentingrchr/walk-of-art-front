@@ -36,7 +36,7 @@ const Form = () => {
       if (status === 200) {
         console.log(response.data.token)
         const user = jwt.decode(response.data.token) as IUser
-        setUser(jwt.decode(response.data.token))
+        setUser(user)
         setAuthTokens({
           accessToken: response.data.token,
           refreshToken: response.data.refresh_token,
