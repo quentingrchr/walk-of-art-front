@@ -6,7 +6,8 @@ import {
     IMAGE_PREVIEW_MODAL_ID,
     activeModalState,
 } from "@recoil/modal/atom"
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import { Text } from '@components'
 
 export type IProps = {
@@ -33,17 +34,23 @@ export const ImagePreviewModal: React.FC<IProps> = ({ title, images }: IProps) =
     >
         <div className={styles.container}>
             <div className={styles.images}>
-                {/* {
-                    images.map((src, index) =>
-                    (
-                        <figure key={index}>
-                            <img src={src} alt="" />
-                        </figure>
-                    ))
-                } */}
-                <figure>
-                    <img src={images[0]} alt="" />
-                </figure>
+                    <Swiper
+                        spaceBetween={50}
+                        slidesPerView={'auto'}
+                        onSlideChange={() => console.log('slide change')}
+                        onSwiper={(swiper) => console.log(swiper)}
+                    >
+                        {
+                            images.map((src, index) =>
+                            (
+                                <SwiperSlide>
+                                    <figure key={index}>
+                                        <img src={src} alt="" />
+                                    </figure>
+                                </SwiperSlide>
+                            ))  
+                        }
+                    </Swiper>
             </div>
             <Text tag="h2" typo="heading-md">{title}</Text>
         </div>
