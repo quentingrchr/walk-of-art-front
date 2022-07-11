@@ -59,31 +59,82 @@ export interface ExpoStates {
 
 export type displayTimeType = "completed" | "remaining" | "incoming"
 
-export interface Exhibition {
+interface Link {
+	name: string, 
+	url: string
+}
+
+interface File {
 	id: string,
-	title: string,
-	description: string | null,
-	reaction: boolean,
-	created_at: string,
-	revision_id: number,
-	work_id: number,
-	user_id: number
+	fileUrl: string
+}
+
+interface Board {
+	id: string,
+	gallery: Gallery
+	orientation: object
+}
+
+interface Gallery {
+	id: string,
+	name: string,
+	latitude: number,
+	longitude: number
+}
+
+export interface Exhibition {
+  id: string,
+  title: string,
+  description: string,
+  reaction: boolean,
+  comment: boolean,
+  createdAt: string,
+  statuts: [
+    {}
+  ],
+  work: AttachedWork,
+  reservations: AttachedReservation[],
+  snapshot: Link[]
 }
 
 export interface Work {
-  id: string
-  title: string
-  description: string
-  created_at: string
-  exhibitions?: AttachedExhib[]
+  id: string,
+  title: string,
+  description: string,
+  createdAt: string,
+  mainFile: File,
+  workFiles: File[],
+  exhibitions?: AttachedExhibition[]
 }
 
-interface AttachedExhib {
-  id: string
-  date_start : string,
-  date_end: string,
-  adress: string,
-  gallerie: string
+export type AttachedExhibition = ExhibitionForWorks | ExhibitionForWork
+
+interface ExhibitionForWorks {
+	id: string,
+	createdAt: string,
+	reservations: AttachedReservation[]
+}
+
+interface ExhibitionForWork {
+	id: string,
+	title: string,
+	createdAt: string,
+	work: string,
+	reservations: AttachedReservation[]
+}
+
+export interface AttachedReservation {
+	id: string,
+	dateStart: string,
+	dateEnd: string,
+	createdAt: string,
+	board: Board
+}
+
+interface AttachedWork {
+	id: string,
+	title: string,
+	mainFile: File
 }
 
 export interface Reservation {

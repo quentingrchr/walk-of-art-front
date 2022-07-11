@@ -3,7 +3,7 @@ import style from "./index.module.scss"
 import cn from "classnames"
 import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, CardGallery, Unauthorized, ButtonArrow } from "@components"
 import { useScrollDirection } from "../../../src/hooks/useScrollDirection"
-import { makeCaseAndAccentInsensitiveString, windowIsNotReady } from "../../../src/utility"
+import { makeCaseAndAccentInsensitiveString, windowIsNotReady, getDate } from "../../../src/utility"
 import { Work, scrollDirType } from "../../../src/types"
 import { isLoggedIn } from "axios-jwt"
 
@@ -22,72 +22,153 @@ const data: Work[] = [
         "id": "1",
         "title": "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
         "description": "Une description",
-        "created_at": "2022-06-27T23:09:10.693Z",
+        "createdAt": "2022-06-27T23:09:10.693Z",
+        "mainFile": {
+            id: "",
+            fileUrl: ""
+        },
+        "workFiles": [
+            {
+                id: "",
+                fileUrl: ""
+            },
+            {
+                id: "",
+                fileUrl: ""
+            }
+        ],
         "exhibitions": [
             {
                 "id": "1",
-                "date_start": "2022-07-01T23:09:10.693Z",
-                "date_end": "2022-07-10T23:09:10.693Z",
-                "adress": "3 rue des plantes 75014 Paris",
-                "gallerie": "7",
+                "createdAt": "2022-07-01T23:09:10.693Z",
+                "reservations": [
+                    {
+                        "id": "1",
+                        "dateStart": "2022-06-27T23:09:10.693Z",
+                        "dateEnd": "2022-06-27T23:09:10.693Z",
+                        "createdAt": "2022-06-27T23:09:10.693Z",
+                        "board": {
+                            "id": "34",
+                            "gallery": {
+                                "id": "5",
+                                "name": "Nom de gallery",
+                                "latitude": 48.8585324301254,
+                                "longitude": 2.2944705695697802
+                            },
+                            "orientation": {}
+                        }
+                    }
+                ]
             },
-            {
-                "id": "2",
-                "date_start": "2022-07-08T23:09:10.693Z",
-                "date_end": "2022-07-25T23:09:10.693Z",
-                "adress": "22 rue de l’adresse 75000 PARIS",
-                "gallerie": "8",
-            },
-            {
-                "id": "25",
-                "date_start": "2022-10-01T23:09:10.693Z",
-                "date_end": "2022-10-08T23:09:10.693Z",
-                "adress": "22 rue de l’adresse qui est très longue et par conséquent elle fera 3 lignes avec ces mots 75000 PARIS",
-                "gallerie": "6",
-            }
         ]
     },
     {
         "id": "2",
-        "title": "Un titr",
+        "title": "Un titre",
         "description": "Une description",
-        "created_at": "2022-06-12T23:09:10.693Z",
-        "exhibitions": [
+        "createdAt": "2022-06-27T23:09:10.693Z",
+        "mainFile": {
+            id: "",
+            fileUrl: ""
+        },
+        "workFiles": [
             {
-                "id": "9",
-                "date_start": "2022-08-01T23:09:10.693Z",
-                "date_end": "2022-08-05T23:09:10.693Z",
-                "adress": "32 rue de l’adresse qui est un peu plus longue 75000 PARIS",
-                "gallerie": "8",
+                id: "",
+                fileUrl: ""
             },
-        ]
+            {
+                id: "",
+                fileUrl: ""
+            }
+        ],
     },
     {
         "id": "3",
-        "title": "Un ttre",
+        "title": "A title",
         "description": "Une description",
-        "created_at": "2022-06-17T23:09:10.693Z",
-    },
-    {
-        "id": "4",
-        "title": "Un titre",
-        "description": "Une description",
-        "created_at": "2022-06-30T23:09:10.693Z",
+        "createdAt": "2022-06-27T23:09:10.693Z",
+        "mainFile": {
+            id: "",
+            fileUrl: ""
+        },
+        "workFiles": [
+            {
+                id: "",
+                fileUrl: ""
+            },
+            {
+                id: "",
+                fileUrl: ""
+            }
+        ],
         "exhibitions": [
             {
-                "id": "25",
-                "date_start": "2022-10-01T23:09:10.693Z",
-                "date_end": "2022-10-08T23:09:10.693Z",
-                "adress": "22 rue de l’adresse qui est très longue et par conséquent elle fera 3 lignes avec ces mots 75000 PARIS",
-                "gallerie": "8",
+                "id": "1",
+                "createdAt": "2022-07-01T23:09:10.693Z",
+                "reservations": [
+                    {
+                        "id": "1",
+                        "dateStart": "2022-06-27T23:09:10.693Z",
+                        "dateEnd": "2022-06-27T23:09:10.693Z",
+                        "createdAt": "2022-06-27T23:09:10.693Z",
+                        "board": {
+                            "id": "34",
+                            "gallery": {
+                                "id": "5",
+                                "name": "Nom de gallery",
+                                "latitude": 48.8585324301254,
+                                "longitude": 2.2944705695697802
+                            },
+                            "orientation": {}
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "2",
+                "createdAt": "2022-07-01T23:09:10.693Z",
+                "reservations": [
+                    {
+                        "id": "45",
+                        "dateStart": "2022-07-27T23:09:10.693Z",
+                        "dateEnd": "2022-07-30T23:09:10.693Z",
+                        "createdAt": "2022-07-02T23:09:10.693Z",
+                        "board": {
+                            "id": "34",
+                            "gallery": {
+                                "id": "5",
+                                "name": "Nom de gallery",
+                                "latitude": 48.8585324301254,
+                                "longitude": 2.2944705695697802
+                            },
+                            "orientation": {}
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "3",
+                "createdAt": "2022-07-01T23:09:10.693Z",
+                "reservations": [
+                    {
+                        "id": "56",
+                        "dateStart": "2022-06-27T23:09:10.693Z",
+                        "dateEnd": "2022-06-27T23:09:10.693Z",
+                        "createdAt": "2022-06-27T23:09:10.693Z",
+                        "board": {
+                            "id": "34",
+                            "gallery": {
+                                "id": "5",
+                                "name": "Nom de gallery",
+                                "latitude": 48.8585324301254,
+                                "longitude": 2.2944705695697802
+                            },
+                            "orientation": {}
+                        }
+                    }
+                ]
             },
         ]
-    },
-    {
-        "id": "5",
-        "title": "Un titre",
-        "description": "Une description",
-        "created_at": "2022-05-02T23:09:10.693Z",
     },
 ]
 
@@ -158,8 +239,8 @@ const Works: React.FC = () => {
 
     const sortDateProcess = (list: Work[]) => {
         return list.sort((a, b) => {
-            let dateA: any = new Date(a.created_at)
-            let dateB: any = new Date(b.created_at)
+            let dateA: any = getDate(a.createdAt)
+            let dateB: any = getDate(b.createdAt)
 
             if (filters.orderDate === "asc") return dateA - dateB
             else if (filters.orderDate === "dsc") return dateB - dateA
@@ -238,21 +319,21 @@ const Works: React.FC = () => {
                         <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
-                                    (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
+                                    (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt}/>
                                 ))
                             }
                         </div>
                         <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
-                                    (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
+                                    (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt}/>
                                 ))
                             }
                         </div>
                         <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
-                                    (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.created_at}/>
+                                    (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt}/>
                                 ))
                             }
                         </div>
@@ -265,4 +346,4 @@ const Works: React.FC = () => {
     )
 }
 
-export default Works;
+export default Works
