@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { isLoggedIn } from "axios-jwt"
 import style from "./index.module.scss"
 import cn from "classnames"
-import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, Unauthorized, CardGallery } from "@components"
+import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, Unauthorized, CardGallery, ButtonArrow } from "@components"
 import { useScrollDirection } from "./../../../src/hooks/useScrollDirection"
 import { makeCaseAndAccentInsensitiveString, windowIsNotReady, checkFilterExhibition} from "./../../../src/utility"
 
@@ -288,6 +288,9 @@ const Exhibitions: React.FC = () => {
     <TemplatePage>
       {isLoggedIn() ? 
         <>
+          <span className={style.backLink}>
+            <ButtonArrow label="Retour à l'accueil" side="left" to="/dashboard"/>
+          </span>
           <section className={cn(style.headSection, direction === scrollDirType.down ? style.scrollDown : null)}>
           <HeadingStrong content="Mes exposition" elementColor="specific-expo" size="xl" />
           <Search 
@@ -327,7 +330,7 @@ const Exhibitions: React.FC = () => {
               isChecked={filters.type?.indexOf('refused') !== -1}
               onChange={handleCheckStatus}
             />
-            <li className={style.date} onClick={() => handleSortDate()}>
+            <li className={style.date} onClick={() => handleSortDate()} data-order={filters.orderDate}>
               <Icon type="downArrow" size="small" color="black" />
               <Text tag="p" typo="label">Date de création</Text>
             </li>
