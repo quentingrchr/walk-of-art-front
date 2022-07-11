@@ -56,7 +56,7 @@ const rawData: ReservationWithExposition[] = [
 interface IExposList {}
 
 const Dashboard: React.FC = () => {
-  const [list, setList] = useState<Exhibition[] | null>(null)
+  const [list, setList] = useState<Exhibition[] | null>(rawData)
 
   if (windowIsNotReady()) {
     return null
@@ -73,7 +73,7 @@ const Dashboard: React.FC = () => {
             <div className={s.filter}>filter</div>
           </div>
 
-          {/* <div className={s.worksList}>
+          <div className={s.worksList}>
             {exposList.map((value, index) => {
               return (
                 <li className={styles.expo} key={index}>
@@ -89,7 +89,7 @@ const Dashboard: React.FC = () => {
                 </li>
               )
             })}
-          </div> */}
+          </div>
         </>
       ) : (
         <Unauthorized />
