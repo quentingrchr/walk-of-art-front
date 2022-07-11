@@ -24,7 +24,6 @@ import Twitter from "./twitter"
 import Facebook from "./facebook"
 import Smiley from "./smiley"
 import LittleDownArrow from './little-down-arrow'
-import TopArrow from "./top-arrow"
 import SelectCheck from './select-check'
 import Trash from './trash'
 import ChevronRight from './chevron-right'
@@ -52,7 +51,6 @@ const Icons: IIcons = {
   rightArrow: <RightArrow/>,
   downArrow: <DownArrow />,
   leftArrow: <LeftArrow />,
-  topArrow: <TopArrow />,
   cross: <Cross/>,
   check: <Check/>,
   checkbox: <Checkbox/>,
@@ -68,9 +66,7 @@ const Icons: IIcons = {
   smiley : <Smiley/>,
   selectCheck: <SelectCheck />,
   trash: <Trash />,
-  chevronRight: <ChevronRight />,
-  chevronLeft: <ChevronLeft />,
-  warning : <Warning/>
+  chevronRight: <ChevronRight />
 };
 
 const sizes: any = {
