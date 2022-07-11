@@ -42,11 +42,6 @@ interface Exhibition {
   reservation: Reservation,
 }
 
-// status de modération besoin pour gérer les autres status des cards exhib
-interface Exhibitions_status {
-    status: string,
-}
-
 const Exhibitions: React.FC = () => {
 
   const list: Exhibition[] = [
