@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { isLoggedIn, clearAuthTokens } from "axios-jwt"
 import styles from "./index.module.scss"
 import Link from "next/link"
@@ -6,11 +6,14 @@ import { Logo, Navbar, DropdownButton, Icon, Button } from "@components"
 import { useRouter } from "next/router"
 import { NotificationWrapper } from "@components/notification-wrapper"
 import { eraseCookie } from "@utility/index"
+import cn from 'classnames';
+
 
 export type IProps = {}
 
 export const Header: React.FC<IProps> = (props: IProps) => {
   const [appear, setAppear] = useState(false)
+
   const notifs = [
     {
       id: 1,
@@ -68,7 +71,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
 
   return (
     <header className={styles.header}>
-      <Logo to="/" />
+      <Logo to="/dashboard" />
 
       {isLoggedIn() ? (
         <>
@@ -82,7 +85,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
               ]}
               className={styles.dropdownButton}
             />
-            <span className={styles.link}>
+            <span className={cn(styles.link, appear ? styles.active : null)}>
               {notifs.length === 0 ? (
                 <Icon
                   type="notification"
@@ -103,7 +106,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
             </span>
             <span className={styles.link}>
               <Link href="/artist/profile">
-                <Icon type="profile" size="large" />
+                <Icon type="profile" size="large"/>
               </Link>
             </span>
             <span className={styles.link}>
