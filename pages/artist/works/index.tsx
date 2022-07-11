@@ -40,25 +40,6 @@ const data: Work[] = [
         "exhibitions": [
             {
                 "id": "1",
-                "createdAt": "2022-07-01T23:09:10.693Z",
-                "reservations": [
-                    {
-                        "id": "1",
-                        "dateStart": "2022-06-27T23:09:10.693Z",
-                        "dateEnd": "2022-06-27T23:09:10.693Z",
-                        "createdAt": "2022-06-27T23:09:10.693Z",
-                        "board": {
-                            "id": "34",
-                            "gallery": {
-                                "id": "5",
-                                "name": "Nom de gallery",
-                                "latitude": 48.8585324301254,
-                                "longitude": 2.2944705695697802
-                            },
-                            "orientation": {}
-                        }
-                    }
-                ]
             },
         ]
     },
@@ -104,69 +85,13 @@ const data: Work[] = [
         "exhibitions": [
             {
                 "id": "1",
-                "createdAt": "2022-07-01T23:09:10.693Z",
-                "reservations": [
-                    {
-                        "id": "1",
-                        "dateStart": "2022-06-27T23:09:10.693Z",
-                        "dateEnd": "2022-06-27T23:09:10.693Z",
-                        "createdAt": "2022-06-27T23:09:10.693Z",
-                        "board": {
-                            "id": "34",
-                            "gallery": {
-                                "id": "5",
-                                "name": "Nom de gallery",
-                                "latitude": 48.8585324301254,
-                                "longitude": 2.2944705695697802
-                            },
-                            "orientation": {}
-                        }
-                    }
-                ]
+                
             },
             {
                 "id": "2",
-                "createdAt": "2022-07-01T23:09:10.693Z",
-                "reservations": [
-                    {
-                        "id": "45",
-                        "dateStart": "2022-07-27T23:09:10.693Z",
-                        "dateEnd": "2022-07-30T23:09:10.693Z",
-                        "createdAt": "2022-07-02T23:09:10.693Z",
-                        "board": {
-                            "id": "34",
-                            "gallery": {
-                                "id": "5",
-                                "name": "Nom de gallery",
-                                "latitude": 48.8585324301254,
-                                "longitude": 2.2944705695697802
-                            },
-                            "orientation": {}
-                        }
-                    }
-                ]
             },
             {
                 "id": "3",
-                "createdAt": "2022-07-01T23:09:10.693Z",
-                "reservations": [
-                    {
-                        "id": "56",
-                        "dateStart": "2022-06-27T23:09:10.693Z",
-                        "dateEnd": "2022-06-27T23:09:10.693Z",
-                        "createdAt": "2022-06-27T23:09:10.693Z",
-                        "board": {
-                            "id": "34",
-                            "gallery": {
-                                "id": "5",
-                                "name": "Nom de gallery",
-                                "latitude": 48.8585324301254,
-                                "longitude": 2.2944705695697802
-                            },
-                            "orientation": {}
-                        }
-                    }
-                ]
             },
         ]
     },
