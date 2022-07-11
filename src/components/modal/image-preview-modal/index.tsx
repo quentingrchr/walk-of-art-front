@@ -24,6 +24,9 @@ export const ImagePreviewModal: React.FC<IProps> = (props: IProps) => {
     <BaseModal
       id={IMAGE_PREVIEW_MODAL_ID}
       title='&nbsp;'
+      fullScreen={true}
+      background="artist-black"
+      iconColor="white"
     >
       <div className={styles.container}>
         <Text tag="h2" typo="heading-md">Voila le titre de l'exposition que je visite</Text>

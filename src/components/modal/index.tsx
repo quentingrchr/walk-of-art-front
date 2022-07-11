@@ -4,16 +4,21 @@ import style from "./index.module.scss"
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import { activeModalState } from "@recoil/modal/atom"
 import { scrollDisabledState } from "@recoil/scroll/atom"
+import { ColorsType } from "./../../types"
+import { Colors } from "@interfaces/index"
 
 import { Icon, Text } from "@components"
 
 export type IProps = {
   id: string
   children: React.ReactNode
-  title?: string
+  title?: string,
+  fullScreen?: boolean,
+  background?: ColorsType
+  iconColor?: Colors
 }
 
-export const Modal: React.FC<IProps> = ({ id, children, title }: IProps) => {
+export const Modal: React.FC<IProps> = ({ id, children, title, fullScreen = false, background, iconColor }: IProps) => {
   const activeModal = useRecoilValue(activeModalState)
   const setActiveModal = useSetRecoilState(activeModalState)
   const setScrollDisabled = useSetRecoilState(scrollDisabledState)
@@ -37,7 +42,7 @@ export const Modal: React.FC<IProps> = ({ id, children, title }: IProps) => {
   return (
     <div className={cn(style.container, { [style.open]: id === activeModal })}>
       <div className={style.overlay} onClick={closeModal}>
-        <div className={style.modal}>
+        <div className={cn(style.modal, fullScreen && style.fullScreen, background && style[background])}>
           <div className={style.modalHeader}>
             {title && (
               <Text tag="p" typo="paragraph-md">
@@ -45,7 +50,7 @@ export const Modal: React.FC<IProps> = ({ id, children, title }: IProps) => {
               </Text>
             )}
             <span className={style.cross}>
-              <Icon type="cross" size="medium" onClick={closeModal} />
+              <Icon color={iconColor} type="cross" size="medium" onClick={closeModal} />
             </span>
           </div>
           <div className={style.modalBody}>{children}</div>
