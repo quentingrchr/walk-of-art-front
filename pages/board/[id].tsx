@@ -64,8 +64,8 @@ const Artist: React.FC = () => {
                             color="black"
                             target="_blank"
                         />
-                        <div className={s.emoji}>
-                            <Icon type="smiley" size="xlarge" color="dark"/>
+                        <div className={s.reaction__button}>
+                            <Icon type="smiley" size="large"/>
                         </div>
                     </div>
                     {/* Commentaires */}
