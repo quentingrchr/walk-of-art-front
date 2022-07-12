@@ -1,31 +1,37 @@
 import React, { useEffect } from "react"
-import { useFormContext } from "react-hook-form"
+import { IWorkDataApi } from "../../../../types"
 
 import s from "./index.module.scss"
 
-import { FormOne, FormTwo, FormThree } from "../forms"
+// import { FormOne, FormTwo, FormThree } from "../forms"
+import { FormOne } from "../forms/formOne"
+import { FormTwo } from "../forms/formTwo"
+import { FormThree } from "../forms/formThree"
 import { Stepper, Button } from "@components"
 
-export type IProps = {}
+export type IProps = {
+  onSubmit: (formData: any) => void
+  work: IWorkDataApi
+}
 
 const STEPS = [
   {
     id: 1,
     label: "Etape 1",
     number: 1,
-    completed: false,
+    completed: true,
   },
   {
     id: 2,
     label: "Etape 2",
     number: 2,
-    completed: false,
+    completed: true,
   },
   {
     id: 3,
     label: "Etape 3",
     number: 3,
-    completed: false,
+    completed: true,
   },
 ]
 
@@ -60,13 +66,20 @@ const getStepComponent = (
           formState={{ ...compiledForm.one, ...compiledForm.two }}
         />
       )
+    case 3:
+      return (
+        <div className={s.formContainer}>
+          <h1 className={s.title}>Formulaire terminé</h1>
+          <Button to="/artist/works" label="Voir mes oeuvres" />
+        </div>
+      )
     default:
       return "Unknown step"
   }
 }
 
-export const FormStepper: React.FC<IProps> = () => {
-  const [compiledForm, setCompiledForm] = React.useState({})
+export const FormStepper: React.FC<IProps> = ({ onSubmit }) => {
+  const [compiledForm, setCompiledForm] = React.useState<any>({})
   const [steps, setSteps] = React.useState(STEPS)
 
   const [activeStep, setActiveStep] = React.useState(0)
@@ -88,7 +101,6 @@ export const FormStepper: React.FC<IProps> = () => {
       }
       return s
     })
-    setSteps(newSteps)
   }
 
   const handleStepSubmit = (data: any) => {
@@ -101,6 +113,12 @@ export const FormStepper: React.FC<IProps> = () => {
         break
       case 2:
         setCompiledForm({ ...compiledForm, three: data })
+        onSubmit({
+          ...compiledForm?.one,
+          ...compiledForm?.two,
+          ...compiledForm?.three,
+        })
+
         break
       default:
         throw new Error("not a valid step")
@@ -127,11 +145,11 @@ export const FormStepper: React.FC<IProps> = () => {
     <div className={s.container}>
       <div>
         <Stepper
+          setActiveStep={setActiveStep}
           variant="checked"
           activeStep={activeStep}
           steps={steps}
           completeOne={() => {}}
-          setActiveStep={setActiveStep}
         />
       </div>
       <div className={s.formContainer}>
