@@ -8,14 +8,12 @@ import { useRouter } from "next/router"
 import { NotificationWrapper } from "@components/notification-wrapper"
 import { eraseCookie } from "@utility/index"
 import { userState } from "@recoil/user/atom"
-import cn from 'classnames';
-
+import cn from "classnames"
 
 interface IProps {}
 
 export const Header: React.FC<IProps> = (props: IProps) => {
   const user = useRecoilValue(userState)
-  console.log({ user }, "nav")
   const [appear, setAppear] = useState(false)
 
   const notifs = [
@@ -110,7 +108,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
             </span>
             <span className={styles.link}>
               <Link href="/artist/profile">
-                <Icon type="profile" size="large"/>
+                <Icon type="profile" size="large" />
               </Link>
             </span>
             <span className={styles.link}>

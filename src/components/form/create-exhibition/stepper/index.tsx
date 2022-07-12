@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"
 
-import s from "./index.module.scss";
+import s from "./index.module.scss"
 
-import { FormOne, FormTwo, FormThree, FormFour, FormFive } from "../forms";
-import { Stepper } from "@components";
+import { FormOne, FormTwo, FormThree, FormFour, FormFive } from "../forms"
+import { Stepper } from "@components"
 
-export type IProps = {};
+export type IProps = {}
 
 const STEPS = [
   {
@@ -38,7 +38,7 @@ const STEPS = [
     number: 5,
     completed: false,
   },
-];
+]
 
 const getStepComponent = (
   step: number,
@@ -54,118 +54,115 @@ const getStepComponent = (
           handleBack={handleBack}
           defaultValues={compiledForm.one}
         />
-      );
+      )
     case 1:
       return (
         <FormTwo
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
           defaultValues={compiledForm.two}
-          amountOfAdditionalLinks={[]} />
-      );
+          amountOfAdditionalLinks={[]}
+        />
+      )
     case 2:
       return (
         <FormThree
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
           defaultValues={compiledForm.three}
-          onClick={() => { }} />
-      );
+          onClick={() => {}}
+        />
+      )
     case 3:
       return (
         <FormFour
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
           defaultValues={compiledForm.four}
-          onClick={() => { }}
+          onClick={() => {}}
         />
-      );
+      )
     case 4:
       return (
         <FormFive
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
           defaultValues={compiledForm.five}
-          onClick={() => { }}
+          onClick={() => {}}
         />
-      );
+      )
     default:
-      return "Unknown step";
+      return "Unknown step"
   }
 }
 
 export const FormStepper: React.FC<IProps> = (props: IProps) => {
-  const [compiledForm, setCompiledForm] = React.useState({});
-  const [steps, setSteps] = React.useState(STEPS);
+  const [compiledForm, setCompiledForm] = React.useState({})
+  const [steps, setSteps] = React.useState(STEPS)
 
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState(0)
 
   const completeStep = (step: number) => {
     const newSteps = steps.map((s, i) => {
       if (i === step) {
-        return { ...s, completed: true };
+        return { ...s, completed: true }
       }
-      return s;
-    });
-    setSteps(newSteps);
-  };
+      return s
+    })
+    setSteps(newSteps)
+  }
 
   const uncompleteStep = (step: number) => {
     const newSteps = steps.map((s, i) => {
       if (i === step) {
-        return { ...s, completed: false };
+        return { ...s, completed: false }
       }
-      return s;
-    });
-    setSteps(newSteps);
-  };
+      return s
+    })
+    setSteps(newSteps)
+  }
 
   const handleStepSubmit = (data: any) => {
-    console.log({ data }, "in handleStepSubmit");
     switch (activeStep) {
       case 0:
-        setCompiledForm({ ...compiledForm, one: data });
-        break;
+        setCompiledForm({ ...compiledForm, one: data })
+        break
       case 1:
-        setCompiledForm({ ...compiledForm, two: data });
-        break;
+        setCompiledForm({ ...compiledForm, two: data })
+        break
       case 2:
-        setCompiledForm({ ...compiledForm, three: data });
-        break;
-        case 3:
-        setCompiledForm({ ...compiledForm, four: data });
-        break;
-        case 4:
-        setCompiledForm({ ...compiledForm, five: data });
-        break;
+        setCompiledForm({ ...compiledForm, three: data })
+        break
+      case 3:
+        setCompiledForm({ ...compiledForm, four: data })
+        break
+      case 4:
+        setCompiledForm({ ...compiledForm, five: data })
+        break
       default:
-        throw new Error("not a valid step");
+        throw new Error("not a valid step")
     }
     setActiveStep((prevActiveStep) => {
-      completeStep(prevActiveStep);
-      return prevActiveStep + 1;
-    });
-  };
+      completeStep(prevActiveStep)
+      return prevActiveStep + 1
+    })
+  }
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => {
-      uncompleteStep(prevActiveStep - 1);
-      return prevActiveStep - 1;
-    });
-  };
+      uncompleteStep(prevActiveStep - 1)
+      return prevActiveStep - 1
+    })
+  }
 
   const handleReset = () => {
-    setActiveStep(0);
-    setCompiledForm({});
-  };
+    setActiveStep(0)
+    setCompiledForm({})
+  }
 
   const handleSubmit = (form: any) => {
-    return true;
-  };
-
-  useEffect(() => {
-    console.log({ compiledForm });
-  }, [compiledForm]);
+    return true
+  }
 
   return (
     <div className={s.container}>
@@ -175,7 +172,7 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
           variant="checked"
           activeStep={activeStep}
           steps={steps}
-          completeOne={() => { }}
+          completeOne={() => {}}
         />
       </div>
       <div className={s.formContainer}>
@@ -187,5 +184,5 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
