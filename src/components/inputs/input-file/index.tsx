@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import cn from "classnames";
-import s from "./index.module.scss";
-import { Icon } from "@components";
-import { getBlopUrlFromFile } from "../../../utility";
+import React, { useEffect, useState } from "react"
+import cn from "classnames"
+import s from "./index.module.scss"
+import { Icon } from "@components"
+import { getBlopUrlFromFile } from "../../../utility"
 interface InputData {
-  name: string;
-  required?: boolean;
+  name: string
+  required?: boolean
 }
 
 export type IProps = {
-  register: any;
-  primaryInput: InputData;
-  secondaryInputs?: [InputData, InputData, InputData];
-  primaryValue?: any;
-  secondaryValues?: [any, any, any];
-  label?: string;
-  fileType?: string;
-};
+  register: any
+  primaryInput: InputData
+  secondaryInputs?: [InputData, InputData, InputData]
+  primaryValue?: any
+  secondaryValues?: [any, any, any]
+  label?: string
+  fileType?: string
+}
 
 export const InputFile: React.FC<IProps> = ({
   register,
@@ -28,39 +28,32 @@ export const InputFile: React.FC<IProps> = ({
   secondaryValues,
 }: IProps) => {
   const [primaryImagePreview, setPrimaryImagePreview] =
-    useState<null | string>(null);
+    useState<null | string>(null)
   const [secondaryImagesPreview, setSecondaryImagesPreview] = useState<any>([
     null,
     null,
     null,
-  ]);
+  ])
 
   useEffect(() => {
     const log = async () => {
       if (primaryValue && primaryValue[0]) {
-        setPrimaryImagePreview(getBlopUrlFromFile(primaryValue[0] as any));
+        setPrimaryImagePreview(getBlopUrlFromFile(primaryValue[0] as any))
       }
       if (secondaryValues) {
         setSecondaryImagesPreview(
           secondaryValues.map((value) => {
             if (value && value[0]) {
-              return getBlopUrlFromFile(value[0] as any);
+              return getBlopUrlFromFile(value[0] as any)
             } else {
-              return null;
+              return null
             }
           })
-        );
+        )
       }
-    };
-    log();
-  }, [primaryValue, secondaryValues]);
-
-  useEffect(() => {
-    console.log({
-      primaryImagePreview,
-      secondaryImagesPreview,
-    });
-  }, [primaryImagePreview, secondaryImagesPreview]);
+    }
+    log()
+  }, [primaryValue, secondaryValues])
 
   return (
     <div className={s.container}>
@@ -120,8 +113,8 @@ export const InputFile: React.FC<IProps> = ({
                 ></div>
               )}
             </label>
-          );
+          )
         })}
     </div>
-  );
-};
+  )
+}

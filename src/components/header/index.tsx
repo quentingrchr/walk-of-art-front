@@ -12,7 +12,6 @@ import { UserRolesType } from "../../../src/types"
 
 import cn from 'classnames';
 
-
 interface IProps {}
 
 
@@ -40,7 +39,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
     </>
     )
   }
-  
+
   const [appear, setAppear] = useState(false)
 
   const notifs = [
@@ -138,7 +137,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
             </span>
             <span className={styles.link}>
               <Link href="/artist/profile">
-                <Icon type="profile" size="large"/>
+                <Icon type="profile" size="large" />
               </Link>
             </span>
             <span className={styles.link}>

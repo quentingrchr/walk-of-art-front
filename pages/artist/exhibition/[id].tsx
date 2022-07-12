@@ -16,6 +16,7 @@ import {
   Unauthorized,
   ButtonArrow
 } from "@components"
+import NextLink from "next/link"
 import cardImg from "../../../src/assets/images/cardImg.png"
 import { getDateWithoutHours, windowIsNotReady } from "../../../src/utility"
 import { Exhibition } from "../../../src/types"
@@ -132,7 +133,7 @@ const ExhibitionPage: React.FC = () => {
       {isLoggedIn() ? (
         <>
           <span className={style.backLink}>
-            <ButtonArrow label="Retour à la liste des expositions" side="left" to="/exhibitions"/>
+            <ButtonArrow label="Retour à la liste des expositions" side="left" to="/artist/exhibitions"/>
           </span>
           <section className={style.mainSection}>
             <ImagesPreview
@@ -145,6 +146,24 @@ const ExhibitionPage: React.FC = () => {
             <Text tag="p" typo="paragraph-md-semi">
               {exhibition.description}
             </Text>
+			{exhibition.snapshot &&
+				<ul className={style.linksList}>
+				{exhibition.snapshot.map((snap) => (
+					<li className={style.link}>
+						<Text tag="p" typo="paragraph-md-bold">Votre {snap.name} :</Text>
+						<a href={snap.url}><Text tag="p" typo="paragraph-md">{snap.url}</Text></a>
+					</li>
+				))}
+			</ul>
+			}
+			<span className={style.maps}>
+				<Text tag="p" typo="paragraph-md-bold">
+					Votre exposition aura lieu :
+				</Text>
+				<NextLink href={`https://maps.google.com/?q=${exhibition.board.gallery.latitude},${exhibition.board.gallery.longitude}`}>
+					<a onClick={e => e.stopPropagation()} className={style.mapsLink}><Text tag="p" typo="paragraph-md">Voir sur google maps</Text></a>
+				</NextLink>
+			</span>
             <span className={cn(style.date, style.creation)}>
 				{`Créée le ${getDateWithoutHours(exhibition.createdAt)}`}
 			</span>
