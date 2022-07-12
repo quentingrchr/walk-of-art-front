@@ -1,19 +1,45 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, PropsWithoutRef } from "react"
 import { isLoggedIn, clearAuthTokens } from "axios-jwt"
 import styles from "./index.module.scss"
 import Link from "next/link"
 import { useRecoilValue } from "recoil"
-import { Logo, Navbar, DropdownButton, Icon, Button } from "@components"
+import { Logo, Navbar, DropdownButton, Icon, Button, Text } from "@components"
 import { useRouter } from "next/router"
 import { NotificationWrapper } from "@components/notification-wrapper"
 import { eraseCookie } from "@utility/index"
 import { userState } from "@recoil/user/atom"
-import cn from "classnames"
+import { UserRolesType } from "../../../src/types"
+
+import cn from 'classnames';
 
 interface IProps {}
 
+
+
+function checkRole(user, role: UserRolesType) {
+  if (!user) return false
+  return user.roles.indexOf(role) !== -1
+}
+
 export const Header: React.FC<IProps> = (props: IProps) => {
   const user = useRecoilValue(userState)
+  console.log({ user }, "nav")
+
+  const ModeratorHeader = () => {
+    return (
+    <>
+      <Text tag="p" typo="paragraph-md-bold">
+        Espace modérateur
+      </Text>
+      <span className={styles.link}>
+        <div onClick={logout}>
+            <Icon type="logout" size="large" />
+          </div>
+      </span>
+    </>
+    )
+  }
+
   const [appear, setAppear] = useState(false)
 
   const notifs = [
@@ -70,12 +96,15 @@ export const Header: React.FC<IProps> = (props: IProps) => {
     eraseCookie("token")
     router.push("/")
   }
+  
 
   return (
     <header className={styles.header}>
       <Logo to="/dashboard" />
 
-      {isLoggedIn() ? (
+      {checkRole(user, "ROLE_MODERATOR") && isLoggedIn() ?  
+        <ModeratorHeader/>
+      : !checkRole(user, "ROLE_MODERATOR") && isLoggedIn() ? (
         <>
           <Navbar />
           <div className={styles.wrapper}>
