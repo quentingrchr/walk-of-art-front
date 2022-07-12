@@ -12,7 +12,8 @@ export function isEternalUrl(url: string): boolean {
     url.startsWith("https") || url.startsWith("https") || url.startsWith("www")
   )
 }
-export function getBlopUrlFromFile(file: File): string {
+export function getBlopUrlFromFile(file: File): string | null {
+  if (!file) return null
   return URL.createObjectURL(file)
 }
 
@@ -78,17 +79,30 @@ export function checkReservationState(
   return "remaining"
 }
 
-export function checkFilterExhibition(reservationStart, reservationEnd, todaysDate, exhibModerationStatus?) {
+export function checkFilterExhibition(
+  reservationStart,
+  reservationEnd,
+  todaysDate,
+  exhibModerationStatus?
+) {
   // à venir ajouter dans la condition le status de l'exhibition
-  if(todaysDate < getDate(reservationStart) && todaysDate < getDate(reservationEnd)) return 'incoming'
+  if (
+    todaysDate < getDate(reservationStart) &&
+    todaysDate < getDate(reservationEnd)
+  )
+    return "incoming"
   // terminées
-  if(todaysDate > getDate(reservationStart) && todaysDate > getDate(reservationEnd)) return 'completed'
+  if (
+    todaysDate > getDate(reservationStart) &&
+    todaysDate > getDate(reservationEnd)
+  )
+    return "completed"
   // refused
-  if(exhibModerationStatus === 'refused') return 'refused'
+  if (exhibModerationStatus === "refused") return "refused"
   //pending
-  if(exhibModerationStatus === 'pending') return 'pending'
+  if (exhibModerationStatus === "pending") return "pending"
   // remaining
-  return 'remaining'
+  return "remaining"
 }
 
 export const makeCaseAndAccentInsensitiveString = (param) => {

@@ -37,7 +37,6 @@ export const FormOne: React.FC<IProps> = ({
     e.preventDefault()
 
     handleSubmit((d) => {
-      console.log(d)
       handleStepSubmit(d)
     })(e)
   }
@@ -154,7 +153,6 @@ export const FormThree: React.FC<IRecapProps> = ({
   handleBack,
   formState,
 }: IRecapProps) => {
-  console.log({ formState })
   return (
     <div className={cn(styles.formContainer, styles.recap)}>
       <ImagesPreview

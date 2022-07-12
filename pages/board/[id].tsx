@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { useRouter } from "next/router"
-import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form"
 import s from "./index.module.scss"
-import { Logo, Text, ImagesPreview, Button, Icon, Input, ImagePreviewModal } from '@components'
-import { useSetRecoilState } from "recoil"
-import {
-    activeModalState,
-    IMAGE_PREVIEW_MODAL_ID,
-  } from "@recoil/modal/atom"
 import { Icons } from "@interfaces/index";
-
+import { Logo, Text, ImagesPreview, Button, Icon, ImagePreviewModal } from "@components"
+import { useSetRecoilState } from "recoil"
+import { activeModalState, IMAGE_PREVIEW_MODAL_ID } from "@recoil/modal/atom"
 interface IReaction {
     id: string,
     icon: Icons
@@ -59,7 +55,7 @@ const Artist: React.FC = () => {
         console.log("submit")
         e.preventDefault()
         handleSubmit((d) => {
-          console.log(d)
+            console.log(d)
         })(e)
     }
     const handlePreviewClick = ():void => {
@@ -143,36 +139,50 @@ const Artist: React.FC = () => {
                             icon='smiley'
                         />
                     </form> */}
-                    <Text tag="h3" typo="heading-xs">Réseaux sociaux de<br/>{data.name}</Text>
+                    <Text tag="h3" typo="heading-xs">
+                        Réseaux sociaux de
+                        <br />
+                        {data.name}
+                    </Text>
                     <ul className={s.rs_list}>
                         <li className={s.rs_list__rs}>
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                                <Icon type="facebook" size="xlarge" color="dark"/>
+                            <a
+                            href="https://facebook.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >
+                            <Icon type="facebook" size="xlarge" color="dark" />
                             </a>
                         </li>
                         <li className={s.rs_list__rs}>
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                                <Icon type="twitter" size="xlarge" color="dark"/>
+                            <a
+                            href="https://facebook.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >
+                            <Icon type="twitter" size="xlarge" color="dark" />
                             </a>
                         </li>
                     </ul>
-                    <Text tag="h3" typo="heading-xs">Liens de {data.name}</Text>
+                    <Text tag="h3" typo="heading-xs">
+                        Liens de {data.name}
+                    </Text>
                     <Button
-                        label={'Site personnel'}
+                        label={"Site personnel"}
                         to="https://www.google.com"
                         bg="light"
                         color="black"
                         target="_blank"
                     />
                     <Button
-                        label={'Portfolio'}
+                        label={"Portfolio"}
                         to="https://www.google.com"
                         bg="light"
                         color="black"
                         target="_blank"
                     />
                     <Button
-                        label={'Boutique en ligne'}
+                        label={"Boutique en ligne"}
                         to="https://www.google.com"
                         bg="light"
                         color="black"
