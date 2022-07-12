@@ -1,5 +1,4 @@
 import { Smiley } from '../types'
-<<<<<<< HEAD
 export type Semantic = "success" | "info" | "error"
 export type Colors = Semantic | "black" | "white" | "dark"
 export type sizeIcon =
@@ -10,11 +9,6 @@ export type sizeIcon =
   | "large"
   | "xlarge"
   | "xxlarge"
-=======
-export type Semantic = "success" | "info" | "error";
-export type Colors = Semantic | "black" | "white" | "dark";
-export type sizeIcon = "none" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
->>>>>>> c448f47 (add type Smiley)
 export type Icons =
   | Smiley
   | "avatar"
@@ -52,6 +46,7 @@ export type Icons =
   | "chevronRight"
   | "chevronLeft"
 <<<<<<< HEAD
+<<<<<<< HEAD
   | "eye-opened"
   | "eye-closed"
   | ""
@@ -64,15 +59,24 @@ export type NotificationType =
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 >>>>>>> c448f47 (add type Smiley)
+=======
+  | "eye-opened"
+  | "eye-closed"
+  | ""
+export type NotificationType = "success" | "error" | "commentary"
+>>>>>>> ad6ccf9 (wip)
 
 export interface SelectOption {
   label: string
   value: string
+<<<<<<< HEAD
 }
 
 export interface IGuidance {
   type: Semantic;
   message: string;
+=======
+>>>>>>> ad6ccf9 (wip)
 }
 
 export interface IGuidance {

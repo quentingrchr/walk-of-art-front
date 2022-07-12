@@ -22,6 +22,12 @@ const STEPS = [
     number: 1,
     completed: true,
   },
+  // {
+  //   id: 2,
+  //   label: "Etape 2",
+  //   number: 2,
+  //   completed: true,
+  // },
   {
     id: 3,
     label: "Etape 2",
@@ -45,6 +51,14 @@ const getStepComponent = (
           defaultValues={compiledForm}
         />
       )
+    // case 1:
+    //   return (
+    //     <FormTwo
+    //       handleStepSubmit={handleStepSubmit}
+    //       handleBack={handleBack}
+    //       defaultValues={compiledForm.two}
+    //     />
+    //   )
     case 1:
       return (
         <FormThree
@@ -61,7 +75,7 @@ const getStepComponent = (
           <Button to="/artist/works" label="Voir mes oeuvres" />
         </div>
       )
-    case 3:
+    case 2:
       return (
         <div className={s.formContainer}>
           <h1 className={s.title}>Formulaire terminé</h1>
@@ -74,7 +88,6 @@ const getStepComponent = (
 }
 
 export const FormStepper: React.FC<IProps> = ({ onSubmit, work }) => {
-  console.log({ files: work.workFiles })
   const [compiledForm, setCompiledForm] = React.useState<any>({
     title: work.title,
     description: work.description,
@@ -121,6 +134,9 @@ export const FormStepper: React.FC<IProps> = ({ onSubmit, work }) => {
           }
         })
         break
+      // case 1:
+      //   setCompiledForm({ ...compiledForm, two: data })
+      //   break
       case 1:
         setCompiledForm((prev) => {
           return {
