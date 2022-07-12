@@ -51,6 +51,10 @@
         background-color: $color-white;
         border: 2px solid $color-artist-black;
         cursor: pointer;
+
+        &.reacted {
+            background-color: $color-pink;
+        }
     }
 
     &__container {

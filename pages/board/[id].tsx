@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 import s from "./index.module.scss"
+import cn from "classnames"
 import { Icons } from "@interfaces/index";
 import { Logo, Text, ImagesPreview, Button, Icon, ImagePreviewModal } from "@components"
 import { useSetRecoilState } from "recoil"
@@ -50,6 +51,7 @@ const Artist: React.FC = () => {
 
     const [displayReactions, setDisplayReactions] = useState<boolean>(false)
     const [currentIcon, setCurrentIcon] = useState<Icons>('smiley')
+    const [reacted, setReacted] = useState<boolean>(false)
 
     const onSubmit = (e: any) => {
         console.log("submit")
@@ -69,8 +71,9 @@ const Artist: React.FC = () => {
     const handleReactionClick = (reaction): any => {
         // Close dropdown
         setDisplayReactions(false)
-        // Set button icon
+        // Set button icon & background
         setCurrentIcon(reaction.icon)
+        if(!reacted) setReacted(true)
         // SEND REQUEST
     }
 
@@ -101,7 +104,7 @@ const Artist: React.FC = () => {
                             color="black"
                             target="_blank"
                         />
-                        <div className={s.reactions__button} onClick={handleReactionsClick}>
+                        <div className={cn(s.reactions__button, reacted && s.reacted)} onClick={handleReactionsClick}>
                             <Icon type={currentIcon} size="large"/>
                         </div>
                         {
