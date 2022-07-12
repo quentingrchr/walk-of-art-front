@@ -16,9 +16,21 @@ const EditWork: React.FC = () => {
 
   const { id } = router.query
 
-  function editWork(formData: any) {
+  async function editWork(formData: any) {
     // call api
-    console.log({ formData })
+    try {
+      const response = await axiosInstance.put(`/works/${id}`, {
+        title: formData.title,
+        description: formData.description,
+      })
+      if (response.status === 200) {
+        router.push("/artist/works")
+      }
+    } catch (error) {
+      if (error) {
+        setPageError({ message: "Oups, une erreur est survenue 😢" })
+      }
+    }
   }
 
   const getWorkData = async () => {
