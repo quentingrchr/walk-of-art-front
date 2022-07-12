@@ -61,6 +61,13 @@ const getStepComponent = (
           <Button to="/artist/works" label="Voir mes oeuvres" />
         </div>
       )
+    case 3:
+      return (
+        <div className={s.formContainer}>
+          <h1 className={s.title}>Formulaire terminé</h1>
+          <Button to="/artist/works" label="Voir mes oeuvres" />
+        </div>
+      )
     default:
       return "Unknown step"
   }
@@ -116,7 +123,6 @@ export const FormStepper: React.FC<IProps> = ({ onSubmit, work }) => {
         break
       case 1:
         setCompiledForm((prev) => {
-          console.log(prev, "step 2")
           return {
             ...compiledForm,
             imagesUrls: work.workFiles.map((workFile) => {
