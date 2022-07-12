@@ -11,6 +11,7 @@ export type IProps = {
 }
 
 export const EditWorkForm: React.FC<IProps> = ({ onSubmit, workData }) => {
+  console.log({ workData })
   return !!workData ? (
     <EditWorkStepper onSubmit={onSubmit} work={workData} />
   ) : null

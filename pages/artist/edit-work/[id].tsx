@@ -11,8 +11,9 @@ interface IPageError {
 
 const EditWork: React.FC = () => {
   const [workData, setWorkData] = React.useState<null | IWorkDataApi>(null)
-  const [pageError, setPageError] = React.useState<any>(null)
+  const [pageError, setPageError] = React.useState<null | IPageError>(null)
   const router = useRouter()
+
   const { id } = router.query
 
   function editWork(formData: any) {
@@ -21,12 +22,14 @@ const EditWork: React.FC = () => {
   }
 
   const getWorkData = async () => {
+    if (!id) return
+    console.log("getWorkData")
     try {
       // 1ed01c7f-b907-67d0-ac52-653c8b2e8a29
       const res = await axiosInstance.get(`/works/${id}`)
       setWorkData(res.data)
     } catch (error: any) {
-      if (error.response.status === 404) {
+      if (error?.response?.status === 404) {
         setPageError({
           message: "Oups, on dirait que cette oeuvre n'existe pas 🙁",
         })
@@ -41,9 +44,11 @@ const EditWork: React.FC = () => {
   // TODO BLOCK EDIT IF WORK IS IN EXIBITION
 
   useEffect(() => {
-    // call api
+    if (!router.isReady) return
     getWorkData()
-  }, [])
+
+    // codes using router.query
+  }, [router.isReady])
   return (
     <TemplatePage>
       {pageError && (
