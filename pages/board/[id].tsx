@@ -33,8 +33,11 @@ const Artist: React.FC = () => {
         })(e)
     }
     const handlePreviewClick = ():void => {
-        console.log('clicked')
         setActiveModal(IMAGE_PREVIEW_MODAL_ID)
+    }
+
+    const handleReactionClick = ():void => {
+        console.log('reaction')
     }
 
     return (
@@ -64,7 +67,7 @@ const Artist: React.FC = () => {
                             color="black"
                             target="_blank"
                         />
-                        <div className={s.reaction__button}>
+                        <div className={s.reaction__button} onClick={handleReactionClick}>
                             <Icon type="smiley" size="large"/>
                         </div>
                     </div>
