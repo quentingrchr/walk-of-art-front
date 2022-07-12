@@ -4,13 +4,10 @@ import { useForm } from "react-hook-form"
 import s from "./index.module.scss"
 import cn from "classnames"
 import { Icons } from "@interfaces/index";
+import { IReaction } from "../../src/types";
 import { Logo, Text, ImagesPreview, Button, Icon, ImagePreviewModal } from "@components"
 import { useSetRecoilState } from "recoil"
 import { activeModalState, IMAGE_PREVIEW_MODAL_ID } from "@recoil/modal/atom"
-interface IReaction {
-    id: string,
-    icon: Icons
-}
 
 const data = {
     name: 'Fabien Deneau',
@@ -21,24 +18,24 @@ const data = {
     ],
     reactions: [
         {
-            id: 'A2RF',
-            icon: 'smiley'
+            count:32,
+            name: 'smiley'
         },
         {
-            id: 'A1TF',
-            icon: 'smiley-like'
+            count:5,
+            name: 'smiley-like'
         },
         {
-            id: 'Q2VF',
-            icon: 'smiley-love'
+            count:12,
+            name: 'smiley-love'
         },
         {
-            id: 'S6BR',
-            icon: 'smiley-lol'
+            count:53,
+            name: 'smiley-lol'
         },
         {
-            id: 'C9LL',
-            icon: 'smiley-wow'
+            count:11,
+            name: 'smiley-wow'
         },
     ] as IReaction[]
 }
@@ -72,7 +69,7 @@ const Artist: React.FC = () => {
         // Close dropdown
         setDisplayReactions(false)
         // Set button icon & background
-        setCurrentIcon(reaction.icon)
+        setCurrentIcon(reaction.name)
         if(!reacted) setReacted(true)
         // SEND REQUEST
     }
@@ -119,7 +116,7 @@ const Artist: React.FC = () => {
                                                     key={index}
                                                     onClick={() => handleReactionClick(reaction)}
                                                 >
-                                                    <Icon type={reaction.icon} size="large"/>
+                                                    <Icon type={reaction.name} size="large"/>
                                                 </li>
                                             ))
                                         }
