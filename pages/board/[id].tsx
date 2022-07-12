@@ -24,6 +24,8 @@ const Artist: React.FC = () => {
     const { register, handleSubmit } = useForm({ mode: "onBlur" })
     const setActiveModal = useSetRecoilState(activeModalState)
 
+    const [displayReactions, setDisplayReactions] = useState<boolean>(false)
+
 
     const onSubmit = (e: any) => {
         console.log("submit")
@@ -38,6 +40,7 @@ const Artist: React.FC = () => {
 
     const handleReactionClick = ():void => {
         console.log('reaction')
+        setDisplayReactions(!displayReactions)
     }
 
     return (
@@ -59,7 +62,7 @@ const Artist: React.FC = () => {
                             <Text tag="p" typo="paragraph-md">{data.name}</Text>
                         </div>
                     </div>
-                    <div className={s.reaction}>
+                    <div className={s.reactions}>
                         <Button
                             label={'Je soutiens cet artiste'}
                             to="https://www.google.com"
@@ -67,9 +70,35 @@ const Artist: React.FC = () => {
                             color="black"
                             target="_blank"
                         />
-                        <div className={s.reaction__button} onClick={handleReactionClick}>
+                        <div className={s.reactions__button} onClick={handleReactionClick}>
                             <Icon type="smiley" size="large"/>
                         </div>
+                        {
+                            displayReactions && (
+                                <div className={s.reactions__container}>    
+                                    <ul className={s.reactions__list}>
+                                        <li className={s.reactions__icon}>
+                                            <Icon type="smiley" size="large"/>
+                                        </li>
+                                        <li className={s.reactions__icon}>
+                                            <Icon type="smiley" size="large"/>
+                                        </li>
+                                        <li className={s.reactions__icon}>
+                                            <Icon type="smiley" size="large"/>
+                                        </li>
+                                        <li className={s.reactions__icon}>
+                                            <Icon type="smiley" size="large"/>
+                                        </li>
+                                        <li className={s.reactions__icon}>
+                                            <Icon type="smiley" size="large"/>
+                                        </li>
+                                        <li className={s.reactions__icon}>
+                                            <Icon type="smiley" size="large"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            )
+                        }
                     </div>
                     {/* Commentaires */}
                     {/* <form className={s.comments} onSubmit={onSubmit}>
