@@ -6,7 +6,7 @@ import s from "./index.module.scss"
 import { FormOne } from "../forms/formOne"
 import { FormTwo } from "../forms/formTwo"
 import { FormThree } from "../forms/formThree"
-import { Stepper } from "@components"
+import { Stepper, Button } from "@components"
 
 export type IProps = {
   onSubmit: (formData: any) => void
@@ -67,7 +67,8 @@ const getStepComponent = (
     case 3:
       return (
         <div className={s.formContainer}>
-          <h1>Formulaire terminé</h1>
+          <h1 className={s.title}>Formulaire terminé</h1>
+          <Button to="/artist/works" label="Voir mes oeuvres" />
         </div>
       )
     default:
