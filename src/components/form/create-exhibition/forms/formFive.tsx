@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Cards from 'react-credit-cards';
-import styles from "./formThree.module.scss";
-import { Button, InputGroup, InputDropdown } from "@components";
+import styles from "./index.module.scss";
+import { Button, InputGroup, InputDropdown, Input } from "@components";
 import { useForm } from "react-hook-form";
 
 export interface IProps {
@@ -79,7 +79,7 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
 
       <img src="../../../../assets/images/BankCard.png" alt="" />
 
-      <div id="PaymentForm">
+      <div id="PaymentForm" className={styles.display}>
         <Cards
           cvc={cardCvc}
           expiry={cardExpiry}
@@ -90,30 +90,31 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
         
       </div>
       <form>
-          <input
+          <Input
             type="number"
             name="Cardnumber"
             placeholder="Card Number"
             onChange={handleNumberChange}
+            register={() => {}}
           />
-          <input
+          {/* <Input
             type="number"
             name="Cardcvc"
             placeholder="Card Cvc"
             onChange={handleCvcChange}
           />
-          <input
+          <Input
             type="number"
             name="Cardexpiry"
             placeholder="Card Expiry"
             onChange={handleExpiryChange}
           />
-          <input
+          <Input
             type="text"
             name="Cardname"
             placeholder="Card Name"
             onChange={handleNameChange}
-          />
+          /> */}
         </form>
 
       <div className={styles.containerOfButtons}>

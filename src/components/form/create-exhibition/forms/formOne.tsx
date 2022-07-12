@@ -15,8 +15,8 @@ export interface IProps {
 }
 
 interface SelectWorkProps {
-  selectedWork?: boolean;
-  setSelectedWork: (boolean) => void;
+  selectedWork?: [];
+  setSelectedWork: () => {};
 }
 
 export interface IRecapProps {
@@ -27,31 +27,41 @@ export interface IRecapProps {
 
 
 const SelectWorks: React.FC<SelectWorkProps> = ({
-  selectedWork,
-  setSelectedWork,
+  // setSelectedWork,
 }: SelectWorkProps) => {
 
-  const [work, setWorks] = useState([]);
+  const [work, setWorks] = useState<any[]>([]);
+  const [selectedWork, setSelectedWork] = useState<any>()
+  console.log(selectedWork);
 
 
-  const handleImageClick = () => {
-    setSelectedWork(true)
+  function handleImageClick (x)  {
+    setSelectedWork(x)
+    console.log('dd', selectedWork);
+    
   }
   const handleBack = () => {
-    setSelectedWork(false)
-  }
-
-  const getAllWorks = () => {
-    return axios.get(`${BASE_API_URL}/works`).then(response => {
-      return setWorks(response.data);
-    }).catch((error) => {
-      return error
-    })
+    setSelectedWork([])
   }
 
   useEffect(() => {
     getAllWorks()
-  })
+  }, [])
+
+  const getAllWorks = () => {
+    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NTc2Mzk2MjMsImV4cCI6MTY1NzY0MzIyMywicm9sZXMiOlsiUk9MRV9BUlRJU1QiLCJST0xFX1VTRVIiXSwiaWQiOiIxZWNmZmI2Yy1kYTIyLTYxYTYtODdmNi05MzU1Mzg3OWViYTQiLCJlbWFpbCI6ImV4cG9AZG9tYWluLmZyIiwiZmlyc3RuYW1lIjoiZXhwbyIsImxhc3RuYW1lIjoiZG9tYWluciJ9.GUNrW7pxfZf12glkOoR_UegVs8VBcaFAw0t4zECoTM2jCo7AShy6SCBkkqqSNrCfPZmzRPF_AUXQ5mfmCn5yg4ik5bAlNuIVNEdRGmY2qE2jB_a4aO6u_wQ6WT_NLT3wYT2kjtUBWHyBJwk_dHaUmlC--EnNQ3sSfURKGl6f8rCB3kYgSR1rK1ABROKx0I3e47M8mBi-S8uWN9yJmp68fgUsj3L2Qw_nEeC8k7NUVTmnuL0Gh30qMTbjTgFgyUMx5wnTuIsYAAjhBtt4S0vxsgTFBz8W1ZMlx09droqxME4taTzZLCGlca0wmoggPSjdBuEXqi7_9czLqpKgI_aQ2Q'
+    return axios.get(`${BASE_API_URL}/works`, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    })
+      .then(response => {
+        return setWorks(response.data);
+      }).catch((error) => {
+        return error
+      })
+  }
+
 
   const titleText = selectedWork ? "Choix de l’oeuvre" : "Sélection de l’oeuvre"
   return (
@@ -68,7 +78,7 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
                 <div className={foStyles.cardContainer}>
                   <Icon classname={foStyles.arrowLeft} type={"chevronLeft"} size={"small"} />
 
-                  <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={true} />
+                  <Cards title={selectedWork.title} img={cardImage.src} showLink={true} />
                   <Icon classname={foStyles.arrowRight} type={"chevronRight"} size={"small"} />
 
                 </div>
@@ -83,18 +93,15 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
             </div>
             :
             <div className={foStyles.selectWorks}>
-              {work.map((work) => {
-
-                <Cards title={work} img={cardImage.src} handleClick={handleImageClick} showLink={false} />
-
-              })
+              {work.map((work) => (
+                <Cards
+                  key={work.id}
+                  title={work.title}
+                  img={work.mainFile ? work.mainFile.fileUrl : null}
+                  handleClick={() => {handleImageClick(work)}}
+                  showLink={false} />
+              ))
               }
-
-
-              {/* <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
-              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
-              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
-              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/> */}
             </div>
         }
       </div>
@@ -165,8 +172,8 @@ export const FormOne: React.FC<IProps> = ({
         <Checkbox checkboxName={"showTitle"} checkboxLabel={"Afficher le titre de mon exposition aux visiteurs"} />
 
 
-          <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
-        </div>
-      </form>
-    )
-  }
+        <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
+      </div>
+    </form>
+  )
+}
