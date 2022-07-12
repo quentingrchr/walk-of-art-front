@@ -53,7 +53,7 @@ const Artist: React.FC = () => {
     const setActiveModal = useSetRecoilState(activeModalState)
 
     const [displayReactions, setDisplayReactions] = useState<boolean>(false)
-
+    const [currentIcon, setCurrentIcon] = useState<Icons>('smiley')
 
     const onSubmit = (e: any) => {
         console.log("submit")
@@ -71,8 +71,12 @@ const Artist: React.FC = () => {
         setDisplayReactions(!displayReactions)
     }
 
-    const handleReactionClick = (id): any => {
-        console.log(id)
+    const handleReactionClick = (reaction): any => {
+        // Close dropdown
+        setDisplayReactions(false)
+        // Set button icon
+        setCurrentIcon(reaction.icon)
+        // SEND REQUEST
     }
 
     return (
@@ -103,7 +107,7 @@ const Artist: React.FC = () => {
                             target="_blank"
                         />
                         <div className={s.reactions__button} onClick={handleReactionsClick}>
-                            <Icon type="smiley" size="large"/>
+                            <Icon type={currentIcon} size="large"/>
                         </div>
                         {
                             displayReactions && (
@@ -115,7 +119,7 @@ const Artist: React.FC = () => {
                                                 <li
                                                     className={s.reactions__icon}
                                                     key={index}
-                                                    onClick={() => handleReactionClick(reaction.id)}
+                                                    onClick={() => handleReactionClick(reaction)}
                                                 >
                                                     <Icon type={reaction.icon} size="large"/>
                                                 </li>
