@@ -64,6 +64,9 @@ const Artist: React.FC = () => {
                             color="black"
                             target="_blank"
                         />
+                        <div className={s.emoji}>
+                            <Icon type="smiley" size="xlarge" color="dark"/>
+                        </div>
                     </div>
                     {/* Commentaires */}
                     {/* <form className={s.comments} onSubmit={onSubmit}>
