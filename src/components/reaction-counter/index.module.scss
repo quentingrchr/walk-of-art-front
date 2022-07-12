@@ -1,0 +1,13 @@
+@import "@styles/theme.scss";
+
+// Your style here
+.container {
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background-color: $color-white;
+    border: 2px solid $color-black;
+}
