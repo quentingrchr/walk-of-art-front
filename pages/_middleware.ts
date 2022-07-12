@@ -12,6 +12,7 @@ function hasRole(user: IUser | null, role: UserRolesType) {
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
   const { token } = request.cookies
+  console.log(token)
   let roles = [] as UserRolesType[]
   let isAuthenticated = false
   const response = NextResponse.next()

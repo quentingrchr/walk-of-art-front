@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import Cards from 'react-credit-cards';
+<<<<<<< HEAD
 import styles from "./formFive.module.scss";
 import cx from "classnames";
 import { Button, InputGroup, InputDropdown, Icon, Text, InputCard} from "@components";
+=======
+import styles from "./index.module.scss";
+import { Button, InputGroup, InputDropdown, Input } from "@components";
+>>>>>>> bf79556 (ADD selectedWork)
 import { useForm } from "react-hook-form";
 
 export interface IProps {
@@ -72,7 +77,7 @@ const selectOptions = [{
 
       <img src="../../../../assets/images/BankCard.png" alt="" />
 
-      <div id="PaymentForm">
+      <div id="PaymentForm" className={styles.display}>
         <Cards
           cvc={cardCvc}
           expiry={cardExpiry}
