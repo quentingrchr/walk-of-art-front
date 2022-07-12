@@ -8,6 +8,12 @@ import {
     activeModalState,
     IMAGE_PREVIEW_MODAL_ID,
   } from "@recoil/modal/atom"
+import { Icons } from "@interfaces/index";
+
+interface IReaction {
+    id: string,
+    icon: Icons
+}
 
 const data = {
     name: 'Fabien Deneau',
@@ -15,7 +21,33 @@ const data = {
         'https://iili.io/A7NDAP.jpg',
         'https://iili.io/dwagF2.png',
         'https://iili.io/hy8bLv.jpg'
-    ]
+    ],
+    reactions: [
+        {
+            id: 'A2RF',
+            icon: 'smiley'
+        },
+        {
+            id: 'A1TF',
+            icon: 'smiley'
+        },
+        {
+            id: 'Q2VF',
+            icon: 'smiley'
+        },
+        {
+            id: 'S6BR',
+            icon: 'smiley'
+        },
+        {
+            id: 'C9LL',
+            icon: 'smiley'
+        },
+        {
+            id: 'M0MY',
+            icon: 'smiley'
+        },
+    ] as IReaction[]
 }
 
 const Artist: React.FC = () => {
@@ -38,9 +70,13 @@ const Artist: React.FC = () => {
         setActiveModal(IMAGE_PREVIEW_MODAL_ID)
     }
 
-    const handleReactionClick = ():void => {
+    const handleReactionsClick = ():void => {
         console.log('reaction')
         setDisplayReactions(!displayReactions)
+    }
+
+    const handleReactionClick = (id): any => {
+        console.log(id)
     }
 
     return (
@@ -70,31 +106,25 @@ const Artist: React.FC = () => {
                             color="black"
                             target="_blank"
                         />
-                        <div className={s.reactions__button} onClick={handleReactionClick}>
+                        <div className={s.reactions__button} onClick={handleReactionsClick}>
                             <Icon type="smiley" size="large"/>
                         </div>
                         {
                             displayReactions && (
                                 <div className={s.reactions__container}>    
                                     <ul className={s.reactions__list}>
-                                        <li className={s.reactions__icon}>
-                                            <Icon type="smiley" size="large"/>
-                                        </li>
-                                        <li className={s.reactions__icon}>
-                                            <Icon type="smiley" size="large"/>
-                                        </li>
-                                        <li className={s.reactions__icon}>
-                                            <Icon type="smiley" size="large"/>
-                                        </li>
-                                        <li className={s.reactions__icon}>
-                                            <Icon type="smiley" size="large"/>
-                                        </li>
-                                        <li className={s.reactions__icon}>
-                                            <Icon type="smiley" size="large"/>
-                                        </li>
-                                        <li className={s.reactions__icon}>
-                                            <Icon type="smiley" size="large"/>
-                                        </li>
+                                        {
+                                            data.reactions.map((reaction, index) =>
+                                            (
+                                                <li
+                                                    className={s.reactions__icon}
+                                                    key={index}
+                                                    onClick={() => handleReactionClick(reaction.id)}
+                                                >
+                                                    <Icon type={reaction.icon} size="large"/>
+                                                </li>
+                                            ))
+                                        }
                                     </ul>
                                 </div>
                             )
