@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import { Icons } from "@interfaces/index"
 
 export type ColorsType =
   | "black"
@@ -90,6 +91,7 @@ export interface Exhibition {
 	dateStart: string,
   dateEnd: string,
   reaction: boolean,
+  reactions: IReaction[],
   comment: boolean,
   createdAt: string,
   status: [
@@ -98,6 +100,11 @@ export interface Exhibition {
   work: AttachedWork,
   board: Board,
   snapshot?: Link[]
+}
+
+export interface IReaction {
+  count: number,
+  name: Icons
 }
 
 export interface Work {
