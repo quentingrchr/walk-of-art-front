@@ -37,6 +37,10 @@ export type Icons =
   | "trash"
   | "chevronRight"
   | "chevronLeft"
+  | "smiley-like"
+  | "smiley-love"
+  | "smiley-lol"
+  | "smiley-wow"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 

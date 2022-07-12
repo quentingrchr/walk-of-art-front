@@ -29,23 +29,19 @@ const data = {
         },
         {
             id: 'A1TF',
-            icon: 'smiley'
+            icon: 'smiley-like'
         },
         {
             id: 'Q2VF',
-            icon: 'smiley'
+            icon: 'smiley-love'
         },
         {
             id: 'S6BR',
-            icon: 'smiley'
+            icon: 'smiley-lol'
         },
         {
             id: 'C9LL',
-            icon: 'smiley'
-        },
-        {
-            id: 'M0MY',
-            icon: 'smiley'
+            icon: 'smiley-wow'
         },
     ] as IReaction[]
 }
