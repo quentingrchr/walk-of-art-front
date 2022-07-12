@@ -67,7 +67,6 @@ const Artist: React.FC = () => {
     }
 
     const handleReactionsClick = ():void => {
-        console.log('reaction')
         setDisplayReactions(!displayReactions)
     }
 
