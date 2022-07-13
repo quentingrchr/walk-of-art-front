@@ -28,6 +28,7 @@ const Artist: React.FC = () => {
                     emojiList.map((element, index) =>
                     (
                         <div className={s.emoji} style={{left: `${element.offset}%`}} key={index}>
+                            <Icon type={element.type} size="xlarge" />
                         </div>
                     ))
                 }
