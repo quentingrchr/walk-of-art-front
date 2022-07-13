@@ -19,7 +19,7 @@ const data = {
     reactions: [
         {
             count:32,
-            name: 'smiley'
+            name: 'smiley-smile'
         },
         {
             count:5,
@@ -47,7 +47,7 @@ const Artist: React.FC = () => {
     const setActiveModal = useSetRecoilState(activeModalState)
 
     const [displayReactions, setDisplayReactions] = useState<boolean>(false)
-    const [currentIcon, setCurrentIcon] = useState<Icons>('smiley')
+    const [currentIcon, setCurrentIcon] = useState<Icons>('smiley-smile')
     const [reacted, setReacted] = useState<boolean>(false)
 
     const onSubmit = (e: any) => {

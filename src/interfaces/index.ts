@@ -1,7 +1,9 @@
+import { Smiley } from '../types'
 export type Semantic = "success" | "info" | "error";
 export type Colors = Semantic | "black" | "white" | "dark";
 export type sizeIcon = "none" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 export type Icons =
+  | Smiley
   | "avatar"
   | "notification"
   | "logout"
@@ -23,7 +25,6 @@ export type Icons =
   | "warning"
   | "twitter"
   | "facebook"
-  | "smiley"
   | "selectCheck"
   | "trash"
   | "chevronRight"
@@ -37,10 +38,6 @@ export type Icons =
   | "trash"
   | "chevronRight"
   | "chevronLeft"
-  | "smiley-like"
-  | "smiley-love"
-  | "smiley-lol"
-  | "smiley-wow"
   | "";
 export type NotificationType = "success" | "error" | "commentary";
 

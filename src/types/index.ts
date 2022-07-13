@@ -104,7 +104,7 @@ export interface Exhibition {
 
 export interface IReaction {
   count: number,
-  name: Icons
+  name: Smiley
 }
 
 export interface Work {
@@ -163,3 +163,5 @@ export interface IUser {
   exp: number
   roles: [UserRolesType]
 }
+
+export type Smiley = "smiley-smile" | "smiley-lol" | "smiley-wow" | "smiley-love" | "smiley-like"

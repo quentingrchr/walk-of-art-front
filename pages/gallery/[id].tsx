@@ -23,7 +23,7 @@ const Artist: React.FC = () => {
 
     return (
         <>
-            <section className={s.gallery} onClick={() => createNewEmoji('smiley', Math.random() * 80)}>
+            <section className={s.gallery} onClick={() => createNewEmoji('smiley-smile', Math.random() * 90)}>
                 {
                     emojiList.map((element, index) =>
                     (
