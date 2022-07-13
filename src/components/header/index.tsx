@@ -103,7 +103,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
 
   return (
     <header className={styles.header}>
-      <Logo to="/dashboard" />
+      <Logo to={isArtist ? "/artist/dashboard" : "/moderator/dashboard"} />
 
       {checkRole(user, "ROLE_MODERATOR") && isLoggedIn() ?  
         <ModeratorHeader/>

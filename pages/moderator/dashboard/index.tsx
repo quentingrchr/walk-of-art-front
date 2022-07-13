@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { isLoggedIn } from "axios-jwt"
+import style from "./index.module.scss"
+import cn from "classnames"
 import {
   TemplatePage,
   Text,
@@ -74,9 +76,9 @@ const Dashboard: React.FC = () => {
           </div>
 
           <div className={s.worksList}>
-            {exposList.map((value, index) => {
+            {list && list.map((value, index) => {
               return (
-                <li className={styles.expo} key={index}>
+                <li className={style.expo} key={index}>
                   <ExpoCard
                     id={value.id.toString()}
                     img={{

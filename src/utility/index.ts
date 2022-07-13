@@ -62,7 +62,7 @@ export function displayTime(type: displayTimeType, hours: number): string {
       return `dans ${Math.ceil(hours / 24)}j`
     }
   }
-  throw new Error()
+  //throw new Error()
 }
 
 export function checkReservationState(

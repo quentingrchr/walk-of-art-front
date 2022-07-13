@@ -11,7 +11,7 @@ export type ColorsType =
   | "success-light"
   | "info"
   | "info-light"
-  | "sementic-warning"
+  | "warning"
   | "violet"
   | "pink"
   | "artist-black"
@@ -92,7 +92,7 @@ export interface Exhibition {
 	dateStart: string,
   dateEnd: string,
   reaction: boolean,
-  reactions: IReaction[],
+  reactions?: IReaction[],
   comment: boolean,
   createdAt: string,
   status: [
