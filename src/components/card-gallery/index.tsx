@@ -2,9 +2,10 @@ import React from "react"
 import styles from "./index.module.scss"
 import NextLink from "next/link"
 import { Button, Text, Icon } from ".."
-import cardImg from "../../assets/images/cardImg.png"
+import BankCard from "../../assets/images/BankCard.png"
 import { getDateWithoutHours } from "../../utility"
 import cn from 'classnames'
+import { ImageCard } from "@components/image-card"
 
 
 export type IProps = {
@@ -51,7 +52,11 @@ export const CardGallery: React.FC<IProps> = ({id ,img, title, status, createdAt
                             </div>
                             : ''
                         }
-                        <img className={styles.cardGallery__picture} src={img ? img : cardImg.src} alt="gallery" />
+                        { type === 'work' ? <div  className={styles.cardGallery__picture}>
+                            <img className={styles.cardGallery__picture} src={img ? img : BankCard.src} alt="gallery" />
+                        </div> :
+                        <ImageCard size="small" src={BankCard} alt={BankCard} orientation='portrait'/>
+                        }
                         <div className={styles.cardGallery__link}>
                             <div className={styles.cardGallery__overlay}></div>
                             <Button label="voir plus" type="button" icon="rightArrow" fullWidth={false} bg="light" color="black" to={type === 'work' ? `/artist/work/${id}` : `/artist/exhibition/${id}`}/>

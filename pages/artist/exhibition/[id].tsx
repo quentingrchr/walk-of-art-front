@@ -18,9 +18,10 @@ import {
   ButtonArrow
 } from "@components"
 import NextLink from "next/link"
-import cardImg from "../../../src/assets/images/cardImg.png"
+import BankCard from "../../../src/assets/images/BankCard.png"
 import { getDateWithoutHours, windowIsNotReady } from "../../../src/utility"
 import { Exhibition } from "../../../src/types"
+import { ImageCard } from "@components/image-card"
 
 
 const data: Exhibition = {
@@ -160,10 +161,7 @@ const ExhibitionPage: React.FC = () => {
             <ButtonArrow label="Retour à la liste des expositions" side="left" to="/artist/exhibitions"/>
           </span>
           <section className={style.mainSection}>
-            <ImagesPreview
-              primaryImage={cardImg.src}
-              secondaryImages={[cardImg.src, cardImg.src]}
-            />
+		  <ImageCard size="full" src={BankCard} alt={BankCard} orientation='portrait'/>
             <Text tag="h1" typo="heading-lg">
               {exhibition.title}
             </Text>
