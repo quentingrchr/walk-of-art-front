@@ -104,7 +104,7 @@ export interface Exhibition {
 }
 
 export interface IReaction {
-  count: number,
+  count: number
   name: Icons
 }
 

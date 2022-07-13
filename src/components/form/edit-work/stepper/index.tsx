@@ -22,12 +22,6 @@ const STEPS = [
     number: 1,
     completed: true,
   },
-  // {
-  //   id: 2,
-  //   label: "Etape 2",
-  //   number: 2,
-  //   completed: true,
-  // },
   {
     id: 3,
     label: "Etape 2",
@@ -48,28 +42,16 @@ const getStepComponent = (
         <FormOne
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
-          defaultValues={compiledForm.one}
+          defaultValues={compiledForm}
         />
       )
-    // case 1:
-    //   return (
-    //     <FormTwo
-    //       handleStepSubmit={handleStepSubmit}
-    //       handleBack={handleBack}
-    //       defaultValues={compiledForm.two}
-    //     />
-    //   )
     case 1:
       return (
         <FormThree
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
-          formState={{
-            ...compiledForm.one,
-            ...compiledForm.two,
-            ...compiledForm.three,
-          }}
-          imagesUrls={compiledForm.three.imagesUrls}
+          formState={compiledForm}
+          imagesUrls={compiledForm.imagesUrls}
         />
       )
     case 2:
@@ -87,18 +69,13 @@ const getStepComponent = (
 export const FormStepper: React.FC<IProps> = ({ onSubmit, work }) => {
   console.log({ files: work.workFiles })
   const [compiledForm, setCompiledForm] = React.useState<any>({
-    one: {
-      title: work.title,
-      description: work.description,
-    },
-    two: {},
-    three: {
-      imagesUrls: work.workFiles.map((workFile) => {
-        return `${BASE_BACK_URL}/${workFile.fileUrl}`
-      }),
-    },
+    title: work.title,
+    description: work.description,
+    imagesUrls: work.workFiles.map((workFile) => {
+      return `${BASE_BACK_URL}/${workFile.fileUrl}`
+    }),
   })
-  console.log(compiledForm.three.imagesUrls)
+  console.log(compiledForm.imagesUrls)
   const [steps, setSteps] = React.useState(STEPS)
 
   const [activeStep, setActiveStep] = React.useState(0)
@@ -125,17 +102,30 @@ export const FormStepper: React.FC<IProps> = ({ onSubmit, work }) => {
   const handleStepSubmit = (data: any) => {
     switch (activeStep) {
       case 0:
-        setCompiledForm({ ...compiledForm, one: data })
+        setCompiledForm((prev) => {
+          console.log(prev, "step 1")
+          return {
+            ...compiledForm,
+            title: data.title,
+            description: data.description,
+            imagesUrls: work.workFiles.map((workFile) => {
+              return `${BASE_BACK_URL}/${workFile.fileUrl}`
+            }),
+          }
+        })
         break
-      // case 1:
-      //   setCompiledForm({ ...compiledForm, two: data })
-      //   break
       case 1:
-        setCompiledForm({ ...compiledForm })
+        setCompiledForm((prev) => {
+          console.log(prev, "step 2")
+          return {
+            ...compiledForm,
+            imagesUrls: work.workFiles.map((workFile) => {
+              return `${BASE_BACK_URL}/${workFile.fileUrl}`
+            }),
+          }
+        })
         onSubmit({
-          ...compiledForm?.one,
-          ...compiledForm?.two,
-          ...compiledForm?.three,
+          ...compiledForm,
         })
 
         break

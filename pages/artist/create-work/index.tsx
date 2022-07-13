@@ -28,9 +28,12 @@ async function createWorkRequest(formData) {
       `/works/${workId}`,
       multiPartFileForm
     )
-    console.log(workImageCreateRes)
+    return {
+      res: workImageCreateRes,
+    }
   } catch (error) {
     console.log(error)
+    return { error }
   }
 }
 
