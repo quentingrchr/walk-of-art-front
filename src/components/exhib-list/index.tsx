@@ -1,28 +1,29 @@
 import React from "react"
 import styles from "./index.module.scss"
-import { ReservationWithExposition } from "./../../types"
-import { ExpoCard } from "./../expo-card/"
+import { Exhibition } from "./../../types"
+import { ExhibitionCard } from "../exhibition-card"
 
 export type IProps = {
-    exposList: ReservationWithExposition[],
+    exhibList: Exhibition[],
     type: "completed" | "remaining" | "incoming"
 }
 
-export const ExpoList: React.FC<IProps> = ({exposList, type}: IProps) => {
+export const ExhibList: React.FC<IProps> = ({exhibList, type}: IProps) => {
 
     return (
         <ul className={styles.expos_list}>
             {
-                exposList.map((value, index) =>
+                exhibList.map((exhib, index) =>
                 {
                     return (
                         <li className={styles.expo} key={index}>
-                            <ExpoCard
-                                id={value.id.toString()}
+                            <ExhibitionCard
+                                id={exhib.id}
+                                entity="artist"
                                 img={{
-                                    src: 'https://iili.io/5zikPt.jpg'
+                                    src: exhib.work.mainFile.fileUrl
                                 }}
-                                title={value.title}
+                                title={exhib.title}
                                 remainingHours={8}
                                 type={type}
                             />

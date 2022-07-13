@@ -27,20 +27,20 @@ enum moderationChoices {
   refuse = "refused"
 }
 
-interface FormatData {
+interface IFormatData {
 	status: moderationChoices,
 	reason?: string,
 	description?: string,
 	exhibition: string
 }
 
-interface Error {
+interface IError {
 	general: null | string
 	reason: null | string
 	description: null | string
 }
 
-interface Time {
+interface ITime {
 	color: ColorsType,
 	time: string
 }
@@ -140,13 +140,13 @@ const ExhibitionPage: React.FC = () => {
 		],
   })
 
-	const [formError, setFormError] = useState<Error>({
+	const [formError, setFormError] = useState<IError>({
 		general: null,
 		reason: null,
 		description: null,
 	})
 
-	const [time, setTime] = useState<Time>({color: "black", time: ""})
+	const [time, setTime] = useState<ITime>({color: "black", time: ""})
 
 	const elementOptions: SelectOption[] = [
 		{
@@ -186,24 +186,23 @@ const ExhibitionPage: React.FC = () => {
 	}
 
 	const onSubmitValid = () => {
-		const formatData: FormatData = {
+		const IFormatData: IFormatData = {
 			status: moderationChoices.valid,
 			exhibition: `/api/exhibition/${id}`
 		}
 
-		postModeration(formatData)
+		postModeration(IFormatData)
 		
 	}
 
 	const onSubmitInvalid = (data) => {
-		console.log(data)
 
 		if(typeof data.reason === "object") {
 			setFormError(prev => {
 				return {
 					...prev, 
 					reason: "Le choix d'un élément est obligatoire."
-				} as Error
+				} as IError
 			})
 
 			return
@@ -214,23 +213,23 @@ const ExhibitionPage: React.FC = () => {
 				return {
 					...prev, 
 					description: "Expliquer votre motif de refus en quelques lignes."
-				} as Error
+				} as IError
 			})
 
 			return
 		}
 
-		const formatData: FormatData = {
+		const IFormatData: IFormatData = {
 			status: moderationChoices.refuse,
 			reason: data.reason,
 			description: data.description,
 			exhibition: `/api/exhibition/${id}`
 		}
 
-		postModeration(formatData)
+		postModeration(IFormatData)
 	}
 
-	const postModeration = (data: FormatData) => {
+	const postModeration = (data: IFormatData) => {
 		axios
 		.post(`${BASE_API_URL}/moderation/exhibitions`, data)
 		.then((res: { status: number; data: any }) => {
@@ -241,7 +240,7 @@ const ExhibitionPage: React.FC = () => {
 					return {
 						...prev, 
 						general: "Une erreur s'est produite lors de la transmission de votre modération."
-					} as Error
+					} as IError
 				})
 			}
 		})
@@ -250,7 +249,7 @@ const ExhibitionPage: React.FC = () => {
 				return {
 					...prev, 
 					general: "Une erreur s'est produite lors de la transmission de votre modération."
-				} as Error
+				} as IError
 			})
 		})
 	}
@@ -300,7 +299,7 @@ const ExhibitionPage: React.FC = () => {
               secondaryImages={[cardImg.src, cardImg.src]}
             />
             <Text tag="h1" typo="heading-lg">
-              {exhibition.title}
+            	{exhibition.title}
             </Text>
 						<span className={style.description}>
 							<Text tag="p" typo="paragraph-md-semi">

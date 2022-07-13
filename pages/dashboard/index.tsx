@@ -1,49 +1,319 @@
 import React, { useState, useEffect } from "react";
 import { isLoggedIn } from "axios-jwt"
-import { TemplatePage, Text, ExpoStateBar, ExpoList, Cards, ButtonArrow, Unauthorized } from "@components"
+import { TemplatePage, Text, ExpoStateBar, ExhibList, Cards, ButtonArrow, Unauthorized } from "@components"
 import s from './index.module.scss'
 import { checkReservationState, windowIsNotReady } from "./../../src/utility"
-import { ExpoStates, ReservationWithExposition, displayTimeType } from './../../src/types'
-const rawData: ReservationWithExposition[] = [
+import { ExpoStates, Exhibition, displayTimeType } from './../../src/types'
+const rawData: Exhibition[] = [
     {
-        id: 'id1',
-        date_start: '2022-06-29 10:15:27',
-        duration: 5,
-        created_at: '2022-06-22 06:15:27',
-        exhibition_id: 150,
-        gallery_id: 110,
-        title: 'EN COURS',
-        description: 'hi',
-        reaction: false,
+      "id": "1",
+      "title": "Un ti",
+      "description": "Une description",
+      "dateStart": "2022-05-02T23:09:10.693Z",
+      "dateEnd": "2022-05-02T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
+      "createdAt": "2022-05-02T23:09:10.693Z",
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": "https://iili.io/5zikPt.jpg"
+        }
+      },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
+        },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
     },
     {
-        id: 'id2',
-        date_start: '2022-06-22 06:15:27',
-        duration: 1,
-        created_at: '2022-06-22 06:15:27',
-        exhibition_id: 150,
-        gallery_id: 110,
-        title: 'Passed',
-        description: 'hi',
-        reaction: false,
+      "id": "2",
+      "title": "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
+      "description": "Une description",
+      "dateStart": "2022-06-01T23:09:10.693Z",
+      "dateEnd": "2022-08-15T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
+      "createdAt": "2022-05-02T23:09:10.693Z",
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": "https://iili.io/5zikPt.jpg"
+        }
+      },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
+        },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
+    },
+  
+    // terminé
+    {
+      "id": "3",
+      "title": "refused",
+      "description": "Une description",
+      "dateStart": "2022-05-02T23:09:10.693Z",
+      "dateEnd": "2022-05-02T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
+      "createdAt": "2022-05-02T23:09:10.693Z",
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": "https://iili.io/5zikPt.jpg"
+        }
+      },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
+        },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
     },
     {
-        id: 'id3',
-        date_start: '2022-07-02 10:15:27',
-        duration: 2,
-        created_at: '2022-06-22 06:15:27',
-        exhibition_id: 150,
-        gallery_id: 110,
-        title: 'u have to wait',
-        description: 'hi',
-        reaction: false,
+      "id": "4",
+      "title": "mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
+      "description": "Une description",
+      "dateStart": "2022-10-02T23:09:10.693Z",
+      "dateEnd": "2022-10-02T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
+      "createdAt": "2021-09-02T23:09:10.693Z",
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": "https://iili.io/5zikPt.jpg"
+        }
+      },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
+        },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
     },
-]
+    {
+      "id": "5",
+      "title": "un ttr",
+      "description": "Une description",
+      "dateStart": "2022-07-02T23:09:10.693Z",
+      "dateEnd": "2022-07-15T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
+      "createdAt": "2022-11-02T23:09:10.693Z",
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": "https://iili.io/5zikPt.jpg"
+        }
+      },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
+        },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
+    },
+    {
+      "id": "6",
+      "title": "1 completer",
+      "description": "Une description",
+      "dateStart": "2022-06-02T23:09:10.693Z",
+      "dateEnd": "2022-07-15T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
+      "createdAt": "2022-11-02T23:09:10.693Z",
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": "https://iili.io/5zikPt.jpg"
+        }
+      },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
+        },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
+    },
+    {
+      "id": "7",
+      "title": "2 completer",
+      "description": "Une description",
+      "dateStart": "2022-06-02T23:09:10.693Z",
+      "dateEnd": "2022-07-15T23:09:10.693Z",
+      "reaction": false,
+      "comment": false,
+      "createdAt": "2022-11-02T23:09:10.693Z",
+      "status": [{}],
+      "work": {
+        "id": "1",
+        "title": "titre oeuvre",
+        "mainFile": {
+          "id": "234",
+          "fileUrl": "https://iili.io/5zikPt.jpg"
+        }
+      },
+      "board": {
+        "id": "34",
+        "gallery": {
+          "id": "5",
+          "name": "Nom de gallery",
+          "latitude": 48.85156617494322,
+          "longitude": 2.4203096542274656
+        },
+        "orientation": {}
+      },
+      "snapshot": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com/mon-profil"
+        },
+        {
+          "name": "Site personnel",
+          "url": "https://mon-site-personnel.com"
+        },
+        {
+          "name": "Portfolio",
+          "url": "https://mon-portoflio.com/"
+        },
+      ],
+    },
+  ]
 
 interface IExposList {
-    'remaining': ReservationWithExposition[],
-    'incoming': ReservationWithExposition[],
-    'completed': ReservationWithExposition[]
+    'remaining': Exhibition[],
+    'incoming': Exhibition[],
+    'completed': Exhibition[]
 }
 
 const Dashboard: React.FC = () => {
@@ -54,15 +324,15 @@ const Dashboard: React.FC = () => {
     const expoStates: ExpoStates[] = [
         {
             label: 'En cours',
-            listComponent: (list: IExposList) => list ? <ExpoList exposList={list.remaining} type="remaining"/> : null
+            listComponent: (list: IExposList) => list ? <ExhibList exhibList={list.remaining} type="remaining"/> : null
         },
         {
             label: 'Terminées',
-            listComponent: (list: IExposList) => list ? <ExpoList exposList={list.completed} type="completed"/> : null
+            listComponent: (list: IExposList) => list ? <ExhibList exhibList={list.completed} type="completed"/> : null
         },
         {
             label: 'À venir',
-            listComponent: (list: IExposList) => list ? <ExpoList exposList={list.incoming} type="incoming"/> : null
+            listComponent: (list: IExposList) => list ? <ExhibList exhibList={list.incoming} type="incoming"/> : null
         },
     ]
     //-------- fetch
@@ -79,7 +349,7 @@ const Dashboard: React.FC = () => {
             let a = {}
             a = {
                 id: el.id
-            } as ReservationWithExposition
+            } as Exhibition
 
             const expoState: displayTimeType = checkReservationState(el, today)
             exposList[expoState].push(el)

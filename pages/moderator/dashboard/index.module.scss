@@ -2,8 +2,40 @@
 
 .header {
   text-align: center;
-  margin-top: 4rem;
+  margin: 4rem 0;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // position: sticky;
+  // top: 12.6rem;
+  // z-index: 1;
+  // background-color: $color-beige;
+
+  .date {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+
+    div {
+        transition: transform .3s ease-in-out;
+    }
+
+    &[data-order="asc"] {
+        div {
+            transform: rotate(180deg);
+        }
+    }
+
+    &[data-order="dsc"] {
+        div {
+            transform: none;
+        }
+    }
+}
 }
 
 .filter {
@@ -19,8 +51,7 @@
 }
 
 .worksList {
-  width: 50%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 20px;
 }

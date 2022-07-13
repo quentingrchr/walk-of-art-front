@@ -1,12 +1,12 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react"
-import { ExpoCard, IProps } from "./index"
+import { ExhibitionCard, IProps } from "./index"
 
 export default {
-    title: "ExpoCard",
-    component: ExpoCard,
-} as ComponentMeta<typeof ExpoCard>
+    title: "ExhibitionCard",
+    component: ExhibitionCard,
+} as ComponentMeta<typeof ExhibitionCard>
 
-const Template: ComponentStory<typeof ExpoCard> = (args: IProps) => <ExpoCard {...args} />
+const Template: ComponentStory<typeof ExhibitionCard> = (args: IProps) => <ExhibitionCard {...args} />
 
 const Default = Template.bind({})
 Default.args = {
