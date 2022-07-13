@@ -85,39 +85,23 @@ interface Gallery {
 }
 
 export interface Exhibition {
-<<<<<<< HEAD
   id: string
   title: string
   description: string
   dateStart: string
   dateEnd: string
   reaction: boolean
+  reactions: IReaction[]
   comment: boolean
   createdAt: string
   status: [{}]
   work: AttachedWork
   board: Board
-=======
-  id: string,
-  title: string,
-  description: string,
-	dateStart: string,
-  dateEnd: string,
-  reaction: boolean,
-  reactions: IReaction[],
-  comment: boolean,
-  createdAt: string,
-  status: [
-    {}
-  ],
-  work: AttachedWork,
-  board: Board,
->>>>>>> main
   snapshot?: Link[]
 }
 
 export interface IReaction {
-  count: number,
+  count: number
   name: Icons
 }
 
