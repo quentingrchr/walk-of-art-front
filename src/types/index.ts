@@ -11,7 +11,7 @@ export type ColorsType =
   | "success-light"
   | "info"
   | "info-light"
-  | "warning"
+  | "sementic-warning"
   | "violet"
   | "pink"
   | "artist-black"
@@ -165,18 +165,4 @@ export interface IUser {
   roles: [UserRolesType]
 }
 
-<<<<<<< HEAD
-export interface IWorkDataApi {
-  id: string
-  title: string
-  description: string
-  mainFile: string
-  createdAt: string
-  exhibition: [any]
-  workFiles: [any]
-}
-
-export type Smiley = 'smiley-smile' | 'smiley-lol' | 'smiley-love' | 'smiley-wow' | 'smiley-like'
-=======
 export type Smiley = "smiley-smile" | "smiley-lol" | "smiley-wow" | "smiley-love" | "smiley-like"
->>>>>>> c448f47 (add type Smiley)

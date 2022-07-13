@@ -74,3 +74,8 @@ export interface IGuidance {
   type: Semantic;
   message: string;
 }
+
+export interface IGuidance {
+  type: Semantic;
+  message: string;
+}
