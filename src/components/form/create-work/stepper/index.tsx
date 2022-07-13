@@ -2,7 +2,6 @@ import React, { useEffect } from "react"
 
 import s from "./index.module.scss"
 
-// import { FormOne, FormTwo, FormThree } from "../forms"
 import { FormOne } from "../forms/formOne"
 import { FormTwo } from "../forms/formTwo"
 import { FormThree } from "../forms/formThree"

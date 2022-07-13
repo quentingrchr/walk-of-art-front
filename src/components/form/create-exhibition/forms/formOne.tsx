@@ -41,9 +41,6 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
     setSelectedWork([])
   }
 
-  useEffect(() => {
-    getAllWorks()
-  }, [])
 
   const getAllWorks = () => {
     const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NTc3MjA0NzUsImV4cCI6MTY1NzcyNDA3NSwicm9sZXMiOlsiUk9MRV9BUlRJU1QiLCJST0xFX1VTRVIiXSwiaWQiOiIxZWNmZmI2Yy1kYTIyLTYxYTYtODdmNi05MzU1Mzg3OWViYTQiLCJlbWFpbCI6ImV4cG9AZG9tYWluLmZyIiwiZmlyc3RuYW1lIjoiZXhwbyIsImxhc3RuYW1lIjoiZG9tYWluciJ9.Gc4cgct1A1XvxT-YwdQLwKPC2za7NjTkDsCLggOkSau5dS6H8yQ7MPloGsYB6fN58BUqTbAZ2v_2mTX2ZRW9eHYr7pFgU56TIRyKR9hjuXvagbGWEsdUHEUYJDv2hdbhWvmX4g2rM86ihlwG98kOIsOi9mp5ewh6XY_k56cyopPg9luUeDBnv2FSqYoyze2DXRoQuvigzygO8lbpaDpXPjW7nwQT6DXUtQNinRaZhbUAkqTTSg_IpooL11_gcQWACi3Xi8MBTe4t8PdleuA8PHUodNAGVZG0Rreu9jAnentm0dWMHditx_X7Tohmpsofu_PqtkIJMbycicEC-olMPQ'

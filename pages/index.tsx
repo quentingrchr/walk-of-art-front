@@ -16,7 +16,6 @@ const ModeratorHome = () => {
 
 const HomeSelector = (props: { user?: IUser; roles?: [UserRolesType] }) => {
   const { roles, user } = props
-console.log(roles, user)
   if (!!roles) {
 
     if (roles.includes("ROLE_MODERATOR")) {

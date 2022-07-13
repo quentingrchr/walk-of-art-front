@@ -5,7 +5,9 @@ import s from "./index.module.scss"
 import { FormOne, FormTwo, FormThree, FormFour, FormFive } from "../forms"
 import { Stepper } from "@components"
 
-export type IProps = {}
+export type IProps = {
+  onSubmit: (formData: any) => void
+}
 
 const STEPS = [
   {
@@ -87,8 +89,8 @@ const getStepComponent = (
         <FormFive
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
-          defaultValues={compiledForm.five}
-          onClick={() => {}}
+          // defaultValues={compiledForm.five}
+          formState={{ ...compiledForm.one, ...compiledForm.two, ...compiledForm.three, ...compiledForm.four }}
         />
       )
     default:
@@ -96,7 +98,7 @@ const getStepComponent = (
   }
 }
 
-export const FormStepper: React.FC<IProps> = (props: IProps) => {
+export const FormStepper: React.FC<IProps> = (props: IProps, { onSubmit }) => {
   const [compiledForm, setCompiledForm] = React.useState({})
   const [steps, setSteps] = React.useState(STEPS)
 
@@ -135,6 +137,12 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
         break
       case 3:
         setCompiledForm({ ...compiledForm, four: data })
+        onSubmit({
+          ...compiledForm?.one,
+          ...compiledForm?.two,
+          ...compiledForm?.three,
+          ...compiledForm?.four,
+        })
         break
       case 4:
         setCompiledForm({ ...compiledForm, five: data })
@@ -158,10 +166,6 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
   const handleReset = () => {
     setActiveStep(0)
     setCompiledForm({})
-  }
-
-  const handleSubmit = (form: any) => {
-    return true
   }
 
   return (

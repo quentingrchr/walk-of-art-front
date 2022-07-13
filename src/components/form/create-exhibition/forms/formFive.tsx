@@ -33,7 +33,6 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
 
 
   const handleNumberChange = (e) => {
-    console.log(cardCvc)
     setCardNumber(e.target.value)
   }
   const handleCvcChange = (e) => {

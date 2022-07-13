@@ -5,6 +5,8 @@ import cardImg from "../../../../assets/images/cardImg.png"
 import { FormProvider, useForm } from "react-hook-form";
 import { BASE_API_URL } from "@const/index";
 import axios from "axios";
+import { axiosInstance } from "@utility/index"
+
 
 export interface IProps {
   handleStepSubmit: (data: any) => void;
@@ -21,8 +23,8 @@ export interface IRecapProps {
 
 interface IGalleryMap {
   id: string
-  lat: number
-  lng: number
+  latitude: number
+  longitude: number
   price: number
   name: string
 }
@@ -30,7 +32,10 @@ interface IGalleryMap {
 
 export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues = {} } ) => {
 
+  console.log('formstate', { formState })
+
   const [orientation, setOrientation] = useState<string>('landscape')
+  const [availableGalleries, setAvailableGalleries] = useState<IGalleryMap[]>()
 
   const methods = useForm();
 
@@ -48,54 +53,24 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
     })(event);
   };
 
-  const galleries: IGalleryMap[] = [
-    {
-      id: "1",
-      lat: 48.852614,
-      lng: 2.3522219,
-      price: 100,
-      name: "Paris",
-    },
-    {
-      id: "2",
-      lat: 48.856614,
-      lng: 2.3521219,
-      price: 90,
-      name: "Paris",
-    },
-    {
-      id: "3",
-      lat: 48.956614,
-      lng: 2.3622219,
-      price: 110,
-      name: "Paris",
-    },
-  ]
-
   const getAllAvailableGalleries = () => {
-    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NTc3MjA2MzYsImV4cCI6MTY1NzcyNDIzNiwicm9sZXMiOlsiUk9MRV9BUlRJU1QiLCJST0xFX1VTRVIiXSwiaWQiOiIxZWNmZmI2Yy1kYTIyLTYxYTYtODdmNi05MzU1Mzg3OWViYTQiLCJlbWFpbCI6ImV4cG9AZG9tYWluLmZyIiwiZmlyc3RuYW1lIjoiZXhwbyIsImxhc3RuYW1lIjoiZG9tYWluciJ9.ESFGCfqPBDFdgPqc9fLNBcTF3wiHzCMSEITH3aaFGbTjPTVYb-KNLP5Pc_arKlur2r6zKO7ksdSpJmPWp1UQNIt14K0she__BEgbbSarIpxRjSsYA_j_sg8mkfwTyJG_swmZU3hgKSAJqfag5LO94gFVSBCdI9GviQBhHnIVAc77EBR5N2v_FVFl-Cn84GrRXHMZJ1p8yrsphw-j1Pt7TxpdVb84QqZ6vRaem1AIoMYTlkBZ7F8FFO-pC1O3qJJsYfoBeFQLJbTWUfL0aGKL6_oON8cef8fzRk35ez_uqaTS_2-wHouIuculm6RrD0Oxtq4TetZdhrzb7os374UZbw'
+    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NTc3MjEyMDgsImV4cCI6MTY1NzcyNDgwOCwicm9sZXMiOlsiUk9MRV9BUlRJU1QiLCJST0xFX1VTRVIiXSwiaWQiOiIxZWNmZmI2Yy1kYTIyLTYxYTYtODdmNi05MzU1Mzg3OWViYTQiLCJlbWFpbCI6ImV4cG9AZG9tYWluLmZyIiwiZmlyc3RuYW1lIjoiZXhwbyIsImxhc3RuYW1lIjoiZG9tYWluciJ9.mdRNgg5JRWO2uUpGvCs8Ikv136rlaVqPzCis-02es6esvOAbmUqFAuzg0ufDTexbffl_I7_DuByxfa1MecOlKNgop4wqlcDmbxwxp1ou839XUBRb02V1u4EDH54hH6pTcQKnwoJ9lzSUGowvRMRr_PkP7wcJLMt2uf8xvqlfEershA0vr19-payL-BGkVSEDc8gy4WW-MkB2fOA3D-OgCOWhMQasFbpJHRWeQod4TrfG5FnUDyJU0LIQM7G4VMG0cRX3kIkEUFytMECnfbOUtQWmxOwoR8hIqef5K9w8deq11l0VWlrioICMQuGoY0arIkVz_riUDxcAeZyj8LRuLQ'
     const body = {
-      dateStart: '2022-07-09',
-      dateEnd: '2022-08-09',
-      orientation: 'portrait'
+      "dateStart": "2022-07-12",
+      "dateEnd": "2022-07-14",
+      "orientation": "portrait"
     }
-    return axios.post(`${BASE_API_URL}/galleries/available`, {
-      headers: {
-        Authorization: 'Bearer ' + token
-      },
-      body: body
-    })
+    return axiosInstance.post('/galleries/available', body)
       .then(response => {
-        console.log('galleries', response.data)
-        // return setWorks(response.data);
+        return setAvailableGalleries(response.data);
       }).catch((error) => {
-        console.dir('error',error)
         return error
       })
   }
 
   useEffect(() => {
     getAllAvailableGalleries()
+    
   }, [])
 
   return (

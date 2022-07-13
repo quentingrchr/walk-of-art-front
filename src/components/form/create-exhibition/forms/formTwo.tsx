@@ -30,20 +30,16 @@ export const FormTwo: React.FC<IProps> = ({
 
   const [amountOfAdditionalLinks, setAmountOfAdditionalLinks] = useState<any>([])
   const handleAddLink = (e: any) => {
-    console.log(amountOfAdditionalLinks);
     setAmountOfAdditionalLinks([...amountOfAdditionalLinks, `id-${amountOfAdditionalLinks.length + 1}`])
   }
   const handleRemoveLink = (idFieldValue: string, e: any) => {
-    console.log('this is ==== id', idFieldValue);
     setAmountOfAdditionalLinks(amountOfAdditionalLinks.filter(value => value !== idFieldValue))
   }
 
   const onSubmit = (e: any) => {
-    console.log("submit");
     e.preventDefault();
 
     handleSubmit((d) => {
-      console.log(d);
       handleStepSubmit(d);
     })(e);
   };

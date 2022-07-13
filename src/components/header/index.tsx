@@ -23,7 +23,6 @@ function checkRole(user, role: UserRolesType) {
 
 export const Header: React.FC<IProps> = (props: IProps) => {
   const user = useRecoilValue(userState)
-  console.log({ user }, "nav")
 
   const ModeratorHeader = () => {
     return (

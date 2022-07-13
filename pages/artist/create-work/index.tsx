@@ -32,7 +32,6 @@ async function createWorkRequest(formData) {
       res: workImageCreateRes,
     }
   } catch (error) {
-    console.log(error)
     return { error }
   }
 }

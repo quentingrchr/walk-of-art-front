@@ -51,10 +51,9 @@ const Artist: React.FC = () => {
     const [reacted, setReacted] = useState<boolean>(false)
 
     const onSubmit = (e: any) => {
-        console.log("submit")
         e.preventDefault()
         handleSubmit((d) => {
-            console.log(d)
+            return d
         })(e)
     }
     const handlePreviewClick = ():void => {

@@ -21,7 +21,6 @@ export interface IRecapProps {
 
 
 export const FormFour: React.FC<IProps> = ({handleStepSubmit, defaultValues = {}} : IProps) => {
-
   const [orientation, setOrientation] = useState<string>('landscape')
 
   const {

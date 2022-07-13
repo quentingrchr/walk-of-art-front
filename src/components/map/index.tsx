@@ -21,8 +21,8 @@ interface IInitialVP {
 }
 interface IGalleryMap {
   id: string
-  lat: number
-  lng: number
+  latitude: number
+  longitude: number
   price: number
   name: string
 }
@@ -98,7 +98,7 @@ export const Map: React.FC<IProps> = ({
         <NavigationControl />
         {galleries.map((item: IGalleryMap) => {
           return (
-            <Marker longitude={item.lng} latitude={item.lat} anchor="bottom">
+            <Marker longitude={item.longitude} latitude={item.latitude} anchor="bottom">
               <div
                 className={styles.marker}
                 onClick={() => handleChange(item.id)}

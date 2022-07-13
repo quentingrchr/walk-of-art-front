@@ -22,8 +22,6 @@ export const FormThree: React.FC<IRecapProps> = ({
   handleBack,
   formState,
 }: IRecapProps) => {
-  console.log({ formState })
-  console.log(formState["secondary-image-2"][0], "loog")
   return (
     <div className={cn(styles.formContainer, styles.recap)}>
       <div className={styles.imagesContainer}>

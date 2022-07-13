@@ -177,7 +177,7 @@ const WorkPage: React.FC = () => {
 
             <button
               className={style.exhibButton}
-              onClick={() => console.log("ok")}
+              onClick={() => {}}
             >
               Créer une exposition avec cette oeuvre
             </button>
@@ -187,7 +187,7 @@ const WorkPage: React.FC = () => {
                 label="Modifier l'oeuvre"
                 bg="light"
                 color="black"
-                onClick={() => console.log("modifier")}
+                onClick={() => {}}
               />
               <Button
                 label="Supprimer l'oeuvre"

@@ -29,7 +29,7 @@ export const ConfirmWorkDeleteModal: React.FC<IProps> = (props: IProps) => {
           <Button
             label="Oui"
             bg="dark"
-            onClick={() => console.log("supprimer")}
+            onClick={() => {}}
           />
           <Button label="Non" bg="light" color="black" onClick={closeModal} />
         </div>
