@@ -18,26 +18,6 @@ const Form = () => {
       firstname: data.firstName,
       lastname: data.lastName,
     }
-    axios
-      .post(`${BASE_API_URL}/register`, formattedData)
-      .then((res: { status: number; data: any }) => {
-        if (res.status === 201) {
-          router.push("/")
-        } else if (res.status === 409) {
-          setGlobalFormError("Cet email existe déjà")
-        } else {
-          console.log("error")
-        }
-      })
-      .catch((err: any) => {
-        if (err.response.status) {
-          setGlobalFormError("Cet email existe déjà")
-        } else {
-          setGlobalFormError(
-            "Oups il semblerait que quelque chose se soit mal passé"
-          )
-        }
-      })
   }
 
   return (

@@ -2,17 +2,15 @@ import React, { useState } from "react"
 import style from "./index.module.scss"
 import NextLink from "next/link"
 import { Text } from "@components"
-import { AttachedExhibition, AttachedReservation } from "../../types"
+import { ExhibitionForWork } from "../../types"
 import { getDateWithoutHours } from "../../utility"
 
 
 export type IProps = {
-	exhibition: AttachedExhibition
+	exhibition: ExhibitionForWork
 }
 
 export const ReservationInfo: React.FC<IProps> = ({exhibition}: IProps) => {
-
-	const lastReservation: AttachedReservation = exhibition.reservations[exhibition.reservations.length - 1]
 
 	return (
 		<NextLink href={`/artist/exhibition/${exhibition.id}`}>
@@ -20,16 +18,16 @@ export const ReservationInfo: React.FC<IProps> = ({exhibition}: IProps) => {
 				<li className={style.exhibition}>
 					<Text tag="p" typo="paragraph-md-bold">
 						{`Du ${getDateWithoutHours(
-							lastReservation.dateStart
+							exhibition.dateStart
 						)} au ${getDateWithoutHours(
-							lastReservation.dateEnd
+							exhibition.dateEnd
 						)}`}
 					</Text>
 					<span>
 						<Text tag="p" typo="paragraph-md">
-							{`Galerie n°${lastReservation.board.gallery.id}`}
+							{`Galerie n°${exhibition.board.gallery.id}`}
 						</Text>
-						<NextLink href={`https://maps.google.com/?q=${lastReservation.board.gallery.latitude},${lastReservation.board.gallery.longitude}`}>
+						<NextLink href={`https://maps.google.com/?q=${exhibition.board.gallery.latitude},${exhibition.board.gallery.longitude}`}>
 							<a onClick={e => e.stopPropagation()} className={style.mapsLink}>Voir sur google maps</a>
 						</NextLink>
 					</span>

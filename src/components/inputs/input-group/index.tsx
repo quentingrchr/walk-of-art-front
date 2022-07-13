@@ -1,14 +1,9 @@
 import React, { useEffect } from "react";
 import styles from "./index.module.scss";
 import { Input, InputDropdown, Text, Guidance } from "@components";
-import { Semantic, SelectOption } from "@interfaces/index";
+import { SelectOption, IGuidance } from "@interfaces/index";
 import { InputTypes } from "../../../types";
 
-
-export interface IGuidance {
-  type: Semantic;
-  message: string;
-}
 
 export type IProps = {
   id: string;

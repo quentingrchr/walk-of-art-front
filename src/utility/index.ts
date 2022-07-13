@@ -4,7 +4,7 @@ import {
   applyAuthTokenInterceptor,
 } from "axios-jwt"
 import axios from "axios"
-import { displayTimeType } from "./../types"
+import { displayTimeType, UserRolesType, IUser } from "./../types"
 import { BASE_API_URL } from "@const/index"
 
 export function isEternalUrl(url: string): boolean {
@@ -62,7 +62,7 @@ export function displayTime(type: displayTimeType, hours: number): string {
       return `dans ${Math.ceil(hours / 24)}j`
     }
   }
-  throw new Error()
+  //throw new Error()
 }
 
 export function checkReservationState(
@@ -134,10 +134,10 @@ const requestRefresh: TokenRefreshRequest = async (
   })
 
   // If your backend supports rotating refresh tokens, you may also choose to return an object containing both tokens:
-  // return {
-  //  accessToken: response.data.access_token,
-  //  refreshToken: response.data.refresh_token
-  //}
+  return {
+    accessToken: response.data.access_token,
+    refreshToken: response.data.refresh_token,
+  }
 
   return response.data.access_token
 }
@@ -165,4 +165,9 @@ export function getCookie(name) {
 }
 export function eraseCookie(name) {
   document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;"
+}
+
+export function userHasRole(user: IUser, role: UserRolesType) {
+  if (!user || !user.roles) return false
+  return user.roles.includes(role)
 }

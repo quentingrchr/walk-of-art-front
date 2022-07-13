@@ -53,7 +53,7 @@
 
     &__incoming {
         width: 100%;
-        background-color: $color-sementic-progress;
+        background-color: $color-progress;
         color: $color-white;
         padding: .8rem;
     }
@@ -80,14 +80,14 @@
     }
 
     &__isIncoming {
-        border: 2px solid $color-sementic-progress;
-        color: $color-sementic-progress;
+        border: 2px solid $color-progress;
+        color: $color-progress;
         background-color: $color-white;
     }
 
     &__isPending {
-        border: 2px solid $color-sementic-warning;
-        color: $color-sementic-warning;
+        border: 2px solid $color-warning;
+        color: $color-warning;
         background-color: $color-white;
     }
 

@@ -6,7 +6,7 @@ import { useRecoilValue } from "recoil"
 import { Logo, Navbar, DropdownButton, Icon, Button, Text } from "@components"
 import { useRouter } from "next/router"
 import { NotificationWrapper } from "@components/notification-wrapper"
-import { eraseCookie } from "@utility/index"
+import { eraseCookie, userHasRole } from "@utility/index"
 import { userState } from "@recoil/user/atom"
 import { UserRolesType } from "../../../src/types"
 
@@ -98,17 +98,32 @@ export const Header: React.FC<IProps> = (props: IProps) => {
   }
   
 
+  const isArtist = userHasRole(user, "ROLE_ARTIST")
+  const isModerator = userHasRole(user, "ROLE_MODERATOR")
+
   return (
     <header className={styles.header}>
-      <Logo to="/dashboard" />
+      <Logo to={isArtist ? "/artist/dashboard" : "/moderator/dashboard"} />
 
       {checkRole(user, "ROLE_MODERATOR") && isLoggedIn() ?  
         <ModeratorHeader/>
       : !checkRole(user, "ROLE_MODERATOR") && isLoggedIn() ? (
         <>
-          <Navbar />
+          {isArtist && <Navbar />}
+          {isModerator && <p>Espace modérateur</p>}
           <div className={styles.wrapper}>
-            <DropdownButton
+            {isArtist && (
+              <DropdownButton
+                label="Créer"
+                choices={[
+                  { label: "Créer une oeuvre", to: "/create-work" },
+                  { label: "Créer une exposition", to: "/create-exhibition" },
+                ]}
+                className={styles.dropdownButton}
+              />
+            )}
+            <span className={styles.link}>
+            {/* <DropdownButton
               label="Créer"
               choices={[
                 { label: "Créer une oeuvre", to: "/create-work" },
@@ -116,7 +131,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
               ]}
               className={styles.dropdownButton}
             />
-            <span className={cn(styles.link, appear ? styles.active : null)}>
+            <span className={cn(styles.link, appear ? styles.active : null)}> */}
               {notifs.length === 0 ? (
                 <Icon
                   type="notification"
@@ -135,11 +150,19 @@ export const Header: React.FC<IProps> = (props: IProps) => {
                 <NotificationWrapper notifList={notifs}></NotificationWrapper>
               ) : null}
             </span>
-            <span className={styles.link}>
-              <Link href="/artist/profile">
-                <Icon type="profile" size="large" />
-              </Link>
-            </span>
+            {isArtist && (
+              <span className={styles.link}>
+                <Link href="/artist/profile">
+                  <Icon type="profile" size="large" />
+                </Link>
+              </span>
+            )}
+
+            {/*  <span className={styles.link}>
+               <Link href="/artist/profile">
+                 <Icon type="profile" size="large"/>
+               </Link>
+            </span> */}
             <span className={styles.link}>
               <div onClick={logout}>
                 <Icon type="logout" size="large" />

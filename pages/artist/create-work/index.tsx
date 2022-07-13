@@ -28,8 +28,12 @@ async function createWorkRequest(formData) {
       `/works/${workId}`,
       multiPartFileForm
     )
+    return {
+      res: workImageCreateRes,
+    }
   } catch (error) {
     console.log(error)
+    return { error }
   }
 }
 

@@ -1,7 +1,13 @@
 import React, { useEffect } from "react"
 import styles from "./index.module.scss"
 import cn from "classnames"
-import { Button, Tooltip, InputGroup, InputFile } from "@components"
+import {
+  Button,
+  Tooltip,
+  InputGroup,
+  InputFile,
+  ImagesPreview,
+} from "@components"
 import { useForm, useFormContext, FormProvider } from "react-hook-form"
 import { getBlopUrlFromFile } from "../../../../utility"
 
@@ -149,79 +155,14 @@ export const FormThree: React.FC<IRecapProps> = ({
 }: IRecapProps) => {
   return (
     <div className={cn(styles.formContainer, styles.recap)}>
-      <div className={styles.imagesContainer}>
-        {/* IMAGES */}
-
-        {/* PRIMARY IMAGE  */}
-        <div className={cn(styles.imageContainer, styles.primary)}>
-          <div
-            className={styles.image}
-            style={{
-              backgroundImage: `url(${getBlopUrlFromFile(
-                formState["primary-image"][0]
-              )})`,
-            }}
-          ></div>
-        </div>
-
-        {/* SECONDARY IMAGES */}
-        {formState["secondary-image-1"][0] && (
-          <div
-            className={cn(
-              styles.imageContainer,
-              styles.secondary,
-              styles.secondary1
-            )}
-          >
-            <div
-              className={styles.image}
-              style={{
-                backgroundImage: `url(${getBlopUrlFromFile(
-                  formState["secondary-image-1"][0]
-                )})`,
-              }}
-            ></div>
-          </div>
-        )}
-
-        {formState["secondary-image-2"][0] && (
-          <div
-            className={cn(
-              styles.imageContainer,
-              styles.secondary,
-              styles.secondary2
-            )}
-          >
-            <div
-              className={styles.image}
-              style={{
-                backgroundImage: `url(${getBlopUrlFromFile(
-                  formState["secondary-image-2"][0]
-                )})`,
-              }}
-            ></div>
-          </div>
-        )}
-
-        {formState["secondary-image-3"][0] && (
-          <div
-            className={cn(
-              styles.imageContainer,
-              styles.secondary,
-              styles.secondary3
-            )}
-          >
-            <div
-              className={styles.image}
-              style={{
-                backgroundImage: `url(${getBlopUrlFromFile(
-                  formState["secondary-image-3"][0]
-                )})`,
-              }}
-            ></div>
-          </div>
-        )}
-      </div>
+      <ImagesPreview
+        primaryImage={getBlopUrlFromFile(formState["primary-image"][0])}
+        secondaryImages={[
+          getBlopUrlFromFile(formState["secondary-image-1"][0]),
+          getBlopUrlFromFile(formState["secondary-image-2"][0]),
+          getBlopUrlFromFile(formState["secondary-image-3"][0]),
+        ]}
+      />
 
       <p className={styles.title}>{formState.title}</p>
       <p className={styles.description}>{formState.description}</p>
