@@ -20,19 +20,11 @@ export interface IRecapProps {
 
 export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {} }) => {
 
-  const [orientation, setOrientation] = useState<string>('landscape')
   const [cardNumber, setCardNumber] = useState('')
   const [cardCvc, setCardCvc] = useState('')
   const [cardExpiry, setCardExpiry] = useState('')
   const [cardName, setCardName] = useState('')
 
-  // const handleInputFocus = (event) => {
-  //   setCardInfos((previousState) => {
-  //     const newCardState = { ...previousState };
-  //     newCardState.focus = event.target.name;
-  //     return newCardState;
-  //    })
-  // }
 
 
   const handleNumberChange = (e) => {
@@ -64,7 +56,10 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
   };
 
 
-
+const selectOptions = [{
+  label: "test",
+  value: "test value"
+}]
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
       <div className={styles.board}>
@@ -72,11 +67,8 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
           Montant à régler:
         </p>
         <p className={styles.board__price}>127,05€</p>
+      
       </div>
-
-      <label htmlFor="cardType">Liste des cartes enregistrées</label>
-      {/* <InputDropdown control={undefined} id={"cardType"} placeholder={"Sélectionner la carte"} required={false} /> */}
-
 
       <img src="../../../../assets/images/BankCard.png" alt="" />
 
@@ -90,12 +82,13 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
         />
         
       </div>
-      <form className={styles.form}>
+      <div className={styles.form}>
 
   
       {/* id, name, placeholder, type, register, required, label, onChangeMethod */}
       <InputCard
-        id={1}
+        id={'test'}
+        register={register}
         name="CardName"
         placeholder="John Doe"
         type="text"
@@ -105,44 +98,43 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
         onChangeMethod={handleNameChange}
       />
 
-
-<InputCard
-        id={1}
-        type="number"
-        name="CardNumber"
-        placeholder="0000000000000000"
-        // register={register}
-        required={true}
-        label={"Numéros de carte"}
-        onChangeMethod={handleNameChange}
+      <InputCard
+          id={'test'}
+          register={register}
+          type="number"
+          name="CardNumber"
+          placeholder="0000000000000000"
+          // register={register}
+          required={true}
+          label={"Numéros de carte"}
+          onChangeMethod={handleNumberChange}
       />
   
-
       <div className={styles.flexWrapper}>
-      <InputCard
-        id={1}
-        type="number"
-        name="CardNumber"
-        placeholder="0000000000000000"
-        // register={register}
-        required={true}
-        label={"Numéros de carte"}
-        onChangeMethod={handleNameChange}
-      />
-      <InputCard
-      id={1}
-      type="number"
-      name="CardNumber"
-      placeholder="0000000000000000"
-      // register={register}
-      required={true}
-      label={"Date d’expiration"}
-      onChangeMethod={handleExpiryChange}
-    />
+          <InputCard
+            register={register}
+            id={'test'}
+            type="number"
+            name="CardExpiry"
+            placeholder="00/0000"
+            // register={register}
+            required={true}
+            label={"Date d’expiration"}
+            onChangeMethod={handleExpiryChange}
+          />
+          <InputCard
+            register={register}
+            id={'test'}
+            type="number"
+            name="CardCvc"
+            placeholder="000"
+            // register={register}
+            required={true}
+            label={"CVC"}
+            onChangeMethod={handleCvcChange}
+        />
       </div>
-
-
-        </form>
+        </div>
 
       <div className={styles.containerOfButtons}>
         <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
