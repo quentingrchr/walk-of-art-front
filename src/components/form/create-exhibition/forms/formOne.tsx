@@ -15,8 +15,8 @@ export interface IProps {
 }
 
 interface SelectWorkProps {
-  selectedWork?: boolean;
-  setSelectedWork: (boolean) => void;
+  selectedWork?: [];
+  setSelectedWork: () => {};
 }
 
 export interface IRecapProps {
@@ -27,31 +27,38 @@ export interface IRecapProps {
 
 
 const SelectWorks: React.FC<SelectWorkProps> = ({
-  selectedWork,
-  setSelectedWork,
 }: SelectWorkProps) => {
 
-  const [work, setWorks] = useState([]);
+  const [work, setWorks] = useState<any[]>([]);
+  const [selectedWork, setSelectedWork] = useState<any>()
 
 
-  const handleImageClick = () => {
-    setSelectedWork(true)
+  function handleImageClick (selectedWork)  {
+    setSelectedWork(selectedWork)
+    
   }
   const handleBack = () => {
-    setSelectedWork(false)
-  }
-
-  const getAllWorks = () => {
-    return axios.get(`${BASE_API_URL}/works`).then(response => {
-      return setWorks(response.data);
-    }).catch((error) => {
-      return error
-    })
+    setSelectedWork([])
   }
 
   useEffect(() => {
     getAllWorks()
-  })
+  }, [])
+
+  const getAllWorks = () => {
+    const token = ''
+    return axios.get(`${BASE_API_URL}/works`, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    })
+      .then(response => {
+        return setWorks(response.data);
+      }).catch((error) => {
+        return error
+      })
+  }
+
 
   const titleText = selectedWork ? "Choix de l’oeuvre" : "Sélection de l’oeuvre"
   return (
@@ -68,7 +75,7 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
                 <div className={foStyles.cardContainer}>
                   <Icon classname={foStyles.arrowLeft} type={"chevronLeft"} size={"small"} />
 
-                  <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={true} />
+                  <Cards title={selectedWork.title} img={cardImage.src} showLink={true} />
                   <Icon classname={foStyles.arrowRight} type={"chevronRight"} size={"small"} />
 
                 </div>
@@ -83,18 +90,15 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
             </div>
             :
             <div className={foStyles.selectWorks}>
-              {work.map((work) => {
-
-                <Cards title={work} img={cardImage.src} handleClick={handleImageClick} showLink={false} />
-
-              })
+              {work.map((work) => (
+                <Cards
+                  key={work.id}
+                  title={work.title}
+                  img={work.mainFile ? work.mainFile.fileUrl : null}
+                  handleClick={() => {handleImageClick(work)}}
+                  showLink={false} />
+              ))
               }
-
-
-              {/* <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
-              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
-              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
-              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/> */}
             </div>
         }
       </div>
@@ -164,8 +168,8 @@ export const FormOne: React.FC<IProps> = ({
         <Checkbox checkboxName={"showTitle"} checkboxLabel={"Afficher le titre de mon exposition aux visiteurs"} />
 
 
-          <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
-        </div>
-      </form>
-    )
-  }
+        <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
+      </div>
+    </form>
+  )
+}

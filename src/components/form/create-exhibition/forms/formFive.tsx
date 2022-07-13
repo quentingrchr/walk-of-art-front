@@ -72,7 +72,7 @@ const selectOptions = [{
 
       <img src="../../../../assets/images/BankCard.png" alt="" />
 
-      <div id="PaymentForm">
+      <div id="PaymentForm" className={styles.display}>
         <Cards
           cvc={cardCvc}
           expiry={cardExpiry}
