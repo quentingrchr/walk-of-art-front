@@ -47,7 +47,15 @@ export type Icons =
   | "eye-opened"
   | "eye-closed"
   | ""
-export type NotificationType = "success" | "error" | "commentary"
+export type NotificationType =
+  | "success"
+  | "error"
+  | "commentary"
+  | "smiley-like"
+  | "smiley-love"
+  | "smiley-lol"
+  | "smiley-wow"
+  | ""
 
 export interface SelectOption {
   label: string

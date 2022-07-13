@@ -30,6 +30,10 @@ import ChevronRight from "./chevron-right"
 import ChevronLeft from "./chevron-left"
 import EyeClosed from "./eye-closed"
 import EyeOpened from "./eye-opened"
+import SmileyLike from "./smiley-like"
+import SmileyLol from "./smiley-lol"
+import SmileyLove from "./smiley-love"
+import SmileyWow from "./smiley-wow"
 
 interface IProps {
   type: IconsType
@@ -71,6 +75,10 @@ const Icons: IIcons = {
   chevronRight: <ChevronRight />,
   "eye-closed": <EyeClosed />,
   "eye-opened": <EyeOpened />,
+  "smiley-like": <SmileyLike />,
+  "smiley-love": <SmileyLove />,
+  "smiley-lol": <SmileyLol />,
+  "smiley-wow": <SmileyWow />,
 }
 
 const sizes: any = {
