@@ -22,12 +22,6 @@ const STEPS = [
     number: 1,
     completed: true,
   },
-  // {
-  //   id: 2,
-  //   label: "Etape 2",
-  //   number: 2,
-  //   completed: true,
-  // },
   {
     id: 3,
     label: "Etape 2",
@@ -51,14 +45,6 @@ const getStepComponent = (
           defaultValues={compiledForm}
         />
       )
-    // case 1:
-    //   return (
-    //     <FormTwo
-    //       handleStepSubmit={handleStepSubmit}
-    //       handleBack={handleBack}
-    //       defaultValues={compiledForm.two}
-    //     />
-    //   )
     case 1:
       return (
         <FormThree
@@ -134,9 +120,6 @@ export const FormStepper: React.FC<IProps> = ({ onSubmit, work }) => {
           }
         })
         break
-      // case 1:
-      //   setCompiledForm({ ...compiledForm, two: data })
-      //   break
       case 1:
         setCompiledForm((prev) => {
           return {
