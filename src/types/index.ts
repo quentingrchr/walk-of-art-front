@@ -165,6 +165,7 @@ export interface IUser {
   roles: [UserRolesType]
 }
 
+<<<<<<< HEAD
 export interface IWorkDataApi {
   id: string
   title: string
@@ -176,3 +177,6 @@ export interface IWorkDataApi {
 }
 
 export type Smiley = 'smiley-smile' | 'smiley-lol' | 'smiley-love' | 'smiley-wow' | 'smiley-like'
+=======
+export type Smiley = "smiley-smile" | "smiley-lol" | "smiley-wow" | "smiley-love" | "smiley-like"
+>>>>>>> c448f47 (add type Smiley)
