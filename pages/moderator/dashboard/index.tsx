@@ -17,6 +17,8 @@ import {
   displayTimeType,
   Exhibition,
 } from "../../../src/types"
+
+
 const rawData: ReservationWithExposition[] = [
   {
     id: "id1",
@@ -52,8 +54,6 @@ const rawData: ReservationWithExposition[] = [
     reaction: false,
   },
 ]
-
-interface IExposList {}
 
 const Dashboard: React.FC = () => {
   const [list, setList] = useState<Exhibition[] | null>(rawData)

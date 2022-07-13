@@ -10,6 +10,7 @@ export type ColorsType =
   | "success-light"
   | "info"
   | "info-light"
+  | "sementic-warning"
   | "violet"
   | "pink"
   | "artist-black"
@@ -116,7 +117,7 @@ interface ExhibitionForWorks {
 	id: string,
 }
 
-interface ExhibitionForWork {
+export interface ExhibitionForWork {
 	id: string,
 	title: string,
 	dateStart: string,

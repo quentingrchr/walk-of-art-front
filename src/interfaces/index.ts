@@ -44,3 +44,8 @@ export interface SelectOption {
   label: string;
   value: string;
 }
+
+export interface IGuidance {
+  type: Semantic;
+  message: string;
+}
