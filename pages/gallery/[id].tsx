@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactElement } from "react"
+import React, { useState, useEffect, useRef, ReactElement } from "react"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 import s from "./index.module.scss"
@@ -16,12 +16,12 @@ const smileyTypes: Smiley[] = [
 
 interface IEmoji {
     type: Smiley,
-    offset: number
+    offset: number,
+    isVisible: boolean
 }
 
 const getRandomSmiley = ():Smiley => {
     const randomIndex: number = Math.round(Math.random() * smileyTypes.length)
-    console.log(randomIndex)
     return smileyTypes[randomIndex]
 }
 
@@ -32,7 +32,24 @@ const Artist: React.FC = () => {
 
     const createNewEmoji = (type: Smiley, offset: number): void =>
     {
-        setEmojiList(prev => [...prev, { type, offset }])
+        setEmojiList(prev => [...prev, { type, offset, isVisible: true }])
+    }
+    console.log('render')
+
+    const renderEmoji = (element, index): ReactElement | null => {
+        if(!element.isVisible) return null
+        return (
+            <div className={s.emoji} style={{left: `${element.offset}%`}} key={index} onAnimationEnd={() => handleAnimationEnd(index)}>
+                <Icon type={element.type} size="xlarge" />
+            </div>
+        )
+    }
+
+    const handleAnimationEnd = (index) => {
+        setEmojiList(prev => {
+            prev[index].isVisible = false
+            return prev
+        })
     }
 
     return (
@@ -41,9 +58,7 @@ const Artist: React.FC = () => {
                 {
                     emojiList.map((element, index) =>
                     (
-                        <div className={s.emoji} style={{left: `${element.offset}%`}} key={index}>
-                            <Icon type={element.type} size="xlarge" />
-                        </div>
+                        renderEmoji(element, index)
                     ))
                 }
             </section>
