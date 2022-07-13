@@ -4,10 +4,25 @@ import { useForm } from "react-hook-form"
 import s from "./index.module.scss"
 import { Icons } from "@interfaces/index"
 import { Icon } from "@components"
+import { Smiley } from "../../src/types"
+
+const smileyTypes: Smiley[] = [
+    "smiley-smile",
+    "smiley-lol",
+    "smiley-love",
+    "smiley-like",
+    "smiley-wow",
+]
 
 interface IEmoji {
-    type: Icons,
+    type: Smiley,
     offset: number
+}
+
+const getRandomSmiley = ():Smiley => {
+    const randomIndex: number = Math.round(Math.random() * smileyTypes.length)
+    console.log(randomIndex)
+    return smileyTypes[randomIndex]
 }
 
 const Artist: React.FC = () => {
@@ -15,15 +30,14 @@ const Artist: React.FC = () => {
     const { id } = router.query
     const [emojiList, setEmojiList] = useState<IEmoji[]>([])
 
-    const createNewEmoji = (type: Icons, offset: number): void =>
+    const createNewEmoji = (type: Smiley, offset: number): void =>
     {
         setEmojiList(prev => [...prev, { type, offset }])
-        // console.log(emojiList)
     }
 
     return (
         <>
-            <section className={s.gallery} onClick={() => createNewEmoji('smiley-smile', Math.random() * 90)}>
+            <section className={s.gallery} onClick={() => createNewEmoji(getRandomSmiley(), Math.random() * 90)}>
                 {
                     emojiList.map((element, index) =>
                     (
