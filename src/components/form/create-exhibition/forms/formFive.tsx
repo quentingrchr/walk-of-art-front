@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Cards from 'react-credit-cards';
-import styles from "./formThree.module.scss";
-import { Button, InputGroup, InputDropdown } from "@components";
+import styles from "./formFive.module.scss";
+import cx from "classnames";
+import { Button, InputGroup, InputDropdown, Icon, Text, InputCard} from "@components";
 import { useForm } from "react-hook-form";
 
 export interface IProps {
@@ -66,11 +67,11 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
 
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
-      <div className={styles.boardOrientation}>
-        <p>
-          Montant à régler
+      <div className={styles.board}>
+        <p className={styles.board__text}> 
+          Montant à régler:
         </p>
-        <p>Montant</p>
+        <p className={styles.board__price}>127,05€</p>
       </div>
 
       <label htmlFor="cardType">Liste des cartes enregistrées</label>
@@ -89,31 +90,58 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
         />
         
       </div>
-      <form>
-          <input
-            type="number"
-            name="Cardnumber"
-            placeholder="Card Number"
-            onChange={handleNumberChange}
-          />
-          <input
-            type="number"
-            name="Cardcvc"
-            placeholder="Card Cvc"
-            onChange={handleCvcChange}
-          />
-          <input
-            type="number"
-            name="Cardexpiry"
-            placeholder="Card Expiry"
-            onChange={handleExpiryChange}
-          />
-          <input
-            type="text"
-            name="Cardname"
-            placeholder="Card Name"
-            onChange={handleNameChange}
-          />
+      <form className={styles.form}>
+
+  
+      {/* id, name, placeholder, type, register, required, label, onChangeMethod */}
+      <InputCard
+        id={1}
+        name="CardName"
+        placeholder="John Doe"
+        type="text"
+        // register={register}
+        required={true}
+        label={"Nom du titulaire de la carte"}
+        onChangeMethod={handleNameChange}
+      />
+
+
+<InputCard
+        id={1}
+        type="number"
+        name="CardNumber"
+        placeholder="0000000000000000"
+        // register={register}
+        required={true}
+        label={"Numéros de carte"}
+        onChangeMethod={handleNameChange}
+      />
+  
+
+      <div className={styles.flexWrapper}>
+      <InputCard
+        id={1}
+        type="number"
+        name="CardNumber"
+        placeholder="0000000000000000"
+        // register={register}
+        required={true}
+        label={"Numéros de carte"}
+        onChangeMethod={handleNameChange}
+      />
+      <InputCard
+      id={1}
+      type="number"
+      name="CardNumber"
+      placeholder="0000000000000000"
+      // register={register}
+      required={true}
+      label={"Date d’expiration"}
+      onChangeMethod={handleExpiryChange}
+    />
+      </div>
+
+
         </form>
 
       <div className={styles.containerOfButtons}>
