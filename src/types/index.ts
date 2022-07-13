@@ -104,8 +104,8 @@ export interface Exhibition {
 }
 
 export interface IReaction {
-  count: number
-  name: Icons
+  count: number,
+  name: Smiley
 }
 
 export interface Work {
@@ -174,3 +174,5 @@ export interface IWorkDataApi {
   exhibition: [any]
   workFiles: [any]
 }
+
+export type Smiley = 'smiley-smile' | 'smiley-lol' | 'smiley-love' | 'smiley-wow' | 'smiley-like'

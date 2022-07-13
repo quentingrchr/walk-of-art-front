@@ -1,0 +1,65 @@
+@import "@styles/theme.scss";
+
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portrait {
+
+    & .sizeFull {
+        width: 100%;
+        aspect-ratio: 358 / 640;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-black;
+    }
+
+    & .sizeSmall {
+        width: 60%;
+        aspect-ratio: 233 / 416;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-black;
+    }
+
+    & .image {
+        width: 90%;
+    }
+}
+  
+.landscape {
+
+    & .sizeFull {
+        width: 100%;
+        aspect-ratio: 640 / 358;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-black;
+    }
+
+    & .sizeSmall {
+        width: 100%;
+        aspect-ratio: 416 / 233;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-black;
+    }
+
+    & .image {
+        max-width: 100%;
+        width: auto;
+        height: 90%;
+    }
+}
+  
+.image {
+    object-fit: cover;
+  }
+  
