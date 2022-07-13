@@ -34,7 +34,6 @@ const Artist: React.FC = () => {
     {
         setEmojiList(prev => [...prev, { type, offset, isVisible: true }])
     }
-    console.log('render')
 
     const renderEmoji = (element, index): ReactElement | null => {
         if(!element.isVisible) return null
