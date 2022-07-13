@@ -35,6 +35,17 @@ export const InputGroup: React.FC<IProps> = ({
       case "text":
       case "password":
       case "email":
+      case "date":
+        return (
+          <Input 
+          register={register}
+            placeholder={placeholder}
+            value=""
+            type={type}
+            id={id}
+            required={required}
+            />
+        )
       case "textarea":
       case "number":
         return (

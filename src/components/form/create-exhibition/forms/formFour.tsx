@@ -28,7 +28,7 @@ export const FormFour: React.FC<IProps> = ({handleStepSubmit, defaultValues = {}
     formState: { errors },
   } = useForm({ mode: "onBlur", defaultValues });
 
-  console.log('formstate', { formState })
+  console.log('formstate', formState)
 
   const onSubmit = (event: any) => {
     event.preventDefault();
@@ -66,16 +66,16 @@ export const FormFour: React.FC<IProps> = ({handleStepSubmit, defaultValues = {}
             </li>
           </ul>
 
-          <p className={styles.marginTop40}>
+          {/* <p className={styles.marginTop40}>
             Votre exposition à lieu à
             <strong className={styles.bold}>VILLE</strong>
             dans la gallerie n°<strong className={styles.bold}>NUMBER</strong>
             située à <strong className={styles.bold}>ADRESSE</strong>
-          </p>
+          </p> */}
           <p className={styles.marginTop16}>
-            Votre exposition aura lieu du
-            <strong className={styles.bold}>STARTDATE</strong>
-            au <strong className={styles.bold}>ENDDATE</strong>
+            Votre exposition aura lieu du 
+            <strong className={styles.bold}> {formState.startExpositionDate}</strong>
+             au <strong className={styles.bold}> {formState.endExpositionDate}</strong>
           </p>
 
           <div className={styles.ctaContainer}>

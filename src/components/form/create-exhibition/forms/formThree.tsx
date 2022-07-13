@@ -29,7 +29,7 @@ interface IGalleryMap {
 }
 
 
-export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues = {} } ) => {
+export const FormThree: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {} }) => {
 
   const [orientation, setOrientation] = useState<string>('landscape')
   const [availableGalleries, setAvailableGalleries] = useState<IGalleryMap[]>()
@@ -47,7 +47,7 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
 
     handleSubmit((data) => {
       const formattedData = {
-        ...data, 
+        ...data,
         parentName
       }
       handleStepSubmit(formattedData);
@@ -74,10 +74,10 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
   }, [])
 
   const [parentName, setParentName] = useState<string>('Mr John Obi');
-const updateName = (name: string):void => {
-  console.log('lkenlkfn', name)
-     setParentName(name)
-}
+  const updateName = (name: string): void => {
+    console.log('lkenlkfn', name)
+    setParentName(name)
+  }
 
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
@@ -85,7 +85,7 @@ const updateName = (name: string):void => {
 
       <div className={styles.boardOrientationChoice}>
         <div onClick={() => setOrientation('landscape')}>
-          <input type="radio" id="cc" name="cc" value={'cc'} checked={orientation === 'landscape'}/>
+          <input type="radio" id="cc" name="cc" value={'cc'} checked={orientation === 'landscape'} />
           <label htmlFor="cc">Paysage</label>
         </div>
 
@@ -100,24 +100,29 @@ const updateName = (name: string):void => {
       </div>
 
       <h1 className={styles.panneauOrientation}>Choix du panneau d'exposition</h1>
-<FormProvider {...methods}>
-      <Map name={"mapOfGalleries"} galleries={availableGalleries} updateName={updateName}/>
+      <FormProvider {...methods}>
+        <Map name={"mapOfGalleries"} galleries={availableGalleries} updateName={updateName} />
       </FormProvider>
       <h2>Date d'exposition</h2>
 
       <form action="" className={styles.choiceExpositionDates}>
         <div className={styles.containerExpositionDate}><label htmlFor="startExpositionDate">Début</label>
 
-          <input type="date" id="startExpositionDate" name="startExpositionDate"
-            value="2018-07-22"
-            min="2018-01-01" max="2018-12-31"></input></div>
+          <InputGroup
+            register={register}
+            id="startExpositionDate"
+            type="date"
+            label="Début"
+            guidance={null}
+          />
 
-        <div className={styles.containerExpositionDate}>
-          <label htmlFor="endExpositionDate">Fin</label>
-
-          <input type="date" id="endExpositionDate" name="endExpositionDate"
-            value="2018-07-22"
-            min="2018-01-01" max="2018-12-31"></input>
+          <InputGroup
+            register={register}
+            id="endExpositionDate"
+            type="date"
+            label="Fin"
+            guidance={null}
+          />
         </div>
       </form>
 
@@ -125,6 +130,6 @@ const updateName = (name: string):void => {
         <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
         <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
       </div>
-      </form>
+    </form>
   )
 }
