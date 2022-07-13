@@ -27,17 +27,14 @@ export interface IRecapProps {
 
 
 const SelectWorks: React.FC<SelectWorkProps> = ({
-  // setSelectedWork,
 }: SelectWorkProps) => {
 
   const [work, setWorks] = useState<any[]>([]);
   const [selectedWork, setSelectedWork] = useState<any>()
-  console.log(selectedWork);
 
 
-  function handleImageClick (x)  {
-    setSelectedWork(x)
-    console.log('dd', selectedWork);
+  function handleImageClick (selectedWork)  {
+    setSelectedWork(selectedWork)
     
   }
   const handleBack = () => {
@@ -49,7 +46,7 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
   }, [])
 
   const getAllWorks = () => {
-    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NTc2Mzk2MjMsImV4cCI6MTY1NzY0MzIyMywicm9sZXMiOlsiUk9MRV9BUlRJU1QiLCJST0xFX1VTRVIiXSwiaWQiOiIxZWNmZmI2Yy1kYTIyLTYxYTYtODdmNi05MzU1Mzg3OWViYTQiLCJlbWFpbCI6ImV4cG9AZG9tYWluLmZyIiwiZmlyc3RuYW1lIjoiZXhwbyIsImxhc3RuYW1lIjoiZG9tYWluciJ9.GUNrW7pxfZf12glkOoR_UegVs8VBcaFAw0t4zECoTM2jCo7AShy6SCBkkqqSNrCfPZmzRPF_AUXQ5mfmCn5yg4ik5bAlNuIVNEdRGmY2qE2jB_a4aO6u_wQ6WT_NLT3wYT2kjtUBWHyBJwk_dHaUmlC--EnNQ3sSfURKGl6f8rCB3kYgSR1rK1ABROKx0I3e47M8mBi-S8uWN9yJmp68fgUsj3L2Qw_nEeC8k7NUVTmnuL0Gh30qMTbjTgFgyUMx5wnTuIsYAAjhBtt4S0vxsgTFBz8W1ZMlx09droqxME4taTzZLCGlca0wmoggPSjdBuEXqi7_9czLqpKgI_aQ2Q'
+    const token = ''
     return axios.get(`${BASE_API_URL}/works`, {
       headers: {
         Authorization: 'Bearer ' + token
