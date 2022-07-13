@@ -174,3 +174,5 @@ export interface IWorkDataApi {
   exhibition: [any]
   workFiles: [any]
 }
+
+export type Smiley = 'smiley-smile' | 'smiley-lol' | 'smiley-love' | 'smiley-wow' | 'smiley-like'
