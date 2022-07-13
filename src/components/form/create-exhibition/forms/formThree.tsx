@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./formThree.module.scss";
-import { Button, InputGroup, ExpositionBoard } from "@components";
+import { Button, InputGroup, ExpositionBoard, Map } from "@components";
 import cardImg from "../../../../assets/images/cardImg.png"
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 
 export interface IProps {
   handleStepSubmit: (data: any) => void;
@@ -15,7 +15,15 @@ export interface IRecapProps {
   handleStepSubmit: (data: any) => void;
   handleBack: () => void;
   formState: any;
-} 
+}
+
+interface IGalleryMap {
+  id: string
+  lat: number
+  lng: number
+  price: number
+  name: string
+}
 
 
 export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues = {} } ) => {
@@ -36,7 +44,32 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
     })(event);
   };
 
+  const galleries: IGalleryMap[] = [
+    {
+      id: "1",
+      lat: 48.852614,
+      lng: 2.3522219,
+      price: 100,
+      name: "Paris",
+    },
+    {
+      id: "2",
+      lat: 48.856614,
+      lng: 2.3521219,
+      price: 90,
+      name: "Paris",
+    },
+    {
+      id: "3",
+      lat: 48.956614,
+      lng: 2.3622219,
+      price: 110,
+      name: "Paris",
+    },
+  ]
+
   return (
+    <FormProvider>
     <form className={styles.formContainer} onSubmit={onSubmit}>
       <h1 className={styles.boardOrientation}>Orientation du panneau</h1>
 
@@ -103,5 +136,6 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
         <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
       </div>
     </form>
+     </FormProvider>
   )
 }
