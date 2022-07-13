@@ -1,0 +1,33 @@
+@import "@styles/theme.scss";
+
+.gallery {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: $color-black;
+}
+
+.emoji {
+    --emoji-size: 10vw;
+    position: absolute;
+    top: 100%;
+    height: var(--emoji-size);
+    width: var(--emoji-size);
+    background-color: tomato;
+    border-radius: 50%;
+    animation: emoji_anim 4s ease-in-out;
+}
+
+@keyframes emoji_anim {
+    0% {
+        transform: translate3d(0, 0vh, 0);
+    }
+        
+    90% {
+        transform: translate3d(0, -60vh, 0);
+    }
+
+    100% {
+        transform: translate3d(0, -60vh, 0) scale(1.15);
+    }
+}
