@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./formThree.module.scss";
 import { Button, InputGroup, ExpositionBoard, Map } from "@components";
 import cardImg from "../../../../assets/images/cardImg.png"
 import { FormProvider, useForm } from "react-hook-form";
+import { BASE_API_URL } from "@const/index";
+import axios from "axios";
 
 export interface IProps {
   handleStepSubmit: (data: any) => void;
@@ -29,6 +31,8 @@ interface IGalleryMap {
 export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues = {} } ) => {
 
   const [orientation, setOrientation] = useState<string>('landscape')
+
+  const methods = useForm();
 
   const {
     register,
@@ -68,9 +72,34 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
     },
   ]
 
+  const getAllAvailableGalleries = () => {
+    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NTc3MjA2MzYsImV4cCI6MTY1NzcyNDIzNiwicm9sZXMiOlsiUk9MRV9BUlRJU1QiLCJST0xFX1VTRVIiXSwiaWQiOiIxZWNmZmI2Yy1kYTIyLTYxYTYtODdmNi05MzU1Mzg3OWViYTQiLCJlbWFpbCI6ImV4cG9AZG9tYWluLmZyIiwiZmlyc3RuYW1lIjoiZXhwbyIsImxhc3RuYW1lIjoiZG9tYWluciJ9.ESFGCfqPBDFdgPqc9fLNBcTF3wiHzCMSEITH3aaFGbTjPTVYb-KNLP5Pc_arKlur2r6zKO7ksdSpJmPWp1UQNIt14K0she__BEgbbSarIpxRjSsYA_j_sg8mkfwTyJG_swmZU3hgKSAJqfag5LO94gFVSBCdI9GviQBhHnIVAc77EBR5N2v_FVFl-Cn84GrRXHMZJ1p8yrsphw-j1Pt7TxpdVb84QqZ6vRaem1AIoMYTlkBZ7F8FFO-pC1O3qJJsYfoBeFQLJbTWUfL0aGKL6_oON8cef8fzRk35ez_uqaTS_2-wHouIuculm6RrD0Oxtq4TetZdhrzb7os374UZbw'
+    const body = {
+      dateStart: '2022-07-09',
+      dateEnd: '2022-08-09',
+      orientation: 'portrait'
+    }
+    return axios.post(`${BASE_API_URL}/galleries/available`, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      },
+      body: body
+    })
+      .then(response => {
+        console.log('galleries', response.data)
+        // return setWorks(response.data);
+      }).catch((error) => {
+        console.dir('error',error)
+        return error
+      })
+  }
+
+  useEffect(() => {
+    getAllAvailableGalleries()
+  }, [])
+
   return (
-    <FormProvider>
-    <form className={styles.formContainer} onSubmit={onSubmit}>
+    <FormProvider {...methods} className={styles.formContainer} onSubmit={onSubmit}>
       <h1 className={styles.boardOrientation}>Orientation du panneau</h1>
 
       <div className={styles.boardOrientationChoice}>
@@ -135,7 +164,6 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
         <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
         <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
       </div>
-    </form>
      </FormProvider>
   )
 }
