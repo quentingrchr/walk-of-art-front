@@ -75,6 +75,7 @@ const Icons: IIcons = {
   "eye-closed": <EyeClosed />,
   "eye-opened": <EyeOpened />,
   "smiley-smile": <Smiley />,
+  chevronLeft: <ChevronLeft />,
   "smiley-like": <SmileyLike />,
   "smiley-love": <SmileyLove />,
   "smiley-lol": <SmileyLol />,
@@ -102,7 +103,7 @@ export const Icon = ({
   return (
     <div
       onClick={(e) => onClick !== undefined && onClick(e)}
-      className={cn(styles[color], styles.icon)}
+      className={cn(styles[color], styles.icon, classname)}
       style={{ width: sizes[size], height: sizes[size] }}
     >
       {Icons[type]}
