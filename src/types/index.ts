@@ -11,7 +11,7 @@ export type ColorsType =
   | "success-light"
   | "info"
   | "info-light"
-  | "sementic-warning"
+  | "warning"
   | "violet"
   | "pink"
   | "artist-black"
