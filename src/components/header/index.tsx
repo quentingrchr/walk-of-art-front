@@ -1,21 +1,45 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, PropsWithoutRef } from "react"
 import { isLoggedIn, clearAuthTokens } from "axios-jwt"
 import styles from "./index.module.scss"
 import Link from "next/link"
 import { useRecoilValue } from "recoil"
-import { Logo, Navbar, DropdownButton, Icon, Button } from "@components"
+import { Logo, Navbar, DropdownButton, Icon, Button, Text } from "@components"
 import { useRouter } from "next/router"
 import { NotificationWrapper } from "@components/notification-wrapper"
 import { eraseCookie, userHasRole } from "@utility/index"
 import { userState } from "@recoil/user/atom"
+import { UserRolesType } from "../../../src/types"
+
 import cn from 'classnames';
 
-
 interface IProps {}
+
+
+
+function checkRole(user, role: UserRolesType) {
+  if (!user) return false
+  return user.roles.indexOf(role) !== -1
+}
 
 export const Header: React.FC<IProps> = (props: IProps) => {
   const user = useRecoilValue(userState)
   console.log({ user }, "nav")
+
+  const ModeratorHeader = () => {
+    return (
+    <>
+      <Text tag="p" typo="paragraph-md-bold">
+        Espace modérateur
+      </Text>
+      <span className={styles.link}>
+        <div onClick={logout}>
+            <Icon type="logout" size="large" />
+          </div>
+      </span>
+    </>
+    )
+  }
+
   const [appear, setAppear] = useState(false)
 
   const notifs = [
@@ -72,6 +96,7 @@ export const Header: React.FC<IProps> = (props: IProps) => {
     eraseCookie("token")
     router.push("/")
   }
+  
 
   const isArtist = userHasRole(user, "ROLE_ARTIST")
   const isModerator = userHasRole(user, "ROLE_MODERATOR")
@@ -80,7 +105,9 @@ export const Header: React.FC<IProps> = (props: IProps) => {
     <header className={styles.header}>
       <Logo to="/dashboard" />
 
-      {isLoggedIn() ? (
+      {checkRole(user, "ROLE_MODERATOR") && isLoggedIn() ?  
+        <ModeratorHeader/>
+      : !checkRole(user, "ROLE_MODERATOR") && isLoggedIn() ? (
         <>
           {isArtist && <Navbar />}
           {isModerator && <p>Espace modérateur</p>}
@@ -123,7 +150,6 @@ export const Header: React.FC<IProps> = (props: IProps) => {
                 <NotificationWrapper notifList={notifs}></NotificationWrapper>
               ) : null}
             </span>
-
             {isArtist && (
               <span className={styles.link}>
                 <Link href="/artist/profile">
@@ -137,7 +163,6 @@ export const Header: React.FC<IProps> = (props: IProps) => {
                  <Icon type="profile" size="large"/>
                </Link>
             </span> */}
-
             <span className={styles.link}>
               <div onClick={logout}>
                 <Icon type="logout" size="large" />

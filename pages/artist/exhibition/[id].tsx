@@ -14,6 +14,7 @@ import {
   ImagesPreview,
   Button,
   Unauthorized,
+  ReactionCounter,
   ButtonArrow
 } from "@components"
 import NextLink from "next/link"
@@ -29,6 +30,28 @@ const data: Exhibition = {
   	dateStart: "2022-07-27T23:09:10.693Z",
   	dateEnd: "2022-07-30T23:09:10.693Z", 
   	reaction: false,
+	reactions: [
+        {
+            count:32,
+            name: 'smiley'
+        },
+        {
+            count:5,
+            name: 'smiley-like'
+        },
+        {
+            count:12,
+            name: 'smiley-love'
+        },
+        {
+            count:53,
+            name: 'smiley-lol'
+        },
+        {
+            count:11,
+            name: 'smiley-wow'
+        },
+    ],
 	comment: false,
 	createdAt: "2022-06-27T23:09:10.693Z",
 	status: [{}],
@@ -78,6 +101,7 @@ const ExhibitionPage: React.FC = () => {
   	dateStart: "",
 	dateEnd: "",
   	reaction: false,
+	reactions: [],
 	comment: false,
 	createdAt: "",
 	status: [{}],
@@ -143,9 +167,21 @@ const ExhibitionPage: React.FC = () => {
             <Text tag="h1" typo="heading-lg">
               {exhibition.title}
             </Text>
-            <Text tag="p" typo="paragraph-md-semi">
-              {exhibition.description}
-            </Text>
+			<div className={style.description}>
+				<Text tag="p" typo="paragraph-md">
+				{exhibition.description}
+				</Text>
+			</div>
+			<ul className={style.reactions}>
+				{
+					exhibition.reactions.map((reaction, index) =>
+					(
+						<li key={index}>
+							<ReactionCounter icon={reaction.name} number={reaction.count}/>
+						</li>
+					))
+				}
+			</ul>
 			{exhibition.snapshot &&
 				<ul className={style.linksList}>
 				{exhibition.snapshot.map((snap) => (

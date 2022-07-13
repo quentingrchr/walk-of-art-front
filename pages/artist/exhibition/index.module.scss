@@ -18,6 +18,15 @@
     text-align: center;
   }
 
+  .description p {
+    line-height: 150%
+  }
+
+  .reactions {
+    display: flex;
+    justify-content: space-between;
+  }
+
 	.date {
 		@include typo-paragraph-sm;
     line-height: 2.4rem;

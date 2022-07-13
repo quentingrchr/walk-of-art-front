@@ -1,20 +1,26 @@
-import React, { useEffect } from "react";
-import styles from "./index.module.scss";
-import cn from "classnames";
-import { Button, Tooltip, InputGroup, InputFile } from "@components";
-import { useForm, useFormContext, FormProvider } from "react-hook-form";
-import { getBlopUrlFromFile } from "../../../../utility";
+import React, { useEffect } from "react"
+import styles from "./index.module.scss"
+import cn from "classnames"
+import {
+  Button,
+  Tooltip,
+  InputGroup,
+  InputFile,
+  ImagesPreview,
+} from "@components"
+import { useForm, useFormContext, FormProvider } from "react-hook-form"
+import { getBlopUrlFromFile } from "../../../../utility"
 
 export interface IProps {
-  handleStepSubmit: (data: any) => void;
-  handleBack: () => void;
-  defaultValues?: any;
+  handleStepSubmit: (data: any) => void
+  handleBack: () => void
+  defaultValues?: any
 }
 
 export interface IRecapProps {
-  handleStepSubmit: (data: any) => void;
-  handleBack: () => void;
-  formState: any;
+  handleStepSubmit: (data: any) => void
+  handleBack: () => void
+  formState: any
 }
 
 export const FormOne: React.FC<IProps> = ({
@@ -25,16 +31,15 @@ export const FormOne: React.FC<IProps> = ({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onBlur", defaultValues });
+  } = useForm({ mode: "onBlur", defaultValues })
 
   const onSubmit = (e: any) => {
-    e.preventDefault();
+    e.preventDefault()
 
     handleSubmit((d) => {
-      console.log(d);
-      handleStepSubmit(d);
-    })(e);
-  };
+      handleStepSubmit(d)
+    })(e)
+  }
 
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
@@ -67,8 +72,8 @@ export const FormOne: React.FC<IProps> = ({
         <Button label={"Suivant"} color="white" bg="dark" type="submit" />
       </div>
     </form>
-  );
-};
+  )
+}
 
 export const FormTwo: React.FC<IProps> = ({
   handleStepSubmit,
@@ -83,30 +88,30 @@ export const FormTwo: React.FC<IProps> = ({
   } = useForm({
     mode: "onBlur",
     defaultValues,
-  });
+  })
 
-  const watchPrimaryImage = watch("primary-image");
+  const watchPrimaryImage = watch("primary-image")
   const watchSecondaryImages = watch([
     "secondary-image-1",
     "secondary-image-2",
     "secondary-image-3",
-  ]);
+  ])
 
   const onSubmit = (e: any) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const requiredFieldIsAlreadyFilled = watch("primary-image").length > 0;
+    const requiredFieldIsAlreadyFilled = watch("primary-image").length > 0
 
     if (requiredFieldIsAlreadyFilled) {
-      handleStepSubmit(watch());
+      handleStepSubmit(watch())
     } else {
       handleSubmit((d) => {
-        handleStepSubmit(d);
-      })(e);
+        handleStepSubmit(d)
+      })(e)
     }
-  };
+  }
 
-  console.log({ errors });
+  console.log({ errors })
 
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
@@ -140,90 +145,24 @@ export const FormTwo: React.FC<IProps> = ({
         <Button label={"Suivant"} color="white" bg="dark" type="submit" />
       </div>
     </form>
-  );
-};
+  )
+}
 
 export const FormThree: React.FC<IRecapProps> = ({
   handleStepSubmit,
   handleBack,
   formState,
 }: IRecapProps) => {
-  console.log({ formState });
   return (
     <div className={cn(styles.formContainer, styles.recap)}>
-      <div className={styles.imagesContainer}>
-        {/* IMAGES */}
-
-        {/* PRIMARY IMAGE  */}
-        <div className={cn(styles.imageContainer, styles.primary)}>
-          <div
-            className={styles.image}
-            style={{
-              backgroundImage: `url(${getBlopUrlFromFile(
-                formState["primary-image"][0]
-              )})`,
-            }}
-          ></div>
-        </div>
-
-        {/* SECONDARY IMAGES */}
-        {formState["secondary-image-1"][0] && (
-          <div
-            className={cn(
-              styles.imageContainer,
-              styles.secondary,
-              styles.secondary1
-            )}
-          >
-            <div
-              className={styles.image}
-              style={{
-                backgroundImage: `url(${getBlopUrlFromFile(
-                  formState["secondary-image-1"][0]
-                )})`,
-              }}
-            ></div>
-          </div>
-        )}
-
-        {formState["secondary-image-2"][0] && (
-          <div
-            className={cn(
-              styles.imageContainer,
-              styles.secondary,
-              styles.secondary2
-            )}
-          >
-            <div
-              className={styles.image}
-              style={{
-                backgroundImage: `url(${getBlopUrlFromFile(
-                  formState["secondary-image-2"][0]
-                )})`,
-              }}
-            ></div>
-          </div>
-        )}
-
-        {formState["secondary-image-3"][0] && (
-          <div
-            className={cn(
-              styles.imageContainer,
-              styles.secondary,
-              styles.secondary3
-            )}
-          >
-            <div
-              className={styles.image}
-              style={{
-                backgroundImage: `url(${getBlopUrlFromFile(
-                  formState["secondary-image-3"][0]
-                )})`,
-              }}
-            ></div>
-          </div>
-        )}
-      </div>
+      <ImagesPreview
+        primaryImage={getBlopUrlFromFile(formState["primary-image"][0])}
+        secondaryImages={[
+          getBlopUrlFromFile(formState["secondary-image-1"][0]),
+          getBlopUrlFromFile(formState["secondary-image-2"][0]),
+          getBlopUrlFromFile(formState["secondary-image-3"][0]),
+        ]}
+      />
 
       <p className={styles.title}>{formState.title}</p>
       <p className={styles.description}>{formState.description}</p>
@@ -239,10 +178,10 @@ export const FormThree: React.FC<IRecapProps> = ({
           color="white"
           bg="dark"
           onClick={() => {
-            handleStepSubmit(null);
+            handleStepSubmit(null)
           }}
         />
       </div>
     </div>
-  );
-};
+  )
+}

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react"
 import { useRouter } from "next/router"
-import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form"
 import s from "./index.module.scss"
-import { Logo, Text, ImagesPreview, Button, Icon, Input, ImagePreviewModal } from '@components'
+import cn from "classnames"
+import { Icons } from "@interfaces/index";
+import { IReaction } from "../../src/types";
+import { Logo, Text, ImagesPreview, Button, Icon, ImagePreviewModal } from "@components"
 import { useSetRecoilState } from "recoil"
-import {
-    activeModalState,
-    IMAGE_PREVIEW_MODAL_ID,
-  } from "@recoil/modal/atom"
+import { activeModalState, IMAGE_PREVIEW_MODAL_ID } from "@recoil/modal/atom"
 
 const data = {
     name: 'Fabien Deneau',
@@ -15,7 +15,29 @@ const data = {
         'https://iili.io/A7NDAP.jpg',
         'https://iili.io/dwagF2.png',
         'https://iili.io/hy8bLv.jpg'
-    ]
+    ],
+    reactions: [
+        {
+            count:32,
+            name: 'smiley'
+        },
+        {
+            count:5,
+            name: 'smiley-like'
+        },
+        {
+            count:12,
+            name: 'smiley-love'
+        },
+        {
+            count:53,
+            name: 'smiley-lol'
+        },
+        {
+            count:11,
+            name: 'smiley-wow'
+        },
+    ] as IReaction[]
 }
 
 const Artist: React.FC = () => {
@@ -24,17 +46,32 @@ const Artist: React.FC = () => {
     const { register, handleSubmit } = useForm({ mode: "onBlur" })
     const setActiveModal = useSetRecoilState(activeModalState)
 
+    const [displayReactions, setDisplayReactions] = useState<boolean>(false)
+    const [currentIcon, setCurrentIcon] = useState<Icons>('smiley')
+    const [reacted, setReacted] = useState<boolean>(false)
 
     const onSubmit = (e: any) => {
         console.log("submit")
         e.preventDefault()
         handleSubmit((d) => {
-          console.log(d)
+            console.log(d)
         })(e)
     }
     const handlePreviewClick = ():void => {
-        console.log('clicked')
         setActiveModal(IMAGE_PREVIEW_MODAL_ID)
+    }
+
+    const handleReactionsClick = ():void => {
+        setDisplayReactions(!displayReactions)
+    }
+
+    const handleReactionClick = (reaction): any => {
+        // Close dropdown
+        setDisplayReactions(false)
+        // Set button icon & background
+        setCurrentIcon(reaction.name)
+        if(!reacted) setReacted(true)
+        // SEND REQUEST
     }
 
     return (
@@ -56,7 +93,7 @@ const Artist: React.FC = () => {
                             <Text tag="p" typo="paragraph-md">{data.name}</Text>
                         </div>
                     </div>
-                    <div className={s.reaction}>
+                    <div className={s.reactions}>
                         <Button
                             label={'Je soutiens cet artiste'}
                             to="https://www.google.com"
@@ -64,6 +101,29 @@ const Artist: React.FC = () => {
                             color="black"
                             target="_blank"
                         />
+                        <div className={cn(s.reactions__button, reacted && s.reacted)} onClick={handleReactionsClick}>
+                            <Icon type={currentIcon} size="large"/>
+                        </div>
+                        {
+                            displayReactions && (
+                                <div className={s.reactions__container}>    
+                                    <ul className={s.reactions__list}>
+                                        {
+                                            data.reactions.map((reaction, index) =>
+                                            (
+                                                <li
+                                                    className={s.reactions__icon}
+                                                    key={index}
+                                                    onClick={() => handleReactionClick(reaction)}
+                                                >
+                                                    <Icon type={reaction.name} size="large"/>
+                                                </li>
+                                            ))
+                                        }
+                                    </ul>
+                                </div>
+                            )
+                        }
                     </div>
                     {/* Commentaires */}
                     {/* <form className={s.comments} onSubmit={onSubmit}>
@@ -79,36 +139,50 @@ const Artist: React.FC = () => {
                             icon='smiley'
                         />
                     </form> */}
-                    <Text tag="h3" typo="heading-xs">Réseaux sociaux de<br/>{data.name}</Text>
+                    <Text tag="h3" typo="heading-xs">
+                        Réseaux sociaux de
+                        <br />
+                        {data.name}
+                    </Text>
                     <ul className={s.rs_list}>
                         <li className={s.rs_list__rs}>
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                                <Icon type="facebook" size="xlarge" color="dark"/>
+                            <a
+                            href="https://facebook.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >
+                            <Icon type="facebook" size="xlarge" color="dark" />
                             </a>
                         </li>
                         <li className={s.rs_list__rs}>
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                                <Icon type="twitter" size="xlarge" color="dark"/>
+                            <a
+                            href="https://facebook.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >
+                            <Icon type="twitter" size="xlarge" color="dark" />
                             </a>
                         </li>
                     </ul>
-                    <Text tag="h3" typo="heading-xs">Liens de {data.name}</Text>
+                    <Text tag="h3" typo="heading-xs">
+                        Liens de {data.name}
+                    </Text>
                     <Button
-                        label={'Site personnel'}
+                        label={"Site personnel"}
                         to="https://www.google.com"
                         bg="light"
                         color="black"
                         target="_blank"
                     />
                     <Button
-                        label={'Portfolio'}
+                        label={"Portfolio"}
                         to="https://www.google.com"
                         bg="light"
                         color="black"
                         target="_blank"
                     />
                     <Button
-                        label={'Boutique en ligne'}
+                        label={"Boutique en ligne"}
                         to="https://www.google.com"
                         bg="light"
                         color="black"

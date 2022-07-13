@@ -1,6 +1,13 @@
-export type Semantic = "success" | "info" | "error";
-export type Colors = Semantic | "black" | "white" | "dark";
-export type sizeIcon = "none" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+export type Semantic = "success" | "info" | "error"
+export type Colors = Semantic | "black" | "white" | "dark"
+export type sizeIcon =
+  | "none"
+  | "xsmall"
+  | "small"
+  | "medium"
+  | "large"
+  | "xlarge"
+  | "xxlarge"
 export type Icons =
   | "avatar"
   | "notification"
@@ -37,12 +44,22 @@ export type Icons =
   | "trash"
   | "chevronRight"
   | "chevronLeft"
-  | "";
-export type NotificationType = "success" | "error" | "commentary";
+  | "eye-opened"
+  | "eye-closed"
+  | ""
+export type NotificationType =
+  | "success"
+  | "error"
+  | "commentary"
+  | "smiley-like"
+  | "smiley-love"
+  | "smiley-lol"
+  | "smiley-wow"
+  | ""
 
 export interface SelectOption {
-  label: string;
-  value: string;
+  label: string
+  value: string
 }
 
 export interface IGuidance {
