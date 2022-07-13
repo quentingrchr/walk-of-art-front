@@ -46,7 +46,7 @@ export type TextTypography =
   | "guidance"
   | "notification"
 
-export type InputTypes = "password" | "email" | "text" | "textarea" | "select"
+export type InputTypes = "password" | "email" | "text" | "textarea" | "select" | "number"
 
 export type BadgeTypes = "completed" | "progress"
 
