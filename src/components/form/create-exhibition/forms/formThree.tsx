@@ -4,7 +4,6 @@ import { Button, InputGroup, ExpositionBoard, Map } from "@components";
 import cardImg from "../../../../assets/images/cardImg.png"
 import { FormProvider, useForm } from "react-hook-form";
 import { BASE_API_URL } from "@const/index";
-import axios from "axios";
 import { axiosInstance } from "@utility/index"
 
 
@@ -32,8 +31,6 @@ interface IGalleryMap {
 
 export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues = {} } ) => {
 
-  console.log('formstate', { formState })
-
   const [orientation, setOrientation] = useState<string>('landscape')
   const [availableGalleries, setAvailableGalleries] = useState<IGalleryMap[]>()
 
@@ -49,7 +46,11 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
     event.preventDefault();
 
     handleSubmit((data) => {
-      handleStepSubmit(data);
+      const formattedData = {
+        ...data, 
+        parentName
+      }
+      handleStepSubmit(formattedData);
     })(event);
   };
 
@@ -70,11 +71,16 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
 
   useEffect(() => {
     getAllAvailableGalleries()
-    
   }, [])
 
+  const [parentName, setParentName] = useState<string>('Mr John Obi');
+const updateName = (name: string):void => {
+  console.log('lkenlkfn', name)
+     setParentName(name)
+}
+
   return (
-    <FormProvider {...methods} className={styles.formContainer} onSubmit={onSubmit}>
+    <form className={styles.formContainer} onSubmit={onSubmit}>
       <h1 className={styles.boardOrientation}>Orientation du panneau</h1>
 
       <div className={styles.boardOrientationChoice}>
@@ -94,29 +100,9 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
       </div>
 
       <h1 className={styles.panneauOrientation}>Choix du panneau d'exposition</h1>
-
-      <p>Maps</p>
-
-      <InputGroup
-        placeholder="Selectionner la ville"
-        id="description"
-        type="text"
-        label="Ville d'exposition*"
-        guidance={null}
-        register={register}
-        required={true}
-      />
-
-      <InputGroup
-        placeholder="Selectionner la galerie"
-        id="description"
-        type="text"
-        label="Galerie d'exposition*"
-        guidance={null}
-        register={register}
-        required={true}
-      />
-
+<FormProvider {...methods}>
+      <Map name={"mapOfGalleries"} galleries={availableGalleries} updateName={updateName}/>
+      </FormProvider>
       <h2>Date d'exposition</h2>
 
       <form action="" className={styles.choiceExpositionDates}>
@@ -139,6 +125,6 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
         <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
         <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
       </div>
-     </FormProvider>
+      </form>
   )
 }

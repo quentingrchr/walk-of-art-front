@@ -11,22 +11,24 @@ export interface IProps {
   handleBack: () => void;
   onClick: (any) => void;
   defaultValues?: any;
+  formState: any;
 }
 
 export interface IRecapProps {
   handleStepSubmit: (data: any) => void;
   handleBack: () => void;
-  formState: any;
 }
 
 
-export const FormFour: React.FC<IProps> = ({handleStepSubmit, defaultValues = {}} : IProps) => {
+export const FormFour: React.FC<IProps> = ({handleStepSubmit, defaultValues = {}, formState} : IProps) => {
   const [orientation, setOrientation] = useState<string>('landscape')
 
   const {
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "onBlur", defaultValues });
+
+  console.log('formstate', { formState })
 
   const onSubmit = (event: any) => {
     event.preventDefault();

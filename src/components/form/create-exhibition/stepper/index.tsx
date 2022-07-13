@@ -82,6 +82,7 @@ const getStepComponent = (
           handleBack={handleBack}
           defaultValues={compiledForm.four}
           onClick={() => {}}
+          formState={{ ...compiledForm.one, ...compiledForm.two, ...compiledForm.three, }}
         />
       )
     case 4:
@@ -90,7 +91,6 @@ const getStepComponent = (
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
           // defaultValues={compiledForm.five}
-          formState={{ ...compiledForm.one, ...compiledForm.two, ...compiledForm.three, ...compiledForm.four }}
         />
       )
     default:
@@ -125,6 +125,7 @@ export const FormStepper: React.FC<IProps> = (props: IProps, { onSubmit }) => {
   }
 
   const handleStepSubmit = (data: any) => {
+    console.log(data)
     switch (activeStep) {
       case 0:
         setCompiledForm({ ...compiledForm, one: data })
@@ -145,7 +146,7 @@ export const FormStepper: React.FC<IProps> = (props: IProps, { onSubmit }) => {
         })
         break
       case 4:
-        setCompiledForm({ ...compiledForm, five: data })
+        'setCompiledForm({ ...compiledForm, five: data })'
         break
       default:
         throw new Error("not a valid step")

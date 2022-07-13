@@ -5,8 +5,8 @@ import { Button, InputGroup, Cards, Icon } from "@components";
 import { useForm } from "react-hook-form";
 import cardImage from '../../../../assets/images/cardImg.png'
 import { Checkbox } from "@components/checkbox";
-import axios from "axios";
 import { BASE_API_URL } from "@const/index";
+import { axiosInstance } from "@utility/index"
 
 export interface IProps {
   handleStepSubmit: (data: any) => void;
@@ -43,12 +43,8 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
 
 
   const getAllWorks = () => {
-    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NTc3MjA0NzUsImV4cCI6MTY1NzcyNDA3NSwicm9sZXMiOlsiUk9MRV9BUlRJU1QiLCJST0xFX1VTRVIiXSwiaWQiOiIxZWNmZmI2Yy1kYTIyLTYxYTYtODdmNi05MzU1Mzg3OWViYTQiLCJlbWFpbCI6ImV4cG9AZG9tYWluLmZyIiwiZmlyc3RuYW1lIjoiZXhwbyIsImxhc3RuYW1lIjoiZG9tYWluciJ9.Gc4cgct1A1XvxT-YwdQLwKPC2za7NjTkDsCLggOkSau5dS6H8yQ7MPloGsYB6fN58BUqTbAZ2v_2mTX2ZRW9eHYr7pFgU56TIRyKR9hjuXvagbGWEsdUHEUYJDv2hdbhWvmX4g2rM86ihlwG98kOIsOi9mp5ewh6XY_k56cyopPg9luUeDBnv2FSqYoyze2DXRoQuvigzygO8lbpaDpXPjW7nwQT6DXUtQNinRaZhbUAkqTTSg_IpooL11_gcQWACi3Xi8MBTe4t8PdleuA8PHUodNAGVZG0Rreu9jAnentm0dWMHditx_X7Tohmpsofu_PqtkIJMbycicEC-olMPQ'
-    return axios.get(`${BASE_API_URL}/works`, {
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    })
+    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NTc3MjEyMDgsImV4cCI6MTY1NzcyNDgwOCwicm9sZXMiOlsiUk9MRV9BUlRJU1QiLCJST0xFX1VTRVIiXSwiaWQiOiIxZWNmZmI2Yy1kYTIyLTYxYTYtODdmNi05MzU1Mzg3OWViYTQiLCJlbWFpbCI6ImV4cG9AZG9tYWluLmZyIiwiZmlyc3RuYW1lIjoiZXhwbyIsImxhc3RuYW1lIjoiZG9tYWluciJ9.mdRNgg5JRWO2uUpGvCs8Ikv136rlaVqPzCis-02es6esvOAbmUqFAuzg0ufDTexbffl_I7_DuByxfa1MecOlKNgop4wqlcDmbxwxp1ou839XUBRb02V1u4EDH54hH6pTcQKnwoJ9lzSUGowvRMRr_PkP7wcJLMt2uf8xvqlfEershA0vr19-payL-BGkVSEDc8gy4WW-MkB2fOA3D-OgCOWhMQasFbpJHRWeQod4TrfG5FnUDyJU0LIQM7G4VMG0cRX3kIkEUFytMECnfbOUtQWmxOwoR8hIqef5K9w8deq11l0VWlrioICMQuGoY0arIkVz_riUDxcAeZyj8LRuLQ'
+    return axiosInstance.get('/works')
       .then(response => {
         return setWorks(response.data);
       }).catch((error) => {

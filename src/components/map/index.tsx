@@ -31,7 +31,8 @@ interface IProps {
   name: string
   required?: boolean
   galleries: IGalleryMap[]
-  initialViewport?: IInitialVP
+  initialViewport?: IInitialVP,
+  updateName: (arg: string) => void
 }
 
 const accessToken =
@@ -66,6 +67,7 @@ export const Map: React.FC<IProps> = ({
   galleries = dummyData,
   initialViewport = INITIAL_STATE,
   required = false,
+  updateName
 }: IProps) => {
   const mapRef = useRef(null)
   const [viewport, setViewport] = useState(initialViewport)
@@ -82,8 +84,10 @@ export const Map: React.FC<IProps> = ({
   })
 
   const handleChange = (boardId: string) => {
-    onChange(boardId)
+    sendData(boardId)
   }
+
+  
 
   return (
     <div>
@@ -101,7 +105,7 @@ export const Map: React.FC<IProps> = ({
             <Marker longitude={item.longitude} latitude={item.latitude} anchor="bottom">
               <div
                 className={styles.marker}
-                onClick={() => handleChange(item.id)}
+                onClick={() => updateName(item.id)}
               >
                 <p>{item.price} € / j</p>
               </div>
