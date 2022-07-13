@@ -49,9 +49,9 @@ export type InputTypes = "password" | "email" | "text" | "textarea" | "select"
 
 export type BadgeTypes = "completed" | "progress"
 
-export enum scrollDirType  {
-	up = "up",
-	down = "down"
+export enum scrollDirType {
+  up = "up",
+  down = "down",
 }
 
 export interface ExpoStates {
@@ -62,29 +62,42 @@ export interface ExpoStates {
 export type displayTimeType = "completed" | "remaining" | "incoming"
 
 interface Link {
-	name: string, 
-	url: string
+  name: string
+  url: string
 }
 
 interface File {
-	id: string,
-	fileUrl: string
+  id: string
+  fileUrl: string
 }
 
 interface Board {
-	id: string,
-	gallery: Gallery
-	orientation: object
+  id: string
+  gallery: Gallery
+  orientation: object
 }
 
 interface Gallery {
-	id: string,
-	name: string,
-	latitude: number,
-	longitude: number
+  id: string
+  name: string
+  latitude: number
+  longitude: number
 }
 
 export interface Exhibition {
+<<<<<<< HEAD
+  id: string
+  title: string
+  description: string
+  dateStart: string
+  dateEnd: string
+  reaction: boolean
+  comment: boolean
+  createdAt: string
+  status: [{}]
+  work: AttachedWork
+  board: Board
+=======
   id: string,
   title: string,
   description: string,
@@ -99,6 +112,7 @@ export interface Exhibition {
   ],
   work: AttachedWork,
   board: Board,
+>>>>>>> main
   snapshot?: Link[]
 }
 
@@ -108,50 +122,50 @@ export interface IReaction {
 }
 
 export interface Work {
-  id: string,
-  title: string,
-  description: string,
-  createdAt: string,
-  mainFile: File,
-  workFiles: File[],
+  id: string
+  title: string
+  description: string
+  createdAt: string
+  mainFile: File
+  workFiles: File[]
   exhibitions?: AttachedExhibition[]
 }
 
 export type AttachedExhibition = ExhibitionForWorks | ExhibitionForWork
 
 interface ExhibitionForWorks {
-	id: string,
+  id: string
 }
 
 interface ExhibitionForWork {
-	id: string,
-	title: string,
-	dateStart: string,
-  dateEnd: string,
-	createdAt: string,
-	work: string,
-	board: Board
+  id: string
+  title: string
+  dateStart: string
+  dateEnd: string
+  createdAt: string
+  work: string
+  board: Board
 }
 
 interface AttachedWork {
-	id: string,
-	title: string,
-	mainFile: File
+  id: string
+  title: string
+  mainFile: File
 }
 
 export interface Reservation {
-	id: string,
-	dateStart: string,
-	duration: number,
-	createdAt: string,
-	exhibitionId: number,
-	galleryId: number
+  id: string
+  dateStart: string
+  duration: number
+  createdAt: string
+  exhibitionId: number
+  galleryId: number
 }
 
 export interface ReservationWithExposition extends Reservation {
-	title: string,
-	description: string | null,
-	reaction: boolean,
+  title: string
+  description: string | null
+  reaction: boolean
 }
 
 export type UserRolesType = "ROLE_USER" | "ROLE_ARTIST" | "ROLE_MODERATOR"
@@ -162,4 +176,14 @@ export interface IUser {
   iat: number
   exp: number
   roles: [UserRolesType]
+}
+
+export interface IWorkDataApi {
+  id: string
+  title: string
+  description: string
+  mainFile: string
+  createdAt: string
+  exhibition: [any]
+  workFiles: [any]
 }

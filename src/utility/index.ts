@@ -134,10 +134,10 @@ const requestRefresh: TokenRefreshRequest = async (
   })
 
   // If your backend supports rotating refresh tokens, you may also choose to return an object containing both tokens:
-  // return {
-  //  accessToken: response.data.access_token,
-  //  refreshToken: response.data.refresh_token
-  //}
+  return {
+    accessToken: response.data.access_token,
+    refreshToken: response.data.refresh_token,
+  }
 
   return response.data.access_token
 }
