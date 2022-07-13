@@ -67,6 +67,7 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
         label="Ville d'exposition*"
         guidance={null}
         register={register}
+        required={true}
       />
 
       <InputGroup
@@ -76,6 +77,7 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
         label="Galerie d'exposition*"
         guidance={null}
         register={register}
+        required={true}
       />
 
       <h2>Date d'exposition</h2>

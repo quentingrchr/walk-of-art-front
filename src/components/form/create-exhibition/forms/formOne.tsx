@@ -125,9 +125,7 @@ export const FormOne: React.FC<IProps> = ({
 
     const requiredFieldIsAlreadyFilled = watch("primary-image")?.length > 0;
 
-    // ? ADDED TO GO STEP 2 FAST.
 
-    // NEED TO CHECK IF REQURIEF FIELD ARE REMPLIE
     if (requiredFieldIsAlreadyFilled) {
       handleStepSubmit(watch());
     } else {
@@ -151,6 +149,7 @@ export const FormOne: React.FC<IProps> = ({
           type="text"
           label="Titre de l’exposition*"
           guidance={null}
+          required={true}
         />
         <InputGroup
           placeholder="Description de mon exposition..."

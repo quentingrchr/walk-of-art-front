@@ -58,7 +58,6 @@ export const FormTwo: React.FC<IProps> = ({
         <InputGroup
           placeholder="https://facebook.com/mon-profil"
           register={register}
-          required={true}
           id="title"
           type="text"
           label="URL de mon profil Facebook"
