@@ -5,6 +5,7 @@ import style from "./index.module.scss"
 import { useSetRecoilState } from "recoil"
 import {
   activeModalState,
+  modalDataState,
   CONFIRM_WORK_DELETE_MODAL_ID,
 } from "@recoil/modal/atom"
 import {
@@ -20,87 +21,88 @@ import { getDateWithoutHours, windowIsNotReady } from "../../../src/utility"
 import { Work } from "../../../src/types"
 import { ReservationInfo } from "@components/reservation-info"
 
-const data: Work =  {
-  "id": "3",
-  "title": "A title",
-  "description": "Une description",
-  "createdAt": "2022-06-27T23:09:10.693Z",
-  "mainFile": {
-      id: "",
-      fileUrl: ""
+const data: Work = {
+  id: "3",
+  title: "A title",
+  description: "Une description",
+  createdAt: "2022-06-27T23:09:10.693Z",
+  mainFile: {
+    id: "",
+    fileUrl: "",
   },
-  "workFiles": [
-      {
-          id: "",
-          fileUrl: ""
-      },
-      {
-          id: "",
-          fileUrl: ""
-      }
+  workFiles: [
+    {
+      id: "",
+      fileUrl: "",
+    },
+    {
+      id: "",
+      fileUrl: "",
+    },
   ],
-  "exhibitions": [
-      {
-          "id": "1",
-          "title": "Un titre",
-          "dateStart": "2022-07-01T23:09:10.693Z",
-          "dateEnd": "2022-07-01T23:09:10.693Z",
-          "createdAt": "2022-07-01T23:09:10.693Z",
-          "work": "",
-          "board": {
-            "id": "34",
-            "gallery": {
-              "id": "5",
-              "name": "Nom de gallery",
-              "latitude": 48.85156617494322,
-              "longitude": 2.4203096542274656
-            },
-            "orientation": {}
-          }
+  exhibitions: [
+    {
+      id: "1",
+      title: "Un titre",
+      dateStart: "2022-07-01T23:09:10.693Z",
+      dateEnd: "2022-07-01T23:09:10.693Z",
+      createdAt: "2022-07-01T23:09:10.693Z",
+      work: "",
+      board: {
+        id: "34",
+        gallery: {
+          id: "5",
+          name: "Nom de gallery",
+          latitude: 48.85156617494322,
+          longitude: 2.4203096542274656,
+        },
+        orientation: {},
       },
-      {
-          "id": "2",
-          "title": "Un titre",
-          "dateStart": "2022-07-01T23:09:10.693Z",
-          "dateEnd": "2022-07-01T23:09:10.693Z",
-          "createdAt": "2022-07-01T23:09:10.693Z",
-          "work": "",
-          "board": {
-            "id": "34",
-            "gallery": {
-              "id": "5",
-              "name": "Nom de gallery",
-              "latitude": 48.85156617494322,
-              "longitude": 2.4203096542274656
-            },
-            "orientation": {}
-          }
+    },
+    {
+      id: "2",
+      title: "Un titre",
+      dateStart: "2022-07-01T23:09:10.693Z",
+      dateEnd: "2022-07-01T23:09:10.693Z",
+      createdAt: "2022-07-01T23:09:10.693Z",
+      work: "",
+      board: {
+        id: "34",
+        gallery: {
+          id: "5",
+          name: "Nom de gallery",
+          latitude: 48.85156617494322,
+          longitude: 2.4203096542274656,
+        },
+        orientation: {},
       },
-      {
-          "id": "3",
-          "title": "Un titre",
-          "dateStart": "2022-07-01T23:09:10.693Z",
-          "dateEnd": "2022-07-01T23:09:10.693Z",
-          "createdAt": "2022-07-01T23:09:10.693Z",
-          "work": "",
-          "board": {
-            "id": "34",
-            "gallery": {
-              "id": "5",
-              "name": "Nom de gallery",
-              "latitude": 48.8585324301254,
-              "longitude": 2.2944705695697802
-            },
-            "orientation": {}
-          }
+    },
+    {
+      id: "3",
+      title: "Un titre",
+      dateStart: "2022-07-01T23:09:10.693Z",
+      dateEnd: "2022-07-01T23:09:10.693Z",
+      createdAt: "2022-07-01T23:09:10.693Z",
+      work: "",
+      board: {
+        id: "34",
+        gallery: {
+          id: "5",
+          name: "Nom de gallery",
+          latitude: 48.8585324301254,
+          longitude: 2.2944705695697802,
+        },
+        orientation: {},
       },
-  ]
+    },
+  ],
 }
 
 const WorkPage: React.FC = () => {
   const router = useRouter()
   const { id } = router.query
   const setActiveModal = useSetRecoilState(activeModalState)
+  const setModalData = useSetRecoilState(modalDataState)
 
   const [work, setWork] = useState<Work>({
     id: "",
@@ -108,21 +110,24 @@ const WorkPage: React.FC = () => {
     description: "",
     createdAt: "",
     mainFile: {
-        id: "",
-        fileUrl: ""
+      id: "",
+      fileUrl: "",
     },
     workFiles: [],
-    exhibitions: []
+    exhibitions: [],
   })
-  
 
   const openModal = () => {
     setActiveModal(CONFIRM_WORK_DELETE_MODAL_ID)
+    setModalData({
+      data: {
+        id: work.id,
+      },
+    })
   }
 
   useEffect(() => {
     setWork(data)
-
   }, [])
 
   if (windowIsNotReady()) {
@@ -162,7 +167,10 @@ const WorkPage: React.FC = () => {
               <ul className={style.exhibitionslist}>
                 {work.exhibitions ? (
                   work.exhibitions.map((exhibition) => (
-                    <ReservationInfo 	key={exhibition.id} exhibition={exhibition}/>
+                    <ReservationInfo
+                      key={exhibition.id}
+                      exhibition={exhibition}
+                    />
                   ))
                 ) : (
                   <li className={style.exhibition}>
