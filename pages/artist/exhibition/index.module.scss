@@ -38,9 +38,20 @@
 			background-color: $color-grey-400;
 		}
 
-		&.exposition {
+		&.completed {
+			background-color: $color-black;
+		}
+
+    &.remaining {
+			background-color: $color-success;
+		}
+
+    &.incoming {
 			background-color: $color-progress;
 		}
+    &.refused {
+      background-color: $color-error;
+    }
 	}
 
   .linksList {

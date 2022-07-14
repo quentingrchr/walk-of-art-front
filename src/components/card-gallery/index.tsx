@@ -3,7 +3,7 @@ import styles from "./index.module.scss"
 import NextLink from "next/link"
 import { Button, Text, Icon } from ".."
 import BankCard from "../../assets/images/BankCard.png"
-import { getDateWithoutHours } from "../../utility"
+import { getDateWithoutHours, checkFilterExhibition } from "../../utility"
 import cn from 'classnames'
 import { ImageCard } from "@components/image-card"
 
@@ -27,35 +27,10 @@ export const CardGallery: React.FC<IProps> = ({id ,img, title, status, createdAt
             <NextLink href={type === 'work' ? `/artist/work/${id}` : `/artist/exhibition/${id}`}>
                 <a>
                     <div className={styles.cardGallery__pictureContainer}>
-                        {
-                            status === 'remaining' ? 
-                            <div className={cn(styles.cardGallery__tag, styles.cardGallery__isRemaining)}>
-                                <Text tag="p" typo="guidance">
-                                    En exposition
-                                </Text>
-                            </div> 
-                            : status === 'incoming' ?
-                            <div className={cn(styles.cardGallery__tag, styles.cardGallery__isIncoming)}>
-                                <Text tag="p" typo="guidance">
-                                    A venir
-                                </Text>
-                            </div>
-                            : status === 'pending' ?
-                            <div className={cn(styles.cardGallery__tag, styles.cardGallery__isPending)}>
-                                <Text tag="p" typo="guidance">
-                                    En Modération
-                                </Text>
-                            </div>
-                            : status === 'refused' ?
-                            <div className={cn(styles.cardGallery__tag, styles.cardGallery__isRefused)}>
-                                <Icon type="warning" size="large"/>
-                            </div>
-                            : ''
-                        }
                         { type === 'work' ? <div  className={styles.cardGallery__picture}>
                             <img className={styles.cardGallery__picture} src={img ? img : BankCard.src} alt="gallery" />
                         </div> :
-                        <ImageCard size="small" src={BankCard} alt={BankCard} orientation='portrait'/>
+                        <ImageCard status={checkFilterExhibition(date_start, date_end, new Date)} size="small" src={BankCard} alt={BankCard} orientation='portrait'/>
                         }
                         <div className={styles.cardGallery__link}>
                             <div className={styles.cardGallery__overlay}></div>

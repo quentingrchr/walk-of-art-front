@@ -98,7 +98,11 @@ export function checkFilterExhibition(
   )
     return "completed"
   // refused
-  if (exhibModerationStatus === "refused") return "refused"
+  if (
+    getDate(reservationStart) &&
+    getDate(reservationEnd) &&
+    exhibModerationStatus === 'refused'
+  ) return "refused"
   //pending
   if (exhibModerationStatus === "pending") return "pending"
   // remaining
