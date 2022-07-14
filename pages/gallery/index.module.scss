@@ -4,8 +4,31 @@
     position: relative;
     height: 100vh;
     width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
     background-color: $color-black;
+
+    &__container {
+        height: 100%;
+        width: 100%;
+        display: -webkit-box;
+
+        figure {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+        }
+
+        img {
+            width: 100%;
+            object-fit: contain;
+        }
+    }
 }
 
 .emoji {
@@ -15,6 +38,15 @@
     height: var(--emoji-size);
     width: var(--emoji-size);
     animation: emoji_anim 4s ease-in-out;
+}
+
+@keyframes carrousel {
+    0% {
+        transform: translate3d(-50%,-50%,0);
+    }
+    100% {
+        transform: translate3d(-150%,-50%,0);
+    }
 }
 
 @keyframes emoji_anim {
