@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background-color: $color-black;
+    background-color: #000000;
 
     &__container {
         height: 100%;
@@ -43,6 +43,7 @@
     height: var(--emoji-size);
     width: var(--emoji-size);
     animation: emoji_anim 4s ease-in-out;
+    z-index: 100;
 }
 
 @keyframes carrousel {
