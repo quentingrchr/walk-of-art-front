@@ -35,9 +35,7 @@ const EditWork: React.FC = () => {
 
   const getWorkData = async () => {
     if (!id) return
-    console.log("getWorkData")
     try {
-      // 1ed01c7f-b907-67d0-ac52-653c8b2e8a29
       const res = await axiosInstance.get(`/works/${id}`)
       setWorkData(res.data)
     } catch (error: any) {

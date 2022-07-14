@@ -45,8 +45,6 @@ export type Icons =
   | "trash"
   | "chevronRight"
   | "chevronLeft"
-<<<<<<< HEAD
-<<<<<<< HEAD
   | "eye-opened"
   | "eye-closed"
   | ""
@@ -55,28 +53,10 @@ export type NotificationType =
   | "error"
   | "commentary"
   | ""
-=======
-  | "";
-export type NotificationType = "success" | "error" | "commentary";
->>>>>>> c448f47 (add type Smiley)
-=======
-  | "eye-opened"
-  | "eye-closed"
-  | ""
-export type NotificationType = "success" | "error" | "commentary"
->>>>>>> ad6ccf9 (wip)
 
 export interface SelectOption {
   label: string
   value: string
-<<<<<<< HEAD
-}
-
-export interface IGuidance {
-  type: Semantic;
-  message: string;
-=======
->>>>>>> ad6ccf9 (wip)
 }
 
 export interface IGuidance {

@@ -81,7 +81,7 @@ export const FormStepper: React.FC<IProps> = ({ onSubmit, work }) => {
       return `${BASE_BACK_URL}/${workFile.fileUrl}`
     }),
   })
-  console.log(compiledForm.imagesUrls)
+  
   const [steps, setSteps] = React.useState(STEPS)
 
   const [activeStep, setActiveStep] = React.useState(0)
@@ -109,7 +109,6 @@ export const FormStepper: React.FC<IProps> = ({ onSubmit, work }) => {
     switch (activeStep) {
       case 0:
         setCompiledForm((prev) => {
-          console.log(prev, "step 1")
           return {
             ...compiledForm,
             title: data.title,

@@ -29,8 +29,6 @@ export const FormFour: React.FC<IProps> = ({ handleBack, defaultValues = {}, for
     formState: { errors },
   } = useForm({ mode: "onBlur", defaultValues });
 
-  console.log('formstate', formState)
-
   const onSubmit = (event: any) => {
     event.preventDefault();
 
