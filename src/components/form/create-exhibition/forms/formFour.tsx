@@ -21,7 +21,7 @@ export interface IRecapProps {
 }
 
 
-export const FormFour: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {}, formState }: IProps) => {
+export const FormFour: React.FC<IProps> = ({ handleBack, defaultValues = {}, formState }: IProps) => {
   const [orientation, setOrientation] = useState<string>('landscape')
 
   const {
@@ -50,7 +50,7 @@ export const FormFour: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
       "description": formState.description,
       "dateStart": formState.startExpositionDate,
       "dateEnd": formState.endExpositionDate,
-      "comment": formState.comment,
+      "comment": formState.isVisitorsAutorise,
       "work": formState.work,
       "snapshot": [
         {
@@ -120,7 +120,7 @@ export const FormFour: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
           </p>
 
           <div className={styles.ctaContainer}>
-            <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
+            <Button label={"Étape précédente"} color="black" bg="light" type="submit" onClick={handleBack} />
             <Button label={"Valider"} color="white" bg="dark" type="submit" />
           </div>
         </div>

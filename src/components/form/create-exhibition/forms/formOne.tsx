@@ -5,9 +5,7 @@ import { Button, InputGroup, Cards, Icon } from "@components";
 import { useForm } from "react-hook-form";
 import cardImage from '../../../../assets/images/cardImg.png'
 import { Checkbox } from "@components/checkbox";
-import { BASE_API_URL } from "@const/index";
 import { axiosInstance } from "@utility/index"
-import { ok } from "assert";
 
 export interface IProps {
   handleStepSubmit: (data: any) => void;
@@ -52,10 +50,6 @@ const SelectWorks: React.FC<SelectWorkProps> = ({updateName
       }).catch((error) => {
         return error
       })
-  }
-
-  const ok = () => {
-    return setSelectedWorkTitle(selectedWork.title)
   }
 
   useEffect(() => {
@@ -135,38 +129,44 @@ export const FormOne: React.FC<IProps> = ({
 }: IProps) => {
 
   const [selectedWork, setSelectedWork] = useState(false)
+  const [parentName, setParentName] = useState<string>();
+  const [isVisitorsAutorise, setVisitorsAutorise] = useState(false)
+  const [isTitleShowedToVisitors, setShowTitleToVisitors] = useState(false)
   const { register, handleSubmit, watch } = useForm({
     mode: "onBlur",
     defaultValues,
   });
 
-  const watchPrimaryImage = watch("primary-image");
-  const watchSecondaryImages = watch([
-    "secondary-image-1",
-    "secondary-image-2",
-    "secondary-image-3",
-  ]);
+  const updateName = (name: string): void => {
+    setParentName(name)
+  }
+
 
   const onSubmit = (event: any) => {
     event.preventDefault();
 
     const requiredFieldIsAlreadyFilled = watch("primary-image")?.length > 0;
 
-    // ? ADDED TO GO STEP 2 FAST.
-
-    // NEED TO CHECK IF REQURIEF FIELD ARE REMPLIE
     if (requiredFieldIsAlreadyFilled) {
       handleStepSubmit(watch());
     } else {
       handleSubmit((data) => {
-        handleStepSubmit(data);
+        const formattedData = {
+          ...data,
+          isVisitorsAutorise,
+          isTitleShowedToVisitors
+        }
+        handleStepSubmit(formattedData);
       })(event);
     }
   };
 
-  const [parentName, setParentName] = useState<string>();
-  const updateName = (name: string): void => {
-    setParentName(name)
+  const handleCheckVisitor = () => {
+    return setVisitorsAutorise(!isVisitorsAutorise)
+  }
+
+  const handleShowTitleToVisitors = () => {
+    return setShowTitleToVisitors(!isTitleShowedToVisitors)
   }
 
   return (
@@ -194,8 +194,8 @@ export const FormOne: React.FC<IProps> = ({
           guidance={null}
         />
 
-        <Checkbox checkboxName={"autoriseVistisors"} checkboxLabel={"Autoriser les commentaires des visiteurs"} />
-        <Checkbox checkboxName={"showTitle"} checkboxLabel={"Afficher le titre de mon exposition aux visiteurs"} />
+        <Checkbox checkboxName={"autoriseVistisors"} checkboxLabel={"Autoriser les commentaires des visiteurs"} onChange={handleCheckVisitor} isChecked={isVisitorsAutorise} />
+        <Checkbox checkboxName={"showTitle"} checkboxLabel={"Afficher le titre de mon exposition aux visiteurs"} onChange={handleShowTitleToVisitors} isChecked={isTitleShowedToVisitors} />
 
 
         <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />

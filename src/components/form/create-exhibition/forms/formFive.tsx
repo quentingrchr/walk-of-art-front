@@ -141,7 +141,7 @@ const selectOptions = [{
         </div>
 
       <div className={styles.containerOfButtons}>
-        <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
+        {/* <Button label={"Étape précédente"} color="black" bg="light" type="submit" /> */}
         <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
       </div>
     </form>

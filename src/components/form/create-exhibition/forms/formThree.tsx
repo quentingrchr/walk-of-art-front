@@ -28,7 +28,7 @@ interface IGalleryMap {
 }
 
 
-export const FormThree: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {} }) => {
+export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defaultValues = {} }) => {
 
   const [orientation, setOrientation] = useState<string>('landscape')
   const [availableGalleries, setAvailableGalleries] = useState<IGalleryMap[]>([])
@@ -127,7 +127,7 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, defaultValues = 
       </form>
 
       <div className={styles.containerOfButtons}>
-        <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
+        <Button label={"Étape précédente"} color="black" bg="light" type="submit" onClick={handleBack}/>
         <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
       </div>
     </form>

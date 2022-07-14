@@ -20,6 +20,7 @@ export interface IRecapProps {
 
 export const FormTwo: React.FC<IProps> = ({
   handleStepSubmit,
+  handleBack,
   defaultValues = {},
 }: IProps) => {
   const {
@@ -54,6 +55,7 @@ export const FormTwo: React.FC<IProps> = ({
         <InputGroup
           placeholder="https://facebook.com/mon-profil"
           register={register}
+          required={true}
           id="title"
           type="text"
           label="URL de mon profil Facebook"
@@ -68,19 +70,20 @@ export const FormTwo: React.FC<IProps> = ({
           }
         />
         <InputGroup
+          placeholder="https://mon-site-personnel.com/"
+          register={register}
+          required={true}
+          id="personnalWebsite"
+          type="text"
+          label="URL de mon site personnel"
+          guidance={null}
+        />
+        <InputGroup
           placeholder="https://twitter.com/mon-profil"
           register={register}
           id="twitter"
           type="text"
           label="URL de mon profil Twitter"
-          guidance={null}
-        />
-        <InputGroup
-          placeholder="https://mon-site-personnel.com/"
-          register={register}
-          id="personnalWebsite"
-          type="text"
-          label="URL de mon site personnel"
           guidance={null}
         />
         <InputGroup
@@ -123,7 +126,7 @@ export const FormTwo: React.FC<IProps> = ({
 
 
         <div className={styles.ctaContainer}>
-          <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
+          <Button label={"Étape précédente"} color="black" bg="light" type="submit" onClick={handleBack} />
           <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
         </div>
       </form>
