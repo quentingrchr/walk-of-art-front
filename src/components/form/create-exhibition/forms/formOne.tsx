@@ -7,6 +7,7 @@ import cardImage from '../../../../assets/images/cardImg.png'
 import { Checkbox } from "@components/checkbox";
 import { BASE_API_URL } from "@const/index";
 import { axiosInstance } from "@utility/index"
+import { ok } from "assert";
 
 export interface IProps {
   handleStepSubmit: (data: any) => void;
@@ -17,6 +18,7 @@ export interface IProps {
 interface SelectWorkProps {
   selectedWork?: [];
   setSelectedWork: () => {};
+  updateName: (arg: string) => void
 }
 
 export interface IRecapProps {
@@ -26,11 +28,12 @@ export interface IRecapProps {
 }
 
 
-const SelectWorks: React.FC<SelectWorkProps> = ({
+const SelectWorks: React.FC<SelectWorkProps> = ({updateName
 }: SelectWorkProps) => {
 
   const [work, setWorks] = useState<any[]>([]);
   const [selectedWork, setSelectedWork] = useState<any>()
+  const [selectedWorkTitle, setSelectedWorkTitle] = useState()
 
 
   function handleImageClick (selectedWork)  {
@@ -43,7 +46,6 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
 
 
   const getAllWorks = () => {
-    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NTc3MjEyMDgsImV4cCI6MTY1NzcyNDgwOCwicm9sZXMiOlsiUk9MRV9BUlRJU1QiLCJST0xFX1VTRVIiXSwiaWQiOiIxZWNmZmI2Yy1kYTIyLTYxYTYtODdmNi05MzU1Mzg3OWViYTQiLCJlbWFpbCI6ImV4cG9AZG9tYWluLmZyIiwiZmlyc3RuYW1lIjoiZXhwbyIsImxhc3RuYW1lIjoiZG9tYWluciJ9.mdRNgg5JRWO2uUpGvCs8Ikv136rlaVqPzCis-02es6esvOAbmUqFAuzg0ufDTexbffl_I7_DuByxfa1MecOlKNgop4wqlcDmbxwxp1ou839XUBRb02V1u4EDH54hH6pTcQKnwoJ9lzSUGowvRMRr_PkP7wcJLMt2uf8xvqlfEershA0vr19-payL-BGkVSEDc8gy4WW-MkB2fOA3D-OgCOWhMQasFbpJHRWeQod4TrfG5FnUDyJU0LIQM7G4VMG0cRX3kIkEUFytMECnfbOUtQWmxOwoR8hIqef5K9w8deq11l0VWlrioICMQuGoY0arIkVz_riUDxcAeZyj8LRuLQ'
     return axiosInstance.get('/works')
       .then(response => {
         return setWorks(response.data);
@@ -51,6 +53,14 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
         return error
       })
   }
+
+  const ok = () => {
+    return setSelectedWorkTitle(selectedWork.title)
+  }
+
+  useEffect(() => {
+    getAllWorks()
+  }, [])
 
   const titleText = selectedWork ? "Choix de l’oeuvre" : "Sélection de l’oeuvre"
 
@@ -92,7 +102,7 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
               </div>
 
               <div className={foStyles.ctas}>
-                <Button label={"Utiliser le titre comme titre d’exposition"} color="black" bg="light" type="submit" />
+                <Button label={"Utiliser le titre comme titre d’exposition"} color="black" bg="light" onClick={() => updateName(selectedWork.title)}/>
                 <div className={foStyles.link}>
                   <Button label={"Accéder à l’oeuvre"} color="black" bg="light" to={`${window.location.origin}/work/${selectedWork.id}`} />
                 </div>
@@ -154,20 +164,26 @@ export const FormOne: React.FC<IProps> = ({
     }
   };
 
+  const [parentName, setParentName] = useState<string>();
+  const updateName = (name: string): void => {
+    setParentName(name)
+  }
+
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
-      <SelectWorks selectedWork={selectedWork} setSelectedWork={setSelectedWork} />
+      <SelectWorks selectedWork={selectedWork} setSelectedWork={setSelectedWork} updateName={updateName}/>
 
 
       <div className={foStyles.ctaContainer}>
 
         <InputGroup
-          placeholder="Titre de l'exposition"
+          placeholder={parentName ? parentName : "Titre de l'exposition"}
           register={register}
           id="description"
           type="text"
           label="Titre de l’exposition*"
           guidance={null}
+          value={parentName}
         />
         <InputGroup
           placeholder="Description de mon exposition..."

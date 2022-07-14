@@ -84,14 +84,20 @@ export const FormFour: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
           <ExpositionBoard src={cardImg} alt={""} orientation={orientation} />
         </div>
         <div className={styles.alignLeft}>
-          <h1 className={styles.title}>Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi,</h1>
-          <p className={styles.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent adipiscing suspendisse varius sit risus. In arcu, lorem ridiculus dui faucibus. Lectus aenean morbi purus amet quis. Mi habitant diam id dignissim tempus. Pharetra, amet sit malesuada interdum accumsan adipiscing eros imperdiet. Neque, volutpat at commodo, mauris a ut et libero imperdiet. Id nibh a, volutpat sollicitudin aliquet. Et ipsum aliquam scelerisque mauris laoreet sit ac facilisis. In phasellus nisi cras vitae, tortor, leo.</p>
+          <h1 className={styles.title}>{formState.title}</h1>
+          <p className={styles.description}>{formState.description}</p>
           <ul className={styles.list}>
             <li>
-              <strong className={styles.bold}>Votre profil facebook :</strong> https://facebook.com/mon-profil
+              <strong className={styles.bold}>
+                Votre profil facebook :
+              </strong>
+              {formState.facebook}
             </li>
             <li>
-              <strong className={styles.bold}>Votre site personnel :</strong> https://facebook.com/mon-profil
+              <strong className={styles.bold}>
+                Votre site personnel :
+              </strong>
+              {formState.personnalWebite}
             </li>
             <li>
               <strong className={styles.bold}>Votre portfolio :</strong>https://facebook.com/mon-profil
