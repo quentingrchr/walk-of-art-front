@@ -115,8 +115,8 @@ export const Header: React.FC<IProps> = (props: IProps) => {
               <DropdownButton
                 label="Créer"
                 choices={[
-                  { label: "Créer une oeuvre", to: "/create-work" },
-                  { label: "Créer une exposition", to: "/create-exhibition" },
+                  { label: "Créer une oeuvre", to: "/artist/create-work" },
+                  { label: "Créer une exposition", to: "/artist/create-exhibition" },
                 ]}
                 className={styles.dropdownButton}
               />

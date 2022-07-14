@@ -21,7 +21,7 @@ export interface IRecapProps {
 }
 
 
-export const FormFour: React.FC<IProps> = ({ handleBack, defaultValues = {}, formState }: IProps) => {
+export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defaultValues = {}, formState }: IProps) => {
   const [orientation, setOrientation] = useState<string>('landscape')
 
   const {
@@ -37,7 +37,9 @@ export const FormFour: React.FC<IProps> = ({ handleBack, defaultValues = {}, for
         ...data,
       }
 
-      getAllAvailableGalleries(formattedData);
+        handleStepSubmit(formattedData);
+      
+      // getAllAvailableGalleries(formattedData);
     })(event);
   };
 
@@ -127,3 +129,7 @@ export const FormFour: React.FC<IProps> = ({ handleBack, defaultValues = {}, for
     </>
   )
 }
+function handleStepSubmit(formattedData: any) {
+  throw new Error("Function not implemented.");
+}
+

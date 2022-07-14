@@ -20,7 +20,7 @@
             left: var(--after-left);
             height: 3px;
             width: var(--after-width);
-            background-color: $color-sementic-progress;
+            background-color: $color-progress;
             transform: translate3d(0, 50%, 0);
             transition: all .2s ease-in-out;
         }
@@ -45,7 +45,7 @@
         }
 
         &.isActive, &:hover {
-            color: $color-sementic-progress;
+            color: $color-progress;
         }
     }
 }
