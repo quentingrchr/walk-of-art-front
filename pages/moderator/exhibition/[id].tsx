@@ -229,6 +229,17 @@ const ExhibitionPage: React.FC = () => {
 		postModeration(IFormatData)
 	}
 
+	// const getExhibition = () => {
+	// 	axios
+	// 	.get(`${BASE_API_URL}/moderation/exhibition/${id}`)
+	// 	.then((res: { status: number; data: any }) => {
+			
+	// 	})
+	// 	.catch((err: any) => {
+			
+	// 	})
+	// }
+
 	const postModeration = (data: IFormatData) => {
 		axios
 		.post(`${BASE_API_URL}/moderation/exhibitions`, data)

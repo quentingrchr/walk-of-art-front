@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import axios from "axios"
 import { useRouter } from "next/router"
 import { isLoggedIn } from "axios-jwt"
 import style from "./index.module.scss"
@@ -19,6 +20,7 @@ import cardImg from "../../../src/assets/images/cardImg.png"
 import { getDateWithoutHours, windowIsNotReady } from "../../../src/utility"
 import { Work } from "../../../src/types"
 import { ReservationInfo } from "@components/reservation-info"
+import { BASE_API_URL } from "../../../src/const"
 
 const data: Work =  {
   "id": "3",
@@ -114,6 +116,18 @@ const WorkPage: React.FC = () => {
     workFiles: [],
     exhibitions: []
   })
+
+  const getWork = () => {
+    console.log("get work")
+    axios
+		.get(`${BASE_API_URL}/works`)
+		.then((res: { status: number; data: any }) => {
+			console.log(data)
+		})
+		.catch((err: any) => {
+			console.log('error', err)
+		})
+  }
   
 
   const openModal = () => {
@@ -122,7 +136,7 @@ const WorkPage: React.FC = () => {
 
   useEffect(() => {
     setWork(data)
-
+    getWork()
   }, [])
 
   if (windowIsNotReady()) {
