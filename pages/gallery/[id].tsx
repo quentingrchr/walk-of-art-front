@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef, ReactElement } from "react"
 import { useRouter } from "next/router"
-import { useForm } from "react-hook-form"
 import s from "./index.module.scss"
-import { Icons } from "@interfaces/index"
 import { Icon } from "@components"
 import { Smiley } from "../../src/types"
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay } from "swiper";
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.min.css";
 
 const smileyTypes: Smiley[] = [
     "smiley-smile",
@@ -13,6 +15,14 @@ const smileyTypes: Smiley[] = [
     "smiley-like",
     "smiley-wow",
 ]
+
+const data = {
+    images: [
+        'https://iili.io/A7NDAP.jpg',
+        'https://iili.io/dwagF2.png',
+        'https://iili.io/hy8bLv.jpg'
+    ],
+}
 
 interface IEmoji {
     type: Smiley,
@@ -26,6 +36,7 @@ const getRandomSmiley = ():Smiley => {
 }
 
 const Artist: React.FC = () => {
+    SwiperCore.use([Autoplay])
     const router = useRouter()
     const { id } = router.query
     const [emojiList, setEmojiList] = useState<IEmoji[]>([])
@@ -54,6 +65,24 @@ const Artist: React.FC = () => {
     return (
         <>
             <section className={s.gallery} onClick={() => createNewEmoji(getRandomSmiley(), Math.random() * 90)}>
+                <div className={s.gallery__container}>
+                    <Swiper
+                        loop={true}
+                        slidesPerView={'auto'}
+                        autoplay={{delay: 3000}}   
+                        speed={600} 
+                    >
+                        {
+                            data.images.map((src, index) => (
+                                <SwiperSlide key={index}>
+                                    <figure>
+                                        <img src={src} alt="" />
+                                    </figure>
+                                </SwiperSlide>
+                            ))
+                        }
+                    </Swiper>
+                </div>
                 {
                     emojiList.map((element, index) =>
                     (
