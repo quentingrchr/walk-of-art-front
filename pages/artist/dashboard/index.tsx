@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { isLoggedIn } from "axios-jwt"
 import { TemplatePage, Text, ExpoStateBar, ExhibList, Cards, ButtonArrow, Unauthorized } from "@components"
 import s from './index.module.scss'
-import { checkReservationState, windowIsNotReady } from "./../../src/utility"
-import { ExpoStates, Exhibition, displayTimeType } from './../../src/types'
+import { checkReservationState, windowIsNotReady } from "../../../src/utility"
+import { ExpoStates, Exhibition, displayTimeType } from '../../../src/types'
 const rawData: Exhibition[] = [
     {
       "id": "1",
@@ -381,7 +381,7 @@ const Dashboard: React.FC = () => {
                     }
                     <div className={s.subtitle}>
                         <Text tag="h2" typo="heading-lg">Oeuvres</Text>
-                        <ButtonArrow to={'/works'} label={'Voir tout'}/>
+                        <ButtonArrow to={'/artist/works'} label={'Voir tout'}/>
                     </div>
                     <div className={s.worksList}>
                         <Cards title="Le livre de la jungle Le livre de la jungle"/>

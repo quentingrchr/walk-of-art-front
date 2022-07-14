@@ -1,39 +1,31 @@
 import React from "react"
-import { Cards, TemplatePage, Text } from "@components"
+import { TemplatePage } from "@components"
 import { useRecoilValue } from "recoil"
+import { useRouter } from "next/router"
 import { userState } from "@recoil/user/atom"
-import { UserRolesType, IUser } from "../src/types"
+import { windowIsNotReady } from "../src/utility"
+import { isLoggedIn } from "axios-jwt"
 
-const AnonymousHome = () => {
-  return <div>Bonjour personne anonyme</div>
-}
-const ArtistHome = (user) => {
-  return <div>Bonjour {user.email}, voici votre dashboard</div>
-}
-const ModeratorHome = () => {
-  return <div>Bonjour modérateur</div>
+const LandingPage = () => {
+  return <div>LANDING PAGE</div>
 }
 
-const HomeSelector = (props: { user?: IUser; roles?: [UserRolesType] }) => {
-  const { roles, user } = props
-
-  if (!!roles) {
-    if (roles.includes("ROLE_MODERATOR")) {
-      return <ModeratorHome />
-    } else if (roles.includes("ROLE_ARTIST")) {
-      return <ArtistHome user={user} />
-    } else {
-      return <AnonymousHome />
-    }
-  }
-  return <AnonymousHome />
-}
 const Home: React.FC = () => {
+  const router = useRouter()
   const user = useRecoilValue(userState)
+
+  if (windowIsNotReady()) {
+    return null
+  }
+
+  if (isLoggedIn()) {
+    user.roles.includes("ROLE_MODERATOR") && router.push('/moderator/dashboard')
+    user.roles.includes("ROLE_ARTIST") && router.push('/artist/dashboard')
+  }
 
   return (
     <TemplatePage>
-      {<HomeSelector user={user ? user : undefined} roles={user?.roles} />}
+      <LandingPage />
     </TemplatePage>
   )
 }
