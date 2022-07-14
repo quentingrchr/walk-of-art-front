@@ -38,33 +38,33 @@ interface IProps {
 const accessToken =
   "pk.eyJ1IjoicXVlbnRpbmdyY2hyIiwiYSI6ImNsNTZyanNzcjA4dDIzZG5zbHV1MDA1bHQifQ.TlP4iPDrNLXYKTYIZVEOPg"
 
-const dummyData: IGalleryMap[] = [
-  {
-    id: "1",
-    lat: 48.852614,
-    lng: 2.3522219,
-    price: 100,
-    name: "Paris",
-  },
-  {
-    id: "2",
-    lat: 48.856614,
-    lng: 2.3521219,
-    price: 90,
-    name: "Paris",
-  },
-  {
-    id: "3",
-    lat: 48.956614,
-    lng: 2.3622219,
-    price: 110,
-    name: "Paris",
-  },
-]
+// const dummyData: IGalleryMap[] = [
+//   {
+//     id: "1",
+//     lat: 48.852614,
+//     lng: 2.3522219,
+//     price: 100,
+//     name: "Paris",
+//   },
+//   {
+//     id: "2",
+//     lat: 48.856614,
+//     lng: 2.3521219,
+//     price: 90,
+//     name: "Paris",
+//   },
+//   {
+//     id: "3",
+//     lat: 48.956614,
+//     lng: 2.3622219,
+//     price: 110,
+//     name: "Paris",
+//   },
+// ]
 
 export const Map: React.FC<IProps> = ({
   name = "board_id",
-  galleries = dummyData,
+  galleries,
   initialViewport = INITIAL_STATE,
   required = false,
   updateName
@@ -81,13 +81,7 @@ export const Map: React.FC<IProps> = ({
     control,
     rules: { required: required },
     defaultValue: "",
-  })
-
-  const handleChange = (boardId: string) => {
-    sendData(boardId)
-  }
-
-  
+  })  
 
   return (
     <div>

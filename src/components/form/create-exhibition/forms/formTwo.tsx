@@ -70,7 +70,7 @@ export const FormTwo: React.FC<IProps> = ({
         <InputGroup
           placeholder="https://twitter.com/mon-profil"
           register={register}
-          id="description"
+          id="twitter"
           type="text"
           label="URL de mon profil Twitter"
           guidance={null}
@@ -78,7 +78,7 @@ export const FormTwo: React.FC<IProps> = ({
         <InputGroup
           placeholder="https://mon-site-personnel.com/"
           register={register}
-          id="description"
+          id="personnalWebsite"
           type="text"
           label="URL de mon site personnel"
           guidance={null}
@@ -86,7 +86,7 @@ export const FormTwo: React.FC<IProps> = ({
         <InputGroup
           placeholder="https://mon-portoflio.com/"
           register={register}
-          id="description"
+          id="portfolio"
           type="text"
           label="URL de mon portfolio"
           guidance={null}
@@ -94,7 +94,7 @@ export const FormTwo: React.FC<IProps> = ({
         <InputGroup
           placeholder="https://ma-boutique-en-ligne.com/"
           register={register}
-          id="description"
+          id="shop"
           type="text"
           label="URL de ma boutique en ligne"
           guidance={null}

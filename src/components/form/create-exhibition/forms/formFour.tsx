@@ -3,6 +3,7 @@ import styles from "./formFour.module.scss";
 import { Button, ExpositionBoard, Tooltip } from "@components";
 import cardImg from "../../../../assets/images/cardImg.png"
 import { useForm } from "react-hook-form";
+import { axiosInstance } from "@utility/index";
 
 const toolTipText = "Veuillez vérifier miniteusement les informations concernant votre exposition car aucune modification ne sera possible par la suite."
 
@@ -20,7 +21,7 @@ export interface IRecapProps {
 }
 
 
-export const FormFour: React.FC<IProps> = ({handleStepSubmit, defaultValues = {}, formState} : IProps) => {
+export const FormFour: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {}, formState }: IProps) => {
   const [orientation, setOrientation] = useState<string>('landscape')
 
   const {
@@ -34,9 +35,43 @@ export const FormFour: React.FC<IProps> = ({handleStepSubmit, defaultValues = {}
     event.preventDefault();
 
     handleSubmit((data) => {
-      handleStepSubmit(data);
+      const formattedData = {
+        ...data,
+      }
+
+      getAllAvailableGalleries(formattedData);
     })(event);
   };
+
+
+  const getAllAvailableGalleries = (formState) => {
+    const body = {
+      "title": formState.title,
+      "description": formState.description,
+      "dateStart": formState.startExpositionDate,
+      "dateEnd": formState.endExpositionDate,
+      "comment": formState.comment,
+      "work": formState.work,
+      "snapshot": [
+        {
+          "name": "facebook",
+          "url": formState.facebook
+        },
+        {
+          "name": "tipeee",
+          "url": formState.personnalWebite
+        }
+      ],
+      "orientation": formState.orientation,
+      "gallery": formState.parentName
+    }
+    return axiosInstance.post('/exhibitions', body)
+      .then(response => {
+        return response.data
+      }).catch((error) => {
+        return error
+      })
+  }
 
   return (
     <>
@@ -49,8 +84,8 @@ export const FormFour: React.FC<IProps> = ({handleStepSubmit, defaultValues = {}
           <ExpositionBoard src={cardImg} alt={""} orientation={orientation} />
         </div>
         <div className={styles.alignLeft}>
-        <h1 className={styles.title}>Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi,</h1>
-        <p className={styles.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent adipiscing suspendisse varius sit risus. In arcu, lorem ridiculus dui faucibus. Lectus aenean morbi purus amet quis. Mi habitant diam id dignissim tempus. Pharetra, amet sit malesuada interdum accumsan adipiscing eros imperdiet. Neque, volutpat at commodo, mauris a ut et libero imperdiet. Id nibh a, volutpat sollicitudin aliquet. Et ipsum aliquam scelerisque mauris laoreet sit ac facilisis. In phasellus nisi cras vitae, tortor, leo.</p>
+          <h1 className={styles.title}>Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi,</h1>
+          <p className={styles.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent adipiscing suspendisse varius sit risus. In arcu, lorem ridiculus dui faucibus. Lectus aenean morbi purus amet quis. Mi habitant diam id dignissim tempus. Pharetra, amet sit malesuada interdum accumsan adipiscing eros imperdiet. Neque, volutpat at commodo, mauris a ut et libero imperdiet. Id nibh a, volutpat sollicitudin aliquet. Et ipsum aliquam scelerisque mauris laoreet sit ac facilisis. In phasellus nisi cras vitae, tortor, leo.</p>
           <ul className={styles.list}>
             <li>
               <strong className={styles.bold}>Votre profil facebook :</strong> https://facebook.com/mon-profil
@@ -73,14 +108,14 @@ export const FormFour: React.FC<IProps> = ({handleStepSubmit, defaultValues = {}
             située à <strong className={styles.bold}>ADRESSE</strong>
           </p> */}
           <p className={styles.marginTop16}>
-            Votre exposition aura lieu du 
+            Votre exposition aura lieu du
             <strong className={styles.bold}> {formState.startExpositionDate}</strong>
-             au <strong className={styles.bold}> {formState.endExpositionDate}</strong>
+            au <strong className={styles.bold}> {formState.endExpositionDate}</strong>
           </p>
 
           <div className={styles.ctaContainer}>
             <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
-            <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
+            <Button label={"Valider"} color="white" bg="dark" type="submit" />
           </div>
         </div>
 

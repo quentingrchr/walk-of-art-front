@@ -3,7 +3,6 @@ import styles from "./formThree.module.scss";
 import { Button, InputGroup, ExpositionBoard, Map } from "@components";
 import cardImg from "../../../../assets/images/cardImg.png"
 import { FormProvider, useForm } from "react-hook-form";
-import { BASE_API_URL } from "@const/index";
 import { axiosInstance } from "@utility/index"
 
 
@@ -32,7 +31,7 @@ interface IGalleryMap {
 export const FormThree: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {} }) => {
 
   const [orientation, setOrientation] = useState<string>('landscape')
-  const [availableGalleries, setAvailableGalleries] = useState<IGalleryMap[]>()
+  const [availableGalleries, setAvailableGalleries] = useState<IGalleryMap[]>([])
 
   const methods = useForm();
 
@@ -48,14 +47,15 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, defaultValues = 
     handleSubmit((data) => {
       const formattedData = {
         ...data,
-        parentName
+        parentName,
+        orientation
       }
+      
       handleStepSubmit(formattedData);
     })(event);
   };
 
   const getAllAvailableGalleries = () => {
-    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NTc3MjEyMDgsImV4cCI6MTY1NzcyNDgwOCwicm9sZXMiOlsiUk9MRV9BUlRJU1QiLCJST0xFX1VTRVIiXSwiaWQiOiIxZWNmZmI2Yy1kYTIyLTYxYTYtODdmNi05MzU1Mzg3OWViYTQiLCJlbWFpbCI6ImV4cG9AZG9tYWluLmZyIiwiZmlyc3RuYW1lIjoiZXhwbyIsImxhc3RuYW1lIjoiZG9tYWluciJ9.mdRNgg5JRWO2uUpGvCs8Ikv136rlaVqPzCis-02es6esvOAbmUqFAuzg0ufDTexbffl_I7_DuByxfa1MecOlKNgop4wqlcDmbxwxp1ou839XUBRb02V1u4EDH54hH6pTcQKnwoJ9lzSUGowvRMRr_PkP7wcJLMt2uf8xvqlfEershA0vr19-payL-BGkVSEDc8gy4WW-MkB2fOA3D-OgCOWhMQasFbpJHRWeQod4TrfG5FnUDyJU0LIQM7G4VMG0cRX3kIkEUFytMECnfbOUtQWmxOwoR8hIqef5K9w8deq11l0VWlrioICMQuGoY0arIkVz_riUDxcAeZyj8LRuLQ'
     const body = {
       "dateStart": "2022-07-12",
       "dateEnd": "2022-07-14",
@@ -75,7 +75,6 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, defaultValues = 
 
   const [parentName, setParentName] = useState<string>('Mr John Obi');
   const updateName = (name: string): void => {
-    console.log('lkenlkfn', name)
     setParentName(name)
   }
 
@@ -114,6 +113,7 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, defaultValues = 
             type="date"
             label="Début"
             guidance={null}
+            value={'2022-09-08'}
           />
 
           <InputGroup

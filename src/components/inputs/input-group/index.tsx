@@ -15,6 +15,7 @@ export type IProps = {
   register?: any;
   control?: any;
   required?: boolean;
+  value?: string
 };
 
 export const InputGroup: React.FC<IProps> = ({
@@ -27,6 +28,7 @@ export const InputGroup: React.FC<IProps> = ({
   guidance,
   selectOptions,
   required = false,
+  value,
 }: IProps) => {
 
 
@@ -38,9 +40,9 @@ export const InputGroup: React.FC<IProps> = ({
       case "date":
         return (
           <Input 
-          register={register}
+            register={register}
             placeholder={placeholder}
-            value=""
+            value={value}
             type={type}
             id={id}
             required={required}
