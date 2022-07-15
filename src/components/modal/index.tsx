@@ -50,7 +50,8 @@ export const Modal: React.FC<IProps> = ({
 
   return (
     <div className={cn(style.container, { [style.open]: id === activeModal })}>
-      <div className={style.overlay} onClick={closeModal}>
+      <div className={style.overlay} onClick={closeModal}></div>
+      <div className={style.wrapper}>
         <div
           className={cn(
             style.modal,

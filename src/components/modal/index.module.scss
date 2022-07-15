@@ -3,120 +3,126 @@
 // Your style here
 
 .container {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    &.open {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  &.open {
     opacity: 1;
     visibility: visible;
-    }
+  }
 }
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: rgba(45, 45, 45, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(45, 45, 45, 0.8);
 }
-
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .modal {
-    max-width: 100vw;
-    max-height: 80vh;
-    padding: 2.4rem 3.2rem;
-    border: 0.2rem solid $color-black;
+  max-width: 100vw;
+  max-height: 80vh;
+  padding: 2.4rem 3.2rem;
+  border: 0.2rem solid $color-black;
+  background-color: $color-white;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+
+  &.black {
+    background-color: $color-black;
+  }
+
+  &.white {
     background-color: $color-white;
-    display: flex;
-    gap: 2rem;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: center;
+  }
 
+  &.beige {
+    background-color: $color-beige;
+  }
 
-    &.black {
-        background-color: $color-black;
-    }
+  &.specific-expo {
+    background-color: $color-specific-expo;
+  }
 
-    &.white {
-        background-color: $color-white;
-    }
+  &.pink {
+    background-color: $color-pink;
+  }
 
-    &.beige {
-        background-color: $color-beige;
-    }
+  &.error {
+    background-color: $color-error;
+  }
 
-    &.specific-expo {
-        background-color: $color-specific-expo;
-    }
+  &.error-light {
+    background-color: $color-error-light;
+  }
 
-    &.pink {
-        background-color: $color-pink;
-    }
+  &.success {
+    background-color: $color-success;
+  }
 
-    &.error {
-        background-color: $color-error;
-    }
+  &.success-light {
+    background-color: $color-success-light;
+  }
 
-    &.error-light {
-        background-color: $color-error-light;
-    }
+  &.violet {
+    background-color: $color-violet;
+  }
 
-    &.success {
-        background-color: $color-success;
-    }
+  &.info {
+    background-color: $color-info;
+  }
 
-    &.success-light {
-        background-color: $color-success-light;
-    }
+  &.info-light {
+    background-color: $color-info-light;
+  }
 
-    &.violet {
-        background-color: $color-violet;
-    }
-
-    &.info {
-        background-color: $color-info;
-    }
-
-    &.info-light {
-        background-color: $color-info-light;
-    }
-
-    &.artist-black {
-        background-color: $color-artist-black;
-    }
+  &.artist-black {
+    background-color: $color-artist-black;
+  }
 }
 
 .modalHeader {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-    &.white {
-        color: $color-white;
-    }
+  &.white {
+    color: $color-white;
+  }
 }
 
 .cross {
-    cursor: pointer;
-    margin-left: 2rem;
+  cursor: pointer;
+  margin-left: 2rem;
 }
 
 .fullScreen {
-    height: 100vh;
-    width: 100%;
-    max-width: 100vw;
-    max-height: 100vh;
-    justify-content: space-between;
+  height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+  justify-content: space-between;
 
-    .modalBody {
-        flex-grow: 1;
-    }
+  .modalBody {
+    flex-grow: 1;
+  }
 }

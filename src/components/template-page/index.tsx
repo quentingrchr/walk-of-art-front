@@ -1,6 +1,10 @@
 import React, { useEffect } from "react"
 import cn from "classnames"
-import { Header, ConfirmWorkDeleteModal } from "@components"
+import {
+  Header,
+  ConfirmWorkDeleteModal,
+  ConfirmExhibitionDeleteModal,
+} from "@components"
 import styles from "./index.module.scss"
 import { scrollDisabledState } from "@recoil/scroll/atom"
 import { useRecoilValue } from "recoil"
@@ -29,6 +33,7 @@ export const TemplatePage: React.FC<IProps> = ({ children }: IProps) => {
       </div>
       {/* All modals */}
       <ConfirmWorkDeleteModal />
+      <ConfirmExhibitionDeleteModal />
     </>
   )
 }
