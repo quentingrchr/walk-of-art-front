@@ -64,6 +64,13 @@
   font-style: normal;
 }
 
+@mixin typo-paragraph-sm-bold {
+  font-size: 1.4rem;
+  font-family: $font-inter;
+  font-weight: bold;
+  font-style: normal;
+}
+
 @mixin typo-label {
   font-size: 1.6rem;
   font-family: $font-inter;

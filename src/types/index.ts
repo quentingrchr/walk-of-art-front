@@ -15,6 +15,7 @@ export type ColorsType =
   | "violet"
   | "pink"
   | "artist-black"
+  | "aqua"
 
 export type HTMLTextTag =
   | "p"

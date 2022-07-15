@@ -1,0 +1,126 @@
+@import "@styles/theme.scss";
+
+.landing {
+    &__contact,
+    &__gallery {
+        margin-bottom: 8rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+
+        & > * {
+            margin-top: 2rem;
+        }
+
+        & > p {
+            width: 60%;
+            text-align: center;
+        }
+    }
+
+    &__gallery {
+        overflow: scroll;
+    }
+
+    &__galleryContainer {
+        width: calc(198px * 12);
+        display: flex;
+        animation: infiniteScroll 20s linear infinite;
+
+        &:hover {
+            animation-play-state: paused;
+        }
+    }
+
+    &__galleryContent {
+        background-color: $color-white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1rem solid $color-black;
+        width: 198px;
+        height: 396px;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        aspect-ratio: 198/396;
+
+        & > img {
+            display: inline;
+            width: 90%;
+        }
+    }
+
+    &__formContact {
+        width: 40%;
+        height: 100%;
+    
+        & > * {
+            margin-top: 2rem;
+        }
+
+        & > div:nth-child(2) > div > textarea {
+            height: 200px;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: $color-white;
+        padding: 3rem;
+        background-color: $color-black;
+    }
+
+    &__footerLogo {
+        & > div > h2 {
+            font-size: 2rem;
+        }
+
+        & > div {
+
+            &::before {
+                width: 40px;
+            }
+
+            &:hover {
+                &::before {
+                    transform: translateX(70px);
+                    width: 20px;
+                }
+            }
+
+            &::after {
+                width: 20px;
+                transform: translateX(70px);
+            }
+
+            &:hover {
+                &::after {
+                    transform: translateX(0px);
+                    width: 40px;
+                }
+            }
+        }
+    }
+
+    &__footerLinks {
+        width: 50%;
+        display: flex;
+        justify-content: space-between;
+
+        & > li {
+            font-size: 1.2rem;
+            font-family: $font-inter;
+            font-weight: bold;
+            font-style: normal;
+            list-style: none;
+        }
+    }
+
+    @keyframes infiniteScroll {
+        from { transform: translateX(0); }
+        to   { transform: translate(calc(-198px * 6)); }
+    }
+}
