@@ -20,7 +20,11 @@ import {
 } from "@components"
 import NextLink from "next/link"
 import BankCard from "../../../src/assets/images/BankCard.png"
-import { getDateWithoutHours, windowIsNotReady } from "../../../src/utility"
+import {
+  getDateWithoutHours,
+  windowIsNotReady,
+  checkFilterExhibition,
+} from "../../../src/utility"
 import { Exhibition } from "../../../src/types"
 import { ImageCard } from "@components/image-card"
 
@@ -30,8 +34,8 @@ const data: Exhibition = {
     "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
   description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Augue vestibulum diam elit pretium amet risus sed blandit. Vulputate et cras purus lobortis. Adipiscing at ut volutpat proin tempus fermentum faucibus. Senectus massa tortor eget sit non eleifend orci nulla. Id est ut id augue sapien risus ornare eget. Ipsum quis arcu, viverra gravida at sed. Pulvinar ut lobortis mauris vel purus pulvinar lacus volutpat quam. Nullam in purus viverra lorem mauris. Blandit faucibus nulla lobortis enim.",
-  dateStart: "2022-07-27T23:09:10.693Z",
-  dateEnd: "2022-07-30T23:09:10.693Z",
+  dateStart: "2022-07-08T23:09:10.693Z",
+  dateEnd: "2022-07-18T23:09:10.693Z",
   reaction: false,
   reactions: [
     {
@@ -173,6 +177,12 @@ const ExhibitionPage: React.FC = () => {
           </span>
           <section className={style.mainSection}>
             <ImageCard
+              status={checkFilterExhibition(
+                exhibition.dateStart,
+                exhibition.dateEnd,
+                new Date(),
+                exhibition.status
+              )}
               size="full"
               src={BankCard}
               alt={BankCard}
@@ -214,7 +224,25 @@ const ExhibitionPage: React.FC = () => {
             )}
             <span className={style.maps}>
               <Text tag="p" typo="paragraph-md-bold">
-                Votre exposition aura lieu :
+                {checkFilterExhibition(
+                  exhibition.dateStart,
+                  exhibition.dateEnd,
+                  new Date()
+                ) == "incoming"
+                  ? "Votre exposition aura lieu du"
+                  : checkFilterExhibition(
+                      exhibition.dateStart,
+                      exhibition.dateEnd,
+                      new Date()
+                    ) == "completed"
+                  ? "Votre exposition a eu lieu du"
+                  : checkFilterExhibition(
+                      exhibition.dateStart,
+                      exhibition.dateEnd,
+                      new Date()
+                    ) == "remaining"
+                  ? "Votre exposition a lieu du"
+                  : ""}
               </Text>
               <NextLink
                 href={`https://maps.google.com/?q=${exhibition.board.gallery.latitude},${exhibition.board.gallery.longitude}`}
@@ -232,11 +260,46 @@ const ExhibitionPage: React.FC = () => {
             <span className={cn(style.date, style.creation)}>
               {`Créée le ${getDateWithoutHours(exhibition.createdAt)}`}
             </span>
-            <span className={cn(style.date, style.exposition)}>
-              {`Sera exposée du ${getDateWithoutHours(
-                exhibition.dateStart
-              )} au ${getDateWithoutHours(exhibition.dateEnd)}`}
-            </span>
+            {checkFilterExhibition(
+              exhibition.dateStart,
+              exhibition.dateEnd,
+              new Date(),
+              exhibition.status
+            ) == "refused" ? (
+              <span className={cn(style.date, style.refused)}>
+                {`Réfusée en modération`}
+              </span>
+            ) : checkFilterExhibition(
+                exhibition.dateStart,
+                exhibition.dateEnd,
+                new Date()
+              ) == "incoming" ? (
+              <span className={cn(style.date, style.incoming)}>
+                {`Sera exposée du ${getDateWithoutHours(
+                  exhibition.dateStart
+                )} au ${getDateWithoutHours(exhibition.dateEnd)}`}
+              </span>
+            ) : checkFilterExhibition(
+                exhibition.dateStart,
+                exhibition.dateEnd,
+                new Date()
+              ) == "completed" ? (
+              <span className={cn(style.date, style.completed)}>
+                {`Terminée depuis le ${getDateWithoutHours(
+                  exhibition.dateEnd
+                )}`}
+              </span>
+            ) : checkFilterExhibition(
+                exhibition.dateStart,
+                exhibition.dateEnd,
+                new Date()
+              ) == "remaining" ? (
+              <span className={cn(style.date, style.remaining)}>
+                {`Exposée jusqu’au  ${getDateWithoutHours(exhibition.dateEnd)}`}
+              </span>
+            ) : (
+              ""
+            )}
 
             <div className={style.actionsWrapper}>
               <Button
