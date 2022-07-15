@@ -40,7 +40,7 @@ export const ConfirmExhibitionDeleteModal: React.FC<IProps> = (
         setActiveModal((s) => {
           return null
         })
-        router.push("/artist/works")
+        router.push("/artist/exhibitions")
       }
     } catch (error) {
       setModalLoading(false)
