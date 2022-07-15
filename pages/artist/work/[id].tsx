@@ -16,7 +16,7 @@ import {
   ButtonArrow,
 } from "@components"
 import cardImg from "../../../src/assets/images/cardImg.png"
-import { getDateWithoutHours, windowIsNotReady } from "../../../src/utility"
+import { axiosInstance, getDateWithoutHours, windowIsNotReady } from "../../../src/utility"
 import { Work } from "../../../src/types"
 import { ReservationInfo } from "@components/reservation-info"
 
@@ -121,12 +121,20 @@ const WorkPage: React.FC = () => {
   }
 
   useEffect(() => {
-    setWork(data)
-
+    getAllWorks()
   }, [])
 
   if (windowIsNotReady()) {
     return null
+  }
+
+  const getAllWorks = () => {
+    return axiosInstance.get(`/works/${id}`)
+      .then(response => {
+        return setWork(response.data);
+      }).catch((error) => {
+        return error
+      })
   }
 
   return (

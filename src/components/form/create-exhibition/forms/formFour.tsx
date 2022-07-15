@@ -32,26 +32,22 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
   const onSubmit = (event: any) => {
     event.preventDefault();
 
-    handleSubmit((data) => {
-      const formattedData = {
-        ...data,
-      }
-
-        handleStepSubmit(formattedData);
-      
-      // getAllAvailableGalleries(formattedData);
+    handleSubmit(() => {
+      getAllAvailableGalleries(formState);
     })(event);
   };
 
 
   const getAllAvailableGalleries = (formState) => {
+    console.log(formState);
+    
     const body = {
       "title": formState.title,
       "description": formState.description,
       "dateStart": formState.startExpositionDate,
       "dateEnd": formState.endExpositionDate,
       "comment": formState.isVisitorsAutorise,
-      "work": formState.work,
+      "work": '/api/works/' + formState.selectedWorkId,
       "snapshot": [
         {
           "name": "facebook",
@@ -65,10 +61,18 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
       "orientation": formState.orientation,
       "gallery": formState.parentName
     }
+
+    console.log(body);
+    
+
     return axiosInstance.post('/exhibitions', body)
       .then(response => {
+        console.log(response);
+        
         return response.data
       }).catch((error) => {
+        console.log(error);
+        
         return error
       })
   }

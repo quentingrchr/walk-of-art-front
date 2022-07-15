@@ -16,7 +16,8 @@ export interface IProps {
 interface SelectWorkProps {
   selectedWork?: [];
   setSelectedWork: () => {};
-  updateName: (arg: string) => void
+  updateName: (arg: string) => void,
+  workId: (arg: string) => void,
 }
 
 export interface IRecapProps {
@@ -26,17 +27,16 @@ export interface IRecapProps {
 }
 
 
-const SelectWorks: React.FC<SelectWorkProps> = ({updateName
+const SelectWorks: React.FC<SelectWorkProps> = ({updateName, workId
 }: SelectWorkProps) => {
 
   const [work, setWorks] = useState<any[]>([]);
   const [selectedWork, setSelectedWork] = useState<any>()
-  const [selectedWorkTitle, setSelectedWorkTitle] = useState()
 
 
   function handleImageClick (selectedWork)  {
+    workId(selectedWork.id)
     setSelectedWork(selectedWork)
-    
   }
   const handleBack = () => {
     setSelectedWork([])
@@ -89,7 +89,7 @@ const SelectWorks: React.FC<SelectWorkProps> = ({updateName
                 <div className={foStyles.cardContainer}>
                   <Icon classname={foStyles.arrowLeft} type={"chevronLeft"} size={"small"} onClick={previousSelectedWork} />
 
-                  <Cards title={selectedWork.title} img={cardImage.src} showLink={true} />
+                    <Cards title={selectedWork.title} img={cardImage.src} showLink={true} />
                   <Icon classname={foStyles.arrowRight} type={"chevronRight"} size={"small"} onClick={nextSelectedWork} />
 
                 </div>
@@ -132,6 +132,7 @@ export const FormOne: React.FC<IProps> = ({
   const [parentName, setParentName] = useState<string>();
   const [isVisitorsAutorise, setVisitorsAutorise] = useState(false)
   const [isTitleShowedToVisitors, setShowTitleToVisitors] = useState(false)
+  const [selectedWorkId, setSelectedWorkId] = useState<string>();
   const { register, handleSubmit, watch } = useForm({
     mode: "onBlur",
     defaultValues,
@@ -140,7 +141,6 @@ export const FormOne: React.FC<IProps> = ({
   const updateName = (name: string): void => {
     setParentName(name)
   }
-
 
   const onSubmit = (event: any) => {
     event.preventDefault();
@@ -151,10 +151,13 @@ export const FormOne: React.FC<IProps> = ({
       handleStepSubmit(watch());
     } else {
       handleSubmit((data) => {
+        console.log(selectedWorkId);
+        
         const formattedData = {
           ...data,
           isVisitorsAutorise,
-          isTitleShowedToVisitors
+          isTitleShowedToVisitors,
+          selectedWorkId
         }
         handleStepSubmit(formattedData);
       })(event);
@@ -169,9 +172,16 @@ export const FormOne: React.FC<IProps> = ({
     return setShowTitleToVisitors(!isTitleShowedToVisitors)
   }
 
+  const selectWorkId = (name: string): void => {
+    console.log(name);
+    
+    return setSelectedWorkId(name)
+  }
+  
+
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
-      <SelectWorks selectedWork={selectedWork} setSelectedWork={setSelectedWork} updateName={updateName}/>
+      <SelectWorks selectedWork={selectedWork} setSelectedWork={setSelectedWork} updateName={updateName} workId={selectWorkId}/>
 
 
       <div className={foStyles.ctaContainer}>
