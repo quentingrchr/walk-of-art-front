@@ -20,7 +20,7 @@
     }
 
     &__gallery {
-        overflow: scroll;
+        overflow: hidden;
     }
 
     &__galleryContainer {
@@ -31,6 +31,8 @@
         &:hover {
             animation-play-state: paused;
         }
+        overflow: scroll;
+
     }
 
     &__galleryContent {
@@ -121,6 +123,6 @@
 
     @keyframes infiniteScroll {
         from { transform: translateX(0); }
-        to   { transform: translate(calc(-198px * 6)); }
+        to   { transform: translate(calc(-198px * 4)); }
     }
 }
