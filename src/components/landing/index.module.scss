@@ -1,0 +1,241 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+.landing {
+    display: flex;
+    flex-direction: column;
+    gap: 13.6rem;
+    padding-top: 10.7rem;
+
+    .firstSection {
+        display: flex;
+        gap: 3.2rem;
+
+        .bloc {
+            position: relative;
+            width: 50%;
+
+            &:first-child {
+                display: flex;
+                flex-direction: column;
+                gap: 2.4rem;
+
+                div:first-child::before  {
+                    bottom: unset;
+                    top: 4.5rem;
+                    width: 18.8rem;
+                    height: 2rem;
+                }
+            }
+        }
+
+        p {
+            max-width: 75%;
+            line-height: 2.8rem;
+            font-weight: 300;
+        }
+
+        ul {
+            display: flex;
+
+            li {
+                display: flex;
+                flex-direction: column;
+                gap: .8rem;
+
+                span:first-child {
+                    @include typo-paragraph-md-bold;
+                    font-size: 2.8rem;
+                }
+
+                span:last-child {
+                    @include typo-paragraph-md;
+                    font-size: 2rem;
+                }
+
+                &:first-child {
+                    padding-right: 2.4rem;
+                }
+                &:nth-child(2) {
+                    padding: 0 2.4rem;
+                    border-left: 1px solid $color-grey;
+                    border-right: 1px solid $color-grey;
+                }
+                &:last-child {
+                    padding-left: 2.4rem;
+                }
+            }
+        }
+
+        .buttonWrapper {
+            display: flex;
+            align-items: center;
+            gap: 3.2rem;
+            max-width: fit-content;
+
+            & > div:first-child {
+                padding: 1.6rem 3.7rem;
+            }
+        }
+
+        .imgWrapper {
+            position: absolute;
+            padding: 2.4rem;
+            background-color: $color-white;
+
+            &:nth-child(2) {
+                padding: 1.2rem;
+            }
+            &:last-child {
+                padding: .9rem;
+            }
+
+            .imgFrame {
+                border: .5rem solid $color-black;
+                padding: .5rem;
+            }
+
+            &:first-child {
+                top: 0;
+                left: 0;
+                z-index: 3;
+            }
+
+            &:nth-child(2) {
+                top: 12.2rem;
+                right: 6.9rem;
+                z-index: 2;
+            }
+
+            &:last-child {
+                top: 2.7rem;
+                right: 0;
+            }
+        }
+    }
+
+    .secondSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 49.8rem;
+        position: relative;
+
+        & > div::before {
+            height: 2rem;
+            width: 20.2rem;
+            background-color: #B3ACFB;
+        }
+
+        h1, h2 {
+            position: relative;
+            z-index: 2;
+            font-size: 5.6rem;
+        }
+
+        h2 {
+            margin-top: 1.6rem;
+            color: $color-white;
+        }
+
+        img {
+            position: absolute;
+            bottom: 0;
+            z-index: 0;
+        }
+    }
+
+    .thirdSection {
+        display: flex;
+        gap: 3.2rem;
+
+        .bloc {
+            position: relative;
+            width: 50%;
+
+            &:first-child {
+                display: flex;
+                flex-direction: column;
+                gap: 2.4rem;
+
+                div:first-child::before  {
+                    bottom: unset;
+                    top: 2.5rem;
+                    width: 20.2rem;
+                    height: 2rem;
+                    background-color: #FFC2C2;
+                }
+
+                h1 {
+                    font-size: 4.8rem;
+                }
+
+                p {
+                    max-width: 75%;
+                    line-height: 2.8rem;
+                    font-weight: 300;
+                }
+
+                .buttonWrapper {
+                    display: flex;
+                    align-items: center;
+                    gap: 3.2rem;
+                    max-width: fit-content;
+        
+                    & > div:first-child {
+                        padding: 1.6rem 3.7rem;
+                    }
+                }
+            }
+
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+
+    .fourthSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3.2rem;
+
+        div:first-child::before  {
+            bottom: unset;
+            top: 3.5rem;
+            width: 26rem;
+            height: 2rem;
+            background-color: #FFB8F8;
+        }
+
+        h1 {
+            font-size: 5.6rem;
+        }
+
+        .content {
+            display: flex;
+            width: 100%;
+        }
+
+        .mockup, .steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+        }
+        
+        .mockup {
+            background-color: $color-black;
+        }
+
+        .steps {
+            background-color: $color-white;
+
+            .step {
+                display: flex;
+            }
+        }
+
+    }
+}

@@ -1,6 +1,6 @@
 import React from "react"
 import styles from "./index.module.scss"
-import { Exhibition } from "./../../types"
+import { Exhibition } from "../../types"
 import { ExhibitionCard } from "../exhibition-card"
 
 export type IProps = {

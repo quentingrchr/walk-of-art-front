@@ -5,10 +5,8 @@ import { useRouter } from "next/router"
 import { userState } from "@recoil/user/atom"
 import { windowIsNotReady } from "../src/utility"
 import { isLoggedIn } from "axios-jwt"
+import { Landing } from "@components"
 
-const LandingPage = () => {
-  return <div>LANDING PAGE</div>
-}
 
 const Home: React.FC = () => {
   const router = useRouter()
@@ -25,7 +23,7 @@ const Home: React.FC = () => {
 
   return (
     <TemplatePage>
-      <LandingPage />
+      <Landing />
     </TemplatePage>
   )
 }
