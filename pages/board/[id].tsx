@@ -8,6 +8,25 @@ import { IReaction, Smiley } from "../../src/types";
 import { Logo, Text, ImagesPreview, Button, Icon, ImagePreviewModal } from "@components"
 import { useSetRecoilState } from "recoil"
 import { activeModalState, IMAGE_PREVIEW_MODAL_ID } from "@recoil/modal/atom"
+import { axiosInstance, generateVisitorId } from './../../src/utility'
+import axios from "axios"
+import { BASE_API_URL } from "@const/index"
+
+const fetchedData =     {
+    "id": "0c20524a-af25-44a7-b546-dc4cbd1b5211",
+    "title": "fxxfrxf",
+    "dateStart": "2022-07-15T00:00:00+00:00",
+    "dateEnd": "2022-07-15T00:00:00+00:00",
+    "createdAt": "2022-07-15T10:53:42+00:00",
+    "work": {
+        "workFiles": [
+            "/api/work_files/0cca24b8-93ca-4c53-9864-e870789ebdce",
+            "/api/work_files/4173976e-8325-411c-9c0c-4bb13770d10b",
+            "/api/work_files/c396420d-ae62-4ad2-a3e8-621f77fcd722"
+        ]
+    },
+    "board": "/api/boards/3c9b3f59-e87e-4a23-9f4d-86609cde54a1"
+}
 
 const data = {
     name: 'Fabien Deneau',
@@ -49,6 +68,13 @@ const Artist: React.FC = () => {
     const [displayReactions, setDisplayReactions] = useState<boolean>(false)
     const [currentIcon, setCurrentIcon] = useState<Icons>('smiley-smile')
     const [reacted, setReacted] = useState<boolean>(false)
+    const [visitorId, setVisitorId] = useState<string | null>(null)
+
+    useEffect(() => {
+        const currentVisitorId = localStorage.getItem('visitorId')
+        // setVisitorId(currentVisitorId ? currentVisitorId : generateVisitorId())
+        setVisitorId('36146a25-6c71-476b-b37e-b9b8fa9094b1')
+    }, [])
 
     const onSubmit = (e: any) => {
         e.preventDefault()
@@ -71,16 +97,29 @@ const Artist: React.FC = () => {
         setCurrentIcon(reaction.name)
         if(!reacted) setReacted(true)
         // SEND REQUEST
-        postReaction(reaction.name)
+        // postReaction(reaction.name)
     }
 
     const postReaction = (type: Smiley) =>
     {
         const DTO = {
-            "visitorId": "khubvjlbjb",
+            "visitorId": visitorId,
             "reaction": type
         }
         console.log(DTO)
+        axios.post(
+            `${BASE_API_URL}/reactions/${id}`,
+            { body: DTO },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${DTO.visitorId}`,
+                }
+            }
+        )
+            .then((res) => res.data)
+            .catch((error) => console.log(error))
+
     }
 
     return (
