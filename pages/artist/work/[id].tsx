@@ -100,6 +100,8 @@ const data: Work =  {
 const WorkPage: React.FC = () => {
   const router = useRouter()
   const { id } = router.query
+  console.log(router.query);
+  
   const setActiveModal = useSetRecoilState(activeModalState)
 
   const [work, setWork] = useState<Work>({
@@ -121,16 +123,19 @@ const WorkPage: React.FC = () => {
   }
 
   useEffect(() => {
-    getAllWorks()
+    getWorkById()
   }, [])
 
+  
   if (windowIsNotReady()) {
     return null
   }
 
-  const getAllWorks = () => {
+  const getWorkById = () => {
     return axiosInstance.get(`/works/${id}`)
       .then(response => {
+        console.log('ddd', response);
+        
         return setWork(response.data);
       }).catch((error) => {
         return error
