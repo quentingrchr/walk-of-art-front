@@ -1,11 +1,13 @@
-import React, { useEffect } from "react"
+import React from "react"
 
 import s from "./index.module.scss"
 
-import { FormOne, FormTwo, FormThree, FormFour, FormFive } from "../forms"
-import { Stepper } from "@components"
+import { FormOne, FormTwo, FormThree, FormFour, FormFive, FormSix } from "../forms"
+import { Stepper, Tooltip } from "@components"
 
-export type IProps = {}
+export type IProps = {
+  onSubmit: (formData: any) => void
+}
 
 const STEPS = [
   {
@@ -70,7 +72,7 @@ const getStepComponent = (
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
           defaultValues={compiledForm.three}
-          onClick={() => {}}
+          onClick={() => { }}
         />
       )
     case 3:
@@ -79,26 +81,30 @@ const getStepComponent = (
           handleStepSubmit={handleStepSubmit}
           handleBack={handleBack}
           defaultValues={compiledForm.four}
-          onClick={() => {}}
+          onClick={() => { }}
+          formState={{ ...compiledForm.one, ...compiledForm.two, ...compiledForm.three }}
         />
       )
     case 4:
       return (
         <FormFive
           handleStepSubmit={handleStepSubmit}
-          handleBack={handleBack}
-          defaultValues={compiledForm.five}
-          onClick={() => {}}
+          handleBack={handleBack} onClick={() => { }}
         />
+      )
+    case 5:
+      return (
+        <FormSix />
       )
     default:
       return "Unknown step"
   }
 }
 
-export const FormStepper: React.FC<IProps> = (props: IProps) => {
-  const [compiledForm, setCompiledForm] = React.useState({})
+export const FormStepper: React.FC<IProps> = ({ onSubmit }) => {
+  const [compiledForm, setCompiledForm] = React.useState<any>({})
   const [steps, setSteps] = React.useState(STEPS)
+  const [globalError, setGlobalError] = React.useState<string | null>(null)
 
   const [activeStep, setActiveStep] = React.useState(0)
 
@@ -122,7 +128,8 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
     setSteps(newSteps)
   }
 
-  const handleStepSubmit = (data: any) => {
+  const handleStepSubmit = async (data: any) => {
+    setGlobalError(null)
     switch (activeStep) {
       case 0:
         setCompiledForm({ ...compiledForm, one: data })
@@ -135,13 +142,24 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
         break
       case 3:
         setCompiledForm({ ...compiledForm, four: data })
+
+        const res = onSubmit({
+          ...compiledForm?.one,
+          ...compiledForm?.two,
+          ...compiledForm?.three,
+        })
+        if (res.error) {
+          setGlobalError("Oups, une erreur est survenue")
+          return
+        }
         break
       case 4:
-        setCompiledForm({ ...compiledForm, five: data })
+        'setCompiledForm({ ...compiledForm, five: data })'
         break
       default:
         throw new Error("not a valid step")
     }
+
     setActiveStep((prevActiveStep) => {
       completeStep(prevActiveStep)
       return prevActiveStep + 1
@@ -155,15 +173,6 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
     })
   }
 
-  const handleReset = () => {
-    setActiveStep(0)
-    setCompiledForm({})
-  }
-
-  const handleSubmit = (form: any) => {
-    return true
-  }
-
   return (
     <div className={s.container}>
       <div>
@@ -172,9 +181,14 @@ export const FormStepper: React.FC<IProps> = (props: IProps) => {
           variant="checked"
           activeStep={activeStep}
           steps={steps}
-          completeOne={() => {}}
+          completeOne={() => { }}
         />
       </div>
+      {!!globalError && (
+        <div className={s.errorContainer}>
+          <Tooltip text={globalError} type="error" />
+        </div>
+      )}
       <div className={s.formContainer}>
         {getStepComponent(
           activeStep,

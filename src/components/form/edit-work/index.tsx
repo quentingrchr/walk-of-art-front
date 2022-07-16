@@ -1,7 +1,5 @@
-import React, { useEffect } from "react"
-import { useForm, useFormContext, FormProvider } from "react-hook-form"
+import React from "react"
 
-import styles from "./index.module.scss"
 import { FormStepper as EditWorkStepper } from "./stepper"
 import { IWorkDataApi } from "../../../types"
 
@@ -11,7 +9,6 @@ export type IProps = {
 }
 
 export const EditWorkForm: React.FC<IProps> = ({ onSubmit, workData }) => {
-  console.log({ workData })
   return !!workData ? (
     <EditWorkStepper onSubmit={onSubmit} work={workData} />
   ) : null

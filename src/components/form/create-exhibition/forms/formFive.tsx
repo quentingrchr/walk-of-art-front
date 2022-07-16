@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Cards from 'react-credit-cards';
-import styles from "./formThree.module.scss";
-import { Button, InputGroup, InputDropdown } from "@components";
+import styles from "./formFive.module.scss";
+import { Button, InputCard} from "@components";
 import { useForm } from "react-hook-form";
 
 export interface IProps {
@@ -19,23 +19,14 @@ export interface IRecapProps {
 
 export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {} }) => {
 
-  const [orientation, setOrientation] = useState<string>('landscape')
   const [cardNumber, setCardNumber] = useState('')
   const [cardCvc, setCardCvc] = useState('')
   const [cardExpiry, setCardExpiry] = useState('')
   const [cardName, setCardName] = useState('')
 
-  // const handleInputFocus = (event) => {
-  //   setCardInfos((previousState) => {
-  //     const newCardState = { ...previousState };
-  //     newCardState.focus = event.target.name;
-  //     return newCardState;
-  //    })
-  // }
 
 
   const handleNumberChange = (e) => {
-    console.log(cardCvc)
     setCardNumber(e.target.value)
   }
   const handleCvcChange = (e) => {
@@ -63,23 +54,23 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
   };
 
 
-
+const selectOptions = [{
+  label: "test",
+  value: "test value"
+}]
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
-      <div className={styles.boardOrientation}>
-        <p>
-          Montant à régler
+      <div className={styles.board}>
+        <p className={styles.board__text}> 
+          Montant à régler:
         </p>
-        <p>Montant</p>
+        <p className={styles.board__price}>127,05€</p>
+      
       </div>
-
-      <label htmlFor="cardType">Liste des cartes enregistrées</label>
-      {/* <InputDropdown control={undefined} id={"cardType"} placeholder={"Sélectionner la carte"} required={false} /> */}
-
 
       <img src="../../../../assets/images/BankCard.png" alt="" />
 
-      <div id="PaymentForm">
+      <div id="PaymentForm" className={styles.display}>
         <Cards
           cvc={cardCvc}
           expiry={cardExpiry}
@@ -89,35 +80,62 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
         />
         
       </div>
-      <form>
-          <input
+      <div className={styles.form}>
+
+  
+      {/* id, name, placeholder, type, register, required, label, onChangeMethod */}
+      <InputCard
+        id={'test'}
+        register={register}
+        name="CardName"
+        placeholder="John Doe"
+        type="text"
+        // register={register}
+        required={true}
+        label={"Nom du titulaire de la carte"}
+        onChangeMethod={handleNameChange}
+      />
+
+      <InputCard
+          id={'test'}
+          register={register}
+          type="number"
+          name="CardNumber"
+          placeholder="0000000000000000"
+          // register={register}
+          required={true}
+          label={"Numéros de carte"}
+          onChangeMethod={handleNumberChange}
+      />
+  
+      <div className={styles.flexWrapper}>
+          <InputCard
+            register={register}
+            id={'test'}
             type="number"
-            name="Cardnumber"
-            placeholder="Card Number"
-            onChange={handleNumberChange}
+            name="CardExpiry"
+            placeholder="00/0000"
+            // register={register}
+            required={true}
+            label={"Date d’expiration"}
+            onChangeMethod={handleExpiryChange}
           />
-          <input
+          <InputCard
+            register={register}
+            id={'test'}
             type="number"
-            name="Cardcvc"
-            placeholder="Card Cvc"
-            onChange={handleCvcChange}
-          />
-          <input
-            type="number"
-            name="Cardexpiry"
-            placeholder="Card Expiry"
-            onChange={handleExpiryChange}
-          />
-          <input
-            type="text"
-            name="Cardname"
-            placeholder="Card Name"
-            onChange={handleNameChange}
-          />
-        </form>
+            name="CardCvc"
+            placeholder="000"
+            // register={register}
+            required={true}
+            label={"CVC"}
+            onChangeMethod={handleCvcChange}
+        />
+      </div>
+        </div>
 
       <div className={styles.containerOfButtons}>
-        <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
+        {/* <Button label={"Étape précédente"} color="black" bg="light" type="submit" /> */}
         <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
       </div>
     </form>

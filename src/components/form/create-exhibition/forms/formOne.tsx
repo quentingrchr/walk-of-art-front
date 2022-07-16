@@ -5,8 +5,7 @@ import { Button, InputGroup, Cards, Icon } from "@components";
 import { useForm } from "react-hook-form";
 import cardImage from '../../../../assets/images/cardImg.png'
 import { Checkbox } from "@components/checkbox";
-import axios from "axios";
-import { BASE_API_URL } from "@const/index";
+import { axiosInstance } from "@utility/index"
 
 export interface IProps {
   handleStepSubmit: (data: any) => void;
@@ -15,8 +14,10 @@ export interface IProps {
 }
 
 interface SelectWorkProps {
-  selectedWork?: boolean;
-  setSelectedWork: (boolean) => void;
+  selectedWork?: [];
+  setSelectedWork: () => {};
+  updateName: (arg: string) => void,
+  workId: (arg: string) => void,
 }
 
 export interface IRecapProps {
@@ -26,34 +27,54 @@ export interface IRecapProps {
 }
 
 
-const SelectWorks: React.FC<SelectWorkProps> = ({
-  selectedWork,
-  setSelectedWork,
+const SelectWorks: React.FC<SelectWorkProps> = ({updateName, workId
 }: SelectWorkProps) => {
 
-  const [work, setWorks] = useState([]);
+  const [work, setWorks] = useState<any[]>([]);
+  const [selectedWork, setSelectedWork] = useState<any>()
 
 
-  const handleImageClick = () => {
-    setSelectedWork(true)
+  function handleImageClick (selectedWork)  {
+    workId(selectedWork.id)
+    setSelectedWork(selectedWork)
   }
   const handleBack = () => {
-    setSelectedWork(false)
+    setSelectedWork([])
   }
 
+
   const getAllWorks = () => {
-    return axios.get(`${BASE_API_URL}/works`).then(response => {
-      return setWorks(response.data);
-    }).catch((error) => {
-      return error
-    })
+    return axiosInstance.get('/works')
+      .then(response => {
+        return setWorks(response.data);
+      }).catch((error) => {
+        return error
+      })
   }
 
   useEffect(() => {
     getAllWorks()
-  })
+  }, [])
 
   const titleText = selectedWork ? "Choix de l’oeuvre" : "Sélection de l’oeuvre"
+
+  const previousSelectedWork = () => {
+    const currentIndex = work.findIndex(oneWork => oneWork.id === selectedWork.id);
+    if(currentIndex > 0) {
+      setSelectedWork(work[currentIndex - 1])
+    } else {
+      setSelectedWork(work[work.length - 1])
+    }
+  }
+
+  const nextSelectedWork = () => {
+    const currentIndex = work.findIndex(oneWork => oneWork.id === selectedWork.id);
+    if(currentIndex < work.length - 1) {
+      setSelectedWork(work[currentIndex + 1])
+    } else {
+      setSelectedWork(work[0])
+    }
+  }
   return (
     <div>
       <h3 className={foStyles.selectionTitle}>{titleText}</h3>
@@ -66,16 +87,19 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
                   <Icon classname={foStyles.arrow} type={"selectCheck"} size={"none"} />
                 </div>
                 <div className={foStyles.cardContainer}>
-                  <Icon classname={foStyles.arrowLeft} type={"chevronLeft"} size={"small"} />
+                  <Icon classname={foStyles.arrowLeft} type={"chevronLeft"} size={"small"} onClick={previousSelectedWork} />
 
-                  <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={true} />
-                  <Icon classname={foStyles.arrowRight} type={"chevronRight"} size={"small"} />
+                    <Cards title={selectedWork.title} img={cardImage.src} showLink={true} />
+                  <Icon classname={foStyles.arrowRight} type={"chevronRight"} size={"small"} onClick={nextSelectedWork} />
 
                 </div>
               </div>
 
               <div className={foStyles.ctas}>
-                <Button label={"Utiliser le titre comme titre d’exposition"} color="black" bg="light" type="submit" />
+                <Button label={"Utiliser le titre comme titre d’exposition"} color="black" bg="light" onClick={() => updateName(selectedWork.title)}/>
+                <div className={foStyles.link}>
+                  <Button label={"Accéder à l’oeuvre"} color="black" bg="light" to={`${window.location.origin}/work/${selectedWork.id}`} />
+                </div>
                 <div className={foStyles.modify} onClick={handleBack}>
                   <Button label={"Modifier"} color="white" bg="dark" type="submit" />
                 </div>
@@ -83,18 +107,15 @@ const SelectWorks: React.FC<SelectWorkProps> = ({
             </div>
             :
             <div className={foStyles.selectWorks}>
-              {work.map((work) => {
-
-                <Cards title={work} img={cardImage.src} handleClick={handleImageClick} showLink={false} />
-
-              })
+              {work.map((work) => (
+                <Cards
+                  key={work.id}
+                  title={work.title}
+                  img={work.mainFile ? work.mainFile.fileUrl : null}
+                  handleClick={() => {handleImageClick(work)}}
+                  showLink={false} />
+              ))
               }
-
-
-              {/* <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
-              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
-              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/>
-              <Cards title={"cc"} img={cardImage.src} handleClick={handleImageClick} showLink={false}/> */}
             </div>
         }
       </div>
@@ -108,49 +129,71 @@ export const FormOne: React.FC<IProps> = ({
 }: IProps) => {
 
   const [selectedWork, setSelectedWork] = useState(false)
+  const [parentName, setParentName] = useState<string>();
+  const [isVisitorsAutorise, setVisitorsAutorise] = useState(false)
+  const [isTitleShowedToVisitors, setShowTitleToVisitors] = useState(false)
+  const [selectedWorkId, setSelectedWorkId] = useState<string>();
   const { register, handleSubmit, watch } = useForm({
     mode: "onBlur",
     defaultValues,
   });
 
-  const watchPrimaryImage = watch("primary-image");
-  const watchSecondaryImages = watch([
-    "secondary-image-1",
-    "secondary-image-2",
-    "secondary-image-3",
-  ]);
+  const updateName = (name: string): void => {
+    setParentName(name)
+  }
 
   const onSubmit = (event: any) => {
     event.preventDefault();
 
     const requiredFieldIsAlreadyFilled = watch("primary-image")?.length > 0;
 
-    // ? ADDED TO GO STEP 2 FAST.
-
-    // NEED TO CHECK IF REQURIEF FIELD ARE REMPLIE
     if (requiredFieldIsAlreadyFilled) {
       handleStepSubmit(watch());
     } else {
       handleSubmit((data) => {
-        handleStepSubmit(data);
+        console.log(selectedWorkId);
+        
+        const formattedData = {
+          ...data,
+          isVisitorsAutorise,
+          isTitleShowedToVisitors,
+          selectedWorkId
+        }
+        handleStepSubmit(formattedData);
       })(event);
     }
   };
 
+  const handleCheckVisitor = () => {
+    return setVisitorsAutorise(!isVisitorsAutorise)
+  }
+
+  const handleShowTitleToVisitors = () => {
+    return setShowTitleToVisitors(!isTitleShowedToVisitors)
+  }
+
+  const selectWorkId = (name: string): void => {
+    console.log(name);
+    
+    return setSelectedWorkId(name)
+  }
+  
+
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
-      <SelectWorks selectedWork={selectedWork} setSelectedWork={setSelectedWork} />
+      <SelectWorks selectedWork={selectedWork} setSelectedWork={setSelectedWork} updateName={updateName} workId={selectWorkId}/>
 
 
       <div className={foStyles.ctaContainer}>
 
         <InputGroup
-          placeholder="Titre de l'exposition"
+          placeholder={parentName ? parentName : "Titre de l'exposition"}
           register={register}
           id="description"
           type="text"
           label="Titre de l’exposition*"
           guidance={null}
+          value={parentName}
         />
         <InputGroup
           placeholder="Description de mon exposition..."
@@ -161,12 +204,12 @@ export const FormOne: React.FC<IProps> = ({
           guidance={null}
         />
 
-        <Checkbox checkboxName={"autoriseVistisors"} checkboxLabel={"Autoriser les commentaires des visiteurs"} />
-        <Checkbox checkboxName={"showTitle"} checkboxLabel={"Afficher le titre de mon exposition aux visiteurs"} />
+        <Checkbox checkboxName={"autoriseVistisors"} checkboxLabel={"Autoriser les commentaires des visiteurs"} onChange={handleCheckVisitor} isChecked={isVisitorsAutorise} />
+        <Checkbox checkboxName={"showTitle"} checkboxLabel={"Afficher le titre de mon exposition aux visiteurs"} onChange={handleShowTitleToVisitors} isChecked={isTitleShowedToVisitors} />
 
 
-          <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
-        </div>
-      </form>
-    )
-  }
+        <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
+      </div>
+    </form>
+  )
+}

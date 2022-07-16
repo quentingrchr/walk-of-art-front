@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import styles from "./index.module.scss"
 import cn from "classnames"
 import {
@@ -110,8 +110,6 @@ export const FormTwo: React.FC<IProps> = ({
       })(e)
     }
   }
-
-  console.log({ errors })
 
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>

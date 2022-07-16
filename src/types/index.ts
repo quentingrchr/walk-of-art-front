@@ -46,7 +46,7 @@ export type TextTypography =
   | "guidance"
   | "notification"
 
-export type InputTypes = "password" | "email" | "text" | "textarea" | "select"
+export type InputTypes = "password" | "email" | "text" | "textarea" | "select" | "number" | "date"
 
 export type BadgeTypes = "completed" | "progress"
 
@@ -165,14 +165,4 @@ export interface IUser {
   roles: [UserRolesType]
 }
 
-export interface IWorkDataApi {
-  id: string
-  title: string
-  description: string
-  mainFile: string
-  createdAt: string
-  exhibition: [any]
-  workFiles: [any]
-}
-
-export type Smiley = 'smiley-smile' | 'smiley-lol' | 'smiley-love' | 'smiley-wow' | 'smiley-like'
+export type Smiley = "smiley-smile" | "smiley-lol" | "smiley-wow" | "smiley-love" | "smiley-like"

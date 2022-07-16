@@ -3,7 +3,7 @@ import style from "./index.module.scss"
 import cn from "classnames"
 import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, CardGallery, Unauthorized, ButtonArrow } from "@components"
 import { useScrollDirection } from "../../../src/hooks/useScrollDirection"
-import { makeCaseAndAccentInsensitiveString, windowIsNotReady, getDate } from "../../../src/utility"
+import { makeCaseAndAccentInsensitiveString, windowIsNotReady, getDate, axiosInstance } from "../../../src/utility"
 import { Work, scrollDirType } from "../../../src/types"
 import { isLoggedIn } from "axios-jwt"
 
@@ -20,7 +20,7 @@ interface Filters {
 const data: Work[] = [
     {
         "id": "1",
-        "title": "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
+        "title": "",
         "description": "Une description",
         "createdAt": "2022-06-27T23:09:10.693Z",
         "mainFile": {
@@ -191,12 +191,21 @@ const Works: React.FC = () => {
         return newList
     }
 
-    /* Init works */
     useEffect(() => {
-        setWorks(data)
+        getAllWorks()
     }, [])
+
+    const getAllWorks = () => {
+        return axiosInstance.get('/works')
+          .then(response => {
+            console.log(response);
+            
+            return setWorks(response.data);
+          }).catch((error) => {
+            return error
+          })
+      }
     
-    /* Scroll Event */
     useEffect(() => {
         scrollDirection === "down" ?
             setDirection(scrollDirType.down)
@@ -244,21 +253,22 @@ const Works: React.FC = () => {
                         <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
-                                    (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt}/>
+                                    (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} date_end={""} date_start={""} type={"work"}/>
                                 ))
                             }
                         </div>
                         <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
-                                    (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt}/>
+                                    (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} date_end={""} date_start={""} type={"work"}/>
                                 ))
                             }
                         </div>
                         <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
-                                    (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt}/>
+                                    
+                                    (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} date_end={""} date_start={""} type={"work"}/>
                                 ))
                             }
                         </div>

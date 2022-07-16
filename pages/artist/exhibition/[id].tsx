@@ -306,7 +306,7 @@ const ExhibitionPage: React.FC = () => {
                 label="Modifier l'exposition"
                 bg="light"
                 color="black"
-                onClick={() => console.log("modifier")}
+                onClick={() => {}}
               />
               <Button
                 label="Supprimer l'exposition"
