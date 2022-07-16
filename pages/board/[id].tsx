@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form"
 import s from "./index.module.scss"
 import cn from "classnames"
 import { Icons } from "@interfaces/index";
-import { IReaction } from "../../src/types";
+import { IReaction, Smiley } from "../../src/types";
 import { Logo, Text, ImagesPreview, Button, Icon, ImagePreviewModal } from "@components"
 import { useSetRecoilState } from "recoil"
 import { activeModalState, IMAGE_PREVIEW_MODAL_ID } from "@recoil/modal/atom"
@@ -72,6 +72,16 @@ const Artist: React.FC = () => {
         setCurrentIcon(reaction.name)
         if(!reacted) setReacted(true)
         // SEND REQUEST
+        postReaction(reaction.name)
+    }
+
+    const postReaction = (type: Smiley) =>
+    {
+        const DTO = {
+            "visitorId": "khubvjlbjb",
+            "reaction": type
+        }
+        console.log(DTO)
     }
 
     return (
