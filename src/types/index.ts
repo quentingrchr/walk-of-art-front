@@ -15,7 +15,11 @@ export type ColorsType =
   | "violet"
   | "pink"
   | "artist-black"
+<<<<<<< HEAD
   | "yellow"
+=======
+  | "aqua"
+>>>>>>> landing-bottom
 
 export type HTMLTextTag =
   | "p"
