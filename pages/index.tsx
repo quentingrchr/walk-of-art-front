@@ -9,7 +9,6 @@ import { isLoggedIn } from "axios-jwt"
 const LandingPage = () => {
   return <div>LANDING PAGE</div>
 }
-
 const Home: React.FC = () => {
   const router = useRouter()
   const user = useRecoilValue(userState)

@@ -111,8 +111,6 @@ export const FormTwo: React.FC<IProps> = ({
     }
   }
 
-  console.log({ errors })
-
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
       {errors["primary-image"] && (

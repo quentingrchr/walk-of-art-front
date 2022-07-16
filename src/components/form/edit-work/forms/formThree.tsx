@@ -24,7 +24,6 @@ export const FormThree: React.FC<IRecapProps> = ({
   formState,
   imagesUrls,
 }: IRecapProps) => {
-  console.log({ imagesUrls })
   return (
     <div className={cn(styles.formContainer, styles.recap)}>
       <ImagesPreview

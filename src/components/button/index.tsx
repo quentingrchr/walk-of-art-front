@@ -53,7 +53,7 @@ export const Button: React.FC<IProps> = ({
     ) : (
       <NextLink href={to}>
         <div
-          className={cn(styles.icon, styles.button, styles[color], styles[bg], {
+          className={cn(styles.button, styles[color], styles[bg], {
             [styles.fullWidth]: fullWidth,
           })}
         >

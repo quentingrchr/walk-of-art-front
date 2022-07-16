@@ -34,7 +34,6 @@ const Form = () => {
       const response = await axios.post(`${BASE_API_URL}/login_check`, params)
       const { status, data } = response
       if (status === 200) {
-        console.log(response.data.token)
         const user = jwt.decode(response.data.token) as IUser
         setUser(user)
         setAuthTokens({

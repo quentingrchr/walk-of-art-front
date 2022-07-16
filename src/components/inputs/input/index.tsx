@@ -80,6 +80,23 @@ const TextareaInput = ({ id, placeholder, register, required }: IProps) => {
   )
 }
 
+const DateInput = ({ id, placeholder, register, required, icon }: IProps) => {
+  return (
+    <div className={styles.container}>
+      <input
+        id={id}
+        placeholder={placeholder}
+        className={styles.input}
+        type="date"
+        required={required}
+        {...register(id, {
+          required: required ? true : false,
+        })}
+      />
+    </div>
+  )
+}
+
 export const Input: React.FC<IProps> = ({ type, ...otherProps }: IProps) => {
   switch (type) {
     case "text":
@@ -88,6 +105,8 @@ export const Input: React.FC<IProps> = ({ type, ...otherProps }: IProps) => {
       return <PasswordInput {...otherProps} />
     case "textarea":
       return <TextareaInput {...otherProps} />
+    case "date":
+      return <DateInput {...otherProps} />
     default:
       return <TextInput {...otherProps} />
   }

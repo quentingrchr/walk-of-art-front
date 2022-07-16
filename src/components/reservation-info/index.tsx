@@ -10,7 +10,7 @@ export type IProps = {
 	exhibition: ExhibitionForWork
 }
 
-export const ReservationInfo: React.FC<IProps> = ({exhibition}: IProps) => {
+export const ReservationInfo: React.FC<IProps> = ({ exhibition }: IProps) => {
 
 	return (
 		<NextLink href={`/artist/exhibition/${exhibition.id}`}>
@@ -24,9 +24,12 @@ export const ReservationInfo: React.FC<IProps> = ({exhibition}: IProps) => {
 						)}`}
 					</Text>
 					<span>
-						<Text tag="p" typo="paragraph-md">
-							{`Galerie n°${exhibition.board.gallery.id}`}
-						</Text>
+						{ exhibition.board.gallery.id ?
+							<Text tag="p" typo="paragraph-md">
+								Galerie n°${exhibition.board.gallery.id}
+							</Text>
+							: ''
+						}
 						<NextLink href={`https://maps.google.com/?q=${exhibition.board.gallery.latitude},${exhibition.board.gallery.longitude}`}>
 							<a onClick={e => e.stopPropagation()} className={style.mapsLink}>Voir sur google maps</a>
 						</NextLink>
