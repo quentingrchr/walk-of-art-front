@@ -1,17 +1,25 @@
 # Frontend
 
+## WALK OF ART
 
-This project was generated with [superplate](https://github.com/pankod/superplate).
+![alt text](./repo-files/screenshot.png)
 
-## Getting Started
+## 🏁 Getting Started
 
-This is a Next.js / Typescript / Sass project.
-## Available Scripts
+This is a Next.js / Typescript / Sass / Storybook project.
+
+## 📜 Available Scripts
 
 ### Running the development server.
 
 ```bash
     npm run dev
+```
+
+### Running the _storybook_ server.
+
+```bash
+    npm run storybook
 ```
 
 ### Building for production.
@@ -31,3 +39,12 @@ This is a Next.js / Typescript / Sass project.
 ```bash
     npm run template
 ```
+
+## 👥 Contributors
+
+- Quentin G.
+- Raphaël
+- Quentin T.
+- Alexanne
+- Guillaume
+- Reda

@@ -6,7 +6,7 @@ import { useRouter } from "next/router"
 
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import {
-  CONFIRM_WORK_DELETE_MODAL_ID,
+  CONFIRM_EXHIBITION_DELETE_MODAL_ID,
   activeModalState,
   modalDataState,
 } from "@recoil/modal/atom"
@@ -14,7 +14,9 @@ import { Button, Tooltip } from "@components"
 
 export type IProps = {}
 
-export const ConfirmWorkDeleteModal: React.FC<IProps> = (props: IProps) => {
+export const ConfirmExhibitionDeleteModal: React.FC<IProps> = (
+  props: IProps
+) => {
   const setActiveModal = useSetRecoilState(activeModalState)
   const modalData = useRecoilValue(modalDataState)
   const [modalError, setModalError] = useState<null | string>(null)
@@ -30,17 +32,15 @@ export const ConfirmWorkDeleteModal: React.FC<IProps> = (props: IProps) => {
   const handleDelete = async (id: string) => {
     // call api
     setModalError(null)
-
-    console.log(modalData)
     setModalLoading(true)
     try {
-      const response = await axiosInstance.delete(`/works/${id}`)
+      const response = await axiosInstance.delete(`/exhibition/${id}`)
       setModalLoading(false)
       if (response.status === 200) {
         setActiveModal((s) => {
           return null
         })
-        router.push("/artist/works")
+        router.push("/artist/exhibitions")
       }
     } catch (error) {
       setModalLoading(false)
@@ -52,12 +52,12 @@ export const ConfirmWorkDeleteModal: React.FC<IProps> = (props: IProps) => {
 
   return (
     <BaseModal
-      id={CONFIRM_WORK_DELETE_MODAL_ID}
-      title="Êtes vous sûrs de vouloir supprimer cette oeuvre ?"
+      id={CONFIRM_EXHIBITION_DELETE_MODAL_ID}
+      title="Êtes vous sûrs de vouloir supprimer cette exposition ?"
     >
       <section className={styles.modalContent}>
         {modalLoading && (
-          <Tooltip text="Suppression de votre oeuvre..." type="info" />
+          <Tooltip text="Suppression de votre exposition..." type="info" />
         )}
         {modalError && <Tooltip text={modalError} type="error" />}
         <div className={styles.modalActionsWrapper}>
