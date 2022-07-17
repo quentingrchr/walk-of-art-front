@@ -1,4 +1,4 @@
-import React, { useState, useEffect,  useRef } from "react"
+import React, { useState } from "react"
 import styles from "./index.module.scss"
 import cn from "classnames"
 import { useController } from "react-hook-form"

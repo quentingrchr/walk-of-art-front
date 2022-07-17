@@ -6,6 +6,7 @@ import { useScrollDirection } from "../../../src/hooks/useScrollDirection"
 import { makeCaseAndAccentInsensitiveString, windowIsNotReady, getDate, axiosInstance } from "../../../src/utility"
 import { Work, scrollDirType } from "../../../src/types"
 import { isLoggedIn } from "axios-jwt"
+import workImage from '../../../src/assets/images/landing-1.png'
 
 
 type sortDateType = "asc" | "dsc"
@@ -174,14 +175,14 @@ const Works: React.FC = () => {
                         <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
-                                    (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} img={work.mainFile ? work.mainFile.fileUrl : ''} type={"work"} date_end={""} date_start={""}/>
+                                    (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} img={work.mainFile ? work.mainFile.fileUrl : workImage.src} type={"work"} date_end={""} date_start={""}/>
                                 ))
                             }
                         </div>
                         <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
-                                    (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} img={work.mainFile.fileUrl} type={"work"} date_end={""} date_start={""}/>
+                                    (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} img={work.mainFile ? work.mainFile.fileUrl : workImage.src} type={"work"} date_end={""} date_start={""}/>
                                 ))
                             }
                         </div>
@@ -189,7 +190,7 @@ const Works: React.FC = () => {
                             {
                                 filterWorksList(works, filters).map((work, index) => (
                                     
-                                    (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} img={work.mainFile.fileUrl} type={"work"} date_end={""} date_start={""}/>
+                                    (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} img={work.mainFile ? work.mainFile.fileUrl : workImage.src} type={"work"} date_end={""} date_start={""}/>
                                 ))
                             }
                         </div>

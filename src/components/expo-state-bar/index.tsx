@@ -58,7 +58,7 @@ export const ExpoStateBar: React.FC<IProps> = ({states, onClick}: IProps) => {
                     })
                 }
             </ul>
-            <ButtonArrow to={'/exhibitions'} label={'Voir tout'}/>
+            <ButtonArrow to={'/artist/exhibitions'} label={'Voir tout'}/>
         </div>
     )
 }

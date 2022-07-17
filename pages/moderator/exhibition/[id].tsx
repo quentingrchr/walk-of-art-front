@@ -16,7 +16,9 @@ import {
 	Tooltip
 } from "@components"
 import NextLink from "next/link"
-import cardImg from "../../../src/assets/images/cardImg.png"
+import primaryImage from "../../../src/assets/images/landing-1.png"
+import secondaryImage from "../../../src/assets/images/landing-2.png"
+import thirdImage from "../../../src/assets/images/landing-3.png"
 import { getDateWithoutHours, windowIsNotReady, axiosInstance } from "../../../src/utility"
 import { Exhibition, ColorsType } from "../../../src/types"
 import { SelectOption } from "../../../src/interfaces"
@@ -261,8 +263,8 @@ const ExhibitionPage: React.FC = () => {
 							Cette exposition sera plubliée dans {time.time}
 						</p>
             <ImagesPreview
-              primaryImage={cardImg.src}
-              secondaryImages={[cardImg.src, cardImg.src]}
+              primaryImage={primaryImage.src}
+              secondaryImages={[secondaryImage.src, thirdImage.src]}
             />
             <Text tag="h1" typo="heading-lg">
             	{exhibition.title}

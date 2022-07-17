@@ -2,7 +2,7 @@ import React from "react"
 import styles from "./index.module.scss"
 import NextLink from "next/link"
 import { Button, Text, Icon } from ".."
-import BankCard from "../../assets/images/BankCard.png"
+import exhibitionImage from "../../assets/images/landingGallery2.png"
 import { getDateWithoutHours, checkFilterExhibition } from "../../utility"
 import cn from 'classnames'
 import { ImageCard } from "@components/image-card"
@@ -27,9 +27,9 @@ export const CardGallery: React.FC<IProps> = ({id ,img, title, status, createdAt
                 <a>
                     <div className={styles.cardGallery__pictureContainer}>
                         { type === 'work' ? <div  className={styles.cardGallery__picture}>
-                            <img className={styles.cardGallery__picture} src={img ? img : BankCard.src} alt="gallery" />
+                            <img className={styles.cardGallery__picture} src={img ? img : exhibitionImage} alt="gallery" />
                         </div> :
-                        <ImageCard status={checkFilterExhibition(date_start, date_end, new Date)} size="small" src={img ? img : BankCard.src} alt={BankCard} orientation='portrait'/>
+                        <ImageCard status={checkFilterExhibition(date_start, date_end, new Date)} size="small" src={img ? img : exhibitionImage} alt={'exhibitionImage'} orientation='portrait'/>
                         }
                         <div className={styles.cardGallery__link}>
                             <div className={styles.cardGallery__overlay}></div>
