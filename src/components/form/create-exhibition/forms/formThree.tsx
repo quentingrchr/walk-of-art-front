@@ -32,6 +32,11 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
 
   const [workOrientation, setWorkOrientation] = useState<string>('portrait')
   const [availableGalleries, setAvailableGalleries] = useState<IGalleryMap[]>([])
+  const [galleryId, setGalleryId] = useState<string>('');
+  
+  const setGalleryIdFromMap = (id: string): void => {
+    setGalleryId(id)
+  }
 
   const methods = useForm();
 
@@ -73,11 +78,6 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
     getAllAvailableGalleriesForSpecificDate()
   }, [])
 
-  const [galleryId, setGalleryId] = useState<string>('');
-  const setGalleryIdFromMap = (name: string): void => {
-    setGalleryId(name)
-  }
-
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
       <h1 className={styles.boardOrientation}>Orientation du panneau</h1>
@@ -100,7 +100,7 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
 
       <h2>Date d'exposition</h2>
 
-      <form className={styles.choiceExpositionDates}>
+      <div className={styles.choiceExpositionDates}>
 
           <InputGroup
             register={register}
@@ -133,7 +133,7 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
                 : null
             }
           />
-      </form>
+      </div>
 
       <h1 className={styles.panneauOrientation}>Choix du panneau d'exposition</h1>
       <FormProvider {...methods}>

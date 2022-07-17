@@ -31,7 +31,6 @@ export const SelectWork: React.FC<SelectWorkProps> = ({
       setSelectedWork([])
     }
   
-  
     const getAllWorks = () => {
       return axiosInstance.get('/works')
         .then(response => {
@@ -87,7 +86,7 @@ export const SelectWork: React.FC<SelectWorkProps> = ({
                 <div className={formOneStyle.ctas}>
                   <Button label={"Utiliser le titre comme titre d’exposition"} color="black" bg="light" onClick={() => updateName(selectedWork.title)}/>
                   <div className={formOneStyle.link}>
-                    <Button label={"Accéder à l’oeuvre"} color="black" bg="light" to={`${window.location.origin}/work/${selectedWork.id}`} />
+                    <Button label={"Accéder à l’oeuvre"} color="black" bg="light" to={`${window.location.origin}/artist/work/${selectedWork.id}`} />
                   </div>
                   <div className={formOneStyle.modify} onClick={handleBack}>
                     <Button label={"Modifier"} color="white" bg="dark" type="submit" />

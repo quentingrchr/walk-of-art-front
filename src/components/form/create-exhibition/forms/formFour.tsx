@@ -33,7 +33,7 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
     event.preventDefault();
 
     handleSubmit(() => {
-      getAllAvailableGalleries(formState);
+      createExhibition(formState);
     })(event);
   };
 
@@ -45,7 +45,7 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
     setWorkOrientationFromForm()
   })
 
-  const getAllAvailableGalleries = (formState) => {
+  const createExhibition = (formState) => {
     
     const expectedBodyForExhibition = {
       "title": formState.title,

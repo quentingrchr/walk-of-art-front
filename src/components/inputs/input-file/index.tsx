@@ -89,6 +89,7 @@ export const InputFile: React.FC<IProps> = ({
         secondaryInputs.map(({ name, required }, index) => {
           return (
             <label
+            key={index}
               className={cn(s.input, s.secondary, s[`secondary${index + 1}`], {
                 [s.hasPreview]: secondaryImagesPreview[index] !== null,
               })}

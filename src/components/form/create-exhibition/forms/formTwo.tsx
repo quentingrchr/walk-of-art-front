@@ -30,7 +30,7 @@ export const FormTwo: React.FC<IProps> = ({
   } = useForm({ mode: "onBlur", defaultValues });
 
   const [amountOfAdditionalLinks, setAmountOfAdditionalLinks] = useState<any>([])
-  const handleAddLink = (e: any) => {
+  const handleAddLink = () => {
     setAmountOfAdditionalLinks([...amountOfAdditionalLinks, `id-${amountOfAdditionalLinks.length + 1}`])
   }
   const handleRemoveLink = (idFieldValue: string, e: any) => {

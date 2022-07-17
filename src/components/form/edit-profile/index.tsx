@@ -1,5 +1,5 @@
 import React from "react";
-import st from "./index.module.scss";
+import styles from "./index.module.scss";
 import { useForm } from "react-hook-form";
 import { InputGroup } from "@components";
 
@@ -11,11 +11,11 @@ export const EditProfile: React.FC<IProps> = (props: IProps) => {
 
 
   return (
-    <div className={st.container}>
-      <h1 className={st.title}>Bonjour prénom</h1>
-      <img className={st.avatar} src="https://via.placeholder.com/150" />
-      <div className={st.form}>
-        <div className={st.formCol}>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Bonjour l'artiste</h1>
+      <img className={styles.avatar} src="https://via.placeholder.com/150" />
+      <div className={styles.form}>
+        <div className={styles.formCol}>
           <InputGroup
             id="firstName"
             guidance={null}
@@ -49,7 +49,7 @@ export const EditProfile: React.FC<IProps> = (props: IProps) => {
             register={register}
           />
         </div>
-        <div className={st.formCol}>
+        <div className={styles.formCol}>
           <InputGroup
             id="address"
             guidance={null}
