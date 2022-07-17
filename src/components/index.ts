@@ -49,3 +49,4 @@ export { Search } from "./search"
 export { Modal } from "./modal"
 export { ReactionCounter } from './reaction-counter'
 export { Landing } from "./landing"
+export { EmptyContent } from "./empty-content"

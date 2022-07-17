@@ -17,7 +17,7 @@ import {
 } from "@components"
 import NextLink from "next/link"
 import cardImg from "../../../src/assets/images/cardImg.png"
-import { getDateWithoutHours, windowIsNotReady } from "../../../src/utility"
+import { getDateWithoutHours, windowIsNotReady, axiosInstance } from "../../../src/utility"
 import { Exhibition, ColorsType } from "../../../src/types"
 import { SelectOption } from "../../../src/interfaces"
 import { BASE_API_URL } from "../../../src/const"
@@ -45,51 +45,6 @@ interface ITime {
 	time: string
 }
 
-
-const data: Exhibition = {
-	id: "1",
-	title: "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
-	description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Augue vestibulum diam elit pretium amet risus sed blandit. Vulputate et cras purus lobortis. Adipiscing at ut volutpat proin tempus fermentum faucibus. Senectus massa tortor eget sit non eleifend orci nulla. Id est ut id augue sapien risus ornare eget. Ipsum quis arcu, viverra gravida at sed. Pulvinar ut lobortis mauris vel purus pulvinar lacus volutpat quam. Nullam in purus viverra lorem mauris. Blandit faucibus nulla lobortis enim.",
-	dateStart: "2022-07-27T23:09:10.693Z",
-	dateEnd: "2022-07-30T23:09:10.693Z", 
-	reaction: false,
-	reactions: [],
-	comment: false,
-	createdAt: "2022-06-27T23:09:10.693Z",
-	status: [{}],
-	work: {
-		id: "2343",
-		title: "Titre de l'oeuvre",
-		mainFile: {
-			id: "",
-			fileUrl: ""
-		}
-	},
-	board: {
-		id: "48",
-		gallery: {
-			id: "5",
-			name: "Nom de gallery",
-			latitude: 48.87391471364133, 
-			longitude: 2.295116384360164
-		},
-		orientation: {}
-	},
-	snapshot: [
-		{
-			name: "Facebook",
-			url: "https://facebook.com/mon-profil"
-		},
-		{
-			name: "Site personnel",
-			url: "https://mon-site-personnel.com"
-		},
-		{
-			name: "Portfolio",
-			url: "https://mon-portoflio.com/"
-		},
-	],
-}
 
 const ExhibitionPage: React.FC = () => {
   const router = useRouter()
@@ -271,8 +226,20 @@ const ExhibitionPage: React.FC = () => {
 		}
 	}
 
+	const getExhibitionById = () => {
+		return axiosInstance.get(`/exhibitions/${id}`)
+		  .then(response => {
+			if(response.status === 200) {
+			  console.log(response)
+			  setExhibition(response.data)
+			}
+		  }).catch((error) => {
+			return error
+		  })
+	  }
+
 	useEffect(() => {
-		setExhibition(data)
+		getExhibitionById()
 	}, [])
 	
 	useEffect(() => {
@@ -320,7 +287,7 @@ const ExhibitionPage: React.FC = () => {
 							<Text tag="p" typo="paragraph-md-bold">
 								L'exposition aura lieu :
 							</Text>
-							<NextLink href={`https://maps.google.com/?q=${exhibition.board.gallery.latitude},${exhibition.board.gallery.longitude}`}>
+							<NextLink href={`https://maps.google.com/?q=${exhibition.board?.gallery.latitude},${exhibition.board?.gallery.longitude}`}>
 								<a onClick={e => e.stopPropagation()} className={style.mapsLink}><Text tag="p" typo="paragraph-md">Voir sur google maps</Text></a>
 							</NextLink>
 						</span>

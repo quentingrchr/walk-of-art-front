@@ -51,6 +51,18 @@ const WorkPage: React.FC = () => {
     })
   }
 
+  const getWorkById = () => {
+    return axiosInstance.get(`/works/${id}`)
+      .then(response => {
+        if(response.status === 200) {
+          console.log(response)
+          setWork(response.data)
+        }
+      }).catch((error) => {
+        return error
+      })
+  }
+
   useEffect(() => {
     getWorkById()
   }, [])
@@ -58,17 +70,6 @@ const WorkPage: React.FC = () => {
   
   if (windowIsNotReady()) {
     return null
-  }
-
-  const getWorkById = () => {
-    return axiosInstance.get(`/works/${id}`)
-      .then(response => {
-        console.log('ddd', response);
-        
-        return setWork(response.data);
-      }).catch((error) => {
-        return error
-      })
   }
 
   return (
@@ -120,12 +121,12 @@ const WorkPage: React.FC = () => {
               </ul>
             </div>
 
-            <button
+            <a
               className={style.exhibButton}
-              onClick={() => {}}
+              href="/artist/create-exhibition"
             >
-              Créer une exposition avec cette oeuvre
-            </button>
+              Créer une exposition
+            </a>
 
             <div className={style.actionsWrapper}>
               <Button
