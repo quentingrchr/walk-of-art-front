@@ -61,13 +61,19 @@ const getStepComponent = (
           <Button to="/artist/works" label="Voir mes oeuvres" />
         </div>
       )
+    case 2:
+      return (
+        <div className={s.formContainer}>
+          <h1 className={s.title}>Formulaire terminé</h1>
+          <Button to="/artist/works" label="Voir mes oeuvres" />
+        </div>
+      )
     default:
       return "Unknown step"
   }
 }
 
 export const FormStepper: React.FC<IProps> = ({ onSubmit, work }) => {
-  console.log({ files: work.workFiles })
   const [compiledForm, setCompiledForm] = React.useState<any>({
     title: work.title,
     description: work.description,
@@ -75,7 +81,7 @@ export const FormStepper: React.FC<IProps> = ({ onSubmit, work }) => {
       return `${BASE_BACK_URL}/${workFile.fileUrl}`
     }),
   })
-  console.log(compiledForm.imagesUrls)
+  
   const [steps, setSteps] = React.useState(STEPS)
 
   const [activeStep, setActiveStep] = React.useState(0)
@@ -103,7 +109,6 @@ export const FormStepper: React.FC<IProps> = ({ onSubmit, work }) => {
     switch (activeStep) {
       case 0:
         setCompiledForm((prev) => {
-          console.log(prev, "step 1")
           return {
             ...compiledForm,
             title: data.title,
@@ -116,7 +121,6 @@ export const FormStepper: React.FC<IProps> = ({ onSubmit, work }) => {
         break
       case 1:
         setCompiledForm((prev) => {
-          console.log(prev, "step 2")
           return {
             ...compiledForm,
             imagesUrls: work.workFiles.map((workFile) => {

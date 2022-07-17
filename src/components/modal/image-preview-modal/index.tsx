@@ -32,7 +32,7 @@ export const ImagePreviewModal: React.FC<IProps> = ({ title, images }: IProps) =
                         spaceBetween={50}
                         slidesPerView={'auto'}
                         onSlideChange={(index) => setSlideIndex(index.activeIndex)}
-                        onSwiper={(swiper) => console.log(swiper)}
+                        onSwiper={(swiper) => { return swipper}}
                     >
                         {
                             images.map((src, index) =>

@@ -20,6 +20,7 @@ export interface IRecapProps {
 
 export const FormTwo: React.FC<IProps> = ({
   handleStepSubmit,
+  handleBack,
   defaultValues = {},
 }: IProps) => {
   const {
@@ -30,20 +31,16 @@ export const FormTwo: React.FC<IProps> = ({
 
   const [amountOfAdditionalLinks, setAmountOfAdditionalLinks] = useState<any>([])
   const handleAddLink = (e: any) => {
-    console.log(amountOfAdditionalLinks);
     setAmountOfAdditionalLinks([...amountOfAdditionalLinks, `id-${amountOfAdditionalLinks.length + 1}`])
   }
   const handleRemoveLink = (idFieldValue: string, e: any) => {
-    console.log('this is ==== id', idFieldValue);
     setAmountOfAdditionalLinks(amountOfAdditionalLinks.filter(value => value !== idFieldValue))
   }
 
   const onSubmit = (e: any) => {
-    console.log("submit");
     e.preventDefault();
 
     handleSubmit((d) => {
-      console.log(d);
       handleStepSubmit(d);
     })(e);
   };
@@ -73,25 +70,26 @@ export const FormTwo: React.FC<IProps> = ({
           }
         />
         <InputGroup
-          placeholder="https://twitter.com/mon-profil"
-          register={register}
-          id="description"
-          type="text"
-          label="URL de mon profil Twitter"
-          guidance={null}
-        />
-        <InputGroup
           placeholder="https://mon-site-personnel.com/"
           register={register}
-          id="description"
+          required={true}
+          id="personnalWebsite"
           type="text"
           label="URL de mon site personnel"
           guidance={null}
         />
         <InputGroup
+          placeholder="https://twitter.com/mon-profil"
+          register={register}
+          id="twitter"
+          type="text"
+          label="URL de mon profil Twitter"
+          guidance={null}
+        />
+        <InputGroup
           placeholder="https://mon-portoflio.com/"
           register={register}
-          id="description"
+          id="portfolio"
           type="text"
           label="URL de mon portfolio"
           guidance={null}
@@ -99,7 +97,7 @@ export const FormTwo: React.FC<IProps> = ({
         <InputGroup
           placeholder="https://ma-boutique-en-ligne.com/"
           register={register}
-          id="description"
+          id="shop"
           type="text"
           label="URL de ma boutique en ligne"
           guidance={null}
@@ -128,7 +126,7 @@ export const FormTwo: React.FC<IProps> = ({
 
 
         <div className={styles.ctaContainer}>
-          <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
+          <Button label={"Étape précédente"} color="black" bg="light" type="submit" onClick={handleBack} />
           <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
         </div>
       </form>

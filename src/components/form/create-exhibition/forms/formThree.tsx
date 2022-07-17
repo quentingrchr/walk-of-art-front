@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./formThree.module.scss";
-import { Button, InputGroup, ExpositionBoard } from "@components";
+import { Button, InputGroup, ExpositionBoard, Map } from "@components";
 import cardImg from "../../../../assets/images/cardImg.png"
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
+import { axiosInstance } from "@utility/index"
+
 
 export interface IProps {
   handleStepSubmit: (data: any) => void;
@@ -15,12 +17,23 @@ export interface IRecapProps {
   handleStepSubmit: (data: any) => void;
   handleBack: () => void;
   formState: any;
-} 
+}
+
+interface IGalleryMap {
+  id: string
+  latitude: number
+  longitude: number
+  price: number
+  name: string
+}
 
 
-export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues = {} } ) => {
+export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defaultValues = {} }) => {
 
   const [orientation, setOrientation] = useState<string>('landscape')
+  const [availableGalleries, setAvailableGalleries] = useState<IGalleryMap[]>([])
+
+  const methods = useForm();
 
   const {
     register,
@@ -32,9 +45,38 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
     event.preventDefault();
 
     handleSubmit((data) => {
-      handleStepSubmit(data);
+      const formattedData = {
+        ...data,
+        parentName,
+        orientation
+      }
+      
+      handleStepSubmit(formattedData);
     })(event);
   };
+
+  const getAllAvailableGalleries = () => {
+    const body = {
+      "dateStart": "2022-07-12",
+      "dateEnd": "2022-07-14",
+      "orientation": "portrait"
+    }
+    return axiosInstance.post('/galleries/available', body)
+      .then(response => {
+        return setAvailableGalleries(response.data);
+      }).catch((error) => {
+        return error
+      })
+  }
+
+  useEffect(() => {
+    getAllAvailableGalleries()
+  }, [])
+
+  const [parentName, setParentName] = useState<string>('Mr John Obi');
+  const updateName = (name: string): void => {
+    setParentName(name)
+  }
 
   return (
     <form className={styles.formContainer} onSubmit={onSubmit}>
@@ -42,7 +84,7 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
 
       <div className={styles.boardOrientationChoice}>
         <div onClick={() => setOrientation('landscape')}>
-          <input type="radio" id="cc" name="cc" value={'cc'} checked={orientation === 'landscape'}/>
+          <input type="radio" id="cc" name="cc" value={'cc'} checked={orientation === 'landscape'} />
           <label htmlFor="cc">Paysage</label>
         </div>
 
@@ -57,47 +99,35 @@ export const FormThree: React.FC<IProps> = (   { handleStepSubmit, defaultValues
       </div>
 
       <h1 className={styles.panneauOrientation}>Choix du panneau d'exposition</h1>
-
-      <p>Maps</p>
-
-      <InputGroup
-        placeholder="Selectionner la ville"
-        id="description"
-        type="text"
-        label="Ville d'exposition*"
-        guidance={null}
-        register={register}
-      />
-
-      <InputGroup
-        placeholder="Selectionner la galerie"
-        id="description"
-        type="text"
-        label="Galerie d'exposition*"
-        guidance={null}
-        register={register}
-      />
-
+      <FormProvider {...methods}>
+        <Map name={"mapOfGalleries"} galleries={availableGalleries} updateName={updateName} />
+      </FormProvider>
       <h2>Date d'exposition</h2>
 
       <form action="" className={styles.choiceExpositionDates}>
         <div className={styles.containerExpositionDate}><label htmlFor="startExpositionDate">Début</label>
 
-          <input type="date" id="startExpositionDate" name="startExpositionDate"
-            value="2018-07-22"
-            min="2018-01-01" max="2018-12-31"></input></div>
+          <InputGroup
+            register={register}
+            id="startExpositionDate"
+            type="date"
+            label="Début"
+            guidance={null}
+            value={'2022-09-08'}
+          />
 
-        <div className={styles.containerExpositionDate}>
-          <label htmlFor="endExpositionDate">Fin</label>
-
-          <input type="date" id="endExpositionDate" name="endExpositionDate"
-            value="2018-07-22"
-            min="2018-01-01" max="2018-12-31"></input>
+          <InputGroup
+            register={register}
+            id="endExpositionDate"
+            type="date"
+            label="Fin"
+            guidance={null}
+          />
         </div>
       </form>
 
       <div className={styles.containerOfButtons}>
-        <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
+        <Button label={"Étape précédente"} color="black" bg="light" type="submit" onClick={handleBack}/>
         <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
       </div>
     </form>

@@ -57,6 +57,26 @@
     width: 100%;
 }
 
+.link {
+  margin-inline: auto;
+  margin-top: 32px;
+   width: 192px;
+  span {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.02em;
+  }
+  div {
+    padding: 16px 0;
+  }
+}
+
 .modify {
     width: 192px;
     margin-top: 16px;

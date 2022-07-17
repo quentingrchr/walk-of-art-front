@@ -92,3 +92,8 @@
     line-height: 1.5em;
   }
 }
+
+.display {
+  display: flex;
+  flex-direction: column;
+}

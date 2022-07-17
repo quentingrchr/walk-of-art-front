@@ -8,7 +8,6 @@ import { isLoggedIn } from "axios-jwt"
 import { Landing, Logo, Text  } from "@components"
 import style from '../src/components/landing/index.module.scss'
 
-
 const Home: React.FC = () => {
   const router = useRouter()
   const user = useRecoilValue(userState)
