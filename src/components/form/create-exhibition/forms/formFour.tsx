@@ -3,7 +3,7 @@ import styles from "./formFour.module.scss";
 import { Button, ExpositionBoard, Tooltip } from "@components";
 import cardImg from "../../../../assets/images/cardImg.png"
 import { useForm } from "react-hook-form";
-import { axiosInstance } from "@utility/index";
+import { axiosInstance, getDateWithoutHours } from "@utility/index";
 
 const toolTipText = "Veuillez vérifier miniteusement les informations concernant votre exposition car aucune modification ne sera possible par la suite."
 
@@ -48,7 +48,7 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
   const createExhibition = (formState) => {
     
     const expectedBodyForExhibition = {
-      "title": formState.title,
+      "title": formState.expositionTitle,
       "description": formState.description,
       "dateStart": formState.startExpositionDate,
       "dateEnd": formState.endExpositionDate,
@@ -64,7 +64,7 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
           "url": formState.personnalWebsite
         }
       ],
-      "orientation": formState.orientation,
+      "orientation": formState.workOrientation,
       "gallery": formState.galleryId
     }
 
@@ -92,15 +92,15 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
           <ul className={styles.list}>
             <li>
               <strong className={styles.bold}>
-                Votre profil facebook :
+                Votre profil facebook : 
               </strong>
-              {formState.facebook}
+              {formState.facebookUrl}
             </li>
             <li>
               <strong className={styles.bold}>
-                Votre site personnel :
+                Votre site personnel : 
               </strong>
-              {formState.personnalWebsite}
+              {formState.personnalWebsiteUrl}
             </li>
           </ul>
 
@@ -113,8 +113,8 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
 
           <p className={styles.marginTop16}>
             Votre exposition aura lieu du
-            <strong className={styles.bold}> {formState.startExpositionDate}</strong>
-            au <strong className={styles.bold}> {formState.endExpositionDate}</strong>
+            <strong className={styles.bold}> {getDateWithoutHours(formState.startExpositionDate)} </strong>
+            au <strong className={styles.bold}> {getDateWithoutHours(formState.endExpositionDate)}</strong>
           </p>
 
           <div className={styles.ctaContainer}>

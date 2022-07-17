@@ -68,7 +68,7 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
     }
     return axiosInstance.post('/galleries/available', specificValuesToFindAvailableGalleries)
       .then(response => {
-        const correctDatas = setSpecificDateWhenAnAvailableGallerieHasEmptyArray(response)
+        const correctDatas = setSpecificDateWhenDataIsAnEmptyArray(response)
     
         return setAvailableGalleries(correctDatas);
       }).catch((error) => {
@@ -76,10 +76,11 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
       })
   }
 
-  const setSpecificDateWhenAnAvailableGallerieHasEmptyArray = (response) => {
+  const setSpecificDateWhenDataIsAnEmptyArray = (response) => {
 
     if (response.data.length < 1) {
       const data = [{
+        id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
         longitude: 2.3522219,
         latitude: 48.856614,
         zoom: 3.5

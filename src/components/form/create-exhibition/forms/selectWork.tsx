@@ -10,12 +10,12 @@ import formOneStyle from "./formOne.module.scss"
 interface SelectWorkProps {
     selectedWork?: [];
     setSelectedWork: () => {};
-    updateName: (arg: string) => void,
+    updateTitle: (arg: string) => void,
     selectedWorkId: (arg: string) => void,
   }
 
 export const SelectWork: React.FC<SelectWorkProps> = ({
-    updateName, selectedWorkId
+    updateTitle, selectedWorkId
   }: SelectWorkProps) => {
   
     const [works, setWorks] = useState<any[]>([]);
@@ -84,7 +84,7 @@ export const SelectWork: React.FC<SelectWorkProps> = ({
                 </div>
   
                 <div className={formOneStyle.ctas}>
-                  <Button label={"Utiliser le titre comme titre d’exposition"} color="black" bg="light" onClick={() => updateName(selectedWork.title)}/>
+                  <Button label={"Utiliser le titre comme titre d’exposition"} color="black" bg="light" onClick={() => updateTitle(selectedWork.title)}/>
                   <div className={formOneStyle.link}>
                     <Button label={"Accéder à l’oeuvre"} color="black" bg="light" to={`${window.location.origin}/artist/work/${selectedWork.id}`} />
                   </div>

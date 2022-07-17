@@ -24,7 +24,7 @@ export const FormOne: React.FC<IProps> = ({
 }: IProps) => {
 
   const [selectedWorkInFormOne, setSelectedWorkInFormOne] = useState<[]>()
-  const [parentName, setParentName] = useState<string>();
+  const [expositionTitle, setExpositionTitle] = useState<string>();
   const [isVisitorsCommentsAuthorized, setVisitorsCommentsAuthorized] = useState(false)
   const [isTitleShowedToVisitors, setShowTitleToVisitors] = useState(false)
   const [selectedWorkId, setSelectedWorkId] = useState<string>();
@@ -33,8 +33,9 @@ export const FormOne: React.FC<IProps> = ({
     defaultValues,
   });
 
-  const updateName = (name: string): void => {
-    setParentName(name)
+  const updateExpositionTitle = (name: string): void => {
+    
+    setExpositionTitle(name)
   }
 
   const onSubmit = (event: any) => {
@@ -46,11 +47,13 @@ export const FormOne: React.FC<IProps> = ({
       handleStepSubmit(watch());
     } else {
       handleSubmit((data) => {
+        
         const formattedData = {
           ...data,
           isVisitorsCommentsAuthorized,
           isTitleShowedToVisitors,
-          selectedWorkId
+          selectedWorkId,
+          expositionTitle
         }
 
         handleStepSubmit(formattedData);
@@ -76,7 +79,7 @@ export const FormOne: React.FC<IProps> = ({
       <SelectWork
         selectedWork={selectedWorkInFormOne}
         setSelectedWork={() => setSelectedWorkInFormOne}
-        updateName={updateName}
+        updateTitle={updateExpositionTitle}
         selectedWorkId={selectWorkId}
       />
 
@@ -84,13 +87,13 @@ export const FormOne: React.FC<IProps> = ({
       <div className={formOneStyle.ctaContainer}>
 
         <InputGroup
-          placeholder={parentName ? parentName : "Titre de l'exposition"}
+          placeholder={expositionTitle ? expositionTitle : "Titre de l'exposition"}
           register={register}
-          id="description"
+          id="title"
           type="text"
           label="Titre de l’exposition*"
           guidance={null}
-          value={parentName}
+          value={expositionTitle}
         />
         <InputGroup
           placeholder="Description de mon exposition..."
