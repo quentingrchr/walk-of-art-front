@@ -29,18 +29,7 @@ const WorkPage: React.FC = () => {
   const setActiveModal = useSetRecoilState(activeModalState)
   const setModalData = useSetRecoilState(modalDataState)
 
-  const [work, setWork] = useState<Work>({
-    id: "",
-    title: "",
-    description: "",
-    createdAt: "",
-    mainFile: {
-      id: "",
-      fileUrl: "",
-    },
-    workFiles: [],
-    exhibitions: [],
-  })
+  const [work, setWork] = useState<Work | any>()
 
   const openModal = () => {
     setActiveModal(CONFIRM_WORK_DELETE_MODAL_ID)
@@ -50,19 +39,7 @@ const WorkPage: React.FC = () => {
       },
     })
   }
-
-  const getWorkById = () => {
-    return axiosInstance.get(`/works/${id}`)
-      .then(response => {
-        if(response.status === 200) {
-          console.log(response)
-          setWork(response.data)
-        }
-      }).catch((error) => {
-        return error
-      })
-  }
-
+  
   useEffect(() => {
     getWorkById()
   }, [])
@@ -70,6 +47,17 @@ const WorkPage: React.FC = () => {
   
   if (windowIsNotReady()) {
     return null
+  }
+
+  const getWorkById = () => {
+    return axiosInstance.get(`/works/${id}`)
+      .then(response => {
+        if(response.status === 200) {
+          setWork(response.data)
+        }
+      }).catch((error) => {
+        return error
+      })
   }
 
   return (
@@ -85,7 +73,7 @@ const WorkPage: React.FC = () => {
           </span>
           <section className={style.mainSection}>
             <ImagesPreview
-              primaryImage={cardImg.src}
+              primaryImage={work.mainFile ? work.mainFile.fileUrl : ''}
               secondaryImages={[cardImg.src, cardImg.src]}
             />
             <Text tag="h1" typo="heading-lg">

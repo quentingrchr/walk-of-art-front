@@ -7,7 +7,7 @@ export type IProps = {
     link?: string,
     img?: string,
     title: string,
-    handleClick?: void,
+    handleClick?: () => {},
     showLink?: boolean
 }
 

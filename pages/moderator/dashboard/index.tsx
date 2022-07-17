@@ -39,16 +39,13 @@ const Dashboard: React.FC = () => {
     return axiosInstance.get('/moderation/exhibitions')
         .then(response => {
           if(response.status === 200) {
-            console.log(response)
             setExhibitions(response.data)
           }
         }).catch((error) => {
-            console.log("error", error)
             return error
         })
   }
 
-  /* Init Exhibitions */
   useEffect(() => {
     getAllExhibitions()
   }, [])

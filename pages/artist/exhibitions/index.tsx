@@ -146,21 +146,17 @@ const Exhibitions: React.FC = () => {
     return axiosInstance.get('/exhibitions')
         .then(response => {
           if(response.status === 200) {
-            console.log(response)
             setExhibitions(response.data)
           }
         }).catch((error) => {
-            console.log("error", error)
             return error
         })
   }
 
-  /* Init Exhibitions */
   useEffect(() => {
     getAllExhibitions()
   }, [filters.type])
 
-  /* Scroll Event */
   useEffect(() => {
     scrollDirection === "down" ?
       setDirection(scrollDirType.down)

@@ -5,7 +5,7 @@ import axios from "axios"
 import { BASE_API_URL } from "@const/index"
 
 import { Text, LoginForm, SplitScreen, Link } from "@components"
-import { useRecoilValue, useSetRecoilState } from "recoil"
+import { useSetRecoilState } from "recoil"
 import { userState } from "@recoil/user/atom"
 import { signInInputs, signInInputsSchema } from "../../data/form"
 import { setCookie } from "@utility/index"
@@ -13,9 +13,6 @@ import { IUser } from "../../src/types"
 import {
   isLoggedIn,
   setAuthTokens,
-  clearAuthTokens,
-  getAccessToken,
-  getRefreshToken,
 } from "axios-jwt"
 
 interface ILoginRequest {

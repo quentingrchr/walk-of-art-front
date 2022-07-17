@@ -13,6 +13,7 @@ export const ImagesPreview: React.FC<IProps> = ({
   secondaryImages,
   onClick,
 }: IProps) => {
+
   return (
     <div className={styles.imagesContainer} onClick={onClick}>
       {/* IMAGES */}

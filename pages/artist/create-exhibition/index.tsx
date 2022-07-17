@@ -66,7 +66,6 @@ const CreateExhibition: React.FC = () => {
                     <Link to='/' label='Retour à la connexion' classname={styles.link} />
                     <div className={styles.background} />
                         
-                        
                         <div className={styles.heading}>
                         <HeadingStrong elementColor="success" color="black" content="Création d'une oeuvre" size="md" />
                         </div>

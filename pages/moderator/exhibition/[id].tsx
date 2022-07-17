@@ -230,7 +230,6 @@ const ExhibitionPage: React.FC = () => {
 		return axiosInstance.get(`/exhibitions/${id}`)
 		  .then(response => {
 			if(response.status === 200) {
-			  console.log(response)
 			  setExhibition(response.data)
 			}
 		  }).catch((error) => {

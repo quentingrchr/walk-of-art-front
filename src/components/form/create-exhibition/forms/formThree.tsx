@@ -30,7 +30,7 @@ interface IGalleryMap {
 
 export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defaultValues = {} }) => {
 
-  const [orientation, setOrientation] = useState<string>('landscape')
+  const [workOrientation, setWorkOrientation] = useState<string>('portrait')
   const [availableGalleries, setAvailableGalleries] = useState<IGalleryMap[]>([])
 
   const methods = useForm();
@@ -47,21 +47,21 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
     handleSubmit((data) => {
       const formattedData = {
         ...data,
-        parentName,
-        orientation
+        galleryId,
+        workOrientation
       }
       
       handleStepSubmit(formattedData);
     })(event);
   };
 
-  const getAllAvailableGalleries = () => {
-    const body = {
+  const getAllAvailableGalleriesForSpecificDate = () => {
+    const specificValuesToFindAvailableGalleries = {
       "dateStart": "2022-07-12",
       "dateEnd": "2022-07-14",
       "orientation": "portrait"
     }
-    return axiosInstance.post('/galleries/available', body)
+    return axiosInstance.post('/galleries/available', specificValuesToFindAvailableGalleries)
       .then(response => {
         return setAvailableGalleries(response.data);
       }).catch((error) => {
@@ -70,12 +70,12 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
   }
 
   useEffect(() => {
-    getAllAvailableGalleries()
+    getAllAvailableGalleriesForSpecificDate()
   }, [])
 
-  const [parentName, setParentName] = useState<string>('Mr John Obi');
-  const updateName = (name: string): void => {
-    setParentName(name)
+  const [galleryId, setGalleryId] = useState<string>('');
+  const setGalleryIdFromMap = (name: string): void => {
+    setGalleryId(name)
   }
 
   return (
@@ -83,37 +83,39 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
       <h1 className={styles.boardOrientation}>Orientation du panneau</h1>
 
       <div className={styles.boardOrientationChoice}>
-        <div onClick={() => setOrientation('landscape')}>
-          <input type="radio" id="cc" name="cc" value={'cc'} checked={orientation === 'landscape'} />
-          <label htmlFor="cc">Paysage</label>
+        <div onClick={() => setWorkOrientation('landscape')}>
+          <input type="radio" id="landscape" name="landscape" value={'landscape'} checked={workOrientation === 'landscape'} />
+          <label htmlFor="paysage">Paysage</label>
         </div>
 
-        <div onClick={() => setOrientation('portrait')} >
-          <input type="radio" id="cc" name="cc" value={'cc'} checked={orientation === 'portrait'} />
-          <label htmlFor="cc">Portrait</label>
+        <div onClick={() => setWorkOrientation('portrait')} >
+          <input type="radio" id="portrait" name="portrait" value={'portrait'} checked={workOrientation === 'portrait'} />
+          <label htmlFor="portrait">Portrait</label>
         </div>
       </div>
 
-      <div className={orientation === 'portrait' ? styles.portrait : ''}>
-        <ExpositionBoard src={cardImg} alt={""} orientation={orientation} />
+      <div className={workOrientation === 'portrait' ? styles.portrait : ''}>
+        <ExpositionBoard src={cardImg} alt={"tableau d'exposition d'une oeuvre"} orientation={workOrientation} />
       </div>
 
-      <h1 className={styles.panneauOrientation}>Choix du panneau d'exposition</h1>
-      <FormProvider {...methods}>
-        <Map name={"mapOfGalleries"} galleries={availableGalleries} updateName={updateName} />
-      </FormProvider>
       <h2>Date d'exposition</h2>
 
-      <form action="" className={styles.choiceExpositionDates}>
-        <div className={styles.containerExpositionDate}><label htmlFor="startExpositionDate">Début</label>
+      <form className={styles.choiceExpositionDates}>
 
           <InputGroup
             register={register}
             id="startExpositionDate"
             type="date"
             label="Début"
-            guidance={null}
-            value={'2022-09-08'}
+            guidance={
+              errors.title
+                ? {
+                  type: "error",
+                  message:
+                    "La date de début doit être sélectionnée pour passer à l’étape suivante",
+                }
+                : null
+            }
           />
 
           <InputGroup
@@ -121,10 +123,22 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
             id="endExpositionDate"
             type="date"
             label="Fin"
-            guidance={null}
+            guidance={
+              errors.title
+                ? {
+                  type: "error",
+                  message:
+                    "La date de fin doit être sélectionnée pour passer à l’étape suivante",
+                }
+                : null
+            }
           />
-        </div>
       </form>
+
+      <h1 className={styles.panneauOrientation}>Choix du panneau d'exposition</h1>
+      <FormProvider {...methods}>
+        <Map name={"mapOfGalleries"} galleries={availableGalleries} setGalleryId={setGalleryIdFromMap} />
+      </FormProvider>
 
       <div className={styles.containerOfButtons}>
         <Button label={"Étape précédente"} color="black" bg="light" type="submit" onClick={handleBack}/>

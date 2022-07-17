@@ -20,7 +20,6 @@ export type IProps = {
 }
 
 export const CardGallery: React.FC<IProps> = ({id ,img, title, status, createdAt, date_end, date_start, type = 'work'}: IProps) => {
-    
 
     return (
         <div className={styles.cardGallery}>
@@ -30,7 +29,7 @@ export const CardGallery: React.FC<IProps> = ({id ,img, title, status, createdAt
                         { type === 'work' ? <div  className={styles.cardGallery__picture}>
                             <img className={styles.cardGallery__picture} src={img ? img : BankCard.src} alt="gallery" />
                         </div> :
-                        <ImageCard status={checkFilterExhibition(date_start, date_end, new Date)} size="small" src={BankCard} alt={BankCard} orientation='portrait'/>
+                        <ImageCard status={checkFilterExhibition(date_start, date_end, new Date)} size="small" src={img ? img : BankCard.src} alt={BankCard} orientation='portrait'/>
                         }
                         <div className={styles.cardGallery__link}>
                             <div className={styles.cardGallery__overlay}></div>

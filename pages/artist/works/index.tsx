@@ -20,7 +20,6 @@ interface Filters {
 const Works: React.FC = () => {
 
     const [works, setWorks] = useState<Work[]>([])
-    console.log(works)
     const [filters, setFilters] = useState<Filters>({
         search: null,
         orderDate: "dsc",
@@ -112,22 +111,20 @@ const Works: React.FC = () => {
         return newList
     }
 
-    const getAllWorks = () => {
-        return axiosInstance.get('/works')
-            .then(response => {
-                if(response.status === 200) {
-                    console.log(response)
-                    setWorks(response.data)
-                }
-            }).catch((error) => {
-                console.log("error", error)
-                return error
-            })
-    }
-
     useEffect(() => {
         getAllWorks()
     }, [])
+
+    const getAllWorks = () => {
+        return axiosInstance.get('/works')
+          .then(response => {
+            if(response.status === 200) {
+            return setWorks(response.data);
+            }
+          }).catch((error) => {
+            return error
+          })
+      }
     
     useEffect(() => {
         scrollDirection === "down" ?
@@ -173,32 +170,33 @@ const Works: React.FC = () => {
                         </aside>
                     </section>
                     {works && works.length > 0 ?
-                        <section className={style.bodySection}>
-                            <div className={style.body__ctn}>
-                                {
-                                    filterWorksList(works, filters).map((work, index) => (
-                                        (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} date_end={""} date_start={""} type={"work"}/>
-                                    ))
-                                }
-                            </div>
-                            <div className={style.body__ctn}>
-                                {
-                                    filterWorksList(works, filters).map((work, index) => (
-                                        (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} date_end={""} date_start={""} type={"work"}/>
-                                    ))
-                                }
-                            </div>
-                            <div className={style.body__ctn}>
-                                {
-                                    filterWorksList(works, filters).map((work, index) => (
-                                        
-                                        (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} date_end={""} date_start={""} type={"work"}/>
-                                    ))
-                                }
-                            </div>
-                        </section>
+                    <section className={style.bodySection}>
+                        <div className={style.body__ctn}>
+                            {
+                                filterWorksList(works, filters).map((work, index) => (
+                                    (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} img={work.mainFile ? work.mainFile.fileUrl : ''} type={"work"} date_end={""} date_start={""}/>
+                                ))
+                            }
+                        </div>
+                        <div className={style.body__ctn}>
+                            {
+                                filterWorksList(works, filters).map((work, index) => (
+                                    (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} img={work.mainFile.fileUrl} type={"work"} date_end={""} date_start={""}/>
+                                ))
+                            }
+                        </div>
+                        <div className={style.body__ctn}>
+                            {
+                                filterWorksList(works, filters).map((work, index) => (
+                                    
+                                    (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} img={work.mainFile.fileUrl} type={"work"} date_end={""} date_start={""}/>
+                                ))
+                            }
+                        </div>
+                    </section>
                     :
-                        <EmptyContent entity="works" labelButton="Créer une oeuvre" to="/artist/create-work"/>
+
+                    <EmptyContent entity="works" labelButton="Créer une oeuvre" to="/artist/create-work"/>
                     }
                 </>
                 :
