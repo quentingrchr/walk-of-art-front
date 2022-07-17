@@ -2,6 +2,7 @@ import React from "react"
 import styles from "./index.module.scss"
 import { Exhibition } from "../../types"
 import { ExhibitionCard } from "../exhibition-card"
+import image from '../../assets/images/landingGallery2.png'
 
 export type IProps = {
     exhibList: Exhibition[],
@@ -9,7 +10,7 @@ export type IProps = {
 }
 
 export const ExhibList: React.FC<IProps> = ({exhibList, type}: IProps) => {
-
+console.log(exhibList)
     return (
         <ul className={styles.expos_list}>
             {
@@ -21,7 +22,7 @@ export const ExhibList: React.FC<IProps> = ({exhibList, type}: IProps) => {
                                 id={exhib.id}
                                 entity="artist"
                                 img={{
-                                    src: exhib.work.mainFile.fileUrl
+                                    src: exhib.work.mainFile.fileUrl !== '' ?exhib.work.mainFile.fileUrl : image.src
                                 }}
                                 title={exhib.title}
                                 remainingHours={8}

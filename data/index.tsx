@@ -9,16 +9,16 @@ export const dataForWorks = () => {
             "createdAt": "2022-06-27T23:09:10.693Z",
             "mainFile": {
                 id: "",
-                fileUrl: ""
+                fileUrl: "../src/assets/images/landing-1.png"
             },
             "workFiles": [
                 {
                     id: "",
-                    fileUrl: ""
+                    fileUrl: "../src/assets/images/landing-2.png"
                 },
                 {
                     id: "",
-                    fileUrl: ""
+                    fileUrl: "../src/assets/images/landing-3.png"
                 }
             ],
             "exhibitions": [
@@ -33,17 +33,17 @@ export const dataForWorks = () => {
             "description": "Une description",
             "createdAt": "2022-06-27T23:09:10.693Z",
             "mainFile": {
-                id: "",
-                fileUrl: ""
+                id: "12",
+                fileUrl: "../src/assets/images/landing-8.png"
             },
             "workFiles": [
                 {
                     id: "",
-                    fileUrl: ""
+                    fileUrl: "../src/assets/images/landingGallery.png"
                 },
                 {
                     id: "",
-                    fileUrl: ""
+                    fileUrl: "../src/assets/images/landing-6.png"
                 }
             ],
         },
@@ -442,7 +442,7 @@ export const dataForSingleExhibition = () => {
         reactions: [
             {
                 count: 32,
-                name: "smiley",
+                name: 'Smiley',
             },
             {
                 count: 5,
@@ -505,7 +505,7 @@ export const dataForExhibInModeration = () => {
     const data: Exhibition[] = [
         {
           "id": "1",
-          "title": "Un ti",
+          "title": "Un titre",
           "description": "Une description",
           "dateStart": "2022-05-02T23:09:10.693Z",
           "dateEnd": "2022-05-02T23:09:10.693Z",
@@ -561,7 +561,7 @@ export const dataForExhibInModeration = () => {
             "title": "titre oeuvre",
             "mainFile": {
               "id": "234",
-              "fileUrl": "https://iili.io/5zikPt.jpg"
+              "fileUrl": "../src/assets/images/landing-1.png"
             }
           },
           "board": {
@@ -606,7 +606,7 @@ export const dataForExhibInModeration = () => {
             "title": "titre oeuvre",
             "mainFile": {
               "id": "234",
-              "fileUrl": "https://iili.io/5zikPt.jpg"
+              "fileUrl": "../src/assets/images/landing-1.png"
             }
           },
           "board": {
@@ -649,7 +649,7 @@ export const dataForExhibInModeration = () => {
             "title": "titre oeuvre",
             "mainFile": {
               "id": "234",
-              "fileUrl": "https://iili.io/5zikPt.jpg"
+              "fileUrl": "../src/assets/images/landing-2.png"
             }
           },
           "board": {
@@ -692,7 +692,7 @@ export const dataForExhibInModeration = () => {
             "title": "titre oeuvre",
             "mainFile": {
               "id": "234",
-              "fileUrl": "https://iili.io/5zikPt.jpg"
+              "fileUrl": "../src/assets/images/landing-3.png"
             }
           },
           "board": {
@@ -735,7 +735,7 @@ export const dataForExhibInModeration = () => {
             "title": "titre oeuvre",
             "mainFile": {
               "id": "234",
-              "fileUrl": "https://iili.io/5zikPt.jpg"
+              "fileUrl": "../src/assets/images/landing-4.png"
             }
           },
           "board": {
@@ -778,7 +778,7 @@ export const dataForExhibInModeration = () => {
             "title": "titre oeuvre",
             "mainFile": {
               "id": "234",
-              "fileUrl": "https://iili.io/5zikPt.jpg"
+              "fileUrl": "../src/assets/images/landing-5.png"
             }
           },
           "board": {

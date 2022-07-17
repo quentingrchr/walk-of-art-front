@@ -18,8 +18,8 @@ import {
 } from "@components"
 import cardImg from "../../../src/assets/images/cardImg.png"
 import { axiosInstance, getDateWithoutHours, windowIsNotReady } from "../../../src/utility"
-import { Work } from "../../../src/types"
 import { ReservationInfo } from "@components/reservation-info"
+import mainFile from '../../../src/assets/images/landing-1.png'
 
 
 const WorkPage: React.FC = () => {
@@ -29,8 +29,10 @@ const WorkPage: React.FC = () => {
   const setActiveModal = useSetRecoilState(activeModalState)
   const setModalData = useSetRecoilState(modalDataState)
 
-  const [work, setWork] = useState<Work | any>()
+  const [work, setWork] = useState<any>([])
 
+  console.log(work);
+  
   const openModal = () => {
     setActiveModal(CONFIRM_WORK_DELETE_MODAL_ID)
     setModalData({
@@ -40,11 +42,6 @@ const WorkPage: React.FC = () => {
     })
   }
   
-  useEffect(() => {
-    getWorkById()
-  }, [])
-
-  
   if (windowIsNotReady()) {
     return null
   }
@@ -52,6 +49,8 @@ const WorkPage: React.FC = () => {
   const getWorkById = () => {
     return axiosInstance.get(`/works/${id}`)
       .then(response => {
+        console.log(response, 'f');
+        
         if(response.status === 200) {
           setWork(response.data)
         }
@@ -60,11 +59,15 @@ const WorkPage: React.FC = () => {
       })
   }
 
+  useEffect(() => {
+    getWorkById()
+  }, [])
+
   return (
     <TemplatePage>
       {isLoggedIn() ? (
-        <>
-          <span className={style.backLink}>
+        <> 
+           <span className={style.backLink}>
             <ButtonArrow
               label="Retour à la liste des oeuvres"
               side="left"
@@ -73,9 +76,9 @@ const WorkPage: React.FC = () => {
           </span>
           <section className={style.mainSection}>
             <ImagesPreview
-              primaryImage={work.mainFile ? work.mainFile.fileUrl : ''}
+              primaryImage={work.mainFile ? work.mainFile.fileUrl : mainFile.src}
               secondaryImages={[cardImg.src, cardImg.src]}
-            />
+            /> 
             <Text tag="h1" typo="heading-lg">
               {work.title}
             </Text>
@@ -133,7 +136,7 @@ const WorkPage: React.FC = () => {
         </>
       ) : (
         <Unauthorized />
-      )}
+      )} 
     </TemplatePage>
   )
 }

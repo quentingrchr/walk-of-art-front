@@ -12,9 +12,9 @@ import { activeModalState, IMAGE_PREVIEW_MODAL_ID } from "@recoil/modal/atom"
 const data = {
     name: 'Fabien Deneau',
     images: [
-        'https://iili.io/A7NDAP.jpg',
-        'https://iili.io/dwagF2.png',
-        'https://iili.io/hy8bLv.jpg'
+        '../src/assets/images/landing-1.png',
+        '../src/assets/images/landing-2.png',
+        '../src/assets/images/landing-3.png'
     ],
     reactions: [
         {

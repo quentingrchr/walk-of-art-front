@@ -12,14 +12,13 @@ import {
 import {
   TemplatePage,
   Text,
-  ImagesPreview,
   Button,
   Unauthorized,
   ReactionCounter,
   ButtonArrow,
 } from "@components"
 import NextLink from "next/link"
-import BankCard from "../../../src/assets/images/BankCard.png"
+import imageCard from "../../../src/assets/images/landingGallery2.png"
 import {
   getDateWithoutHours,
   windowIsNotReady,
@@ -184,8 +183,8 @@ const ExhibitionPage: React.FC = () => {
                 exhibition.status
               )}
               size="full"
-              src={BankCard}
-              alt={BankCard}
+              src={imageCard}
+              alt={imageCard}
               orientation="portrait"
             />
             <Text tag="h1" typo="heading-lg">
@@ -245,10 +244,12 @@ const ExhibitionPage: React.FC = () => {
                   : ""}
               </Text>
               <NextLink
-                href={`https://maps.google.com/?q=${exhibition.board.gallery.latitude},${exhibition.board.gallery.longitude}`}
+                href={`https://maps.google.com/?q=${
+                  exhibition.board && exhibition.board.gallery} ?
+                   ${exhibition.board.gallery.latitude, exhibition.board.gallery.longitude} : ''`}
               >
                 <a
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(event) => event.stopPropagation()}
                   className={style.mapsLink}
                 >
                   <Text tag="p" typo="paragraph-md">
