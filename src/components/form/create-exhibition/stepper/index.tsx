@@ -1,6 +1,6 @@
 import React from "react"
 
-import s from "./index.module.scss"
+import styles from "./index.module.scss"
 
 import { FormOne, FormTwo, FormThree, FormFour, FormFive, FormSix } from "../forms"
 import { Stepper, Tooltip } from "@components"
@@ -108,28 +108,29 @@ export const FormStepper: React.FC<IProps> = ({ onSubmit }) => {
 
   const [activeStep, setActiveStep] = React.useState(0)
 
-  const completeStep = (step: number) => {
-    const newSteps = steps.map((s, i) => {
-      if (i === step) {
-        return { ...s, completed: true }
+  const completeStep = (stepNumber: number) => {
+    const newSteps = steps.map((step, index) => {
+      if (index === stepNumber) {
+        return { ...step, completed: true }
       }
-      return s
+      return step
     })
     setSteps(newSteps)
   }
 
-  const uncompleteStep = (step: number) => {
-    const newSteps = steps.map((s, i) => {
-      if (i === step) {
-        return { ...s, completed: false }
+  const uncompleteStep = (stepNumber: number) => {
+    const newSteps = steps.map((step, index) => {
+      if (index === stepNumber) {
+        return { ...step, completed: false }
       }
-      return s
+      return step
     })
     setSteps(newSteps)
   }
 
   const handleStepSubmit = async (data: any) => {
     setGlobalError(null)
+
     switch (activeStep) {
       case 0:
         setCompiledForm({ ...compiledForm, one: data })
@@ -143,38 +144,31 @@ export const FormStepper: React.FC<IProps> = ({ onSubmit }) => {
       case 3:
         setCompiledForm({ ...compiledForm, four: data })
 
-        const res = onSubmit({
+        onSubmit({
           ...compiledForm?.one,
           ...compiledForm?.two,
           ...compiledForm?.three,
         })
-        if (res.error) {
-          setGlobalError("Oups, une erreur est survenue")
-          return
-        }
-        break
-      case 4:
-        'setCompiledForm({ ...compiledForm, five: data })'
         break
       default:
-        throw new Error("not a valid step")
+        throw new Error("Not a valid step")
     }
 
-    setActiveStep((prevActiveStep) => {
-      completeStep(prevActiveStep)
-      return prevActiveStep + 1
+    setActiveStep((previousActiveStep) => {
+      completeStep(previousActiveStep)
+      return previousActiveStep + 1
     })
   }
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => {
-      uncompleteStep(prevActiveStep - 1)
-      return prevActiveStep - 1
+    setActiveStep((previousActiveStep) => {
+      uncompleteStep(previousActiveStep - 1)
+      return previousActiveStep - 1
     })
   }
 
   return (
-    <div className={s.container}>
+    <div className={styles.container}>
       <div>
         <Stepper
           setActiveStep={setActiveStep}
@@ -185,11 +179,11 @@ export const FormStepper: React.FC<IProps> = ({ onSubmit }) => {
         />
       </div>
       {!!globalError && (
-        <div className={s.errorContainer}>
+        <div className={styles.errorContainer}>
           <Tooltip text={globalError} type="error" />
         </div>
       )}
-      <div className={s.formContainer}>
+      <div className={styles.formContainer}>
         {getStepComponent(
           activeStep,
           compiledForm,

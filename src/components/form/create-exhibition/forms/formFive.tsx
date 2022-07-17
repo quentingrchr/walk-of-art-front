@@ -24,19 +24,17 @@ export const FormFive: React.FC<IProps> = ({ handleStepSubmit, defaultValues = {
   const [cardExpiry, setCardExpiry] = useState('')
   const [cardName, setCardName] = useState('')
 
-
-
-  const handleNumberChange = (e) => {
-    setCardNumber(e.target.value)
+  const handleNumberChange = (event) => {
+    setCardNumber(event.target.value)
   }
-  const handleCvcChange = (e) => {
-    setCardCvc(e.target.value)
+  const handleCvcChange = (event) => {
+    setCardCvc(event.target.value)
   }
-  const handleExpiryChange = (e) => {
-    setCardExpiry(e.target.value)
+  const handleExpiryChange = (event) => {
+    setCardExpiry(event.target.value)
   }
-  const handleNameChange = (e) => {
-    setCardName(e.target.value)
+  const handleNameChange = (event) => {
+    setCardName(event.target.value)
   }
 
   const {
@@ -82,15 +80,12 @@ const selectOptions = [{
       </div>
       <div className={styles.form}>
 
-  
-      {/* id, name, placeholder, type, register, required, label, onChangeMethod */}
       <InputCard
         id={'test'}
         register={register}
         name="CardName"
         placeholder="John Doe"
         type="text"
-        // register={register}
         required={true}
         label={"Nom du titulaire de la carte"}
         onChangeMethod={handleNameChange}
@@ -102,7 +97,6 @@ const selectOptions = [{
           type="number"
           name="CardNumber"
           placeholder="0000000000000000"
-          // register={register}
           required={true}
           label={"Numéros de carte"}
           onChangeMethod={handleNumberChange}
@@ -115,7 +109,6 @@ const selectOptions = [{
             type="number"
             name="CardExpiry"
             placeholder="00/0000"
-            // register={register}
             required={true}
             label={"Date d’expiration"}
             onChangeMethod={handleExpiryChange}
@@ -126,7 +119,6 @@ const selectOptions = [{
             type="number"
             name="CardCvc"
             placeholder="000"
-            // register={register}
             required={true}
             label={"CVC"}
             onChangeMethod={handleCvcChange}
@@ -135,8 +127,8 @@ const selectOptions = [{
         </div>
 
       <div className={styles.containerOfButtons}>
-        {/* <Button label={"Étape précédente"} color="black" bg="light" type="submit" /> */}
-        <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
+        <Button label={"Étape précédente"} color="black" bg="light" type="submit" />
+        <Button label={"Valider"} color="white" bg="dark" type="submit" />
       </div>
     </form>
   )

@@ -29,18 +29,7 @@ const WorkPage: React.FC = () => {
   const setActiveModal = useSetRecoilState(activeModalState)
   const setModalData = useSetRecoilState(modalDataState)
 
-  const [work, setWork] = useState<Work>({
-    id: "",
-    title: "",
-    description: "",
-    createdAt: "",
-    mainFile: {
-      id: "",
-      fileUrl: "",
-    },
-    workFiles: [],
-    exhibitions: [],
-  })
+  const [work, setWork] = useState<Work | any>()
 
   const openModal = () => {
     setActiveModal(CONFIRM_WORK_DELETE_MODAL_ID)
@@ -50,7 +39,6 @@ const WorkPage: React.FC = () => {
       },
     })
   }
-
   
   useEffect(() => {
     getWorkById()

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./formFour.module.scss";
 import { Button, ExpositionBoard, Tooltip } from "@components";
 import cardImg from "../../../../assets/images/cardImg.png"
@@ -37,10 +37,17 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
     })(event);
   };
 
+  const setWorkOrientationFromForm = () => {
+    setOrientation(formState.orientation)
+  }
+
+  useEffect(() => {
+    setWorkOrientationFromForm()
+  })
 
   const getAllAvailableGalleries = (formState) => {
     
-    const body = {
+    const expectedBodyForExhibition = {
       "title": formState.title,
       "description": formState.description,
       "dateStart": formState.startExpositionDate,
@@ -61,7 +68,7 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
       "gallery": formState.galleryId
     }
 
-    return axiosInstance.post('/exhibitions', body)
+    return axiosInstance.post('/exhibitions', expectedBodyForExhibition)
       .then(response => {
         return response.data
       }).catch((error) => {
@@ -103,6 +110,7 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
             dans la gallerie n°<strong className={styles.bold}>NUMBER</strong>
             située à <strong className={styles.bold}>ADRESSE</strong>
           </p> */}
+
           <p className={styles.marginTop16}>
             Votre exposition aura lieu du
             <strong className={styles.bold}> {formState.startExpositionDate}</strong>
@@ -111,7 +119,7 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
 
           <div className={styles.ctaContainer}>
             <Button label={"Étape précédente"} color="black" bg="light" type="submit" onClick={handleBack} />
-            <Button label={"Valider"} color="white" bg="dark" type="submit" />
+            <Button label={"Passer au paiement"} color="white" bg="dark" type="submit" />
           </div>
         </div>
 
@@ -119,7 +127,3 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
     </>
   )
 }
-function handleStepSubmit(formattedData: any) {
-  throw new Error("Function not implemented.");
-}
-

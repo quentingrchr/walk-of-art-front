@@ -153,12 +153,10 @@ const Exhibitions: React.FC = () => {
         })
   }
 
-  /* Init Exhibitions */
   useEffect(() => {
     getAllExhibitions()
   }, [filters.type])
 
-  /* Scroll Event */
   useEffect(() => {
     scrollDirection === "down" ?
       setDirection(scrollDirType.down)

@@ -37,12 +37,12 @@ export const FormTwo: React.FC<IProps> = ({
     setAmountOfAdditionalLinks(amountOfAdditionalLinks.filter(value => value !== idFieldValue))
   }
 
-  const onSubmit = (e: any) => {
-    e.preventDefault();
+  const onSubmit = (event: any) => {
+    event.preventDefault();
 
-    handleSubmit((d) => {
-      handleStepSubmit(d);
-    })(e);
+    handleSubmit((data) => {
+      handleStepSubmit(data);
+    })(event);
   };
 
   return (
@@ -56,7 +56,7 @@ export const FormTwo: React.FC<IProps> = ({
           placeholder="https://facebook.com/mon-profil"
           register={register}
           required={true}
-          id="facebook"
+          id="facebookUrl"
           type="text"
           label="URL de mon profil Facebook"
           guidance={
@@ -73,15 +73,23 @@ export const FormTwo: React.FC<IProps> = ({
           placeholder="https://mon-site-personnel.com/"
           register={register}
           required={true}
-          id="personnalWebsite"
+          id="personnalWebsiteUrl"
           type="text"
           label="URL de mon site personnel"
-          guidance={null}
+          guidance={
+            errors.title
+              ? {
+                type: "error",
+                message:
+                  "Le titre doit être rempli pour passer à l’étape suivante",
+              }
+              : null
+          }
         />
         <InputGroup
           placeholder="https://twitter.com/mon-profil"
           register={register}
-          id="twitter"
+          id="twitteUrl"
           type="text"
           label="URL de mon profil Twitter"
           guidance={null}
@@ -89,7 +97,7 @@ export const FormTwo: React.FC<IProps> = ({
         <InputGroup
           placeholder="https://mon-portoflio.com/"
           register={register}
-          id="portfolio"
+          id="portfolioUrl"
           type="text"
           label="URL de mon portfolio"
           guidance={null}
@@ -97,7 +105,7 @@ export const FormTwo: React.FC<IProps> = ({
         <InputGroup
           placeholder="https://ma-boutique-en-ligne.com/"
           register={register}
-          id="shop"
+          id="shopUrl"
           type="text"
           label="URL de ma boutique en ligne"
           guidance={null}
@@ -105,15 +113,15 @@ export const FormTwo: React.FC<IProps> = ({
 
         {
           amountOfAdditionalLinks.length > 0 &&
-          amountOfAdditionalLinks.map((el, indexInLinks) => {
+          amountOfAdditionalLinks.map((additionnalLink, index) => {
             return (
               <>
                 <InputCustomDouble
-                  key={amountOfAdditionalLinks[indexInLinks]}
+                  key={amountOfAdditionalLinks[index]}
                   customInputTitle="Lien personnel additionnel"
-                  idDescription={`description-${indexInLinks}`}
+                  idDescription={`description-${index}`}
                   placeholder="Intitulé du lien/"
-                  idFieldValue={amountOfAdditionalLinks[indexInLinks]}
+                  idFieldValue={amountOfAdditionalLinks[index]}
                   fieldValuePlaceHolder="https://lien-personnel.com/"
                   register={register}
                   handleRemoveLink={handleRemoveLink}
