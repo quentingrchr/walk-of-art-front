@@ -30,7 +30,7 @@ interface IGalleryMap {
 
 export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defaultValues = {} }) => {
 
-  const [orientation, setOrientation] = useState<string>('landscape')
+  const [orientation, setOrientation] = useState<string>('portrait')
   const [availableGalleries, setAvailableGalleries] = useState<IGalleryMap[]>([])
 
   const methods = useForm();
@@ -47,7 +47,7 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
     handleSubmit((data) => {
       const formattedData = {
         ...data,
-        parentName,
+        galleryId,
         orientation
       }
       
@@ -55,7 +55,7 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
     })(event);
   };
 
-  const getAllAvailableGalleries = () => {
+  const getAllAvailableGalleriesForSpecificDate = () => {
     const body = {
       "dateStart": "2022-07-12",
       "dateEnd": "2022-07-14",
@@ -70,12 +70,12 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
   }
 
   useEffect(() => {
-    getAllAvailableGalleries()
+    getAllAvailableGalleriesForSpecificDate()
   }, [])
 
-  const [parentName, setParentName] = useState<string>('Mr John Obi');
-  const updateName = (name: string): void => {
-    setParentName(name)
+  const [galleryId, setGalleryId] = useState<string>('Mr John Obi');
+  const setGalleryIdFromMap = (name: string): void => {
+    setGalleryId(name)
   }
 
   return (
@@ -98,14 +98,9 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
         <ExpositionBoard src={cardImg} alt={""} orientation={orientation} />
       </div>
 
-      <h1 className={styles.panneauOrientation}>Choix du panneau d'exposition</h1>
-      <FormProvider {...methods}>
-        <Map name={"mapOfGalleries"} galleries={availableGalleries} updateName={updateName} />
-      </FormProvider>
       <h2>Date d'exposition</h2>
 
       <form action="" className={styles.choiceExpositionDates}>
-        <div className={styles.containerExpositionDate}><label htmlFor="startExpositionDate">Début</label>
 
           <InputGroup
             register={register}
@@ -123,8 +118,12 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
             label="Fin"
             guidance={null}
           />
-        </div>
       </form>
+
+      <h1 className={styles.panneauOrientation}>Choix du panneau d'exposition</h1>
+      <FormProvider {...methods}>
+        <Map name={"mapOfGalleries"} galleries={availableGalleries} setGalleryId={setGalleryIdFromMap} />
+      </FormProvider>
 
       <div className={styles.containerOfButtons}>
         <Button label={"Étape précédente"} color="black" bg="light" type="submit" onClick={handleBack}/>

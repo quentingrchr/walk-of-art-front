@@ -22,7 +22,7 @@ export interface IRecapProps {
 
 
 export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defaultValues = {}, formState }: IProps) => {
-  const [orientation, setOrientation] = useState<string>('landscape')
+  const [orientation, setOrientation] = useState<string>('portrait')
 
   const {
     handleSubmit,
@@ -39,7 +39,6 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
 
 
   const getAllAvailableGalleries = (formState) => {
-    console.log(formState);
     
     const body = {
       "title": formState.title,
@@ -55,24 +54,17 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
         },
         {
           "name": "tipeee",
-          "url": formState.personnalWebite
+          "url": formState.personnalWebsite
         }
       ],
       "orientation": formState.orientation,
-      "gallery": formState.parentName
+      "gallery": formState.galleryId
     }
-
-    console.log(body);
-    
 
     return axiosInstance.post('/exhibitions', body)
       .then(response => {
-        console.log(response);
-        
         return response.data
       }).catch((error) => {
-        console.log(error);
-        
         return error
       })
   }
@@ -101,13 +93,7 @@ export const FormFour: React.FC<IProps> = ({ handleBack, handleStepSubmit, defau
               <strong className={styles.bold}>
                 Votre site personnel :
               </strong>
-              {formState.personnalWebite}
-            </li>
-            <li>
-              <strong className={styles.bold}>Votre portfolio :</strong>https://facebook.com/mon-profil
-            </li>
-            <li>
-              <strong className={styles.bold}>Votre boutique en ligne :</strong> https://facebook.com/mon-profil
+              {formState.personnalWebsite}
             </li>
           </ul>
 

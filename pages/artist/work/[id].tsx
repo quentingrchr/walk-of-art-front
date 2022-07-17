@@ -63,8 +63,6 @@ const WorkPage: React.FC = () => {
   const getWorkById = () => {
     return axiosInstance.get(`/works/${id}`)
       .then(response => {
-        console.log('ddd', response);
-        
         return setWork(response.data);
       }).catch((error) => {
         return error
@@ -84,7 +82,7 @@ const WorkPage: React.FC = () => {
           </span>
           <section className={style.mainSection}>
             <ImagesPreview
-              primaryImage={cardImg.src}
+              primaryImage={work.mainFile ? work.mainFile.fileUrl : ''}
               secondaryImages={[cardImg.src, cardImg.src]}
             />
             <Text tag="h1" typo="heading-lg">

@@ -198,8 +198,6 @@ const Works: React.FC = () => {
     const getAllWorks = () => {
         return axiosInstance.get('/works')
           .then(response => {
-            console.log(response);
-            
             return setWorks(response.data);
           }).catch((error) => {
             return error
@@ -253,14 +251,14 @@ const Works: React.FC = () => {
                         <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
-                                    (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} date_end={""} date_start={""} type={"work"}/>
+                                    (index % 3) === 0 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} img={work.mainFile ? work.mainFile.fileUrl : ''} type={"work"} date_end={""} date_start={""}/>
                                 ))
                             }
                         </div>
                         <div className={style.body__ctn}>
                             {
                                 filterWorksList(works, filters).map((work, index) => (
-                                    (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} date_end={""} date_start={""} type={"work"}/>
+                                    (index % 3) === 1 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} img={work.mainFile.fileUrl} type={"work"} date_end={""} date_start={""}/>
                                 ))
                             }
                         </div>
@@ -268,7 +266,7 @@ const Works: React.FC = () => {
                             {
                                 filterWorksList(works, filters).map((work, index) => (
                                     
-                                    (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} date_end={""} date_start={""} type={"work"}/>
+                                    (index % 3) === 2 && <CardGallery key={work.id} id={work.id} title={work.title} createdAt={work.createdAt} img={work.mainFile.fileUrl} type={"work"} date_end={""} date_start={""}/>
                                 ))
                             }
                         </div>

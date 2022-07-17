@@ -151,14 +151,13 @@ export const FormOne: React.FC<IProps> = ({
       handleStepSubmit(watch());
     } else {
       handleSubmit((data) => {
-        console.log(selectedWorkId);
-        
         const formattedData = {
           ...data,
           isVisitorsAutorise,
           isTitleShowedToVisitors,
           selectedWorkId
         }
+
         handleStepSubmit(formattedData);
       })(event);
     }
@@ -173,8 +172,6 @@ export const FormOne: React.FC<IProps> = ({
   }
 
   const selectWorkId = (name: string): void => {
-    console.log(name);
-    
     return setSelectedWorkId(name)
   }
   

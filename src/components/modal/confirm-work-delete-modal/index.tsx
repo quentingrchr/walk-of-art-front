@@ -22,27 +22,26 @@ export const ConfirmWorkDeleteModal: React.FC<IProps> = (props: IProps) => {
   const router = useRouter()
 
   function closeModal() {
-    setActiveModal((s) => {
+    setActiveModal(() => {
       return null
     })
   }
 
   const handleDelete = async (id: string) => {
-    // call api
     setModalError(null)
 
-    console.log(modalData)
     setModalLoading(true)
     try {
       const response = await axiosInstance.delete(`/works/${id}`)
       setModalLoading(false)
       if (response.status === 200) {
-        setActiveModal((s) => {
+        setActiveModal(() => {
           return null
         })
         router.push("/artist/works")
       }
     } catch (error) {
+      
       setModalLoading(false)
       if (error) {
         setModalError("Oups, une erreur est survenue 😢")
