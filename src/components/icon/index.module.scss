@@ -44,6 +44,13 @@
   }
 }
 
+.grey-500{
+  svg, path, circle, rect{
+    fill: $color-grey-500;
+    stroke: $color-grey-500;
+  }
+}
+
 .dark{
   svg, path, circle, rect{
     fill: $color-artist-black;
