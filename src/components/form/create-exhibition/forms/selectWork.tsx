@@ -5,7 +5,6 @@ import { axiosInstance } from "@utility/index";
 import { useState, useEffect } from "react";
 import cardImage from '../../../../assets/images/cardImg.png'
 import formOneStyle from "./formOne.module.scss"
-import styles from "./index.module.scss";
 
 
 interface SelectWorkProps {
