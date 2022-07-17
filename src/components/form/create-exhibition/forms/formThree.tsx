@@ -33,7 +33,7 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
   const [workOrientation, setWorkOrientation] = useState<string>('portrait')
   const [availableGalleries, setAvailableGalleries] = useState<IGalleryMap[]>([])
   const [galleryId, setGalleryId] = useState<string>('');
-  
+
   const setGalleryIdFromMap = (id: string): void => {
     setGalleryId(id)
   }
@@ -55,23 +55,39 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
         galleryId,
         workOrientation
       }
-      
+
       handleStepSubmit(formattedData);
     })(event);
   };
 
   const getAllAvailableGalleriesForSpecificDate = () => {
     const specificValuesToFindAvailableGalleries = {
-      "dateStart": "2022-07-12",
-      "dateEnd": "2022-07-14",
+      "dateStart": "2022-07-09",
+      "dateEnd": "2022-07-11",
       "orientation": "portrait"
     }
     return axiosInstance.post('/galleries/available', specificValuesToFindAvailableGalleries)
       .then(response => {
-        return setAvailableGalleries(response.data);
+        const correctDatas = setSpecificDateWhenAnAvailableGallerieHasEmptyArray(response)
+    
+        return setAvailableGalleries(correctDatas);
       }).catch((error) => {
         return error
       })
+  }
+
+  const setSpecificDateWhenAnAvailableGallerieHasEmptyArray = (response) => {
+
+    if (response.data.length < 1) {
+      const data = [{
+        longitude: 2.3522219,
+        latitude: 48.856614,
+        zoom: 3.5
+      }]
+
+      return data
+    }
+    return response.data
   }
 
   useEffect(() => {
@@ -102,37 +118,37 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
 
       <div className={styles.choiceExpositionDates}>
 
-          <InputGroup
-            register={register}
-            id="startExpositionDate"
-            type="date"
-            label="Début"
-            guidance={
-              errors.title
-                ? {
-                  type: "error",
-                  message:
-                    "La date de début doit être sélectionnée pour passer à l’étape suivante",
-                }
-                : null
-            }
-          />
+        <InputGroup
+          register={register}
+          id="startExpositionDate"
+          type="date"
+          label="Début"
+          guidance={
+            errors.title
+              ? {
+                type: "error",
+                message:
+                  "La date de début doit être sélectionnée pour passer à l’étape suivante",
+              }
+              : null
+          }
+        />
 
-          <InputGroup
-            register={register}
-            id="endExpositionDate"
-            type="date"
-            label="Fin"
-            guidance={
-              errors.title
-                ? {
-                  type: "error",
-                  message:
-                    "La date de fin doit être sélectionnée pour passer à l’étape suivante",
-                }
-                : null
-            }
-          />
+        <InputGroup
+          register={register}
+          id="endExpositionDate"
+          type="date"
+          label="Fin"
+          guidance={
+            errors.title
+              ? {
+                type: "error",
+                message:
+                  "La date de fin doit être sélectionnée pour passer à l’étape suivante",
+              }
+              : null
+          }
+        />
       </div>
 
       <h1 className={styles.panneauOrientation}>Choix du panneau d'exposition</h1>
@@ -141,7 +157,7 @@ export const FormThree: React.FC<IProps> = ({ handleStepSubmit, handleBack, defa
       </FormProvider>
 
       <div className={styles.containerOfButtons}>
-        <Button label={"Étape précédente"} color="black" bg="light" type="submit" onClick={handleBack}/>
+        <Button label={"Étape précédente"} color="black" bg="light" type="submit" onClick={handleBack} />
         <Button label={"Étape suivante"} color="white" bg="dark" type="submit" />
       </div>
     </form>

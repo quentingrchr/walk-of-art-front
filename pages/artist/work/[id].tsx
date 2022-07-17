@@ -31,8 +31,6 @@ const WorkPage: React.FC = () => {
 
   const [work, setWork] = useState<any>([])
 
-  console.log(work);
-  
   const openModal = () => {
     setActiveModal(CONFIRM_WORK_DELETE_MODAL_ID)
     setModalData({
@@ -49,8 +47,6 @@ const WorkPage: React.FC = () => {
   const getWorkById = () => {
     return axiosInstance.get(`/works/${id}`)
       .then(response => {
-        console.log(response, 'f');
-        
         if(response.status === 200) {
           setWork(response.data)
         }

@@ -10,7 +10,6 @@ export type IProps = {
 }
 
 export const ExhibList: React.FC<IProps> = ({exhibList, type}: IProps) => {
-console.log(exhibList)
     return (
         <ul className={styles.expos_list}>
             {
