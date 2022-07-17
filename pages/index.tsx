@@ -5,10 +5,9 @@ import { useRouter } from "next/router"
 import { userState } from "@recoil/user/atom"
 import { windowIsNotReady } from "../src/utility"
 import { isLoggedIn } from "axios-jwt"
+import { Landing, Logo, Text  } from "@components"
+import style from '../src/components/landing/index.module.scss'
 
-const LandingPage = () => {
-  return <div>LANDING PAGE</div>
-}
 const Home: React.FC = () => {
   const router = useRouter()
   const user = useRecoilValue(userState)
@@ -23,9 +22,22 @@ const Home: React.FC = () => {
   }
 
   return (
+    <>
     <TemplatePage>
-      <LandingPage />
+      <Landing />
     </TemplatePage>
+    <footer className={style.landing__footer}>
+      <div className={style.landing__footerLogo}>
+          <Logo to={'/'} color="white" />
+          <Text tag="p" typo="paragraph-md-bold">© 2022</Text>
+      </div>
+      <div className={style.landing__footerLinks}>
+          <li>Politique de confidentalité</li>
+          <li>Conditions d’utilisation</li>
+          <li>Nous rejoindre</li>
+      </div>
+    </footer>
+    </>
   )
 }
 

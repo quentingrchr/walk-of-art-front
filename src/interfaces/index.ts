@@ -1,6 +1,6 @@
 import { Smiley } from '../types'
 export type Semantic = "success" | "info" | "error"
-export type Colors = Semantic | "black" | "white" | "dark"
+export type Colors = Semantic | "black" | "white" | "dark" | "grey-500"
 export type sizeIcon =
   | "none"
   | "xsmall"

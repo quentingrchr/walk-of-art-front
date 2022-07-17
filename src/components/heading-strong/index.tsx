@@ -9,7 +9,7 @@ export type IProps = {
     content: string
     color?: ColorsType
     attributes?: any
-    size?: "sm" | "md" | "lg" | "xl"
+    size?: "sm" | "md" | "lg" | "xl" | "xxl"
 }
 
 export const HeadingStrong: React.FC<IProps> = ({

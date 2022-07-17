@@ -9,19 +9,53 @@ import { NotificationWrapper } from "@components/notification-wrapper"
 import { eraseCookie, userHasRole } from "@utility/index"
 import { userState } from "@recoil/user/atom"
 import { UserRolesType } from "../../../src/types"
-
-import cn from 'classnames';
-
-interface IProps {}
+import { windowIsNotReady } from "@utility/index"
 
 
+const notifs = [
+  {
+    id: 1,
+    title:
+      "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
+    type: "success",
+  },
+  {
+    id: 2,
+    title: "Au dela du monde",
+    type: "commentary",
+  },
+  {
+    id: 3,
+    title:
+      "Au Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
+    type: "error",
+  },
+  {
+    id: 4,
+    title: "Ma mère, musicienne, est morte de maladie maligne à minuit",
+    type: "success",
+  },
+  {
+    id: 5,
+    title:
+      "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
+    type: "success",
+  },
+  {
+    id: 6,
+    title: "Ma mère, musicienne, est morte de maladie maligne à minuit",
+    type: "commentary",
+  },
+  {
+    id: 7,
+    title: "Ma mère, musicienne, est morte de maladie maligne à minuit",
+    type: "error",
+  },
+]
 
-function checkRole(user, role: UserRolesType) {
-  if (!user) return false
-  return user.roles.indexOf(role) !== -1
-}
 
-export const Header: React.FC<IProps> = (props: IProps) => {
+export const Header: React.FC = () => {
+  const router = useRouter()
   const user = useRecoilValue(userState)
   const [appear, setAppear] = useState(false)
 
@@ -40,52 +74,12 @@ export const Header: React.FC<IProps> = (props: IProps) => {
     )
   }
 
-  const notifs = [
-    {
-      id: 1,
-      title:
-        "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
-      type: "success",
-    },
-    {
-      id: 2,
-      title: "Au dela du monde",
-      type: "commentary",
-    },
-    {
-      id: 3,
-      title:
-        "Au Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
-      type: "error",
-    },
-    {
-      id: 4,
-      title: "Ma mère, musicienne, est morte de maladie maligne à minuit",
-      type: "success",
-    },
-    {
-      id: 5,
-      title:
-        "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
-      type: "success",
-    },
-    {
-      id: 6,
-      title: "Ma mère, musicienne, est morte de maladie maligne à minuit",
-      type: "commentary",
-    },
-    {
-      id: 7,
-      title: "Ma mère, musicienne, est morte de maladie maligne à minuit",
-      type: "error",
-    },
-  ]
-
-  const router = useRouter()
-  if (
-    typeof window == "undefined" ||
-    typeof window.localStorage == "undefined"
-  ) {
+  function checkRole(user, role: UserRolesType) {
+    if (!user) return false
+    return user.roles.indexOf(role) !== -1
+  }
+  
+  if (windowIsNotReady()) {
     return null
   }
 

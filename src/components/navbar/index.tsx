@@ -2,9 +2,6 @@ import React from "react"
 import { NavLink } from "@components"
 import styles from "./index.module.scss"
 
-export type IProps = {
-
-}
 
 interface dataNav {
 	label: string,
@@ -12,12 +9,12 @@ interface dataNav {
 }
 
 
-export const Navbar: React.FC<IProps> = (props: IProps) => {
+export const Navbar: React.FC = () => {
 
 	const datas: dataNav[] = [
 		{
 			label: "Accueil",
-			path: "/dashboard",
+			path: "/artist/dashboard",
 		},
 		{
 			label: "Oeuvres",

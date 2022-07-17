@@ -5,6 +5,7 @@
     --arrows-size: 1.6rem;
     --anim-time: .3s;
     display: flex;
+    align-items: center;
     cursor: pointer;
 
     &:hover {
@@ -25,6 +26,7 @@
         position: relative;
         width: 100%;
         margin: 0 .4rem;
+        white-space: nowrap;
 
         &::after {
             content: '';

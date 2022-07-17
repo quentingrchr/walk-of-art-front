@@ -370,7 +370,7 @@ const Dashboard: React.FC = () => {
             {isLoggedIn() ? 
                 <>
                     <div className={s.title}>
-                        <Text tag="h1" typo="heading-xl">Bonjour Michael</Text>
+                        <Text tag="h1" typo="heading-xl">Bonjour</Text>
                     </div>
                     <div className={s.subtitle}>
                         <Text tag="h2" typo="heading-lg">Expositions</Text>

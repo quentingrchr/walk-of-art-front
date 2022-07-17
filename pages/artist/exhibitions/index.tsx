@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react"
 import { isLoggedIn } from "axios-jwt"
 import style from "./index.module.scss"
 import cn from "classnames"
-import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, Unauthorized, CardGallery, ButtonArrow } from "@components"
+import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, Unauthorized, CardGallery, ButtonArrow, EmptyContent } from "@components"
 import { useScrollDirection } from "./../../../src/hooks/useScrollDirection"
-import { makeCaseAndAccentInsensitiveString, windowIsNotReady, checkFilterExhibition} from "./../../../src/utility"
+import { makeCaseAndAccentInsensitiveString, windowIsNotReady, checkFilterExhibition, axiosInstance } from "./../../../src/utility"
 import { Exhibition } from "../../../src/types"
 
 enum scrollDirType  {
@@ -25,313 +25,7 @@ interface Filters {
 
 const Exhibitions: React.FC = () => {
 
-  const list: Exhibition[] = [
-    {
-      "id": "1",
-      "title": "Un ti",
-      "description": "Une description",
-      "dateStart": "2022-05-02T23:09:10.693Z",
-      "dateEnd": "2022-05-02T23:09:10.693Z",
-      "reaction": false,
-      "comment": false,
-      "createdAt": "2022-05-02T23:09:10.693Z",
-      "status": [{}],
-      "work": {
-        "id": "1",
-        "title": "titre oeuvre",
-        "mainFile": {
-          "id": "234",
-          "fileUrl": ""
-        }
-      },
-      "board": {
-        "id": "34",
-        "gallery": {
-          "id": "5",
-          "name": "Nom de gallery",
-          "latitude": 48.85156617494322,
-          "longitude": 2.4203096542274656
-        },
-        "orientation": {}
-      },
-      "snapshot": [
-        {
-          "name": "Facebook",
-          "url": "https://facebook.com/mon-profil"
-        },
-        {
-          "name": "Site personnel",
-          "url": "https://mon-site-personnel.com"
-        },
-        {
-          "name": "Portfolio",
-          "url": "https://mon-portoflio.com/"
-        },
-      ],
-    },
-    {
-      "id": "2",
-      "title": "Ma mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
-      "description": "Une description",
-      "dateStart": "2022-06-01T23:09:10.693Z",
-      "dateEnd": "2022-08-15T23:09:10.693Z",
-      "reaction": false,
-      "comment": false,
-      "createdAt": "2022-05-02T23:09:10.693Z",
-      "status": [{}],
-      "work": {
-        "id": "1",
-        "title": "titre oeuvre",
-        "mainFile": {
-          "id": "234",
-          "fileUrl": ""
-        }
-      },
-      "board": {
-        "id": "34",
-        "gallery": {
-          "id": "5",
-          "name": "Nom de gallery",
-          "latitude": 48.85156617494322,
-          "longitude": 2.4203096542274656
-        },
-        "orientation": {}
-      },
-      "snapshot": [
-        {
-          "name": "Facebook",
-          "url": "https://facebook.com/mon-profil"
-        },
-        {
-          "name": "Site personnel",
-          "url": "https://mon-site-personnel.com"
-        },
-        {
-          "name": "Portfolio",
-          "url": "https://mon-portoflio.com/"
-        },
-      ],
-    },
-  
-    // terminé
-    {
-      "id": "3",
-      "title": "refused",
-      "description": "Une description",
-      "dateStart": "2022-05-02T23:09:10.693Z",
-      "dateEnd": "2022-05-02T23:09:10.693Z",
-      "reaction": false,
-      "comment": false,
-      "createdAt": "2022-05-02T23:09:10.693Z",
-      "status": [{}],
-      "work": {
-        "id": "1",
-        "title": "titre oeuvre",
-        "mainFile": {
-          "id": "234",
-          "fileUrl": ""
-        }
-      },
-      "board": {
-        "id": "34",
-        "gallery": {
-          "id": "5",
-          "name": "Nom de gallery",
-          "latitude": 48.85156617494322,
-          "longitude": 2.4203096542274656
-        },
-        "orientation": {}
-      },
-      "snapshot": [
-        {
-          "name": "Facebook",
-          "url": "https://facebook.com/mon-profil"
-        },
-        {
-          "name": "Site personnel",
-          "url": "https://mon-site-personnel.com"
-        },
-        {
-          "name": "Portfolio",
-          "url": "https://mon-portoflio.com/"
-        },
-      ],
-    },
-    {
-      "id": "4",
-      "title": "mère, musicienne, est morte de maladie maligne à minuit, mardi à mercredi, au milieu du mois de mai mille977 au mouroir memor",
-      "description": "Une description",
-      "dateStart": "2022-10-02T23:09:10.693Z",
-      "dateEnd": "2022-10-02T23:09:10.693Z",
-      "reaction": false,
-      "comment": false,
-      "createdAt": "2021-09-02T23:09:10.693Z",
-      "status": [{}],
-      "work": {
-        "id": "1",
-        "title": "titre oeuvre",
-        "mainFile": {
-          "id": "234",
-          "fileUrl": ""
-        }
-      },
-      "board": {
-        "id": "34",
-        "gallery": {
-          "id": "5",
-          "name": "Nom de gallery",
-          "latitude": 48.85156617494322,
-          "longitude": 2.4203096542274656
-        },
-        "orientation": {}
-      },
-      "snapshot": [
-        {
-          "name": "Facebook",
-          "url": "https://facebook.com/mon-profil"
-        },
-        {
-          "name": "Site personnel",
-          "url": "https://mon-site-personnel.com"
-        },
-        {
-          "name": "Portfolio",
-          "url": "https://mon-portoflio.com/"
-        },
-      ],
-    },
-    {
-      "id": "5",
-      "title": "un ttr",
-      "description": "Une description",
-      "dateStart": "2022-07-02T23:09:10.693Z",
-      "dateEnd": "2022-07-15T23:09:10.693Z",
-      "reaction": false,
-      "comment": false,
-      "createdAt": "2022-11-02T23:09:10.693Z",
-      "status": [{}],
-      "work": {
-        "id": "1",
-        "title": "titre oeuvre",
-        "mainFile": {
-          "id": "234",
-          "fileUrl": ""
-        }
-      },
-      "board": {
-        "id": "34",
-        "gallery": {
-          "id": "5",
-          "name": "Nom de gallery",
-          "latitude": 48.85156617494322,
-          "longitude": 2.4203096542274656
-        },
-        "orientation": {}
-      },
-      "snapshot": [
-        {
-          "name": "Facebook",
-          "url": "https://facebook.com/mon-profil"
-        },
-        {
-          "name": "Site personnel",
-          "url": "https://mon-site-personnel.com"
-        },
-        {
-          "name": "Portfolio",
-          "url": "https://mon-portoflio.com/"
-        },
-      ],
-    },
-    {
-      "id": "6",
-      "title": "1 completer",
-      "description": "Une description",
-      "dateStart": "2022-06-02T23:09:10.693Z",
-      "dateEnd": "2022-07-15T23:09:10.693Z",
-      "reaction": false,
-      "comment": false,
-      "createdAt": "2022-11-02T23:09:10.693Z",
-      "status": [{}],
-      "work": {
-        "id": "1",
-        "title": "titre oeuvre",
-        "mainFile": {
-          "id": "234",
-          "fileUrl": ""
-        }
-      },
-      "board": {
-        "id": "34",
-        "gallery": {
-          "id": "5",
-          "name": "Nom de gallery",
-          "latitude": 48.85156617494322,
-          "longitude": 2.4203096542274656
-        },
-        "orientation": {}
-      },
-      "snapshot": [
-        {
-          "name": "Facebook",
-          "url": "https://facebook.com/mon-profil"
-        },
-        {
-          "name": "Site personnel",
-          "url": "https://mon-site-personnel.com"
-        },
-        {
-          "name": "Portfolio",
-          "url": "https://mon-portoflio.com/"
-        },
-      ],
-    },
-    {
-      "id": "7",
-      "title": "2 completer",
-      "description": "Une description",
-      "dateStart": "2022-06-02T23:09:10.693Z",
-      "dateEnd": "2022-07-15T23:09:10.693Z",
-      "reaction": false,
-      "comment": false,
-      "createdAt": "2022-11-02T23:09:10.693Z",
-      "status": [{}],
-      "work": {
-        "id": "1",
-        "title": "titre oeuvre",
-        "mainFile": {
-          "id": "234",
-          "fileUrl": ""
-        }
-      },
-      "board": {
-        "id": "34",
-        "gallery": {
-          "id": "5",
-          "name": "Nom de gallery",
-          "latitude": 48.85156617494322,
-          "longitude": 2.4203096542274656
-        },
-        "orientation": {}
-      },
-      "snapshot": [
-        {
-          "name": "Facebook",
-          "url": "https://facebook.com/mon-profil"
-        },
-        {
-          "name": "Site personnel",
-          "url": "https://mon-site-personnel.com"
-        },
-        {
-          "name": "Portfolio",
-          "url": "https://mon-portoflio.com/"
-        },
-      ],
-    },
-  ]
-
-  const [Exhibitions, setExhibitions] = useState<Exhibition[]>([])
+  const [exhibitions, setExhibitions] = useState<Exhibition[]>([])
   const [filters, setFilters] = useState<Filters>({
     search: null,
     orderDate: "dsc",
@@ -448,9 +142,20 @@ const Exhibitions: React.FC = () => {
     return newList
   }
 
+  const getAllExhibitions = () => {
+    return axiosInstance.get('/exhibitions')
+        .then(response => {
+          if(response.status === 200) {
+            setExhibitions(response.data)
+          }
+        }).catch((error) => {
+            return error
+        })
+  }
+
   /* Init Exhibitions */
   useEffect(() => {
-    setExhibitions(list)
+    getAllExhibitions()
   }, [filters.type])
 
   /* Scroll Event */
@@ -470,10 +175,10 @@ const Exhibitions: React.FC = () => {
       {isLoggedIn() ? 
         <>
           <span className={style.backLink}>
-            <ButtonArrow label="Retour à l'accueil" side="left" to="/dashboard"/>
+            <ButtonArrow label="Retour à l'accueil" side="left" to="/artist/dashboard"/>
           </span>
           <section className={cn(style.headSection, direction === scrollDirType.down ? style.scrollDown : null)}>
-          <HeadingStrong content="Mes exposition" elementColor="specific-expo" size="xl" />
+          <HeadingStrong content="Mes expositions" elementColor="specific-expo" size="xl" />
           <Search 
             id="works-search" 
             placeholder="Rechercher une oeuvre par son titre" 
@@ -517,29 +222,33 @@ const Exhibitions: React.FC = () => {
             </li>
           </ul>
         </section>
-        <section className={style.bodySection}>
-                <div className={style.body__ctn}>
-                    {
-                        filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
-                            (index % 3) === 0 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.dateStart} date_end={exhibition.dateEnd} status={checkFilterExhibition(exhibition.dateStart, exhibition.dateEnd, new Date)}/>
-                        ))
-                    }
-                </div>
-                <div className={style.body__ctn}>
-                    {
-                        filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
-                            (index % 3) === 1 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.dateStart} date_end={exhibition.dateEnd} status={checkFilterExhibition(exhibition.dateStart, exhibition.dateEnd, new Date)}/>
-                        ))
-                    }
-                </div>
-                <div className={style.body__ctn}>
-                    {
-                        filterExhibitionsList(Exhibitions, filters).map((exhibition, index) => (
-                            (index % 3) === 2 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.dateStart} date_end={exhibition.dateEnd} status={checkFilterExhibition(exhibition.dateStart, exhibition.dateEnd, new Date)}/>
-                        ))
-                    }
-                </div>
-            </section>
+        {exhibitions && exhibitions.length > 0 ?
+          <section className={style.bodySection}>
+            <div className={style.body__ctn}>
+                {
+                    filterExhibitionsList(exhibitions, filters).map((exhibition, index) => (
+                        (index % 3) === 0 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.dateStart} date_end={exhibition.dateEnd} status={checkFilterExhibition(exhibition.dateStart, exhibition.dateEnd, new Date)}/>
+                    ))
+                }
+            </div>
+            <div className={style.body__ctn}>
+                {
+                    filterExhibitionsList(exhibitions, filters).map((exhibition, index) => (
+                        (index % 3) === 1 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.dateStart} date_end={exhibition.dateEnd} status={checkFilterExhibition(exhibition.dateStart, exhibition.dateEnd, new Date)}/>
+                    ))
+                }
+            </div>
+            <div className={style.body__ctn}>
+                {
+                    filterExhibitionsList(exhibitions, filters).map((exhibition, index) => (
+                        (index % 3) === 2 && <CardGallery type="exhibition" key={exhibition.id} id={exhibition.id} title={exhibition.title} createdAt={exhibition.createdAt} date_start={exhibition.dateStart} date_end={exhibition.dateEnd} status={checkFilterExhibition(exhibition.dateStart, exhibition.dateEnd, new Date)}/>
+                    ))
+                }
+            </div>
+          </section>
+        : 
+          <EmptyContent entity="exhibs" labelButton="Créer une exposition" to="/artist/create-exhibition"/>
+        }
         </>
         :
         <Unauthorized />

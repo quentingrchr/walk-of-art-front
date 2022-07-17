@@ -1,3 +1,9 @@
+@mixin typo-heading-xxl {
+  font-size: 7.2rem;
+  font-family: $font-decay;
+  font-weight: normal;
+}
+
 @mixin typo-heading-xl {
   font-size: 4rem;
   font-family: $font-decay;
@@ -35,6 +41,13 @@
   font-weight: normal;
 }
 
+@mixin typo-paragraph-lg {
+  font-size: 1.8rem;
+  font-family: $font-inter;
+  font-weight: 400;
+  font-style: normal;
+}
+
 @mixin typo-paragraph-md {
   font-size: 1.6rem;
   font-family: $font-inter;
@@ -61,6 +74,13 @@
   font-family: $font-inter;
   font-weight: 400;
   line-height: 2.4rem;
+  font-style: normal;
+}
+
+@mixin typo-paragraph-sm-bold {
+  font-size: 1.4rem;
+  font-family: $font-inter;
+  font-weight: bold;
   font-style: normal;
 }
 
@@ -135,16 +155,5 @@
   } @else {
     // Log a warning.
     @warn 'Invalid breakpoint: #{$breakpoint}.';
-  }
-}
-@mixin landscape {
-  @media (orientation: landscape) {
-    @content;
-  }
-}
-
-@mixin portrait {
-  @media (orientation: portrait) {
-    @content;
   }
 }

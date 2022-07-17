@@ -1,0 +1,501 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+.landing {
+    display: flex;
+    flex-direction: column;
+    gap: 13.6rem;
+    padding-top: 10.7rem;
+
+    &__resume {
+        display: flex;
+        gap: 3.2rem;
+
+        .bloc {
+            position: relative;
+            width: 50%;
+
+            &:first-child {
+                display: flex;
+                flex-direction: column;
+                gap: 2.4rem;
+
+                div:first-child::before  {
+                    bottom: unset;
+                    top: 4.5rem;
+                    width: 18.8rem;
+                    height: 2rem;
+                }
+            }
+        }
+
+        p {
+            max-width: 75%;
+            line-height: 2.8rem;
+            font-weight: 300;
+        }
+
+        ul {
+            display: flex;
+
+            li {
+                display: flex;
+                flex-direction: column;
+                gap: .8rem;
+
+                span:first-child {
+                    @include typo-paragraph-md-bold;
+                    font-size: 2.8rem;
+                }
+
+                span:last-child {
+                    @include typo-paragraph-md;
+                    font-size: 2rem;
+                }
+
+                &:first-child {
+                    padding-right: 2.4rem;
+                }
+                &:nth-child(2) {
+                    padding: 0 2.4rem;
+                    border-left: 1px solid $color-grey;
+                    border-right: 1px solid $color-grey;
+                }
+                &:last-child {
+                    padding-left: 2.4rem;
+                }
+            }
+        }
+
+        .buttonWrapper {
+            display: flex;
+            align-items: center;
+            gap: 3.2rem;
+            max-width: fit-content;
+
+            & > div:first-child {
+                padding: 1.6rem 3.7rem;
+            }
+        }
+
+        .imgWrapper {
+            position: absolute;
+            padding: 2.4rem;
+            background-color: $color-white;
+
+            &:nth-child(2) {
+                padding: 1.2rem;
+            }
+            &:last-child {
+                padding: .9rem;
+            }
+
+            .imgFrame {
+                border: .5rem solid $color-black;
+                padding: .5rem;
+            }
+
+            &:first-child {
+                top: 0;
+                left: 0;
+                z-index: 3;
+            }
+
+            &:nth-child(2) {
+                top: 12.2rem;
+                right: 6.9rem;
+                z-index: 2;
+            }
+
+            &:last-child {
+                top: 2.7rem;
+                right: 0;
+            }
+        }
+    }
+
+    &__streetBanner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 49.8rem;
+        position: relative;
+
+        & > div::before {
+            height: 2rem;
+            width: 20.2rem;
+            background-color: #B3ACFB;
+        }
+
+        h1, h2 {
+            position: relative;
+            z-index: 2;
+            font-size: 5.6rem;
+        }
+
+        h2 {
+            margin-top: 1.6rem;
+            color: $color-white;
+        }
+
+        img {
+            position: absolute;
+            bottom: 0;
+            z-index: 0;
+        }
+    }
+
+    &__screens {
+        display: flex;
+        gap: 3.2rem;
+
+        .bloc {
+            position: relative;
+            width: 50%;
+
+            &:first-child {
+                display: flex;
+                flex-direction: column;
+                gap: 2.4rem;
+
+                div:first-child::before  {
+                    bottom: unset;
+                    top: 2.5rem;
+                    width: 20.2rem;
+                    height: 2rem;
+                    background-color: #FFC2C2;
+                }
+
+                h1 {
+                    font-size: 4.8rem;
+                }
+
+                p {
+                    max-width: 75%;
+                    line-height: 2.8rem;
+                    font-weight: 300;
+                }
+
+                .buttonWrapper {
+                    display: flex;
+                    align-items: center;
+                    gap: 3.2rem;
+                    max-width: fit-content;
+        
+                    & > div:first-child {
+                        padding: 1.6rem 3.7rem;
+                    }
+                }
+            }
+
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+
+    &__artist {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3.2rem;
+
+        div:first-child::before  {
+            bottom: unset;
+            top: 3.5rem;
+            width: 26rem;
+            height: 2rem;
+            background-color: #FFB8F8;
+        }
+
+        h1 {
+            font-size: 5.6rem;
+        }
+
+        .content {
+            display: flex;
+            width: 100%;
+            height: 44.6rem;
+        }
+
+        .mockup, .steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+        }
+        
+        .mockup {
+            background-color: $color-black;
+        }
+
+        .steps {
+            flex-direction: column;
+            background-color: $color-white;
+
+            .stepsContainer {
+                width: 47.2rem;
+            }
+
+            .step {
+                width: 100%;
+
+                &:nth-child(2) {
+                    margin: 4rem 0;
+                }
+
+                summary {
+                    display: flex;
+                    align-items: center;
+                    gap: 3.2rem;
+                    color: $color-grey-500;
+
+                    svg path {
+                        stroke: $color-grey-500;
+                        fill: $color-grey-500;
+                    }
+
+                    span {
+                        font-size: 2.2rem;
+                        font-family: $font-inter;
+                        font-weight: bold;
+                    }
+                }
+
+                &[open] {
+                    summary {
+                        color: $color-black;
+
+                        svg path {
+                            stroke: $color-black;
+                            fill: $color-black;
+                        }
+                    }
+
+                }
+
+                p {
+                    margin-left: 9.8rem;
+                    line-height: 2.8rem;
+                }
+            }
+        }
+    }
+
+    &__contact,
+    &__gallery,
+    &__guidance {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+
+        & > p {
+            width: 60%;
+            text-align: center;
+        }
+
+        & > div:first-child {
+            margin-bottom: 3.2rem;
+        }
+    }
+
+    &__gallery {
+
+        & > div:first-child::before {
+            height: 1.8rem;
+            width: 14.7rem;
+            background-color: #90C6D8;
+        }
+
+        h1 {
+            font-size: 4.8rem;
+        }
+    }
+
+    &__contact {
+
+        & > div:first-child::before {
+            height: 1.8rem;
+            width: 14.7rem;
+            background-color: $color-aqua;
+        }
+
+        h1 {
+            font-size: 4.8rem;
+        }
+    }
+    
+    &__guidance {
+        & > div:first-child::before {
+            height: 2rem;
+            width: 26rem;
+            bottom: unset;
+            top: 3.5rem;
+            background-color: #FFB8F8;
+        }
+
+        h1 {
+            font-size: 5.6rem;
+            max-width: 46rem;
+            text-align: center;
+        }
+    }
+
+
+    &__containerStepper {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 3rem;
+
+
+        & > div > div > div > div > p{
+            font-size: 1.6rem;
+            font-weight: normal;
+        }
+
+        & > div > div > div > div:nth-child(2) > div:nth-child(2){
+            display: none;
+        }
+    }
+
+    &__contentGuidance {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+
+        & > img {
+            width: 340px;
+            height: 270px;
+            object-fit: contain;
+            margin-top: 2rem;
+        }
+    }
+
+    &__step {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    &__gallery {
+        overflow: hidden;
+    }
+
+    &__galleryContainer {
+        width: calc(198px * 12);
+        display: flex;
+        animation: infiniteScroll 20s linear infinite;
+
+        &:hover {
+            animation-play-state: paused;
+        }
+        overflow: scroll;
+
+    }
+
+    &__galleryContent {
+        background-color: $color-white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1rem solid $color-black;
+        width: 198px;
+        height: 396px;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        aspect-ratio: 198/396;
+
+        & > img {
+            display: inline;
+            width: 90%;
+        }
+    }
+
+    &__formContact {
+        width: 40%;
+        height: 100%;
+    
+        & > * {
+            margin-top: 2rem;
+        }
+
+        & > div:nth-child(2) > div > textarea {
+            height: 200px;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-white;
+        padding: 3rem 6.3rem;
+        margin-top: 8rem;
+        background-color: $color-black;
+        position: relative;
+    }
+
+    &__footerLogo {
+        display: flex;
+        align-items: center;
+        gap: 1.6rem;
+        position: absolute;
+        left: 6.3rem;
+
+        & > div > h2 {
+            font-size: 2rem;
+        }
+
+        & > div {
+
+            &::before {
+                width: 40px;
+            }
+
+            &:hover {
+                &::before {
+                    transform: translateX(70px);
+                    width: 20px;
+                }
+            }
+
+            &::after {
+                width: 20px;
+                transform: translateX(70px);
+            }
+
+            &:hover {
+                &::after {
+                    transform: translateX(0px);
+                    width: 40px;
+                }
+            }
+        }
+    }
+
+    &__footerLinks {
+        display: flex;
+        justify-content: center;
+        gap: 4.8rem;
+
+        & > li {
+            font-size: 1.2rem;
+            font-family: $font-inter;
+            font-weight: bold;
+            font-style: normal;
+            list-style: none;
+        }
+    }
+
+    @keyframes infiniteScroll {
+        from { transform: translateX(0); }
+        to   { transform: translate(calc(-198px * 2.5)); }
+    }
+}

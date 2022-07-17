@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import style from "./index.module.scss"
 import cn from "classnames"
-import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, CardGallery, Unauthorized, ButtonArrow } from "@components"
+import { TemplatePage, HeadingStrong, Checkbox, Icon, Text, Search, CardGallery, Unauthorized, ButtonArrow, EmptyContent } from "@components"
 import { useScrollDirection } from "../../../src/hooks/useScrollDirection"
 import { makeCaseAndAccentInsensitiveString, windowIsNotReady, getDate, axiosInstance } from "../../../src/utility"
 import { Work, scrollDirType } from "../../../src/types"
@@ -16,86 +16,6 @@ interface Filters {
     exhibitions: boolean
 }
 
-
-const data: Work[] = [
-    {
-        "id": "1",
-        "title": "",
-        "description": "Une description",
-        "createdAt": "2022-06-27T23:09:10.693Z",
-        "mainFile": {
-            id: "",
-            fileUrl: ""
-        },
-        "workFiles": [
-            {
-                id: "",
-                fileUrl: ""
-            },
-            {
-                id: "",
-                fileUrl: ""
-            }
-        ],
-        "exhibitions": [
-            {
-                "id": "1",
-            },
-        ]
-    },
-    {
-        "id": "2",
-        "title": "Un titre",
-        "description": "Une description",
-        "createdAt": "2022-06-27T23:09:10.693Z",
-        "mainFile": {
-            id: "",
-            fileUrl: ""
-        },
-        "workFiles": [
-            {
-                id: "",
-                fileUrl: ""
-            },
-            {
-                id: "",
-                fileUrl: ""
-            }
-        ],
-    },
-    {
-        "id": "3",
-        "title": "A title",
-        "description": "Une description",
-        "createdAt": "2022-06-27T23:09:10.693Z",
-        "mainFile": {
-            id: "",
-            fileUrl: ""
-        },
-        "workFiles": [
-            {
-                id: "",
-                fileUrl: ""
-            },
-            {
-                id: "",
-                fileUrl: ""
-            }
-        ],
-        "exhibitions": [
-            {
-                "id": "1",
-                
-            },
-            {
-                "id": "2",
-            },
-            {
-                "id": "3",
-            },
-        ]
-    },
-]
 
 const Works: React.FC = () => {
 
@@ -198,7 +118,9 @@ const Works: React.FC = () => {
     const getAllWorks = () => {
         return axiosInstance.get('/works')
           .then(response => {
+            if(response.status === 200) {
             return setWorks(response.data);
+            }
           }).catch((error) => {
             return error
           })
@@ -220,7 +142,7 @@ const Works: React.FC = () => {
             {isLoggedIn() ?
                 <>
                     <span className={style.backLink}>
-                        <ButtonArrow label="Retour à l'accueil" side="left" to="/dashboard"/>
+                        <ButtonArrow label="Retour à l'accueil" side="left" to="/artist/dashboard"/>
                     </span>
                     <section className={cn(style.headSection, direction === scrollDirType.down ? style.scrollDown : null)}>
                         <HeadingStrong content="Mes oeuvres" elementColor="pink" size="xl" />
@@ -247,6 +169,7 @@ const Works: React.FC = () => {
                             />
                         </aside>
                     </section>
+                    {works && works.length > 0 ?
                     <section className={style.bodySection}>
                         <div className={style.body__ctn}>
                             {
@@ -271,6 +194,10 @@ const Works: React.FC = () => {
                             }
                         </div>
                     </section>
+                    :
+
+                    <EmptyContent entity="works" labelButton="Créer une oeuvre" to="/artist/create-work"/>
+                    }
                 </>
                 :
                 <Unauthorized />

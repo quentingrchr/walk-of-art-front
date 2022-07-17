@@ -34,6 +34,10 @@ import SmileyLike from "./smiley-like"
 import SmileyLol from "./smiley-lol"
 import SmileyLove from "./smiley-love"
 import SmileyWow from "./smiley-wow"
+import Upload from "./upload"
+import Screen from "./screen"
+import CalendarLanding from "./calendar-landing"
+
 
 interface IProps {
   type: IconsType
@@ -63,7 +67,6 @@ const Icons: IIcons = {
   information: <Information />,
   searchIcon: <SearchIcon />,
   litteleDownArrow: <LittleDownArrow />,
-  "drop-file": <DropFile />,
   chrono: <Chrono />,
   calendar: <Calendar />,
   warning : <Warning/>,
@@ -72,6 +75,10 @@ const Icons: IIcons = {
   selectCheck: <SelectCheck />,
   trash: <Trash />,
   chevronRight: <ChevronRight />,
+  upload: <Upload />,
+  screen: <Screen />,
+  "calendar-landing": <CalendarLanding />,
+  "drop-file": <DropFile />,
   "eye-closed": <EyeClosed />,
   "eye-opened": <EyeOpened />,
   "smiley-smile": <Smiley />,
@@ -88,7 +95,7 @@ const sizes: any = {
   small: "1.6rem",
   medium: "1.8rem",
   large: "2.2rem",
-  xlarge: "4rem", // not used yet
+  xlarge: "6.6rem", // not used yet
   xxlarge: "8rem",
 }
 

@@ -2,6 +2,10 @@
 
 
 // Headings style
+.heading-xxl {
+    @include typo-heading-xxl;
+}
+
 .heading-xl {
     @include typo-heading-xl;
 }
@@ -24,6 +28,10 @@
 
 .heading-xxs {
     @include typo-heading-xxs;
+}
+
+.paragraph-lg {
+    @include typo-paragraph-lg;
 }
 
 .paragraph-md {

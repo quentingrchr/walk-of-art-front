@@ -15,6 +15,8 @@ export type ColorsType =
   | "violet"
   | "pink"
   | "artist-black"
+  | "yellow"
+  | "aqua"
 
 export type HTMLTextTag =
   | "p"
@@ -38,6 +40,7 @@ export type TextTypography =
   | "heading-sm"
   | "heading-xs"
   | "heading-xxs"
+  | "paragraph-lg"
   | "paragraph-md"
   | "paragraph-md-semi"
   | "paragraph-md-bold"
